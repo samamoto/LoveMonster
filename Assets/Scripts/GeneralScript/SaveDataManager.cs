@@ -45,7 +45,7 @@ public class SaveDataManager : Singleton<SaveDataManager>
 
     private void CreateSaveData()
     {
-        this.InitSavedata = new SaveData[Stages.STAGE_MAX];
+        this.InitSavedata = new SaveData[(int)Stages.STAGE_MAX];
 
         XmlUtility.Seialize<SaveData[]>(this.savedataPath, this.InitSavedata);
         Debug.Log("Create new savedata:" + this.savedataPath);
