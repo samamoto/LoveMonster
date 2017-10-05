@@ -208,31 +208,31 @@ public class DebugButton : MonoBehaviour
         }
 
         //Lスティック==================================================================================
-        float lstick_x = 0.0f;
+        float lstick_x = 0.0f;  //0.0f ~ 1.0f
         lstick_x = Input.GetAxis("Debug_LStick_X");
         string str_lstick_x = "L Stick x : " + lstick_x.ToString("F2");
         this.m_debugUI[(int)Button_XBox.LSTICK_X].GetComponent<Text>().text = str_lstick_x;
 
-        float lstick_y = 0.0f;
+        float lstick_y = 0.0f;  //0.0f ~ 1.0f
         lstick_y = Input.GetAxis("Debug_LStick_Y");
         string str_lstick_y = "L Stick y : " + lstick_y.ToString("F2");
         this.m_debugUI[(int)Button_XBox.LSTICK_Y].GetComponent<Text>().text = str_lstick_y;
         //Lスティック==================================================================================
 
         //Rスティック==================================================================================
-        float rstick_x = 0.0f;
+        float rstick_x = 0.0f;  //0.0f ~ 1.0f
         rstick_x = Input.GetAxis("Debug_RStick_X");
         string str_rstick_x = "R Stick x : " + rstick_x.ToString("F2");
         this.m_debugUI[(int)Button_XBox.RSTICK_X].GetComponent<Text>().text = str_rstick_x;
 
-        float rstick_y = 0.0f;
+        float rstick_y = 0.0f;  //0.0f ~ 1.0f
         rstick_y = Input.GetAxis("Debug_RStick_Y");
         string str_rstick_y = "R Stick y : " + rstick_y.ToString("F2");
         this.m_debugUI[(int)Button_XBox.RSTICK_Y].GetComponent<Text>().text = str_rstick_y;
         //Rスティック==================================================================================
 
         //トリガー=====================================================================================
-        float trigger = 0.0f;
+        float trigger = 0.0f;   //L:1.0f ~ 0.0f ~ 1.0f:R
         trigger = Input.GetAxis("Debug_Trigger");
         this.m_debugUI[(int)Button_XBox.TRIGGER].GetComponent<Slider>().value = trigger;
         string str_trigger = "Value : " + trigger.ToString("F2");
@@ -240,8 +240,10 @@ public class DebugButton : MonoBehaviour
         //トリガー=====================================================================================
 
         //十字キー=====================================================================================
+
+        //※2方向を押すとその方向に0.5f前後に値が出る
         //左右*****************************************************************************************
-        float dpad_x = 0.0f;
+        float dpad_x = 0.0f;    //L:-1.0f ~ 1.0f:R
         dpad_x = Input.GetAxis("Debug_DPad_X");
         if (dpad_x < 0.0f)
             this.m_debugUI[(int)Button_XBox.DPAD_L].GetComponent<Image>().color = Color.gray;
@@ -254,7 +256,7 @@ public class DebugButton : MonoBehaviour
         }
         //左右*****************************************************************************************
         //上下*****************************************************************************************
-        float dpad_y = 0.0f;
+        float dpad_y = 0.0f;    //D:-1.0f ~ 1.0f:U
         dpad_y = Input.GetAxis("Debug_DPad_Y");
         if (dpad_y > 0.0f)
             this.m_debugUI[(int)Button_XBox.DPAD_U].GetComponent<Image>().color = Color.gray;
