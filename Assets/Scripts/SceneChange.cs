@@ -20,6 +20,11 @@ public class SceneChange : MonoBehaviour
         {
             _SceneLoadResult();
         }
+
+        if (Input.GetKeyUp("4"))
+        {
+            _SceneLoadTutorial();
+        }
     }
 
     //Scene変更
@@ -34,5 +39,9 @@ public class SceneChange : MonoBehaviour
     public void _SceneLoadResult()
     {
         SceneManager.LoadScene("ResultScene");
+    }
+    public void _SceneLoadTutorial()
+    {
+        SceneManager.LoadScene("TutorialScene");
     }
 }
