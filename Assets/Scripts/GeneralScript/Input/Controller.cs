@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    public GameObject m_DebugWindow;
     private int m_ControllerID = 999;
     private string str_Controller = "Player";
 
