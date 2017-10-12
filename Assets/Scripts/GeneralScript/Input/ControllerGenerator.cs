@@ -8,6 +8,9 @@ public class ControllerGenerator : MonoBehaviour
     private static InputManagerGenerator ms_InputGenerator;
     private static bool msb_MakeCommonController = false;
 
+    public GameObject m_DebugScreen;
+    public bool mb_ViewDebugScreen = false;
+
     public static void GenerateController(Controller controller)
     {
         if (ms_InputGenerator == null)
