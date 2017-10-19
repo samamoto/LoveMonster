@@ -8,6 +8,14 @@ TagManager:
   - SmallSquare
   - LargeRectAngle
   - SmallRectAngle
+  - Road
+  - Ground
+  - Wall
+  - Vault
+  - Slide
+  - Climb
+  - WallRun
+  - Block
   layers:
   - Default
   - TransparentFX
