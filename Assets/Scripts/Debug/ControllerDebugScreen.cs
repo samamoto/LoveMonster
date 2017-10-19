@@ -3,9 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CONTROLLERSCEERN
+public struct DebugUpdateStruct
 {
-    public enum Button_XBox
+    public bool A;
+    public bool B;
+    public bool X;
+    public bool Y;
+    public bool LB;
+    public bool RB;
+    public bool View;
+    public bool Menu;
+    public bool LStick;
+    public bool RStick;
+    public Vector2 LStick_Axis;
+    public Vector2 RStick_Axis;
+    public float Trigger;
+    public Vector2 DPad;
+
+    public void Clear()
+    {
+        A = B = X = Y = LB = RB = View = Menu = LStick = RStick = false;
+        LStick_Axis = RStick_Axis = DPad = Vector2.zero;
+        Trigger = 0.0f;
+    }
+}
+
+public class ControllerDebugScreen : MonoBehaviour
+{
+    private Transform[] m_debugUI;
+
+    //UI名列挙型
+    private enum enumDbgObjName
     {
         A,
         B,
@@ -29,13 +57,9 @@ namespace CONTROLLERSCEERN
         MAX
     }
 
-    public class ControllerDebugScreen : MonoBehaviour
+    //UI名リスト
+    private string[] m_strDbgObjName =
     {
-        private Transform[] m_debugUI;
-        private InputManagerGenerator m_inputManage;
-
-        private string[] m_strDebugButtons =
-        {
         "A",
         "B",
         "X",
@@ -57,89 +81,212 @@ namespace CONTROLLERSCEERN
         "DPAD_D"
     };
 
-        // Use this for initialization
-        private void Start()
+    private DebugUpdateStruct m_ScreenUpdator;
+
+    public void DebugInit()
+    {
+        //UI取得
+        this.m_debugUI = new Transform[(int)enumDbgObjName.MAX];
+        for (int i = 0; i < (int)enumDbgObjName.MAX; i++)
         {
-            this.m_debugUI = new Transform[(int)Button_XBox.MAX];
-            for (int i = 0; i < (int)Button_XBox.MAX; i++)
-            {
-                this.m_debugUI[i] = transform.Find(this.m_strDebugButtons[i]);
-            }
+            this.m_debugUI[i] = this.transform.Find(this.m_strDbgObjName[i]);
+        }
+        this.m_ScreenUpdator = new DebugUpdateStruct();
+        this.m_ScreenUpdator.Clear();
+    }
+
+    public void UpdateButtonScreen(string button)
+    {
+        int check;
+        for (check = 0; check <= (int)ControllerGenerator.enumControllerName.RSTICK; check++)
+            if (button == ControllerGenerator.strControllerName[check])
+                break;
+
+        switch (check)
+        {
+            case (int)ControllerGenerator.enumControllerName.A:
+                this.m_ScreenUpdator.A = true;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.B:
+                this.m_ScreenUpdator.B = true;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.X:
+                this.m_ScreenUpdator.X = true;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.Y:
+                this.m_ScreenUpdator.Y = true;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.LB:
+                this.m_ScreenUpdator.LB = true;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.RB:
+                this.m_ScreenUpdator.RB = true;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.VIEW:
+                this.m_ScreenUpdator.View = true;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.MENU:
+                this.m_ScreenUpdator.Menu = true;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.LSTICK:
+                this.m_ScreenUpdator.LStick = true;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.RSTICK:
+                this.m_ScreenUpdator.RStick = true;
+                break;
+        }
+    }
+
+    public void UpdateAxisScreen(string axis, float value)
+    {
+        int check;
+        for (check = (int)ControllerGenerator.enumControllerName.LSTICK_X; check < (int)ControllerGenerator.enumControllerName.MAX; check++)
+            if (axis == ControllerGenerator.strControllerName[check])
+                break;
+
+        switch (check)
+        {
+            case (int)ControllerGenerator.enumControllerName.LSTICK_X:
+                this.m_ScreenUpdator.LStick_Axis.x = value;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.LSTICK_Y:
+                this.m_ScreenUpdator.LStick_Axis.y = value;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.TRIGGER:
+                this.m_ScreenUpdator.Trigger = value;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.RSTICK_X:
+                this.m_ScreenUpdator.RStick_Axis.x = value;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.RSTICK_Y:
+                this.m_ScreenUpdator.RStick_Axis.y = value;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.DPAD_X:
+                this.m_ScreenUpdator.DPad.x = value;
+                break;
+
+            case (int)ControllerGenerator.enumControllerName.DPAD_Y:
+                this.m_ScreenUpdator.DPad.y = value;
+                break;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        //きたねぇ...
+        //ボタン=====================================================================================
+        //A更新
+        if (this.m_ScreenUpdator.A)
+            this.m_debugUI[(int)enumDbgObjName.A].GetComponent<Image>().color = Color.gray;
+        else
+            this.m_debugUI[(int)enumDbgObjName.A].GetComponent<Image>().color = Color.white;
+        //B更新
+        if (this.m_ScreenUpdator.B)
+            this.m_debugUI[(int)enumDbgObjName.B].GetComponent<Image>().color = Color.gray;
+        else
+            this.m_debugUI[(int)enumDbgObjName.B].GetComponent<Image>().color = Color.white;
+        //X更新
+        if (this.m_ScreenUpdator.X)
+            this.m_debugUI[(int)enumDbgObjName.X].GetComponent<Image>().color = Color.gray;
+        else
+            this.m_debugUI[(int)enumDbgObjName.X].GetComponent<Image>().color = Color.white;
+        //Y更新
+        if (this.m_ScreenUpdator.Y)
+            this.m_debugUI[(int)enumDbgObjName.Y].GetComponent<Image>().color = Color.gray;
+        else
+            this.m_debugUI[(int)enumDbgObjName.Y].GetComponent<Image>().color = Color.white;
+        //LB更新
+        if (this.m_ScreenUpdator.LB)
+            this.m_debugUI[(int)enumDbgObjName.LB].GetComponent<Image>().color = Color.gray;
+        else
+            this.m_debugUI[(int)enumDbgObjName.LB].GetComponent<Image>().color = Color.white;
+        //RB更新
+        if (this.m_ScreenUpdator.RB)
+            this.m_debugUI[(int)enumDbgObjName.RB].GetComponent<Image>().color = Color.gray;
+        else
+            this.m_debugUI[(int)enumDbgObjName.RB].GetComponent<Image>().color = Color.white;
+        //View更新
+        if (this.m_ScreenUpdator.View)
+            this.m_debugUI[(int)enumDbgObjName.VIEW].GetComponent<Image>().color = Color.gray;
+        else
+            this.m_debugUI[(int)enumDbgObjName.VIEW].GetComponent<Image>().color = Color.white;
+        //Menu更新
+        if (this.m_ScreenUpdator.Menu)
+            this.m_debugUI[(int)enumDbgObjName.MENU].GetComponent<Image>().color = Color.gray;
+        else
+            this.m_debugUI[(int)enumDbgObjName.MENU].GetComponent<Image>().color = Color.white;
+        //LStick更新
+        if (this.m_ScreenUpdator.LStick)
+            this.m_debugUI[(int)enumDbgObjName.LSTICK].GetComponent<Image>().color = Color.gray;
+        else
+            this.m_debugUI[(int)enumDbgObjName.LSTICK].GetComponent<Image>().color = Color.white;
+        //RStick更新
+        if (this.m_ScreenUpdator.RStick)
+            this.m_debugUI[(int)enumDbgObjName.RSTICK].GetComponent<Image>().color = Color.gray;
+        else
+            this.m_debugUI[(int)enumDbgObjName.RSTICK].GetComponent<Image>().color = Color.white;
+        //ボタン=====================================================================================
+
+        //軸========================================================================================
+        Vector2 axisValue;
+        string strAxis;
+
+        //トリガー
+        float trigger = this.m_ScreenUpdator.Trigger;
+        this.m_debugUI[(int)enumDbgObjName.TRIGGER].GetComponent<Slider>().value = trigger;
+        this.m_debugUI[(int)enumDbgObjName.TRIGGER].Find("TRIGGER_VALUE").GetComponent<Text>().text = "Value : " + trigger.ToString("F2");
+
+        //Lスティック
+        axisValue = this.m_ScreenUpdator.LStick_Axis;
+        strAxis = "L Stick ";
+        this.m_debugUI[(int)enumDbgObjName.LSTICK_X].GetComponent<Text>().text = strAxis + "x : " + axisValue.x.ToString("F2");
+        this.m_debugUI[(int)enumDbgObjName.LSTICK_Y].GetComponent<Text>().text = strAxis + "y : " + axisValue.y.ToString("F2");
+
+        //Rスティック
+        axisValue = this.m_ScreenUpdator.RStick_Axis;
+        strAxis = "R Stick ";
+        this.m_debugUI[(int)enumDbgObjName.RSTICK_X].GetComponent<Text>().text = strAxis + "x : " + axisValue.x.ToString("F2");
+        this.m_debugUI[(int)enumDbgObjName.RSTICK_Y].GetComponent<Text>().text = strAxis + "y : " + axisValue.y.ToString("F2");
+
+        //Dパッド
+        axisValue = this.m_ScreenUpdator.DPad;
+        //左右
+        if (axisValue.x < 0.0f)
+            this.m_debugUI[(int)enumDbgObjName.DPAD_L].GetComponent<Image>().color = Color.gray;
+        else if (axisValue.x > 0.0f)
+            this.m_debugUI[(int)enumDbgObjName.DPAD_R].GetComponent<Image>().color = Color.gray;
+        else
+        {
+            this.m_debugUI[(int)enumDbgObjName.DPAD_L].GetComponent<Image>().color = Color.white;
+            this.m_debugUI[(int)enumDbgObjName.DPAD_R].GetComponent<Image>().color = Color.white;
         }
 
-        public void ScreenButton(Button_XBox button_XBox, bool button)
+        //上下
+        if (axisValue.y < 0.0f)
+            this.m_debugUI[(int)enumDbgObjName.DPAD_D].GetComponent<Image>().color = Color.gray;
+        else if (axisValue.y > 0.0f)
+            this.m_debugUI[(int)enumDbgObjName.DPAD_U].GetComponent<Image>().color = Color.gray;
+        else
         {
-            //ボタンかどうかチェック
-            if (Button_XBox.A <= button_XBox && button_XBox <= Button_XBox.RSTICK)
-            {
-                if (button)
-                    this.m_debugUI[(int)Button_XBox.A].GetComponent<Image>().color = Color.gray;
-                else
-                    this.m_debugUI[(int)Button_XBox.A].GetComponent<Image>().color = Color.white;
-            }
+            this.m_debugUI[(int)enumDbgObjName.DPAD_D].GetComponent<Image>().color = Color.white;
+            this.m_debugUI[(int)enumDbgObjName.DPAD_U].GetComponent<Image>().color = Color.white;
         }
-
-        public void ScreenAxis(Button_XBox axis_XBox, float value)
-        {
-            //軸系かチェック
-            if (Button_XBox.LSTICK_X <= axis_XBox && axis_XBox <= Button_XBox.DPAD_D)
-            {
-                string screen_str;
-                switch (axis_XBox)
-                {
-                    case Button_XBox.LSTICK_X:
-                        screen_str = "L Stick x : " + value.ToString("F2");
-                        this.m_debugUI[(int)axis_XBox].GetComponent<Text>().text = screen_str;
-                        break;
-
-                    case Button_XBox.LSTICK_Y:
-                        screen_str = "L Stick y : " + value.ToString("F2");
-                        this.m_debugUI[(int)axis_XBox].GetComponent<Text>().text = screen_str;
-                        break;
-
-                    case Button_XBox.RSTICK_X:
-                        screen_str = "R Stick x : " + value.ToString("F2");
-                        this.m_debugUI[(int)axis_XBox].GetComponent<Text>().text = screen_str;
-                        break;
-
-                    case Button_XBox.RSTICK_Y:
-                        screen_str = "L Stick y : " + value.ToString("F2");
-                        this.m_debugUI[(int)axis_XBox].GetComponent<Text>().text = screen_str;
-                        break;
-
-                    case Button_XBox.TRIGGER:
-                        this.m_debugUI[(int)axis_XBox].GetComponent<Slider>().value = value;
-                        screen_str = "value : " + value.ToString("F2");
-                        this.m_debugUI[(int)axis_XBox].Find("TRIGGER_VALUE").GetComponent<Text>().text = screen_str;
-                        break;
-
-                    case Button_XBox.DPAD_L:
-                    case Button_XBox.DPAD_R:
-                        if (value < 0.0f)
-                            this.m_debugUI[(int)Button_XBox.DPAD_L].GetComponent<Image>().color = Color.gray;       //色変更(左)
-                        else if (value > 0.0f)
-                            this.m_debugUI[(int)Button_XBox.DPAD_R].GetComponent<Image>().color = Color.gray;       //色変更(右)
-                        else
-                        {
-                            this.m_debugUI[(int)Button_XBox.DPAD_L].GetComponent<Image>().color = Color.white;      //0なら(無入力)白にする
-                            this.m_debugUI[(int)Button_XBox.DPAD_R].GetComponent<Image>().color = Color.white;
-                        }
-                        break;
-
-                    case Button_XBox.DPAD_U:
-                    case Button_XBox.DPAD_D:
-                        if (value > 0.0f)
-                            this.m_debugUI[(int)Button_XBox.DPAD_U].GetComponent<Image>().color = Color.gray;       //色変更(上)
-                        else if (value < 0.0f)
-                            this.m_debugUI[(int)Button_XBox.DPAD_D].GetComponent<Image>().color = Color.gray;       //色変更(下)
-                        else
-                        {
-                            this.m_debugUI[(int)Button_XBox.DPAD_U].GetComponent<Image>().color = Color.white;      //0なら(無入力)白にする
-                            this.m_debugUI[(int)Button_XBox.DPAD_D].GetComponent<Image>().color = Color.white;
-                        }
-                        break;
-                }
-            }
-        }
+        //軸========================================================================================
+        //ボタン情報クリア
+        this.m_ScreenUpdator.Clear();
     }
 }
