@@ -11,7 +11,7 @@ public enum PLAYER_ANIMATION_STATE
     VAULT,
     CLIM,
     SLIDE,
-    WALK_WALL,
+    WALL_RUN,
     FALL,//落下
     LAND,//着地
     BREAK_FALL,//受け身
