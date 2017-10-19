@@ -14,7 +14,7 @@ public class GameMain : MonoBehaviour
     {
         m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
         this.m_Controller = new Controller();
-        ControllerGenerator.GenerateController(this.m_Controller);
+       
     }
 
     // Update is called once per frame

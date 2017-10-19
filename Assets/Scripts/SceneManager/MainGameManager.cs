@@ -11,12 +11,14 @@ public class MainGameManager : MonoBehaviour {
     // Use this for initialization
     private void Start()
     {
-        m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
+        m_ScreenChange = GetComponent<SceneChange>();
     }
 
     // Update is called once per frame
     private void Update()
     {
+
+
         m_ScreenChange._DebugInput();
     }
 }
