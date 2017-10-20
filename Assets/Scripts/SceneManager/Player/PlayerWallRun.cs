@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerWallRun : MonoBehaviour {
 
+    AllPlayerManager playerManager;
     //壁歩きの状態
     int m_WallRunState = -1;
 
@@ -12,6 +13,8 @@ public class PlayerWallRun : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        playerManager = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
+
         velocity = Vector3.zero;
 	}
 	
@@ -27,11 +30,11 @@ public class PlayerWallRun : MonoBehaviour {
                 //ToDo:コントローラに変える
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
-                    velocity.x = -GetComponentInParent<PlayerManager>().m_SideRunSpeed;
+                    velocity.x = -playerManager.m_SideRunSpeed;
                 }
                 else if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    velocity.x = GetComponentInParent<PlayerManager>().m_SideRunSpeed;
+                    velocity.x = playerManager.m_SideRunSpeed;
                 }
                 else
                 {

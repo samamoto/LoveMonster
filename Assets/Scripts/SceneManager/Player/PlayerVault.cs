@@ -7,8 +7,10 @@ public class PlayerVault : MonoBehaviour {
     int state = 0;
     int vaultstate = 0;
     Vector3 velocity;
+    AllPlayerManager playerManager;
 	// Use this for initialization
 	void Start () {
+        playerManager = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
         //this.enabled = false;
     }
 	
@@ -19,11 +21,11 @@ public class PlayerVault : MonoBehaviour {
             case 0://条件を満たしていない
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
-                    velocity.x = -GetComponentInParent<PlayerManager>().m_SideRunSpeed;
+                    velocity.x = -playerManager.m_SideRunSpeed;
                 }
                 else if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    velocity.x = GetComponentInParent<PlayerManager>().m_SideRunSpeed;
+                    velocity.x = playerManager.m_SideRunSpeed;
                 }
                 else
                 {
