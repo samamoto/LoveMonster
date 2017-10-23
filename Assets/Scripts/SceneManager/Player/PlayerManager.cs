@@ -6,7 +6,8 @@ public partial class PlayerManager : MonoBehaviour {
     private PLAYER_ANIMATION_STATE AnimationState = PLAYER_ANIMATION_STATE.DUSH;
     private Controller m_Controller;
 
-
+    static public int m_myNumberCount = 1;
+    public int m_mynumber;
     public PlayerDash m_playerDash;
     public PlayerJump m_playerJump;
     public PlayerVault m_playerVault;
@@ -16,7 +17,8 @@ public partial class PlayerManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         this.m_Controller = this.GetComponent<Controller>();
-
+        m_mynumber = m_myNumberCount;
+        m_myNumberCount++;
     }
 
     // Update is called once per frame
@@ -88,6 +90,7 @@ public partial class PlayerManager : MonoBehaviour {
         //デバッグ処理
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log(m_mynumber);
             m_playerDash.enabled = true;
             m_playerJump.enabled = false;
             transform.position = Vector3.zero;
