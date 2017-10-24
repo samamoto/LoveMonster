@@ -1,34 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 public partial class PlayerManager : MonoBehaviour {
-
-    [SerializeField]
+    
     private PLAYER_ANIMATION_STATE AnimationState = PLAYER_ANIMATION_STATE.DUSH;
     private Controller m_Controller;
 
-
+    static public int m_myNumberCount = 1;
+    public int m_mynumber;
     public PlayerDash m_playerDash;
     public PlayerJump m_playerJump;
     public PlayerVault m_playerVault;
     public PlayerWallRun m_playerWallRun;
 
-    //走る速さ
-    public float m_RunSpeed = 0.2f;
-    public float m_SideRunSpeed = 0.05f;
-
-    //ジャンプ力
-    public float m_JumpPower = 1.0f;
-    //ジャンプ時間
-    public float m_JumpTime = 2;
 
     // Use this for initialization
     void Start () {
         this.m_Controller = this.GetComponent<Controller>();
-
+        m_mynumber = m_myNumberCount;
+        m_myNumberCount++;
     }
 
     // Update is called once per frame
@@ -53,13 +43,16 @@ public partial class PlayerManager : MonoBehaviour {
                     m_playerJump.enabled = true;
                     workPAS = PLAYER_ANIMATION_STATE.JUMP;
                 }
-                if (Input.GetKeyDown(KeyCode.V))
+                if (this.m_Controller.GetButtonDown("A") || 
+                    Input.GetKeyDown(KeyCode.V))
                 {
                     m_playerDash.enabled = false;
                     m_playerVault.enabled = true;
                     workPAS = PLAYER_ANIMATION_STATE.VAULT;
                 }
-                if(Input.GetKeyDown(KeyCode.W))
+                if(
+                    this.m_Controller.GetButtonDown("LB") || 
+                    Input.GetKeyDown(KeyCode.W))
                 {
                     m_playerDash.enabled = false;
                     m_playerWallRun.enabled = true;
@@ -97,6 +90,7 @@ public partial class PlayerManager : MonoBehaviour {
         //デバッグ処理
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log(m_mynumber);
             m_playerDash.enabled = true;
             m_playerJump.enabled = false;
             transform.position = Vector3.zero;
@@ -107,74 +101,4 @@ public partial class PlayerManager : MonoBehaviour {
         //if (this.m_Controller.GetButton("A"))
         //    Debug.Log("aです");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#if UNITY_EDITOR
-    /**
-     * Inspector拡張クラス
-     */
-    [CustomEditor(typeof(Player))]
-    public class CharacterEditor : Editor
-    {
-        PlayerManager Pm;
-
-        // 経由用
-        SerializedProperty animstate;
-
-        void OnEnable()
-        {
-            // 基礎クラスからmyIntをSerializedPropertyで受け取る
-            animstate = serializedObject.FindProperty("AnimationState");
-        }
-
-
-        public override void OnInspectorGUI()
-        {
-            Pm = target as PlayerManager;
-
-            serializedObject.Update();
-            //Pm.AnimationState = (PLAYER_ANIMATION_STATE)EditorGUILayout.EnumPopup(Pm.AnimationState);
-
-
-            //EditorGUILayout.EnumPopup((PLAYER_ANIMATION_STATE)animstate.enumValueIndex);
-
-            if (GUILayout.Button("元に戻す"))
-            {
-                //animstate.enumValueIndex = 0;
-            }
-
-            serializedObject.ApplyModifiedProperties();
-        }
-    }
-#endif
 }
