@@ -13,6 +13,6 @@ public class PlayerStay : MonoBehaviour {
 	void Update () {
 
         //終了
-        this.enabled = false;
+        //this.enabled = false;
     }
 }
