@@ -37,6 +37,9 @@
 		IdleGrab_Neutral
 		IdleTo_BackFlipDown_High_ToIdle
 		Roll_To_Run
+		climb
+		slide
+		vault
 	[ ]Running
 		Jog_LedgeStop_Idle
 		JogAvoid_ToRight_Both
