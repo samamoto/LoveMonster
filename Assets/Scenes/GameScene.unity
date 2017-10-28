@@ -649,8 +649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab9b32c94b95c3428abf6573d5cb201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  z: 0
 --- !u!1 &237442198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,7 +1743,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4057668097476276, guid: bbaf9f8cd2400ec48bf4a39810a47b68, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4057668097476276, guid: bbaf9f8cd2400ec48bf4a39810a47b68, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1945,8 +1943,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab9b32c94b95c3428abf6573d5cb201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  z: 0
 --- !u!1 &1116336898
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,8 +3206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab9b32c94b95c3428abf6573d5cb201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  z: 0
 --- !u!1 &1613385750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,8 +3265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab9b32c94b95c3428abf6573d5cb201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  z: 0
 --- !u!1 &1629356077
 GameObject:
   m_ObjectHideFlags: 0

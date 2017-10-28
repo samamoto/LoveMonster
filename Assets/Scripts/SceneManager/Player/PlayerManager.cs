@@ -8,6 +8,7 @@ public partial class PlayerManager : MonoBehaviour {
     private float velocity;//加速度
     //ToDo:Test
     string word = "Cube1";
+    bool lookAtFlug = false;
 
     // Use this for initialization
     void Start () {
@@ -32,9 +33,12 @@ public partial class PlayerManager : MonoBehaviour {
         {
             word = "Cube3";
         }
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            lookAtFlug = !lookAtFlug;
+        }
         Vector3 workTrans = GameObject.Find(word).GetComponent<Transform>().position;
-        transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
-
+        workTrans.y = transform.position.y;
         //デバッグ処理　仮
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -42,6 +46,23 @@ public partial class PlayerManager : MonoBehaviour {
         }
 
         velocity = m_animator.GetFloat("Speed");
+
+        //実装
+        if (lookAtFlug)
+        {
+            transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f));
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                transform.Rotate(new Vector3(0.0f, -1.0f, 0.0f));
+            }
+        }
         m_CharacterController.Move(new Vector3(transform.forward.x * velocity * Time.deltaTime, 0.0f, transform.forward.z * velocity * Time.deltaTime));
 
         //コントローラの取得の仕方　仮
