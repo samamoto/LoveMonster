@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorkRun : StateMachineBehaviour {
+public class WalkRun : StateMachineBehaviour {
     enum STATE
     {
         NONE,
@@ -10,7 +10,7 @@ public class WorkRun : StateMachineBehaviour {
         DOWN
     }
     STATE state;
-    float speed;
+    float m_Velocity;
     AllPlayerManager PM;
 
 
@@ -18,13 +18,14 @@ public class WorkRun : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         state = STATE.UP;
+        PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
-        speed = animator.GetFloat("Speed");
+        m_Velocity = animator.GetFloat("Velocity");
 
 
         switch (state)
@@ -33,7 +34,7 @@ public class WorkRun : StateMachineBehaviour {
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
 
-                    speed += 0.1f;// PM.m_RunSpeed;
+                    m_Velocity +=  PM.m_RunSpeed;
                 }
                 else
                 {
@@ -48,24 +49,50 @@ public class WorkRun : StateMachineBehaviour {
                 }
                 else
                 {
-                    speed -= 0.1f;// PM.m_RunSpeed;
+                    m_Velocity -=  PM.m_RunSpeed;
                 }
 
 
                 break;
         }
 
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            animator.SetBool("is_Jump", true);
+        }
 
-        if (speed <= 0.0f)
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            animator.SetBool("is_Slide", true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            animator.SetBool("is_Climb", true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            animator.SetBool("is_Vault", true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            animator.SetBool("is_WallRun", true);
+        }
+
+
+
+        if (m_Velocity <= 0.0f)
         {
             animator.SetBool("is_Dush", false);
         }
-        if (speed > 5.0f)
+        if (m_Velocity > PM.m_MaxRunSpeed)
         {
-            speed = 5.0f;
+            m_Velocity = PM.m_MaxRunSpeed;
         }
 
-        animator.SetFloat("Speed", speed);
+        animator.SetFloat("Velocity", m_Velocity);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

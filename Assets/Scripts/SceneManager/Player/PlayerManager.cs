@@ -45,7 +45,7 @@ public partial class PlayerManager : MonoBehaviour {
             transform.position = Vector3.zero;
         }
 
-        velocity = m_animator.GetFloat("Speed");
+        velocity = m_animator.GetFloat("Velocity");
 
         //実装
         if (lookAtFlug)

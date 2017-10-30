@@ -6,6 +6,7 @@ public class AllPlayerManager : MonoBehaviour {
 
     //走る速さ
     public float m_RunSpeed = 0.2f;
+    public float m_MaxRunSpeed = 5.0f;
     public float m_SideRunSpeed = 0.05f;
 
     //ジャンプ力

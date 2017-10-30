@@ -12,11 +12,13 @@ public class Idle : StateMachineBehaviour {
     }
     STATE state;
     float speed;
+    AllPlayerManager PM;
 
     //AllPlayerManager PM;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
         state = STATE.NONE;
         speed = 0.0f;
     }
@@ -54,7 +56,10 @@ public class Idle : StateMachineBehaviour {
                 break;
         }
 
-        animator.SetFloat("Speed", speed/*PM.m_RunSpeed*/);
+
+
+
+        animator.SetFloat("Velocity", speed/*PM.m_RunSpeed*/);
 
         if(speed>=0.5f)
         {
