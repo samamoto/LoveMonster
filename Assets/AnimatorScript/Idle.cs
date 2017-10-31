@@ -11,7 +11,7 @@ public class Idle : StateMachineBehaviour {
         DOWN
     }
     STATE state;
-    float speed;
+    float m_Velocity;
     AllPlayerManager PM;
 
     //AllPlayerManager PM;
@@ -20,7 +20,7 @@ public class Idle : StateMachineBehaviour {
     {
         PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
         state = STATE.NONE;
-        speed = 0.0f;
+        m_Velocity = 0.0f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -35,7 +35,7 @@ public class Idle : StateMachineBehaviour {
             case STATE.UP:
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
-                    speed += 0.1f;
+                    m_Velocity += 0.5f;
                 }
                 else
                 {
@@ -43,14 +43,14 @@ public class Idle : StateMachineBehaviour {
                 }
                 break;
             case STATE.DOWN:
-                speed -= 0.1f;
+                m_Velocity -= 0.5f;
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
                     state = STATE.UP;
                 }
-                if (speed < 0.0f)
+                if (m_Velocity < 0.0f)
                 {
-                    speed = 0.0f;
+                    m_Velocity = 0.0f;
                     state = STATE.NONE;
                 }
                 break;
@@ -59,9 +59,9 @@ public class Idle : StateMachineBehaviour {
 
 
 
-        animator.SetFloat("Velocity", speed/*PM.m_RunSpeed*/);
+        animator.SetFloat("Velocity", m_Velocity);
 
-        if(speed>=0.5f)
+        if(m_Velocity>=0.5f)
         {
             animator.SetBool("is_Dush", true);
         }
@@ -73,7 +73,7 @@ public class Idle : StateMachineBehaviour {
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         state = STATE.NONE;
-        speed = 0.0f;
+        m_Velocity = 0.0f;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
