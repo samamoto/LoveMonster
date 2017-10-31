@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WalkRun : StateMachineBehaviour {
-    enum STATE
-    {
-        NONE,
-        UP,
-        DOWN
-    }
-    STATE state;
     float m_Velocity;
     AllPlayerManager PM;
 
@@ -17,7 +10,6 @@ public class WalkRun : StateMachineBehaviour {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        state = STATE.UP;
         PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
     }
 
@@ -27,34 +19,25 @@ public class WalkRun : StateMachineBehaviour {
 
         m_Velocity = animator.GetFloat("Velocity");
 
-
-        switch (state)
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            case STATE.UP://加速
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-
-                    m_Velocity +=  PM.m_RunSpeed;
-                }
-                else
-                {
-                    state = STATE.DOWN;
-                }
-                break;
-            case STATE.DOWN:
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-
-                    state = STATE.UP;
-                }
-                else
-                {
-                    m_Velocity -=  PM.m_RunSpeed;
-                }
-
-
-                break;
+            m_Velocity += PM.m_RunSpeed;
+            if (m_Velocity > PM.m_MaxRunSpeed)
+            {
+                m_Velocity = PM.m_MaxRunSpeed;
+            }
         }
+        else
+        {
+            m_Velocity -= PM.m_RunSpeed;
+            if (m_Velocity <= 0.0f)
+            {
+                animator.SetBool("is_Dush", false);
+            }
+        }
+
+
+
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -83,14 +66,7 @@ public class WalkRun : StateMachineBehaviour {
 
 
 
-        if (m_Velocity <= 0.0f)
-        {
-            animator.SetBool("is_Dush", false);
-        }
-        if (m_Velocity > PM.m_MaxRunSpeed)
-        {
-            m_Velocity = PM.m_MaxRunSpeed;
-        }
+
 
         animator.SetFloat("Velocity", m_Velocity);
     }
