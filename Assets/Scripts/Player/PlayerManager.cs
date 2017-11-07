@@ -76,7 +76,6 @@ public partial class PlayerManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.C))
         {
             m_animator.SetBool("is_Climb", true);
-            m_animator.SetBool("is_ClimbJump", true);
         }
 
         if (Input.GetKeyDown(KeyCode.V))

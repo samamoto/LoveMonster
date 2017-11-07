@@ -18,16 +18,12 @@ public class Jump : StateMachineBehaviour {
     {
         PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
 
-        m_Jump = m_JumpUpSpeed;
-
-        //ジャンプに移行したらフラグを切る
-        animator.SetBool("is_Jump", false);
+        m_Jump = m_JumpUpSpeed;      
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        
+    {      
        
     }
 
@@ -36,6 +32,9 @@ public class Jump : StateMachineBehaviour {
     {
         //ジャンプの値をアニメーターにセット
         animator.SetFloat("JumpPower", m_Jump);
+
+        //ジャンプに移行していたらフラグを切る
+        animator.SetBool("is_Jump", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

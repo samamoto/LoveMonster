@@ -19,8 +19,7 @@ public class Climb : StateMachineBehaviour {
         m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
         m_Climb = 0;
 
-        //クライムに移行したらフラグを切る
-        animator.SetBool("is_Climb", false);
+       
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -32,7 +31,8 @@ public class Climb : StateMachineBehaviour {
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        //クライムに移行していたらフラグを切る
+        animator.SetBool("is_Climb", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

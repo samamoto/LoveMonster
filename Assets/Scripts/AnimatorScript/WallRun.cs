@@ -14,9 +14,7 @@ public class WallRun : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
-
-        //ウォールランに移行したらフラグを切る
-        animator.SetBool("is_WallRun", false);
+      
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -28,7 +26,8 @@ public class WallRun : StateMachineBehaviour {
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        //ウォールランに移行したらフラグを切る
+        animator.SetBool("is_WallRun", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

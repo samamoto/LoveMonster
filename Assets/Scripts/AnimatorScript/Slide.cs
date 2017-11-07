@@ -19,10 +19,7 @@ public class Slide : StateMachineBehaviour {
         PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
 
         //通常の速度に加えて加速させる
-        m_Slide = animator.GetFloat("Velocity") + m_SlideSpeed;
-
-        //スライドに移行したらフラグを切る
-        animator.SetBool("is_Slide", false);
+        m_Slide = animator.GetFloat("Velocity") + m_SlideSpeed; 
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -35,8 +32,11 @@ public class Slide : StateMachineBehaviour {
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        //アニメーターにスライドの値をセット
         animator.SetFloat("Velocity", m_SlideSpeed);
+
+        //スライドに移行していたらフラグを切る
+        animator.SetBool("is_Slide", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
