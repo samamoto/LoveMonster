@@ -7,12 +7,12 @@ public class ChaseCamera : MonoBehaviour {
     Vector3 offset;
 	// Use this for initialization
 	void Start () {
-        offset = transform.position - target.position;
+       // offset = transform.position - target.position;
     }
 
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
     void LateUpdate()
     {
-        this.transform.position = target.position + offset;
+       // this.transform.position = target.position + offset;
     }
 }
