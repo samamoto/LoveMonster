@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour {
 
+	private static EventManager _instance;	// インスタンス
+
 	// Use this for initialization
 	void Start () {
 		
@@ -22,4 +24,25 @@ public class EventManager : MonoBehaviour {
                 break;
         }
     }
+
+
+	// Singleton
+	//------------------------------------------------------------
+	//private EventManager() {
+	//	Debug.Log("Create SampleSingleton instance.");
+	//}
+
+	/// <summary>
+	/// インスタンスの入手
+	/// </summary>
+	public static EventManager Instance {
+		get {
+			if (_instance == null) _instance = new EventManager();
+
+			return _instance;
+		}
+	}
+
+
+
 }

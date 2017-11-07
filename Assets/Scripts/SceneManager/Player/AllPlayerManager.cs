@@ -5,6 +5,8 @@ using UnityEngine;
 public class AllPlayerManager : MonoBehaviour
 {
 
+	private static AllPlayerManager _instance;
+
     //走る速さ
     public float m_RunSpeed = 0.2f;
     public float m_MaxRunSpeed = 5.0f;
@@ -24,7 +26,7 @@ public class AllPlayerManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+		
     }
 
     // Update is called once per frame
@@ -32,4 +34,23 @@ public class AllPlayerManager : MonoBehaviour
     {
 
     }
+
+	// Singleton
+	//------------------------------------------------------------
+	//private AllPlayerManger() {
+	//	Debug.Log("Create SampleSingleton instance.");
+	//}
+
+	/// <summary>
+	/// インスタンスの入手
+	/// </summary>
+	public static AllPlayerManager Instance {
+		get {
+			if (_instance == null) _instance = new AllPlayerManager();
+
+			return _instance;
+		}
+	}
+
+
 }

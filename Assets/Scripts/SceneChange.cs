@@ -3,6 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
+
+	MainGameManager m_GameManager;
+
+	private void Start() {
+		m_GameManager = GetComponent<MainGameManager>();	
+	}
+
+	private void Update() {
+			
+	}
+
+
+
     //テスト用
     public void _DebugInput()
     {
