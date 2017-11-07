@@ -73,7 +73,7 @@ public class InputAxis
     {
         var axis = new InputAxis();
         axis.name = name;
-        axis.dead = 0.2f;
+        axis.dead = 0.001f;
         axis.sensitivity = 1;
         axis.type = AxisType.JoystickAxis;
         axis.axis = axisNum;
@@ -90,12 +90,14 @@ public class InputAxis
     /// <param name="joystickNum">Joystick number.</param>
     /// <param name="positiveButton">Positive button.</param>
     /// <param name="negativeButton">Negative button.</param>
-    public static InputAxis CreatePadButton(string name, string positiveButton, string negativeButton)
+    public static InputAxis CreatePadButton(string name, string positiveButton, string altPositive, string negativeButton, string altNegative)
     {
         var axis = new InputAxis();
         axis.name = name;
         axis.positiveButton = positiveButton;
+        axis.altPositiveButton = altPositive;
         axis.negativeButton = negativeButton;
+        axis.altNegativeButton = altNegative;
         axis.gravity = 1000;
         axis.dead = 0.001f;
         axis.sensitivity = 1000;

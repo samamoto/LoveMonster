@@ -630,11 +630,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 218353932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8972a01b09419984c9f74d37dc238b0c, type: 3}
+  m_Script: {fileID: 11500000, guid: e37cc870c52dee549b3ad5368f71e6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DebugScreenPrefab: {fileID: 0}
+  m_DebugScreenPrefab: {fileID: 1998698625221804, guid: 9953a7308611aff45b232f32bf14a093,
+    type: 2}
   m_ControllerID: 1
+  AxisThreshold: 0.5
 --- !u!114 &218353935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,6 +1107,26 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!1 &563505057 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1206650080982110, guid: 001d396020496e3468938018152c5303,
+    type: 2}
+  m_PrefabInternal: {fileID: 518217933}
+--- !u!114 &563505062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 563505057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37cc870c52dee549b3ad5368f71e6c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DebugScreenPrefab: {fileID: 1998698625221804, guid: 9953a7308611aff45b232f32bf14a093,
+    type: 2}
+  m_ControllerID: 1
+  AxisThreshold: 0.5
 --- !u!1001 &621603630
 Prefab:
   m_ObjectHideFlags: 0
@@ -1593,11 +1615,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 982813866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8972a01b09419984c9f74d37dc238b0c, type: 3}
+  m_Script: {fileID: 11500000, guid: e37cc870c52dee549b3ad5368f71e6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_DebugScreenPrefab: {fileID: 0}
   m_ControllerID: 4
+  AxisThreshold: 0.5
 --- !u!114 &982813869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2362,11 +2385,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1611199870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8972a01b09419984c9f74d37dc238b0c, type: 3}
+  m_Script: {fileID: 11500000, guid: e37cc870c52dee549b3ad5368f71e6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_DebugScreenPrefab: {fileID: 0}
   m_ControllerID: 2
+  AxisThreshold: 0.5
 --- !u!114 &1611199873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2421,11 +2445,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1613385750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8972a01b09419984c9f74d37dc238b0c, type: 3}
+  m_Script: {fileID: 11500000, guid: e37cc870c52dee549b3ad5368f71e6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_DebugScreenPrefab: {fileID: 0}
   m_ControllerID: 3
+  AxisThreshold: 0.5
 --- !u!114 &1613385753
 MonoBehaviour:
   m_ObjectHideFlags: 0

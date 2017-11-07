@@ -1,26 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public partial class PlayerManager : MonoBehaviour {
+
+public partial class PlayerManager : MonoBehaviour
+{
     private AllPlayerManager m_AllPlayerManager;
-    private Controller m_Controller;
+    private Controller.Controller m_Controller;
     private CharacterController m_CharacterController;
     private Animator m_animator;
     private float velocity;//加速度
+
     //ToDo:Test
     //string word = "Cube1";
-    bool lookAtFlug = false;
+    private bool lookAtFlug = false;
 
-    int time = 0;
+    private int time = 0;
+
     //重力変数
-   // private Vector3 vel = Vector3.zero;
+    // private Vector3 vel = Vector3.zero;
     private Vector3 JumpUp = Vector3.zero;//ジャンプ力
+
     private Vector3 JumpDown = Vector3.zero;//ジャンプ力
 
     // Use this for initialization
-    void Start () {
+    private void Start()
+    {
         m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
-        m_Controller = GetComponent<Controller>();
+        m_Controller = GetComponent<Controller.Controller>();
         m_CharacterController = GetComponent<CharacterController>();
         m_animator = GetComponent<Animator>();
 
@@ -29,7 +35,7 @@ public partial class PlayerManager : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //TLookAtのテスト
         if (Input.GetKeyDown(KeyCode.U))
@@ -38,28 +44,26 @@ public partial class PlayerManager : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-           // word = "Cube2";
+            // word = "Cube2";
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
             //word = "Cube3";
         }
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             lookAtFlug = !lookAtFlug;
         }
-        
+
         //増田Program
         //Vector3 workTrans = GameObject.Find(word).GetComponent<Transform>().position;
         //workTrans.y = transform.position.y;
-
 
         //デバッグ処理　仮
         if (Input.GetKeyDown(KeyCode.Space))
         {
             transform.position = Vector3.zero;
         }
-
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -96,7 +100,7 @@ public partial class PlayerManager : MonoBehaviour {
         }
         else
         {
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow) || this.m_Controller.GetAxisHold(Controller.Axis.L_x) == 1)
             {
                 transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
             }
@@ -107,7 +111,7 @@ public partial class PlayerManager : MonoBehaviour {
         }
 
         //移動
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || this.m_Controller.GetAxisHold(Controller.Axis.L_y) == -1)
         {
             velocity += m_AllPlayerManager.m_RunSpeed;
             if (velocity > m_AllPlayerManager.m_MaxRunSpeed)
@@ -129,10 +133,10 @@ public partial class PlayerManager : MonoBehaviour {
         m_CharacterController.Move(new Vector3(transform.forward.x * velocity * Time.deltaTime, 0.0f, transform.forward.z * velocity * Time.deltaTime));
 
         //ジャンプ
-        m_CharacterController.Move(new Vector3(0, JumpUp.y * Time.deltaTime,0));
+        m_CharacterController.Move(new Vector3(0, JumpUp.y * Time.deltaTime, 0));
 
         //落下させる処理の条件
-        if ( m_animator.GetCurrentAnimatorStateInfo(0).IsTag("WalkRun")||
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsTag("WalkRun") ||
              m_animator.GetCurrentAnimatorStateInfo(0).IsTag("Idle"))
         {
             // 落下
@@ -147,35 +151,34 @@ public partial class PlayerManager : MonoBehaviour {
                 JumpDown.y = 0;
             }
         }
-        if(m_animator.GetFloat("JumpPower")>=1.0f)
+        if (m_animator.GetFloat("JumpPower") >= 1.0f)
         {
-            if(time>10)
+            if (time > 10)
             {
                 time = 0;
                 m_CharacterController.stepOffset = 0.1f;
-            }else
+            }
+            else
             {
-
                 time++;
             }
         }
 
-            //// 落下
-            //JumpDown.y -= Physics.gravity.y * Time.fixedDeltaTime;
-            //m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
+        //// 落下
+        //JumpDown.y -= Physics.gravity.y * Time.fixedDeltaTime;
+        //m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
 
-            //// 着地していたら速度を0にする
-            //if (m_CharacterController.isGrounded)
-            //{
-            //    Debug.Log("グラウンドオン");
-            //    JumpDown.y = 0;
-            //}
-
-        }
+        //// 着地していたら速度を0にする
+        //if (m_CharacterController.isGrounded)
+        //{
+        //    Debug.Log("グラウンドオン");
+        //    JumpDown.y = 0;
+        //}
+    }
 }
 
 /*メモ
- * 
+ *
     コントローラの取得の仕方　仮
     if (this.m_Controller.GetButton("A"))
 

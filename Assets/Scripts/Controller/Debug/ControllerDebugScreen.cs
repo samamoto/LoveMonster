@@ -95,91 +95,81 @@ public class ControllerDebugScreen : MonoBehaviour
         this.m_ScreenUpdator.Clear();
     }
 
-    public void UpdateButtonScreen(string button)
+    public void UpdateButtonScreen(Controller.Button button)
     {
-        int check;
-        for (check = 0; check <= (int)ControllerGenerator.enumControllerName.RSTICK; check++)
-            if (button == ControllerGenerator.strControllerName[check])
-                break;
-
-        switch (check)
+        switch (button)
         {
-            case (int)ControllerGenerator.enumControllerName.A:
+            case Controller.Button.A:
                 this.m_ScreenUpdator.A = true;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.B:
+            case Controller.Button.B:
                 this.m_ScreenUpdator.B = true;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.X:
+            case Controller.Button.X:
                 this.m_ScreenUpdator.X = true;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.Y:
+            case Controller.Button.Y:
                 this.m_ScreenUpdator.Y = true;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.LB:
+            case Controller.Button.LB:
                 this.m_ScreenUpdator.LB = true;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.RB:
+            case Controller.Button.RB:
                 this.m_ScreenUpdator.RB = true;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.VIEW:
+            case Controller.Button.View:
                 this.m_ScreenUpdator.View = true;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.MENU:
+            case Controller.Button.Menu:
                 this.m_ScreenUpdator.Menu = true;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.LSTICK:
+            case Controller.Button.LStick:
                 this.m_ScreenUpdator.LStick = true;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.RSTICK:
+            case Controller.Button.RStick:
                 this.m_ScreenUpdator.RStick = true;
                 break;
         }
     }
 
-    public void UpdateAxisScreen(string axis, float value)
+    public void UpdateAxisScreen(Controller.Axis axis, float value)
     {
-        int check;
-        for (check = (int)ControllerGenerator.enumControllerName.LSTICK_X; check < (int)ControllerGenerator.enumControllerName.MAX; check++)
-            if (axis == ControllerGenerator.strControllerName[check])
-                break;
-
-        switch (check)
+        switch (axis)
         {
-            case (int)ControllerGenerator.enumControllerName.LSTICK_X:
+            case Controller.Axis.L_x:
                 this.m_ScreenUpdator.LStick_Axis.x = value;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.LSTICK_Y:
+            case Controller.Axis.L_y:
                 this.m_ScreenUpdator.LStick_Axis.y = value;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.TRIGGER:
+            case Controller.Axis.Trigger:
                 this.m_ScreenUpdator.Trigger = value;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.RSTICK_X:
+            case Controller.Axis.R_x:
                 this.m_ScreenUpdator.RStick_Axis.x = value;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.RSTICK_Y:
+            case Controller.Axis.R_y:
                 this.m_ScreenUpdator.RStick_Axis.y = value;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.DPAD_X:
+            case Controller.Axis.Cross_x:
                 this.m_ScreenUpdator.DPad.x = value;
                 break;
 
-            case (int)ControllerGenerator.enumControllerName.DPAD_Y:
+            case Controller.Axis.Cross_y:
                 this.m_ScreenUpdator.DPad.y = value;
                 break;
         }

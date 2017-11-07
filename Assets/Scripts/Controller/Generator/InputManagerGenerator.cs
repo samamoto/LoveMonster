@@ -21,6 +21,16 @@ public class InputManagerGenerator
         axesProperty = serializedObject.FindProperty("m_Axes");
     }
 
+    public enum AxisPropaty
+    {
+        Name, DescriptiveName, DescriptiveNegativeName, NegativeButton, PositiveButton, AltNegativeButton, AltPositiveButton, Gravity, Dead, Sensitivity, Snap, Invert, Type, Axis, JoyNum
+    }
+
+    private string[] strAxisPropaty =
+    {
+        "m_Name","descriptiveName","descriptiveNegativeName","negativeButton","positiveButton","altNegativeButton","altPositiveButton","gravity","sensitivity","snap","invert","type","axis","joyNum"
+    };
+
     /// <summary>
     /// 軸を追加します。
     /// </summary>
@@ -28,13 +38,14 @@ public class InputManagerGenerator
     /// <param name="axis">Axis.</param>
     public void AddAxis(InputAxis axis)
     {
-        if (axis.axis < 1) Debug.LogError("Axisは1以上に設定してください。");
+        if (axis.axis < 1)
+            Debug.LogError("Axisは1以上に設定してください。");
         SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
 
-        axesProperty.arraySize++;
+        axesProperty.arraySize++;   //配列追加
         serializedObject.ApplyModifiedProperties();
 
-        SerializedProperty axisProperty = axesProperty.GetArrayElementAtIndex(axesProperty.arraySize - 1);
+        SerializedProperty axisProperty = axesProperty.GetArrayElementAtIndex(axesProperty.arraySize - 1);  //配列の最後を取得
 
         GetChildProperty(axisProperty, "m_Name").stringValue = axis.name;
         GetChildProperty(axisProperty, "descriptiveName").stringValue = axis.descriptiveName;
@@ -70,7 +81,14 @@ public class InputManagerGenerator
             if (child.name == name) return child;
         }
         while (child.Next(false));
+        Debug.LogWarning("Not find property");
         return null;
+    }
+
+    public SerializedProperty GetProperty(string axisName, AxisPropaty getPropaty)
+    {
+        SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
+        return GetChildProperty(GetChildProperty(axesProperty, axisName), strAxisPropaty[(int)getPropaty]);
     }
 
     /// <summary>
