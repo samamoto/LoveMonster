@@ -2,43 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ジャンプのモーション
+/// </summary>
+
 public class Jump : StateMachineBehaviour {
 
-    AllPlayerManager PM;
-    //CharacterController CC;
-    public float m_JumpUpSpeed;
+    AllPlayerManager PM;            //プレイヤーの基礎データ取得用
 
-    private float m_Jump;
+    private float m_Jump;           //スクリプト内変数
+    public  float m_JumpUpSpeed;    //外部受取用変数
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
-        //CC = GameObject.Find("Player1").GetComponent<CharacterController>();
+
         m_Jump = m_JumpUpSpeed;
+
+        //ジャンプに移行したらフラグを切る
+        animator.SetBool("is_Jump", false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //CC.stepOffset = 0.9f;
-        animator.SetBool("is_Jump", false);
+        
+       
+    }
+
+    // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
+    override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        //ジャンプの値をアニメーターにセット
         animator.SetFloat("JumpPower", m_Jump);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //CC.stepOffset = 0.1f;
+        //データのリセット
         m_Jump = 0;
         animator.SetFloat("JumpPower", m_Jump);
+
+        //ジャンプモーションが終わったら落ちるモーションフラグをオン
+        //未実装
         animator.SetBool("is_Fall", true);
-    }
-
-    // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
-    override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
     }
 
     // OnStateIK is called right after Animator.OnAnimatorIK(). Code that sets up animation IK (inverse kinematics) should be implemented here.

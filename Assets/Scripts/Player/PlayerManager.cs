@@ -8,7 +8,7 @@ public partial class PlayerManager : MonoBehaviour {
     private Animator m_animator;
     private float velocity;//加速度
     //ToDo:Test
-    string word = "Cube1";
+    //string word = "Cube1";
     bool lookAtFlug = false;
 
     int time = 0;
@@ -34,22 +34,22 @@ public partial class PlayerManager : MonoBehaviour {
         //TLookAtのテスト
         if (Input.GetKeyDown(KeyCode.U))
         {
-            word = "Cube1";
+            //word = "Cube1";
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            word = "Cube2";
+           // word = "Cube2";
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            word = "Cube3";
+            //word = "Cube3";
         }
         if(Input.GetKeyDown(KeyCode.P))
         {
             lookAtFlug = !lookAtFlug;
         }
         
-        //なにこれ？　増田Program
+        //増田Program
         //Vector3 workTrans = GameObject.Find(word).GetComponent<Transform>().position;
         //workTrans.y = transform.position.y;
 

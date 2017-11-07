@@ -11,6 +11,7 @@ public class AllPlayerManager : MonoBehaviour {
 
     //ジャンプ力
     public float m_JumpPower = 1.0f;
+
     //ジャンプ時間
     public float m_JumpTime = 2;
 
