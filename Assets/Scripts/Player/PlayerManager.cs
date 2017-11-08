@@ -8,6 +8,8 @@ public partial class PlayerManager : MonoBehaviour {
 	// PlayerのID
 	public int PlayerID = 1; // 今は一人しかいない
 
+
+	private MoveState m_MoveState;
 	private AllPlayerManager m_AllPlayerManager;
 	private Controller.Controller m_Controller;
 	private CharacterController m_CharacterController;

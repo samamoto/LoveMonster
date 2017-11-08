@@ -9,15 +9,6 @@ AnimatorController:
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: JumpPower
-<<<<<<< HEAD:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Velocity
-=======
->>>>>>> origin/test_nisida:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -40,56 +31,26 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-<<<<<<< HEAD:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
-    m_Controller: {fileID: 9100000}
-=======
     m_Controller: {fileID: 0}
->>>>>>> origin/test_nisida:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
   - m_Name: Jump
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-<<<<<<< HEAD:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
-    m_Controller: {fileID: 9100000}
-=======
     m_Controller: {fileID: 0}
->>>>>>> origin/test_nisida:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
   - m_Name: JumpLeg
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-<<<<<<< HEAD:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
-    m_Controller: {fileID: 9100000}
-  - m_Name: is_WalkRun
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: is_Fall
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: is_Jump
-=======
     m_Controller: {fileID: 0}
   - m_Name: is_WalkRun
->>>>>>> origin/test_nisida:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-<<<<<<< HEAD:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
-    m_Controller: {fileID: 9100000}
-  - m_Name: is_Slide
-=======
     m_Controller: {fileID: 0}
   - m_Name: is_Fall
->>>>>>> origin/test_nisida:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -112,19 +73,8 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-<<<<<<< HEAD:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
-    m_Controller: {fileID: 9100000}
-  - m_Name: is_Vault
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: is_WallRun
-=======
     m_Controller: {fileID: 0}
   - m_Name: is_Vault
->>>>>>> origin/test_nisida:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -451,25 +401,12 @@ AnimatorStateMachine:
     m_Position: {x: 180, y: 12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102653499778166708}
-<<<<<<< HEAD:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
-    m_Position: {x: 480, y: 72, z: 0}
-=======
     m_Position: {x: 480, y: 84, z: 0}
->>>>>>> origin/test_nisida:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
   - serializedVersion: 1
     m_State: {fileID: 1102819223076236910}
     m_Position: {x: 480, y: 12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102336925116383310}
-<<<<<<< HEAD:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
-    m_Position: {x: 480, y: 144, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1102272096114369638}
-    m_Position: {x: 480, y: -108, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1102824196948978652}
-    m_Position: {x: 480, y: -48, z: 0}
-=======
     m_Position: {x: 480, y: 168, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102272096114369638}
@@ -477,7 +414,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1102824196948978652}
     m_Position: {x: 480, y: -60, z: 0}
->>>>>>> origin/test_nisida:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -635,11 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a120789c7fd3e4a9305ff26b97dfe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
-  m_VaultUpSpeed: 2
-=======
   m_VaultUpSpeed: 3
->>>>>>> origin/test_nisida:Assets/Model/Locomotion/Locomotion Setup/Locomotion/Locomotion.controller
 --- !u!206 &206469519805661358
 BlendTree:
   m_ObjectHideFlags: 3
