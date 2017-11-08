@@ -1,278 +1,201 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< HEAD
+using Controller;
 
-public partial class PlayerManager : MonoBehaviour
-{
-    private AllPlayerManager m_AllPlayerManager;
-    private Controller.Controller m_Controller;
-    private CharacterController m_CharacterController;
-    private Animator m_animator;
-    private float velocity;//加速度
-
-    //ToDo:Test
-    //string word = "Cube1";
-    private bool lookAtFlug = false;
-
-    private int time = 0;
-
-    //重力変数
-    // private Vector3 vel = Vector3.zero;
-    private Vector3 JumpUp = Vector3.zero;//ジャンプ力
-
-    private Vector3 JumpDown = Vector3.zero;//ジャンプ力
-
-    // Use this for initialization
-    private void Start()
-    {
-        m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
-        m_Controller = GetComponent<Controller.Controller>();
-=======
 public partial class PlayerManager : MonoBehaviour {
-    private AllPlayerManager m_AllPlayerManager;
-    private Controller m_Controller;
-    private CharacterController m_CharacterController;
-    private Animator m_animator;
-    private float velocity;//加速度
-    //ToDo:Test
-    //string word = "Cube1";
-    bool lookAtFlug = false;
 
-    int time = 0;
-    //重力変数
-   // private Vector3 vel = Vector3.zero;
-    private Vector3 JumpUp = Vector3.zero;//ジャンプ力
-    private Vector3 JumpDown = Vector3.zero;//ジャンプ力
+	// PlayerのID
+	public int PlayerID = 1; // 今は一人しかいない
 
-    // Use this for initialization
-    void Start () {
-        m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
-        m_Controller = GetComponent<Controller>();
->>>>>>> origin/test_nisida
-        m_CharacterController = GetComponent<CharacterController>();
-        m_animator = GetComponent<Animator>();
+	private AllPlayerManager m_AllPlayerManager;
+	private Controller.Controller m_Controller;
+	private CharacterController m_CharacterController;
+	private Animator m_animator;
+	private float velocity;//加速度
+						   //ToDo:Test
+						   //string word = "Cube1";
+	bool lookAtFlug = false;
 
-        //重力用データ
-        Physics.gravity = new Vector3(0, 9.81f, 0);
-    }
+	int time = 0;
+	//重力変数
+	// private Vector3 vel = Vector3.zero;
+	private Vector3 JumpUp = Vector3.zero;//ジャンプ力
+	private Vector3 JumpDown = Vector3.zero;//ジャンプ力
 
-    // Update is called once per frame
-<<<<<<< HEAD
-    private void Update()
-=======
-    void Update()
->>>>>>> origin/test_nisida
-    {
-        //TLookAtのテスト
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            //word = "Cube1";
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-<<<<<<< HEAD
-            // word = "Cube2";
-=======
-           // word = "Cube2";
->>>>>>> origin/test_nisida
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            //word = "Cube3";
-        }
-<<<<<<< HEAD
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            lookAtFlug = !lookAtFlug;
-        }
+	// Use this for initialization
+	void Start() {
+		m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
+		m_Controller = GetComponent<Controller.Controller>();
+		m_CharacterController = GetComponent<CharacterController>();
+		m_animator = GetComponent<Animator>();
 
-=======
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            lookAtFlug = !lookAtFlug;
-        }
-        
->>>>>>> origin/test_nisida
-        //増田Program
-        //Vector3 workTrans = GameObject.Find(word).GetComponent<Transform>().position;
-        //workTrans.y = transform.position.y;
+		//重力用データ
+		Physics.gravity = new Vector3(0, 9.81f, 0);
+	}
 
-<<<<<<< HEAD
-=======
+	// Update is called once per frame
+	void Update() {
+		//TLookAtのテスト
+		if (Input.GetKeyDown(KeyCode.U)) {
+			//word = "Cube1";
+		}
+		if (Input.GetKeyDown(KeyCode.I)) {
+			// word = "Cube2";
+		}
+		if (Input.GetKeyDown(KeyCode.O)) {
+			//word = "Cube3";
+		}
+		if (Input.GetKeyDown(KeyCode.P)) {
+			lookAtFlug = !lookAtFlug;
+		}
 
->>>>>>> origin/test_nisida
-        //デバッグ処理　仮
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            transform.position = Vector3.zero;
-        }
+		//増田Program
+		//Vector3 workTrans = GameObject.Find(word).GetComponent<Transform>().position;
+		//workTrans.y = transform.position.y;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/test_nisida
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            time = 0;
-            m_CharacterController.stepOffset = 0.9f;
-            //Debug.Break();
-            m_animator.SetBool("is_Jump", true);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            m_animator.SetBool("is_Slide", true);
-        }
+		//デバッグ処理　仮
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			transform.position = Vector3.zero;
+		}
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            m_animator.SetBool("is_Climb", true);
-        }
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            m_animator.SetBool("is_Vault", true);
-        }
+		if (Input.GetKeyDown(KeyCode.Z)) {
+			time = 0;
+			m_CharacterController.stepOffset = 0.9f;
+			//Debug.Break();
+			m_animator.SetBool("is_Jump", true);
+		}
+		if (Input.GetKeyDown(KeyCode.X)) {
+			m_animator.SetBool("is_Slide", true);
+		}
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            m_animator.SetBool("is_WallRun", true);
-        }
+		if (Input.GetKeyDown(KeyCode.C)) {
+			m_animator.SetBool("is_Climb", true);
+		}
 
-        JumpUp.y = m_animator.GetFloat("JumpPower");
-        //実装
-        if (lookAtFlug)
-        {
-            //transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
-        }
-        else
-        {
-<<<<<<< HEAD
-            if (Input.GetKey(KeyCode.RightArrow) || this.m_Controller.GetAxisHold(Controller.Axis.L_x) == 1)
-=======
-            if (Input.GetKey(KeyCode.RightArrow))
->>>>>>> origin/test_nisida
-            {
-                transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
-            }
-        }
+		if (Input.GetKeyDown(KeyCode.V)) {
+			m_animator.SetBool("is_Vault", true);
+		}
 
-        //移動
-<<<<<<< HEAD
-        if (Input.GetKey(KeyCode.UpArrow) || this.m_Controller.GetAxisHold(Controller.Axis.L_y) == -1)
-=======
-        if (Input.GetKey(KeyCode.UpArrow))
->>>>>>> origin/test_nisida
-        {
-            velocity += m_AllPlayerManager.m_RunSpeed;
-            if (velocity > m_AllPlayerManager.m_MaxRunSpeed)
-            {
-                velocity = m_AllPlayerManager.m_MaxRunSpeed;
-            }
-        }
-        else
-        {
-            velocity -= m_AllPlayerManager.m_RunSpeed;
-            if (velocity <= 0.0f)
-            {
-                velocity = 0.0f;
-            }
-        }
-        m_animator.SetFloat("Velocity", velocity);
+		if (Input.GetKeyDown(KeyCode.B)) {
+			m_animator.SetBool("is_WallRun", true);
+		}
 
-        //ダッシュ
-        m_CharacterController.Move(new Vector3(transform.forward.x * velocity * Time.deltaTime, 0.0f, transform.forward.z * velocity * Time.deltaTime));
+		JumpUp.y = m_animator.GetFloat("JumpPower");
+		//実装
+		if (lookAtFlug) {
+			//transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
+		} else {
+			if (Input.GetKey(KeyCode.RightArrow)) {
+				transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
+			}
+			if (Input.GetKey(KeyCode.LeftArrow)) {
+				transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
+			}
+		}
 
-        //ジャンプ
-<<<<<<< HEAD
-        m_CharacterController.Move(new Vector3(0, JumpUp.y * Time.deltaTime, 0));
+		//移動
+		if (Input.GetKey(KeyCode.UpArrow)) {
+			velocity += m_AllPlayerManager.m_RunSpeed;
+			if (velocity > m_AllPlayerManager.m_MaxRunSpeed) {
+				velocity = m_AllPlayerManager.m_MaxRunSpeed;
+			}
+		} else {
+			velocity -= m_AllPlayerManager.m_RunSpeed;
+			if (velocity <= 0.0f) {
+				velocity = 0.0f;
+			}
+		}
+		m_animator.SetFloat("Velocity", velocity);
 
-        //落下させる処理の条件
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsTag("WalkRun") ||
-=======
-        m_CharacterController.Move(new Vector3(0, JumpUp.y * Time.deltaTime,0));
+		//ダッシュ
+		m_CharacterController.Move(new Vector3(transform.forward.x * velocity * Time.deltaTime, 0.0f, transform.forward.z * velocity * Time.deltaTime));
 
-        //落下させる処理の条件
-        if ( m_animator.GetCurrentAnimatorStateInfo(0).IsTag("WalkRun")||
->>>>>>> origin/test_nisida
-             m_animator.GetCurrentAnimatorStateInfo(0).IsTag("Idle"))
-        {
-            // 落下
-            JumpDown.y -= (Physics.gravity.y * Time.fixedDeltaTime) + 0.8f;
-            m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
+		//ジャンプ
+		m_CharacterController.Move(new Vector3(0, JumpUp.y * Time.deltaTime, 0));
 
-            // 着地していたら速度を0にする
-            if (m_CharacterController.isGrounded)
-            {
-                //Debug.Log("グラウンドオン");
-                //Debug.Log(m_CharacterController.stepOffset);
-                JumpDown.y = 0;
-            }
-        }
-<<<<<<< HEAD
-        if (m_animator.GetFloat("JumpPower") >= 1.0f)
-        {
-            if (time > 10)
-            {
-                time = 0;
-                m_CharacterController.stepOffset = 0.1f;
-            }
-            else
-            {
-=======
-        if(m_animator.GetFloat("JumpPower")>=1.0f)
-        {
-            if(time>10)
-            {
-                time = 0;
-                m_CharacterController.stepOffset = 0.1f;
-            }else
-            {
+		//落下させる処理の条件
+		if (m_animator.GetCurrentAnimatorStateInfo(0).IsTag("WalkRun") ||
+			 m_animator.GetCurrentAnimatorStateInfo(0).IsTag("Idle")) {
+			// 落下
+			JumpDown.y -= (Physics.gravity.y * Time.fixedDeltaTime) + 0.8f;
+			m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
 
->>>>>>> origin/test_nisida
-                time++;
-            }
-        }
+			// 着地していたら速度を0にする
+			if (m_CharacterController.isGrounded) {
+				//Debug.Log("グラウンドオン");
+				//Debug.Log(m_CharacterController.stepOffset);
+				JumpDown.y = 0;
+			}
+		}
+		if (m_animator.GetFloat("JumpPower") >= 1.0f) {
+			if (time > 10) {
+				time = 0;
+				m_CharacterController.stepOffset = 0.1f;
+			} else {
 
-<<<<<<< HEAD
-        //// 落下
-        //JumpDown.y -= Physics.gravity.y * Time.fixedDeltaTime;
-        //m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
+				time++;
+			}
+		}
 
-        //// 着地していたら速度を0にする
-        //if (m_CharacterController.isGrounded)
-        //{
-        //    Debug.Log("グラウンドオン");
-        //    JumpDown.y = 0;
-        //}
-    }
-}
+		//// 落下
+		//JumpDown.y -= Physics.gravity.y * Time.fixedDeltaTime;
+		//m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
 
-/*メモ
- *
-=======
-            //// 落下
-            //JumpDown.y -= Physics.gravity.y * Time.fixedDeltaTime;
-            //m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
+		//// 着地していたら速度を0にする
+		//if (m_CharacterController.isGrounded)
+		//{
+		//    Debug.Log("グラウンドオン");
+		//    JumpDown.y = 0;
+		//}
 
-            //// 着地していたら速度を0にする
-            //if (m_CharacterController.isGrounded)
-            //{
-            //    Debug.Log("グラウンドオン");
-            //    JumpDown.y = 0;
-            //}
+	}
 
-        }
+	/// <summary>
+	/// プレイヤーのポジションを返す
+	/// </summary>
+	public Vector3 getPlayerPos() {
+		return transform.position;
+	}
+
+	/// <summary>
+	/// プレイヤーのIDを返す
+	/// </summary>
+	public int getPlayerID() {
+		return PlayerID;
+	}
+	//============================================================
+	// ==2017/10/31 Oyama Add
+	//
+	// ObjectActionAreaスクリプトから直接実行される部分
+	//
+	// オブジェクトに当たったらそのオブジェクトに応じたアクションを実行
+	// そのあとは各スクリプトで状態を管理させる
+	// アニメーターのアニメーション名と関数を一致させること
+	//============================================================
+	// ボルト
+	public void Vault(string name) {
+		m_animator.Play(name);
+
+	}
+
+	// クライム
+	public void Climb(string name) {
+		m_animator.Play(name);
+	}
+
+	// スライダー
+	public void Slide(string name) {
+		m_animator.Play(name);
+	}
+
+
 }
 
 /*メモ
  * 
->>>>>>> origin/test_nisida
     コントローラの取得の仕方　仮
     if (this.m_Controller.GetButton("A"))
-
  */
