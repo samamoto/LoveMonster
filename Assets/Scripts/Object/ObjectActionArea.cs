@@ -7,11 +7,10 @@ using UnityEngine;
 //============================================================
 public class ObjectActionArea : MonoBehaviour {
 
-	// -----public----------
 	string m_tagValue;
 
 	protected void Start() {
-		m_tagValue = tag;	// タグの名前コピー
+		m_tagValue = tag;   // タグの名前コピー
 	}
 
 	// Update is called once per frame
@@ -21,8 +20,16 @@ public class ObjectActionArea : MonoBehaviour {
 
 	// コライダーに当たった
 	void OnTriggerEnter(Collider other) {
+
+		Vector3 vec;
 		// ぶつかった対象にメッセージ(関数)を送る
 		other.SendMessage(tag, m_tagValue);
+		if (other.tag == "Player") {
+			vec = other.GetComponent<Transform>().position;
+
+		}
+
+
 	}
 
 	// コライダーに当たってる

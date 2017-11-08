@@ -8,16 +8,30 @@ using UnityEngine;
 
 public class Vault : StateMachineBehaviour {
 
+
+	float m_Time = 1.0f;
+
+
+
     AllPlayerManager PM; //プレイヤーの基礎データ取得用
   
     private float m_Vaiult;         //スクリプト内変数
     public  float m_VaultUpSpeed;   //外部受取用変数
 
+    Transform m_PlayerTrans;
+    Transform m_MovePos;
+
+	private float startTIme;
+	private Vector3 startPos;
+
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
+        PM = AllPlayerManager.Instance;
+        //PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
         m_Vaiult = m_VaultUpSpeed;
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -32,8 +46,6 @@ public class Vault : StateMachineBehaviour {
         //アニメーターにヴォルトのジャンプの値をセット
         animator.SetFloat("JumpPower", m_Vaiult);
 
-        //ヴォルトに移行していたらフラグを切る
-        animator.SetBool("is_Vault", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -41,6 +53,9 @@ public class Vault : StateMachineBehaviour {
     {
         m_Vaiult = 0;
         animator.SetFloat("JumpPower", m_Vaiult);
+
+        //ヴォルトに移行していたらフラグを切る
+        animator.SetBool("is_Vault", false); 
     }
  
     // OnStateIK is called right after Animator.OnAnimatorIK(). Code that sets up animation IK (inverse kinematics) should be implemented here.
