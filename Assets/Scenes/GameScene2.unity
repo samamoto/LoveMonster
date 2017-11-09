@@ -1117,6 +1117,16 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95447379681665524, guid: 001d396020496e3468938018152c5303,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 29ed5a05bb8ad434a993329a6d8879a8, type: 2}
+    - target: {fileID: 95205885965681082, guid: 001d396020496e3468938018152c5303,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 001d396020496e3468938018152c5303, type: 2}
   m_IsPrefabParent: 0
@@ -1259,6 +1269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cebe1fc7d5a2e245a4bba1a734553e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_NowState: 0
+  m_AnimName: 
 --- !u!1001 &621603630
 Prefab:
   m_ObjectHideFlags: 0

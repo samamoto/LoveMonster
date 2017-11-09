@@ -17,12 +17,12 @@ public class MoveState : MonoBehaviour {
 		None,
 	}
 
-	private MoveStatement m_NowState;	// 現在ステート
+	public MoveStatement m_NowState;	// 現在ステート
 	private bool is_Move = false;       // MoveStateが動きを受け持っているかの判定
 
 	private Animator m_Animator;
 	private AllPlayerManager m_AllPlayerMgr;
-	private string m_AnimName;	// 再生されている（はず）のアニメーションの名前を受け取る
+	public string m_AnimName;	// 再生されている（はず）のアニメーションの名前を受け取る
 
 
 	// Use this for initialization
@@ -42,9 +42,12 @@ public class MoveState : MonoBehaviour {
 			return;
 		}
 
+		Vector3 newVec;	// Debug用
 		// 状態によって操作を分ける
 		switch (m_NowState) {
 		case MoveStatement.Vault:
+			newVec = new Vector3(this.transform.position.x, 1.5f, this.transform.position.z);
+			this.transform.position = newVec;
 			this.transform.Translate(0, 0, 0.02f);	// まだ仮
 			break;
 		default:
@@ -56,10 +59,16 @@ public class MoveState : MonoBehaviour {
 	// Updateの前に行う処理
 	private void FixedUpdate() {
 
+		//DebugPrint.print(m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime.ToString());
+		//DebugPrint.print("Animator.StateInfo = " + m_Animator.GetCurrentAnimatorStateInfo(0).IsName(m_AnimName).ToString());
+		DebugPrint.print("Animator.StateInfo = " + m_Animator.IsInTransition(0).ToString());
+
 		// ChangeStateから変更されたら都度アニメーターの状態を監視してプレイ中か判定する
 		if (is_Move) {
+
 			//is_Move = m_Animator.GetBool(m_AnimName);   // 再生されているはずのアニメーションの名前からひったくる
-			if(m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f) {
+			//if(!m_Animator.GetCurrentAnimatorStateInfo(0).IsName(m_AnimName)) {
+			if(m_Animator.IsInTransition(0)) {
 				is_Move = false;
 			}
 			// アニメーションの再生が終了した瞬間

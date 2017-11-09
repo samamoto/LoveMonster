@@ -199,11 +199,11 @@ public partial class PlayerManager : MonoBehaviour {
 	/// <param name="name">タグ名</param>
 	public void Vault(string name) {
 		// ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
-		//if (this.m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)){
+		if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)){
 			m_animator.Play(name);
 			m_MoveState.changeState(MoveState.MoveStatement.Vault, name);
 			Debug.Log("test");
-		//}
+		}
 	}
 
 	// クライム
