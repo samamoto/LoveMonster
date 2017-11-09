@@ -19,8 +19,10 @@ public class MoveState : MonoBehaviour {
 
 	// 外部移動処理が必要な物のリスト
 	public enum MoveStatement {
-		Vault,
 		None,
+		Vault,
+		Slider,
+		Climb,
 	}
 
 	public MoveStatement m_NowState;	// 現在ステート
@@ -53,7 +55,17 @@ public class MoveState : MonoBehaviour {
 			Action();
 			break;
 
+		case MoveStatement.Slider:
+			Action();
+			break;
+
+		case MoveStatement.Climb:
+			Action();
+			break;
+
 		default:
+			Action();	// Default動作
+			break;
 		case MoveStatement.None:
 			break;
 		}
@@ -92,6 +104,7 @@ public class MoveState : MonoBehaviour {
 	/// アクションの移動制御
 	/// </summary>
 	void Action() {
+		// 指定位置まで指定時間で移動する
 		m_PlayerPos = Vector3.SmoothDamp(m_PlayerPos, m_MovePos, ref velocity, smoothTime);
 		this.transform.position = m_PlayerPos;
 	}

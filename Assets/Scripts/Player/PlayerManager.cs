@@ -208,18 +208,25 @@ public partial class PlayerManager : MonoBehaviour {
 		if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)){
 			m_animator.Play(name);
 			m_MoveState.changeState(MoveState.MoveStatement.Vault, name);
-			Debug.Log("test");
 		}
 	}
 
 	// クライム
 	public void Climb(string name) {
-		m_animator.Play(name);
+		// ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
+		if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+			m_animator.Play(name);
+			m_MoveState.changeState(MoveState.MoveStatement.Climb, name);
+		}
 	}
 
 	// スライダー
 	public void Slide(string name) {
-		m_animator.Play(name);
+		// ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
+		if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+			m_animator.Play(name);
+			m_MoveState.changeState(MoveState.MoveStatement.Slider, name);
+		}
 	}
 
 

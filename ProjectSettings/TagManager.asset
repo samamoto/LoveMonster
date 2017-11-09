@@ -12,11 +12,12 @@ TagManager:
   - Ground
   - Wall
   - Vault
-  - Slide
   - Climb
   - WallRun
   - Block
   - MovePoint
+  - Slide
+  - Slider
   layers:
   - Default
   - TransparentFX
