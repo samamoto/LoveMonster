@@ -6,7 +6,7 @@ using Controller;
 public partial class PlayerManager : MonoBehaviour {
 
 	bool is_Debugging = true;
-
+	bool is_ConnectController = true;
 	// PlayerのID
 	public int m_PlayerID = 1; // 今は一人しかいない
 
@@ -25,7 +25,7 @@ public partial class PlayerManager : MonoBehaviour {
 	// private Vector3 vel = Vector3.zero;
 	private Vector3 JumpUp = Vector3.zero;//ジャンプ力
 	private Vector3 JumpDown = Vector3.zero;//ジャンプ力
-
+	private Vector3 moveDirection = Vector3.zero;	// コントローラーでの移動用に使う
 	// Use this for initialization
 	void Start() {
 		m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
@@ -99,12 +99,20 @@ public partial class PlayerManager : MonoBehaviour {
 		if (lookAtFlag) {
 			//transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
 		} else {
-			if (Input.GetKey(KeyCode.RightArrow)) {
-				transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
+			// コントローラーが繋がっていないときの処理
+			if (!is_ConnectController) {
+				if (Input.GetKey(KeyCode.RightArrow)) {
+					transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
+				}
+				if (Input.GetKey(KeyCode.LeftArrow)) {
+					transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
+				}
+			} else {
+				moveDirection = new Vector3(m_Controller.GetAxisRaw(Axis.L_x), 0, m_Controller.GetAxisRaw(Axis.L_y));
+				moveDirection = transform.TransformDirection(moveDirection);
+				velocity *= m_AllPlayerManager.m_MaxRunSpeed;
 			}
-			if (Input.GetKey(KeyCode.LeftArrow)) {
-				transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
-			}
+
 		}
 		//移動
 
