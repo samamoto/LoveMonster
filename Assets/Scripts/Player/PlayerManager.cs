@@ -171,6 +171,12 @@ public partial class PlayerManager : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// プレイヤーの移動予定のポジションをセットする
+	/// </summary>
+	public void setMovePosition(Vector3 MovePos) {
+		m_MoveState.setMovePosition(MovePos);
+	}
+	/// <summary>
 	/// プレイヤーのポジションを返す
 	/// </summary>
 	public Vector3 getPlayerPos() {

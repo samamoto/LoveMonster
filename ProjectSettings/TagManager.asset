@@ -16,6 +16,7 @@ TagManager:
   - Climb
   - WallRun
   - Block
+  - MovePoint
   layers:
   - Default
   - TransparentFX

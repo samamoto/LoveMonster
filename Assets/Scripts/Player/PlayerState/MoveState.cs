@@ -11,6 +11,12 @@ using UnityEngine;
 
 public class MoveState : MonoBehaviour {
 
+	float smoothTime = 1.0f;
+	public Vector3 m_PlayerPos;
+	public Vector3 m_MovePos;
+
+	private Vector3 velocity = Vector3.zero;
+
 	// 外部移動処理が必要な物のリスト
 	public enum MoveStatement {
 		Vault,
@@ -35,21 +41,18 @@ public class MoveState : MonoBehaviour {
 	/// <summary>
 	/// 外部から操作
 	/// </summary>
-
 	public void Update() {
 		// アニメーションの再生をしていなければなにもしない
 		if (!is_Move) {
 			return;
 		}
 
-		Vector3 newVec;	// Debug用
 		// 状態によって操作を分ける
 		switch (m_NowState) {
 		case MoveStatement.Vault:
-			newVec = new Vector3(this.transform.position.x, 1.5f, this.transform.position.z);
-			this.transform.position = newVec;
-			this.transform.Translate(0, 0, 0.02f);	// まだ仮
+			Action();
 			break;
+
 		default:
 		case MoveStatement.None:
 			break;
@@ -59,10 +62,12 @@ public class MoveState : MonoBehaviour {
 	// Updateの前に行う処理
 	private void FixedUpdate() {
 
-		//DebugPrint.print(m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime.ToString());
-		//DebugPrint.print("Animator.StateInfo = " + m_Animator.GetCurrentAnimatorStateInfo(0).IsName(m_AnimName).ToString());
-		DebugPrint.print("Animator.StateInfo = " + m_Animator.IsInTransition(0).ToString());
+		// 座標関係の更新
+		m_PlayerPos = this.transform.position;
+		
 
+		// 状態取得/切り替え部分
+		DebugPrint.print("Animator.StateInfo = " + m_Animator.IsInTransition(0).ToString());
 		// ChangeStateから変更されたら都度アニメーターの状態を監視してプレイ中か判定する
 		if (is_Move) {
 
@@ -73,46 +78,28 @@ public class MoveState : MonoBehaviour {
 			}
 			// アニメーションの再生が終了した瞬間
 			if (!is_Move) {
-				DebugPrint.print("MoveState Exit", 0.5f);
+				//DebugPrint.print("MoveState Exit", 0.5f);
 				resetState();
 			}
 		}
-		
-
-		// お試し
-		/*
-		if (m_Animator.GetBool(0))
-
-			// Animatorの状態を確認してMoveStateの状態を更新する
-			// 特殊アクションかを判定して該当すれば
-			bool is_Hit = false;
-
-		for (int i = 0; i < m_AllPlayerMgr.SpecialAction.Length; i++) {
-			// アニメーターのステートと特殊アクションを比較する
-			if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(m_AllPlayerMgr.SpecialAction[i])) {
-				is_Hit = true;
-				break;
-			}
-		}
-
-		// 特殊アクションの場合
-		if (is_Hit) {
-
-			// 現在の再生中のアニメーションを見て同じなら
-			m_Animator.
-
-
-		} else {
-
-
-		}
-		*/
-
+	
 	}
 
-	// ============================================================
+	//============================================================
+	// アクション用
+	//============================================================
+	/// <summary>
+	/// アクションの移動制御
+	/// </summary>
+	void Action() {
+		m_PlayerPos = Vector3.SmoothDamp(m_PlayerPos, m_MovePos, ref velocity, smoothTime);
+		this.transform.position = m_PlayerPos;
+	}
+
+
+	//============================================================
 	// 状態取得/変更
-	// ============================================================
+	//============================================================
 	/// <summary>
 	/// 状態を取得する
 	/// </summary>
@@ -148,5 +135,10 @@ public class MoveState : MonoBehaviour {
 	public bool isMove() {
 		return is_Move;
 	}
-
+	/// <summary>
+	/// 外部から移動予定ポイントを設定
+	/// </summary>
+	public void setMovePosition(Vector3 MovePos) {
+		m_MovePos = MovePos;
+	}
 }

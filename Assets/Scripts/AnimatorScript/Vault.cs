@@ -8,22 +8,10 @@ using UnityEngine;
 
 public class Vault : StateMachineBehaviour {
 
-
-	float m_Time = 1.0f;
-
-
-
-    AllPlayerManager PM; //プレイヤーの基礎データ取得用
+	AllPlayerManager PM; //プレイヤーの基礎データ取得用
   
     private float m_Vaiult;         //スクリプト内変数
     public  float m_VaultUpSpeed;   //外部受取用変数
-
-    Transform m_PlayerTrans;
-    Transform m_MovePos;
-
-	private float startTIme;
-	private Vector3 startPos;
-
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
