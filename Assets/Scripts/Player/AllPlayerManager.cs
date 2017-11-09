@@ -20,6 +20,22 @@ public class AllPlayerManager : MonoBehaviour {
     //回転力
     public float m_RotatePower = 5.0f;
 
+	// プレイヤーの通常動作
+	public string[] NormalAction = {
+		ConstAnimationStateTags.PlayerStateIdle,
+		ConstAnimationStateTags.PlayerStateWalkRun,
+		ConstAnimationStateTags.PlayerStateJump,
+	};
+
+	// 移動処理を任せる特殊アクション
+	public string[] SpecialAction = {
+		ConstAnimationStateTags.PlayerStateVault,
+		ConstAnimationStateTags.PlayerStateSlider,
+		ConstAnimationStateTags.PlayerStateWallRun,
+		ConstAnimationStateTags.PlayerStateClimb,
+		ConstAnimationStateTags.PlayerStateClimbJump,
+	};
+
     // Use this for initialization
     void Start () {
 		

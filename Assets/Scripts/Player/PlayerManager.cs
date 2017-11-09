@@ -5,11 +5,12 @@ using Controller;
 
 public partial class PlayerManager : MonoBehaviour {
 
+	bool is_Debugging = true;
+
 	// PlayerのID
-	public int PlayerID = 1; // 今は一人しかいない
+	public int m_PlayerID = 1; // 今は一人しかいない
 
-
-	private MoveState m_MoveState;
+	private MoveState m_MoveState;	// 移動処理を任せる
 	private AllPlayerManager m_AllPlayerManager;
 	private Controller.Controller m_Controller;
 	private CharacterController m_CharacterController;
@@ -17,7 +18,7 @@ public partial class PlayerManager : MonoBehaviour {
 	private float velocity;//加速度
 						   //ToDo:Test
 						   //string word = "Cube1";
-	bool lookAtFlug = false;
+	bool lookAtFlag = false;
 
 	int time = 0;
 	//重力変数
@@ -31,6 +32,7 @@ public partial class PlayerManager : MonoBehaviour {
 		m_Controller = GetComponent<Controller.Controller>();
 		m_CharacterController = GetComponent<CharacterController>();
 		m_animator = GetComponent<Animator>();
+		m_MoveState = GetComponent<MoveState>();
 
 		//重力用データ
 		Physics.gravity = new Vector3(0, 9.81f, 0);
@@ -38,6 +40,13 @@ public partial class PlayerManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+
+		// MoveStateの状態確認
+		if (m_MoveState.isMove()) {
+			m_MoveState.Update();	// 外部から操作を受け付け
+			return;					// なにもしない
+		}
+
 		//TLookAtのテスト
 		if (Input.GetKeyDown(KeyCode.U)) {
 			//word = "Cube1";
@@ -49,7 +58,7 @@ public partial class PlayerManager : MonoBehaviour {
 			//word = "Cube3";
 		}
 		if (Input.GetKeyDown(KeyCode.P)) {
-			lookAtFlug = !lookAtFlug;
+			lookAtFlag = !lookAtFlag;
 		}
 
 		//増田Program
@@ -84,10 +93,10 @@ public partial class PlayerManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.B)) {
 			m_animator.SetBool("is_WallRun", true);
 		}
-
 		JumpUp.y = m_animator.GetFloat("JumpPower");
+
 		//実装
-		if (lookAtFlug) {
+		if (lookAtFlag) {
 			//transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
 		} else {
 			if (Input.GetKey(KeyCode.RightArrow)) {
@@ -97,8 +106,8 @@ public partial class PlayerManager : MonoBehaviour {
 				transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
 			}
 		}
-
 		//移動
+
 		if (Input.GetKey(KeyCode.UpArrow)) {
 			velocity += m_AllPlayerManager.m_RunSpeed;
 			if (velocity > m_AllPlayerManager.m_MaxRunSpeed) {
@@ -155,6 +164,12 @@ public partial class PlayerManager : MonoBehaviour {
 
 	}
 
+	// updateの前に走る
+	private void FixedUpdate() {
+
+
+	}
+
 	/// <summary>
 	/// プレイヤーのポジションを返す
 	/// </summary>
@@ -166,7 +181,7 @@ public partial class PlayerManager : MonoBehaviour {
 	/// プレイヤーのIDを返す
 	/// </summary>
 	public int getPlayerID() {
-		return PlayerID;
+		return m_PlayerID;
 	}
 	//============================================================
 	// ==2017/10/31 Oyama Add
@@ -177,10 +192,18 @@ public partial class PlayerManager : MonoBehaviour {
 	// そのあとは各スクリプトで状態を管理させる
 	// アニメーターのアニメーション名と関数を一致させること
 	//============================================================
-	// ボルト
-	public void Vault(string name) {
-		m_animator.Play(name);
 
+	/// <summary>
+	/// ボルトアクション用
+	/// </summary>
+	/// <param name="name">タグ名</param>
+	public void Vault(string name) {
+		// ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
+		//if (this.m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)){
+			m_animator.Play(name);
+			m_MoveState.changeState(MoveState.MoveStatement.Vault, name);
+			Debug.Log("test");
+		//}
 	}
 
 	// クライム
@@ -194,10 +217,12 @@ public partial class PlayerManager : MonoBehaviour {
 	}
 
 
+
+
 }
 
 /*メモ
  * 
     コントローラの取得の仕方　仮
-    if (this.m_Controller.GetButton("A"))
+    if (this.m_Controller.GetButton(Controller.Button.A))
  */

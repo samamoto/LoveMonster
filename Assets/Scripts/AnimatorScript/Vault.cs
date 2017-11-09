@@ -46,7 +46,9 @@ public class Vault : StateMachineBehaviour {
         //アニメーターにヴォルトのジャンプの値をセット
         animator.SetFloat("JumpPower", m_Vaiult);
 
-    }
+		//ヴォルトに移行していたらフラグを切る
+		animator.SetBool("is_Vault", false);
+	}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -54,8 +56,8 @@ public class Vault : StateMachineBehaviour {
         m_Vaiult = 0;
         animator.SetFloat("JumpPower", m_Vaiult);
 
-        //ヴォルトに移行していたらフラグを切る
-        animator.SetBool("is_Vault", false); 
+
+
     }
  
     // OnStateIK is called right after Animator.OnAnimatorIK(). Code that sets up animation IK (inverse kinematics) should be implemented here.
