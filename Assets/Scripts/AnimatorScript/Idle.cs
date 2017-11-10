@@ -7,18 +7,17 @@ using UnityEngine;
 /// 立ちモーション
 /// </summary>
 
-public class Idle : StateMachineBehaviour
-{
+public class Idle : AnimatorBase {
 
-    AllPlayerManager m_PM;        //プレイヤーの基礎データ取得用
+    //AllPlayerManager m_PM;        //プレイヤーの基礎データ取得用
 
     private float m_dashSpeed;    //プレイヤーのダッシュ用変数
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
-        m_dashSpeed = 0.0f;
+		// m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();	// 基底クラス内で取得
+		m_dashSpeed = 0.0f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

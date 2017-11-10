@@ -6,20 +6,20 @@ using UnityEngine;
 /// 立ちモーションから走るモーション
 /// </summary>
 
-public class WalkRun : StateMachineBehaviour {
+public class WalkRun : AnimatorBase {
     
-    AllPlayerManager m_PM;        //プレイヤーの基礎データ取得用
+    //AllPlayerManager m_PM;        //プレイヤーの基礎データ取得用
 
     private float m_Velocity;   //アニメーターの移動値
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
-    }
+		// m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();	// 基底クラス内で取得
+	}
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
    
     }
@@ -40,11 +40,10 @@ public class WalkRun : StateMachineBehaviour {
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+	}
 
-    }
-
-    // OnStateIK is called right after Animator.OnAnimatorIK(). Code that sets up animation IK (inverse kinematics) should be implemented here.
-    override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	// OnStateIK is called right after Animator.OnAnimatorIK(). Code that sets up animation IK (inverse kinematics) should be implemented here.
+	override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
     }

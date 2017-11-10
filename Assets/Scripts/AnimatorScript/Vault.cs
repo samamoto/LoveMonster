@@ -6,9 +6,9 @@ using UnityEngine;
 /// ヴォルトモーション
 /// </summary>
 
-public class Vault : StateMachineBehaviour {
+public class Vault : AnimatorBase {
 
-	AllPlayerManager PM; //プレイヤーの基礎データ取得用
+	//AllPlayerManager m_PM; //プレイヤーの基礎データ取得用
   
     private float m_Vaiult;         //スクリプト内変数
     public  float m_VaultUpSpeed;   //外部受取用変数
@@ -16,9 +16,10 @@ public class Vault : StateMachineBehaviour {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PM = AllPlayerManager.Instance;
-        //PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
-        m_Vaiult = m_VaultUpSpeed;
+
+		//m_PM = AllPlayerManager.Instance;
+		// m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();	// 基底クラス内で取得
+		m_Vaiult = m_VaultUpSpeed;
 
     }
 
@@ -44,7 +45,7 @@ public class Vault : StateMachineBehaviour {
         m_Vaiult = 0;
         animator.SetFloat("JumpPower", m_Vaiult);
 
-
+		resetAnimatorParameter(animator, stateInfo, layerIndex);
 
     }
  

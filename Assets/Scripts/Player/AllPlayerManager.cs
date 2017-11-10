@@ -12,7 +12,7 @@ public class AllPlayerManager : MonoBehaviour {
     public float m_SideRunSpeed = 0.05f;
 
     //ジャンプ力
-    public float m_JumpPower = 1.0f;
+    public float m_JumpPower = 1.5f;
 
     //ジャンプ時間
     public float m_JumpTime = 2;

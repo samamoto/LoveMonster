@@ -6,9 +6,9 @@ using UnityEngine;
 /// クライムの登るモーション
 /// </summary>
 
-public class Climb : StateMachineBehaviour {
+public class Climb : AnimatorBase {
 
-    AllPlayerManager m_PM;        //プレイヤーの基礎データ取得用
+    //AllPlayerManager m_PM;        //プレイヤーの基礎データ取得用
 
     private float m_Climb;        //スクリプト内変数
     public  float m_ClimbUpSpeed; //外部受取用変数
@@ -16,10 +16,9 @@ public class Climb : StateMachineBehaviour {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
+       // m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();	// 基底クラス内で取得
         m_Climb = 0;
-
-       
+		
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

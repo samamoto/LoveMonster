@@ -5,7 +5,6 @@ using Controller;
 
 public partial class PlayerManager : MonoBehaviour {
 
-	bool is_Debugging = true;
 	// PlayerのID
 	public int m_PlayerID = 1; // 今は一人しかいない
 
@@ -14,7 +13,7 @@ public partial class PlayerManager : MonoBehaviour {
 	private Controller.Controller m_Controller;
 	private CharacterController m_CharacterController;
 	private Animator m_animator;
-	private float velocity;//加速度
+	[SerializeField] private float velocity;//加速度
 						   //ToDo:Test
 						   //string word = "Cube1";
 	bool lookAtFlag = false;
@@ -22,9 +21,9 @@ public partial class PlayerManager : MonoBehaviour {
 	int time = 0;
 	//重力変数
 	// private Vector3 vel = Vector3.zero;
-	private Vector3 JumpUp = Vector3.zero;//ジャンプ力
-	private Vector3 JumpDown = Vector3.zero;//ジャンプ力
-	private Vector3 moveDirection = Vector3.zero;	// コントローラーでの移動用に使う
+	[SerializeField] private Vector3 JumpUp = Vector3.zero;//ジャンプ力
+	[SerializeField] private Vector3 JumpDown = Vector3.zero;//ジャンプ力
+
 	// Use this for initialization
 	void Start() {
 		m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
@@ -47,6 +46,7 @@ public partial class PlayerManager : MonoBehaviour {
 		}
 
 		//TLookAtのテスト
+		/* Debug実装をコメントアウト 2017/11/11 oyama add
 		if (Input.GetKeyDown(KeyCode.U)) {
 			//word = "Cube1";
 		}
@@ -59,24 +59,23 @@ public partial class PlayerManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.P)) {
 			lookAtFlag = !lookAtFlag;
 		}
-
-		//増田Program
-		//Vector3 workTrans = GameObject.Find(word).GetComponent<Transform>().position;
-		//workTrans.y = transform.position.y;
-
-
+		
 		//デバッグ処理　仮
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			transform.position = Vector3.zero;
 		}
 
-
-		if (Input.GetKeyDown(KeyCode.Z)) {
-			time = 0;
-			m_CharacterController.stepOffset = 0.9f;
-			//Debug.Break();
-			m_animator.SetBool("is_Jump", true);
+		*/
+		// キャラクターが地上にいる状態で指定のキーが押された場合 oyama add
+		if (m_CharacterController.isGrounded) {
+			if (Input.GetKeyDown(KeyCode.Space)) {  // 一番操作しやすいキーに 2017/11/11 oyama add
+				time = 0;
+				m_CharacterController.stepOffset = 0.9f;
+				//Debug.Break();
+				m_animator.SetBool("is_Jump", true);
+			}
 		}
+		/* Debug実装をコメントアウト 2017/11/11 oyama add
 		if (Input.GetKeyDown(KeyCode.X)) {
 			m_animator.SetBool("is_Slide", true);
 		}
@@ -92,24 +91,25 @@ public partial class PlayerManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.B)) {
 			m_animator.SetBool("is_WallRun", true);
 		}
+		*/
 		JumpUp.y = m_animator.GetFloat("JumpPower");
 
 		//実装
 		if (lookAtFlag) {
 			//transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
 		} else {
-			// コントローラーが繋がっていないときの処理
-			if (Input.GetKey(KeyCode.RightArrow)) {
+			// 左右の回転処理
+			if (Input.GetKey(KeyCode.RightArrow) || m_Controller.GetAxisDown(Axis.L_x) == -1) {
 				transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
 			}
-			if (Input.GetKey(KeyCode.LeftArrow)) {
+			if (Input.GetKey(KeyCode.LeftArrow) || m_Controller.GetAxisDown(Axis.L_x) == 1) {
 				transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
 			}
 
 		}
 		//移動
 
-		if (Input.GetKey(KeyCode.UpArrow)) {
+		if (Input.GetKey(KeyCode.UpArrow) || m_Controller.GetAxisDown(Axis.L_y) == -1) {
 			velocity += m_AllPlayerManager.m_RunSpeed;
 			if (velocity > m_AllPlayerManager.m_MaxRunSpeed) {
 				velocity = m_AllPlayerManager.m_MaxRunSpeed;
@@ -123,25 +123,30 @@ public partial class PlayerManager : MonoBehaviour {
 		m_animator.SetFloat("Velocity", velocity);
 
 		//ダッシュ
-		m_CharacterController.Move(new Vector3(transform.forward.x * velocity * Time.deltaTime, 0.0f, transform.forward.z * velocity * Time.deltaTime));
+		m_CharacterController.Move(new Vector3(transform.forward.x * velocity * Time.deltaTime, JumpUp.y * Time.deltaTime, transform.forward.z * velocity * Time.deltaTime));
 
 		//ジャンプ
-		m_CharacterController.Move(new Vector3(0, JumpUp.y * Time.deltaTime, 0));
+		//m_CharacterController.Move(new Vector3(0, JumpUp.y * Time.deltaTime, 0));	// ↑の一個で良いんじゃね
 
 		//落下させる処理の条件
 		if (m_animator.GetCurrentAnimatorStateInfo(0).IsTag("WalkRun") ||
 			 m_animator.GetCurrentAnimatorStateInfo(0).IsTag("Idle")) {
-			// 落下
-			JumpDown.y -= (Physics.gravity.y * Time.fixedDeltaTime) + 0.8f;
-			m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
+			// キャラクターが浮いていたら
+			if (!m_CharacterController.isGrounded) {
+				// 落下
+				JumpDown.y -= (Physics.gravity.y * Time.fixedDeltaTime) + 0.8f;
+				m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
 
-			// 着地していたら速度を0にする
-			if (m_CharacterController.isGrounded) {
-				//Debug.Log("グラウンドオン");
-				//Debug.Log(m_CharacterController.stepOffset);
-				JumpDown.y = 0;
+				// 着地していたら速度を0にする
+				if (m_CharacterController.isGrounded) {
+					//Debug.Log("グラウンドオン");
+					//Debug.Log(m_CharacterController.stepOffset);
+					JumpDown.y = 0;
+				}
 			}
 		}
+		
+		// ジャンプ落下中に段差を登るための防止
 		if (m_animator.GetFloat("JumpPower") >= 1.0f) {
 			if (time > 10) {
 				time = 0;
@@ -152,17 +157,6 @@ public partial class PlayerManager : MonoBehaviour {
 			}
 		}
 
-		//// 落下
-		//JumpDown.y -= Physics.gravity.y * Time.fixedDeltaTime;
-		//m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
-
-		//// 着地していたら速度を0にする
-		//if (m_CharacterController.isGrounded)
-		//{
-		//    Debug.Log("グラウンドオン");
-		//    JumpDown.y = 0;
-		//}
-
 	}
 
 	// updateの前に走る
@@ -171,15 +165,21 @@ public partial class PlayerManager : MonoBehaviour {
 
 	}
 
+	//============================================================
+	// Getter or Setter
+	//============================================================
+
 	/// <summary>
 	/// プレイヤーの移動予定のポジションをセットする
 	/// </summary>
+	/// <param name="MovePos">移動予定場所</param>
 	public void setMovePosition(Vector3 MovePos) {
 		m_MoveState.setMovePosition(MovePos);
 	}
 	/// <summary>
 	/// プレイヤーのポジションを返す
 	/// </summary>
+	/// <returns>プレイヤーの位置</returns>
 	public Vector3 getPlayerPos() {
 		return transform.position;
 	}
@@ -187,6 +187,7 @@ public partial class PlayerManager : MonoBehaviour {
 	/// <summary>
 	/// プレイヤーのIDを返す
 	/// </summary>
+	/// <returns>プレイヤーID</returns>
 	public int getPlayerID() {
 		return m_PlayerID;
 	}

@@ -8,7 +8,7 @@ using UnityEngine;
 // 操作を受け付けないようにする
 // 移動処理中に外部から接触などの判定があった場合は別途相談
 //------------------------------------------------------------
-/// <Todo>
+/// Todo:
 /// ・おおざっぱな移動処理は完成
 /// ・各アクションごとに細かな移動制御が必要（高さも入ってない）
 /// ・複数MovePointの設定に対応したら壁を登る動作なども設定できるかも
@@ -16,11 +16,10 @@ using UnityEngine;
 /// ・MovePointに向けてキャラクターの回転動作が必要
 /// ・オブジェクトへの突っ込み方に応じて向きがばらついてしまうので
 /// ・2017/11/09 oyama add
-/// </Todo>
 
 public class MoveState : MonoBehaviour {
 
-	float smoothTime = 1.0f;
+	public float smoothTime = 0.65f;
 	public Vector3 m_PlayerPos;
 	public Vector3 m_MovePos;
 
@@ -88,7 +87,7 @@ public class MoveState : MonoBehaviour {
 		
 
 		// 状態取得/切り替え部分
-		DebugPrint.print("Animator.StateInfo = " + m_Animator.IsInTransition(0).ToString());
+		//DebugPrint.print("Animator.StateInfo = " + m_Animator.IsInTransition(0).ToString());
 		// ChangeStateから変更されたら都度アニメーターの状態を監視してプレイ中か判定する
 		if (is_Move) {
 

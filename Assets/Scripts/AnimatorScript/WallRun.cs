@@ -6,19 +6,19 @@ using UnityEngine;
 /// 壁走りアニメーション
 /// </summary>
 
-public class WallRun : StateMachineBehaviour {
+public class WallRun : AnimatorBase {
 
-    AllPlayerManager PM;    //プレイヤーの基礎データ取得用
+    //AllPlayerManager m_PM;    //プレイヤーの基礎データ取得用
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
-      
-    }
+		// m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();	// 基底クラス内で取得
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	}
+
+	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         
     }
@@ -28,10 +28,11 @@ public class WallRun : StateMachineBehaviour {
     {
         //ウォールランに移行したらフラグを切る
         animator.SetBool("is_WallRun", false);
-    }
+		resetAnimatorParameter(animator, stateInfo, layerIndex);    // パラメータをリセット
+	}
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
     }
