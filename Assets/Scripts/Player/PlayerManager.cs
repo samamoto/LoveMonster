@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Controller;
 
-public partial class PlayerManager : MonoBehaviour {
+public partial class PlayerManager : MonoBehaviour
+{
+    private bool is_Debugging = true;
 
 	// PlayerのID
 	public int m_PlayerID = 1; // 今は一人しかいない
@@ -13,7 +14,7 @@ public partial class PlayerManager : MonoBehaviour {
 	private Controller.Controller m_Controller;
 	private CharacterController m_CharacterController;
 	private Animator m_animator;
-	[SerializeField] private float velocity;//加速度
+	private float velocity;//加速度
 						   //ToDo:Test
 						   //string word = "Cube1";
 	bool lookAtFlag = false;
@@ -32,18 +33,19 @@ public partial class PlayerManager : MonoBehaviour {
 		m_animator = GetComponent<Animator>();
 		m_MoveState = GetComponent<MoveState>();
 
-		//重力用データ
-		Physics.gravity = new Vector3(0, 9.81f, 0);
-	}
+        //重力用データ
+        Physics.gravity = new Vector3(0, 9.81f, 0);
+    }
 
-	// Update is called once per frame
-	void Update() {
-
-		// MoveStateの状態確認
-		if (m_MoveState.isMove()) {
-			m_MoveState.Update();	// 外部から操作を受け付け
-			return;					// なにもしない
-		}
+    // Update is called once per frame
+    private void Update()
+    {
+        // MoveStateの状態確認
+        if (m_MoveState.isMove())
+        {
+            m_MoveState.Update();   // 外部から操作を受け付け
+            return;                 // なにもしない
+        }
 
 		//TLookAtのテスト
 		/* Debug実装をコメントアウト 2017/11/11 oyama add
@@ -68,7 +70,7 @@ public partial class PlayerManager : MonoBehaviour {
 		*/
 		// キャラクターが地上にいる状態で指定のキーが押された場合 oyama add
 		if (m_CharacterController.isGrounded) {
-			if (Input.GetKeyDown(KeyCode.Space)) {  // 一番操作しやすいキーに 2017/11/11 oyama add
+			if (Input.GetKeyDown(KeyCode.Z) || this.m_Controller.GetButtonDown(Controller.Button.A)) {  // 一番操作しやすいキーに 2017/11/11 oyama add
 				time = 0;
 				m_CharacterController.stepOffset = 0.9f;
 				//Debug.Break();
@@ -80,13 +82,15 @@ public partial class PlayerManager : MonoBehaviour {
 			m_animator.SetBool("is_Slide", true);
 		}
 
-		if (Input.GetKeyDown(KeyCode.C)) {
-			m_animator.SetBool("is_Climb", true);
-		}
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            m_animator.SetBool("is_Climb", true);
+        }
 
-		if (Input.GetKeyDown(KeyCode.V)) {
-			m_animator.SetBool("is_Vault", true);
-		}
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            m_animator.SetBool("is_Vault", true);
+        }
 
 		if (Input.GetKeyDown(KeyCode.B)) {
 			m_animator.SetBool("is_WallRun", true);
@@ -109,7 +113,7 @@ public partial class PlayerManager : MonoBehaviour {
 		}
 		//移動
 
-		if (Input.GetKey(KeyCode.UpArrow) || m_Controller.GetAxisDown(Axis.L_y) == -1) {
+		if (Input.GetKey(KeyCode.UpArrow)) {
 			velocity += m_AllPlayerManager.m_RunSpeed;
 			if (velocity > m_AllPlayerManager.m_MaxRunSpeed) {
 				velocity = m_AllPlayerManager.m_MaxRunSpeed;
@@ -157,13 +161,23 @@ public partial class PlayerManager : MonoBehaviour {
 			}
 		}
 
+		//// 落下
+		//JumpDown.y -= Physics.gravity.y * Time.fixedDeltaTime;
+		//m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
+
+		//// 着地していたら速度を0にする
+		//if (m_CharacterController.isGrounded)
+		//{
+		//    Debug.Log("グラウンドオン");
+		//    JumpDown.y = 0;
+		//}
+
 	}
 
-	// updateの前に走る
-	private void FixedUpdate() {
-
-
-	}
+    // updateの前に走る
+    private void FixedUpdate()
+    {
+    }
 
 	//============================================================
 	// Getter or Setter
@@ -201,43 +215,46 @@ public partial class PlayerManager : MonoBehaviour {
 	// アニメーターのアニメーション名と関数を一致させること
 	//============================================================
 
-	/// <summary>
-	/// ボルトアクション用
-	/// </summary>
-	/// <param name="name">タグ名</param>
-	public void Vault(string name) {
-		// ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
-		if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)){
-			m_animator.Play(name);
-			m_MoveState.changeState(MoveState.MoveStatement.Vault, name);
-		}
-	}
+    /// <summary>
+    /// ボルトアクション用
+    /// </summary>
+    /// <param name="name">タグ名</param>
+    public void Vault(string name)
+    {
+        // ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
+        if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name))
+        {
+            m_animator.Play(name);
+            m_MoveState.changeState(MoveState.MoveStatement.Vault, name);
+        }
+    }
 
-	// クライム
-	public void Climb(string name) {
-		// ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
-		if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
-			m_animator.Play(name);
-			m_MoveState.changeState(MoveState.MoveStatement.Climb, name);
-		}
-	}
+    // クライム
+    public void Climb(string name)
+    {
+        // ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
+        if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name))
+        {
+            m_animator.Play(name);
+            m_MoveState.changeState(MoveState.MoveStatement.Climb, name);
+        }
+    }
 
-	// スライダー
-	public void Slide(string name) {
-		// ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
-		if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
-			m_animator.Play(name);
-			m_MoveState.changeState(MoveState.MoveStatement.Slider, name);
-		}
-	}
-
-
-
-
+    // スライダー
+    public void Slide(string name)
+    {
+        // ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
+        if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name))
+        {
+            m_animator.Play(name);
+            m_MoveState.changeState(MoveState.MoveStatement.Slider, name);
+        }
+    }
 }
 
 /*メモ
- * 
+ *
     コントローラの取得の仕方　仮
     if (this.m_Controller.GetButton(Controller.Button.A))
  */
+   

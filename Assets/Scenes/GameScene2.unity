@@ -3058,6 +3058,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 114919134765745620, guid: 810f4d9b1644c91499a332dc6bdc829a,
+        type: 2}
+      propertyPath: MovePointObject
+      value: 
+      objectReference: {fileID: 1036067558}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 810f4d9b1644c91499a332dc6bdc829a, type: 2}
   m_IsPrefabParent: 0
