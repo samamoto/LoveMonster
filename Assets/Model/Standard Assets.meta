@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 6d47a842bae38df4ab512de82f473818
 folderAsset: yes
 timeCreated: 1510049617
+=======
+guid: 5ba0c84ab7d74d946bb880866a862469
+folderAsset: yes
+timeCreated: 1510041011
+>>>>>>> origin/test_nisida
 licenseType: Free
 DefaultImporter:
   userData: 

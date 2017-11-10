@@ -401,19 +401,19 @@ AnimatorStateMachine:
     m_Position: {x: 180, y: 12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102653499778166708}
-    m_Position: {x: 480, y: 72, z: 0}
+    m_Position: {x: 480, y: 84, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102819223076236910}
     m_Position: {x: 480, y: 12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102336925116383310}
-    m_Position: {x: 480, y: 144, z: 0}
+    m_Position: {x: 480, y: 168, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102272096114369638}
-    m_Position: {x: 480, y: -108, z: 0}
+    m_Position: {x: 480, y: -120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102824196948978652}
-    m_Position: {x: 480, y: -48, z: 0}
+    m_Position: {x: 480, y: -60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -571,7 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a120789c7fd3e4a9305ff26b97dfe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_VaultUpSpeed: 2
+  m_VaultUpSpeed: 3
 --- !u!206 &206469519805661358
 BlendTree:
   m_ObjectHideFlags: 3
@@ -979,7 +979,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 9e4632dacd2c7ac419d338163855f7e3, type: 3}
-  m_Tag: Jump
+  m_Tag: Vault
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1004,7 +1004,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 5ae108ea132820e478ef94801d8431ac, type: 3}
-  m_Tag: 
+  m_Tag: Slider
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 

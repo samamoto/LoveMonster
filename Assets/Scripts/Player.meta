@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Player.meta
 guid: f572cff58af090041a30415d7e0bc99a
 folderAsset: yes
 timeCreated: 1510049498
+=======
+guid: d5ad13d224619d840bb11594a912f200
+folderAsset: yes
+timeCreated: 1510041167
+>>>>>>> origin/test_nisida:Assets/Scripts/Player.meta
 licenseType: Free
 DefaultImporter:
   userData: 
