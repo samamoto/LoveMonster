@@ -6,7 +6,6 @@ using Controller;
 public partial class PlayerManager : MonoBehaviour {
 
 	bool is_Debugging = true;
-	bool is_ConnectController = true;
 	// PlayerのID
 	public int m_PlayerID = 1; // 今は一人しかいない
 
@@ -100,17 +99,11 @@ public partial class PlayerManager : MonoBehaviour {
 			//transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
 		} else {
 			// コントローラーが繋がっていないときの処理
-			if (!is_ConnectController) {
-				if (Input.GetKey(KeyCode.RightArrow)) {
-					transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
-				}
-				if (Input.GetKey(KeyCode.LeftArrow)) {
-					transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
-				}
-			} else {
-				moveDirection = new Vector3(m_Controller.GetAxisRaw(Axis.L_x), 0, m_Controller.GetAxisRaw(Axis.L_y));
-				moveDirection = transform.TransformDirection(moveDirection);
-				velocity *= m_AllPlayerManager.m_MaxRunSpeed;
+			if (Input.GetKey(KeyCode.RightArrow)) {
+				transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
+			}
+			if (Input.GetKey(KeyCode.LeftArrow)) {
+				transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
 			}
 
 		}
