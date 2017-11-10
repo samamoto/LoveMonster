@@ -65,7 +65,7 @@ public partial class PlayerManager : MonoBehaviour
             transform.position = Vector3.zero;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) || this.m_Controller.GetButtonDown(Controller.Button.A))
         {
             time = 0;
             m_CharacterController.stepOffset = 0.9f;
@@ -100,7 +100,7 @@ public partial class PlayerManager : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.RightArrow) || this.m_Controller.GetAxisHold(Controller.Axis.L_x) == 1)
+            if (Input.GetKey(KeyCode.RightArrow) || this.m_Controller.GetAxisHold(Controller.Axis.L_x) == (int)Controller.Axis_Direction.Right)
             {
                 transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
             }
@@ -111,7 +111,7 @@ public partial class PlayerManager : MonoBehaviour
         }
 
         //移動
-        if (Input.GetKey(KeyCode.UpArrow) || this.m_Controller.GetAxisHold(Controller.Axis.L_y) == -1)
+        if (Input.GetKey(KeyCode.UpArrow) || this.m_Controller.GetAxisHold(Controller.Axis.L_y) == (int)Controller.Axis_Direction.Up)
         {
             velocity += m_AllPlayerManager.m_RunSpeed;
             if (velocity > m_AllPlayerManager.m_MaxRunSpeed)

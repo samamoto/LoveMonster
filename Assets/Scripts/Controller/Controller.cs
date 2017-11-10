@@ -14,6 +14,11 @@ namespace Controller
         A, B, X, Y, LB, RB, View, Menu, LStick, RStick, Max
     }
 
+    public enum Axis_Direction
+    {
+        Up = -1, Down = 1, Right = 1, Left = -1
+    }
+
     public class Controller : MonoBehaviour
     {
         //デバッグスクリーンのプレハブ
