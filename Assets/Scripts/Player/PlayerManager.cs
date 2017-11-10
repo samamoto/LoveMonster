@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Controller;
 
 public partial class PlayerManager : MonoBehaviour
 {
-    private bool is_Debugging = true;
-
 	// PlayerのID
 	public int m_PlayerID = 1; // 今は一人しかいない
 
