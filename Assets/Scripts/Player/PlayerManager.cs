@@ -4,7 +4,6 @@ using UnityEngine;
 using Controller;
 
 public partial class PlayerManager : MonoBehaviour {
-
 	bool is_Debugging = true;
 	// PlayerのID
 	public int m_PlayerID = 1; // 今は一人しかいない
@@ -39,7 +38,6 @@ public partial class PlayerManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-
 		// MoveStateの状態確認
 		if (m_MoveState.isMove()) {
 			m_MoveState.Update();	// 外部から操作を受け付け
@@ -64,22 +62,22 @@ public partial class PlayerManager : MonoBehaviour {
 		//Vector3 workTrans = GameObject.Find(word).GetComponent<Transform>().position;
 		//workTrans.y = transform.position.y;
 
-
 		//デバッグ処理　仮
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			transform.position = Vector3.zero;
 		}
 
-
-		if (Input.GetKeyDown(KeyCode.Z)) {
-			time = 0;
-			m_CharacterController.stepOffset = 0.9f;
-			//Debug.Break();
-			m_animator.SetBool("is_Jump", true);
-		}
-		if (Input.GetKeyDown(KeyCode.X)) {
-			m_animator.SetBool("is_Slide", true);
-		}
+        if (Input.GetKeyDown(KeyCode.Z) || this.m_Controller.GetButtonDown(Controller.Button.A))
+        {
+            time = 0;
+            m_CharacterController.stepOffset = 0.9f;
+            //Debug.Break();
+            m_animator.SetBool("is_Jump", true);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            m_animator.SetBool("is_Slide", true);
+        }
 
 		if (Input.GetKeyDown(KeyCode.C)) {
 			m_animator.SetBool("is_Climb", true);
@@ -89,10 +87,10 @@ public partial class PlayerManager : MonoBehaviour {
 			m_animator.SetBool("is_Vault", true);
 		}
 
-		if (Input.GetKeyDown(KeyCode.B)) {
-			m_animator.SetBool("is_WallRun", true);
-		}
-		JumpUp.y = m_animator.GetFloat("JumpPower");
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            m_animator.SetBool("is_WallRun", true);
+        }
 
 		//実装
 		if (lookAtFlag) {
@@ -106,21 +104,24 @@ public partial class PlayerManager : MonoBehaviour {
 				transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
 			}
 
-		}
-		//移動
-
-		if (Input.GetKey(KeyCode.UpArrow)) {
-			velocity += m_AllPlayerManager.m_RunSpeed;
-			if (velocity > m_AllPlayerManager.m_MaxRunSpeed) {
-				velocity = m_AllPlayerManager.m_MaxRunSpeed;
-			}
-		} else {
-			velocity -= m_AllPlayerManager.m_RunSpeed;
-			if (velocity <= 0.0f) {
-				velocity = 0.0f;
-			}
-		}
-		m_animator.SetFloat("Velocity", velocity);
+        //移動
+        if (Input.GetKey(KeyCode.UpArrow) || this.m_Controller.GetAxisHold(Controller.Axis.L_y) == -1)
+        {
+            velocity += m_AllPlayerManager.m_RunSpeed;
+            if (velocity > m_AllPlayerManager.m_MaxRunSpeed)
+            {
+                velocity = m_AllPlayerManager.m_MaxRunSpeed;
+            }
+        }
+        else
+        {
+            velocity -= m_AllPlayerManager.m_RunSpeed;
+            if (velocity <= 0.0f)
+            {
+                velocity = 0.0f;
+            }
+        }
+        m_animator.SetFloat("Velocity", velocity);
 
 		//ダッシュ
 		m_CharacterController.Move(new Vector3(transform.forward.x * velocity * Time.deltaTime, 0.0f, transform.forward.z * velocity * Time.deltaTime));
@@ -147,7 +148,6 @@ public partial class PlayerManager : MonoBehaviour {
 				time = 0;
 				m_CharacterController.stepOffset = 0.1f;
 			} else {
-
 				time++;
 			}
 		}
@@ -162,13 +162,10 @@ public partial class PlayerManager : MonoBehaviour {
 		//    Debug.Log("グラウンドオン");
 		//    JumpDown.y = 0;
 		//}
-
 	}
 
 	// updateの前に走る
 	private void FixedUpdate() {
-
-
 	}
 
 	/// <summary>
@@ -229,14 +226,10 @@ public partial class PlayerManager : MonoBehaviour {
 			m_MoveState.changeState(MoveState.MoveStatement.Slider, name);
 		}
 	}
-
-
-
-
 }
 
 /*メモ
- * 
+ *
     コントローラの取得の仕方　仮
     if (this.m_Controller.GetButton(Controller.Button.A))
  */
