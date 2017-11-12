@@ -2613,15 +2613,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4097215653045288, guid: 001d396020496e3468938018152c5303, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4097215653045288, guid: 001d396020496e3468938018152c5303, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4097215653045288, guid: 001d396020496e3468938018152c5303, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4097215653045288, guid: 001d396020496e3468938018152c5303, type: 2}
       propertyPath: m_LocalRotation.w
@@ -2660,6 +2660,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097215653045288, guid: 001d396020496e3468938018152c5303, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 95447379681665524, guid: 001d396020496e3468938018152c5303, type: 2}
@@ -2989,15 +2993,11 @@ MonoBehaviour:
   smoothTime:
   - 0.65
   - 0.65
-  - 1.7
+  - 1.55
   - 5
   m_NowState: 0
-  m_PlayerPos: {x: 0, y: 0, z: 0}
   m_MovePos: {x: 0, y: 0, z: 0}
   m_AnimName: 
-  m_PrevRot: {x: 0, y: 0, z: 0, w: 0}
-  m_PrevRotY: 0
-  is_RookRot: 0
 --- !u!1 &592889974
 GameObject:
   m_ObjectHideFlags: 0

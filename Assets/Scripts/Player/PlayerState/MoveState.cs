@@ -38,12 +38,11 @@ public class MoveState : MonoBehaviour {
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
 	[SerializeField] MoveStatement m_NowState;    // 現在ステート
-	[SerializeField] Vector3 m_PlayerPos;
 	[SerializeField] Vector3 m_MovePos;
 	[SerializeField] string m_AnimName;   // 再生されている（はず）のアニメーションの名前を受け取る
 
-	Vector3 startPosition;				// 開始点
-
+	Vector3 startPosition;              // 開始点
+	Vector3 m_PlayerPos;
 	private Vector3 velocity = Vector3.zero;
 
 	private bool is_Move = false;       // MoveStateが動きを受け持っているかの判定
@@ -54,9 +53,9 @@ public class MoveState : MonoBehaviour {
 	private float startTime;	// 開始時間
 	private float deltaCount;   // 開始時間からどれだけ経過したか
 
-	[SerializeField] private Quaternion m_PrevRot;
-	[SerializeField] private float m_PrevRotY;   // オブジェクトに対して垂直に向きたい
-	[SerializeField] private bool is_RookRot;	// LookRotationを使って回すか決める
+	private Quaternion m_PrevRot;
+	private float m_PrevRotY;   // オブジェクトに対して垂直に向きたい
+	private bool is_LookRot;	// LookRotationを使って回すか決める
 	// Use this for initialization
 	void Start () {
 		m_NowState = MoveStatement.None;
@@ -134,7 +133,7 @@ public class MoveState : MonoBehaviour {
 		}
 
 		// 角度の更新
-		if(is_RookRot)
+		if(is_LookRot)
 			transform.rotation = Quaternion.LookRotation(m_MovePos, Vector3.up);    // 指定の位置を向く
 
 	}
@@ -207,13 +206,13 @@ public class MoveState : MonoBehaviour {
 		startTime = Time.deltaTime;
 		deltaCount = startTime;
 		startPosition = transform.position;
-		// RookRotで回す場合とそうでない場合
-		if (is_RookRot) {
+		// LookRotで回す場合とそうでない場合
+		if (is_LookRot) {
 			transform.rotation = Quaternion.LookRotation(m_MovePos, Vector3.up);    // 指定の位置を向く
 		} else {
 			// 回さない場合は移動前のY座標を上にして余計な回転をさせないようにする
 			//m_PrevRot = transform.rotation;
-			m_PrevRot = new Quaternion(0, m_PrevRotY, 0, m_PrevRot.w);
+			m_PrevRot = new Quaternion(0, m_PrevRot.y, 0, m_PrevRot.w);
 			transform.rotation = m_PrevRot;
 		}
 		//DebugPrint.print("MoveState Start",1.0f);
@@ -226,7 +225,7 @@ public class MoveState : MonoBehaviour {
 		m_NowState = MoveStatement.None;
 		m_AnimName = "";
 
-		//transform.rotation = m_PrevRot;	// 
+		//transform.rotation = new Quaternion(0, 1, 0, m_PrevRot.w); ;	// ないと登ったときに斜めになる
 	}
 
 	/// <summary>
@@ -253,11 +252,14 @@ public class MoveState : MonoBehaviour {
 			// このときオブジェクトはプレイヤー（正面）に対して背面に作られている必要がある
 			// 同じ向きでもともと作られている場合反転処理が個別に必要になるため気をつける
 			if (other.tag == ConstAnimationStateTags.PlayerStateClimb || other.tag == ConstAnimationStateTags.PlayerStateClimbJump) {
-				is_RookRot = false;
-				m_PrevRot = other.transform.rotation;    // 見つかったら座標を確保
+				is_LookRot = false;
+				//m_PrevRotY = other.root.transform.rotation.y;    // 見つかったら座標を確保
+				//m_PrevRotY = other.transform.root.rotation.y;	    // 見つかったら（親の）座標を確保
+				m_PrevRot = transform.rotation;
+				//is_LookRot = true;	// ToDo:↑が上手くいかないのであきらめ(´・ω・｀)
 			} else {
 				// それ以外はオブジェクトの向き見て
-				is_RookRot = true;
+				is_LookRot = true;
 			}
 		}
 
