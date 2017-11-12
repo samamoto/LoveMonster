@@ -35,7 +35,13 @@ public class Jump : AnimatorBase {
 
         //ジャンプに移行していたらフラグを切る
         animator.SetBool("is_Jump", false);
-    }
+
+		//ジャンプモーションが終わったら落ちるモーションフラグをオン
+		//未実装
+		if (stateInfo.normalizedTime >= 1.0f) {
+			animator.SetBool("is_Fall", true);
+		}
+	}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -44,9 +50,7 @@ public class Jump : AnimatorBase {
         m_Jump = 0;
         animator.SetFloat("JumpPower", m_Jump);
 
-        //ジャンプモーションが終わったら落ちるモーションフラグをオン
-        //未実装
-        animator.SetBool("is_Fall", true);
+
     }
 
     // OnStateIK is called right after Animator.OnAnimatorIK(). Code that sets up animation IK (inverse kinematics) should be implemented here.

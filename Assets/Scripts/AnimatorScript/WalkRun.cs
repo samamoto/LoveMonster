@@ -21,8 +21,11 @@ public class WalkRun : AnimatorBase {
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-   
-    }
+		if (animator.GetBool("is_Grounded")) {
+			animator.SetBool("is_Fall", false);
+			animator.SetBool("is_LongFall", false);
+		}
+	}
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

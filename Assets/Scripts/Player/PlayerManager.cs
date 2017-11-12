@@ -74,6 +74,7 @@ public partial class PlayerManager : MonoBehaviour
 				m_CharacterController.stepOffset = 0.9f;
 				//Debug.Break();
 				m_animator.SetBool("is_Jump", true);
+				m_animator.SetFloat("JumpPower", m_AllPlayerManager.m_JumpPower);
 			}
 		}
 		/* Debug実装をコメントアウト 2017/11/11 oyama add
@@ -132,20 +133,26 @@ public partial class PlayerManager : MonoBehaviour
 		//m_CharacterController.Move(new Vector3(0, JumpUp.y * Time.deltaTime, 0));	// ↑の一個で良いんじゃね
 
 		//落下させる処理の条件
-		if (m_animator.GetCurrentAnimatorStateInfo(0).IsTag("WalkRun") ||
-			 m_animator.GetCurrentAnimatorStateInfo(0).IsTag("Idle")) {
-			// キャラクターが浮いていたら
-			if (!m_CharacterController.isGrounded) {
-				// 落下
-				JumpDown.y -= (Physics.gravity.y * Time.fixedDeltaTime) + 0.8f;
-				m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
+		if (!m_CharacterController.isGrounded) {
+			if (m_animator.GetCurrentAnimatorStateInfo(0).IsTag("WalkRun") ||
+				m_animator.GetCurrentAnimatorStateInfo(0).IsTag("Idle")) {
+				m_animator.SetBool("is_Fall", true);    // 落下状態に				
+			}
+		}
 
-				// 着地していたら速度を0にする
-				if (m_CharacterController.isGrounded) {
-					//Debug.Log("グラウンドオン");
-					//Debug.Log(m_CharacterController.stepOffset);
-					JumpDown.y = 0;
-				}
+		// キャラクターが浮いていたら
+		if (!m_CharacterController.isGrounded) {
+			// 落下
+			JumpDown.y -= (Physics.gravity.y * Time.deltaTime);
+			m_CharacterController.Move(JumpDown * Time.deltaTime);
+
+			// 着地していたら速度を0にする
+			if (m_CharacterController.isGrounded) {
+				m_animator.SetBool("is_Fall", false);
+				m_animator.SetBool("is_LongFall", false);
+				//Debug.Log("グラウンドオン");
+				//Debug.Log(m_CharacterController.stepOffset);
+				JumpDown.y = 0;
 			}
 		}
 		
@@ -176,6 +183,9 @@ public partial class PlayerManager : MonoBehaviour
     // updateの前に走る
     private void FixedUpdate()
     {
+		// CharacterControllerのis_Groundedを引き渡す
+		m_animator.SetBool("is_Grounded" , m_CharacterController.isGrounded);
+		DebugPrint.print(m_CharacterController.isGrounded.ToString());
     }
 
 	//============================================================

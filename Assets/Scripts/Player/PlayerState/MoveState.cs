@@ -33,9 +33,10 @@ public class MoveState : MonoBehaviour {
 	string smoothTimeMessage;
 
 	[SerializeField, Range(0.1f, 5)]
-	private float[] smoothTime = new float[4] { 0.65f, 0.65f, 1.65f, 9.99f };
+	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.65f, 0.65f, 1.65f};
 
-	public AnimationCurve m_Curve;	// ToDo:カーブつかって個別制御用
+	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
+
 	[SerializeField] MoveStatement m_NowState;    // 現在ステート
 	[SerializeField] Vector3 m_PlayerPos;
 	[SerializeField] Vector3 m_MovePos;
@@ -53,6 +54,9 @@ public class MoveState : MonoBehaviour {
 	private float startTime;	// 開始時間
 	private float deltaCount;   // 開始時間からどれだけ経過したか
 
+	[SerializeField] private Quaternion m_PrevRot;
+	[SerializeField] private float m_PrevRotY;   // オブジェクトに対して垂直に向きたい
+	[SerializeField] private bool is_RookRot;	// LookRotationを使って回すか決める
 	// Use this for initialization
 	void Start () {
 		m_NowState = MoveStatement.None;
@@ -86,8 +90,6 @@ public class MoveState : MonoBehaviour {
 			}
 		}
 
-
-
 	}
 
 	/// <summary>
@@ -99,6 +101,8 @@ public class MoveState : MonoBehaviour {
 			return;
 		}
 
+		// ステートに移行してからの差分の時間を取ってLerp関係処理に投げる
+		// 座標更新
 		float diff = deltaCount - startTime;
 		if (diff > smoothTime[(int)m_NowState]) {
 			transform.position = m_MovePos;
@@ -129,8 +133,10 @@ public class MoveState : MonoBehaviour {
 			break;
 		}
 
-		//transform.position = Vector3.Lerp(startPosition, endPosition, rate);
-		//transform.position = Vector3.Lerp (startPosition, endPosition, pos);
+		// 角度の更新
+		if(is_RookRot)
+			transform.rotation = Quaternion.LookRotation(m_MovePos, Vector3.up);    // 指定の位置を向く
+
 	}
 
 
@@ -138,7 +144,7 @@ public class MoveState : MonoBehaviour {
 	// アクション用
 	//============================================================
 	/// <summary>
-	/// アクションの移動制御
+	/// アクションの移動制御(SmoothDamp)
 	/// </summary>
 	void Action() {
 		// 指定位置まで指定時間で移動する
@@ -146,11 +152,16 @@ public class MoveState : MonoBehaviour {
 		this.transform.position = m_PlayerPos;
 	}
 
-
+	/// <summary>
+	/// Lerpを使った移動制御
+	/// </summary>
 	void ActionLerp(float rate) {
 		transform.position = Vector3.Lerp(startPosition, m_MovePos, rate);
 	}
 
+	/// <summary>
+	/// Slerpを使った移動制御
+	/// </summary>
 	void ActionSlerp(float rate) {
 		transform.position = Vector3.Slerp(startPosition, m_MovePos, rate);
 	}
@@ -196,6 +207,15 @@ public class MoveState : MonoBehaviour {
 		startTime = Time.deltaTime;
 		deltaCount = startTime;
 		startPosition = transform.position;
+		// RookRotで回す場合とそうでない場合
+		if (is_RookRot) {
+			transform.rotation = Quaternion.LookRotation(m_MovePos, Vector3.up);    // 指定の位置を向く
+		} else {
+			// 回さない場合は移動前のY座標を上にして余計な回転をさせないようにする
+			//m_PrevRot = transform.rotation;
+			m_PrevRot = new Quaternion(0, m_PrevRotY, 0, m_PrevRot.w);
+			transform.rotation = m_PrevRot;
+		}
 		//DebugPrint.print("MoveState Start",1.0f);
 	}
 
@@ -205,6 +225,8 @@ public class MoveState : MonoBehaviour {
 	public void resetState() {
 		m_NowState = MoveStatement.None;
 		m_AnimName = "";
+
+		//transform.rotation = m_PrevRot;	// 
 	}
 
 	/// <summary>
@@ -218,6 +240,27 @@ public class MoveState : MonoBehaviour {
 	/// </summary>
 	public void setMovePosition(Vector3 MovePos) {
 		m_MovePos = MovePos;
+	}
+
+	/// <summary>
+	///	ブロックと当たったときに判定する
+	/// </summary>
+	public void OnTriggerEnter(Collider other) {
+
+		// 指定したアクションがあるかを調べる
+		if (AllPlayerManager.TagCheck(other.tag)) {
+			// 指定のタグなら
+			// このときオブジェクトはプレイヤー（正面）に対して背面に作られている必要がある
+			// 同じ向きでもともと作られている場合反転処理が個別に必要になるため気をつける
+			if (other.tag == ConstAnimationStateTags.PlayerStateClimb || other.tag == ConstAnimationStateTags.PlayerStateClimbJump) {
+				is_RookRot = false;
+				m_PrevRot = other.transform.rotation;    // 見つかったら座標を確保
+			} else {
+				// それ以外はオブジェクトの向き見て
+				is_RookRot = true;
+			}
+		}
+
 	}
 
 }

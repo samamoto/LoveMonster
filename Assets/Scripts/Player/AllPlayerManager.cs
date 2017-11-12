@@ -12,7 +12,7 @@ public class AllPlayerManager : MonoBehaviour {
     public float m_SideRunSpeed = 0.05f;
 
     //ジャンプ力
-    public float m_JumpPower = 1.5f;
+    public float m_JumpPower = 2f;
 
     //ジャンプ時間
     public float m_JumpTime = 2;
@@ -44,6 +44,20 @@ public class AllPlayerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	/// <summary>
+	/// 指定したタグがAllPlayerManagerの特別アクションに指定されているかを見る
+	/// </summary>
+	/// <param name="tag">タグ名</param>
+	/// <returns>ある/なし</returns>
+	public static bool TagCheck(string tag) {
+		for (int i = 0; i < AllPlayerManager.Instance.SpecialAction.Length; i++) {
+			if (AllPlayerManager.Instance.SpecialAction[i] == tag) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// Singleton

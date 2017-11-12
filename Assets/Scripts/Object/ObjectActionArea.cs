@@ -14,7 +14,6 @@ public class ObjectActionArea : MonoBehaviour {
 
 	string m_tagValue;
 	public GameObject MovePointObject;	// 移動位置に指定するゲームオブジェクト
-	Transform m_MoveTrans;
 	Vector3 m_MovePos;
 	PlayerManager m_PlayerMgr;
 
@@ -45,24 +44,11 @@ public class ObjectActionArea : MonoBehaviour {
 	void OnTriggerStay(Collider other) {
 
 		// ぶつかった対象にメッセージ(関数)を送る 設定タグがあるか検索
-		if (other.tag == "Player" && TagCheck(tag)) {
+		if (other.tag == "Player" && AllPlayerManager.TagCheck(tag)) {
 			m_PlayerMgr.setMovePosition(m_MovePos);//PlayerManagerの移動予定ポイントにMovePointの値をセット
 			other.SendMessage(tag, m_tagValue); // 設定されたタグ名(プレイヤーのアニメーション)の関数を呼ぶ
 		}
 	}
 
-	/// <summary>
-	/// 指定したタグがAllPlayerManagerの特別アクションに指定されているかを見る
-	/// </summary>
-	/// <param name="tag">タグ名</param>
-	/// <returns>ある/なし</returns>
-	bool TagCheck(string tag) {
-		for(int i=0; i<AllPlayerManager.Instance.SpecialAction.Length; i++) {
-			if(AllPlayerManager.Instance.SpecialAction[i] == tag) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 }
