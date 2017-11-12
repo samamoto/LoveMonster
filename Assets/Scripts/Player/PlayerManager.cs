@@ -184,7 +184,6 @@ public partial class PlayerManager : MonoBehaviour
     {
 		// CharacterControllerのis_Groundedを引き渡す
 		m_animator.SetBool("is_Grounded" , m_CharacterController.isGrounded);
-		DebugPrint.print(m_CharacterController.isGrounded.ToString());
     }
 
 	//============================================================
