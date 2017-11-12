@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Controller;
+
 //------------------------------------------------------------
 // プレイヤーがアクションを切り替えて移動をするときに使用する
 // PlayerManagerから使用する
@@ -19,12 +21,6 @@ using UnityEngine;
 
 public class MoveState : MonoBehaviour {
 
-	public float smoothTime = 0.65f;
-	public Vector3 m_PlayerPos;
-	public Vector3 m_MovePos;
-
-	private Vector3 velocity = Vector3.zero;
-
 	// 外部移動処理が必要な物のリスト
 	public enum MoveStatement {
 		None,
@@ -33,12 +29,26 @@ public class MoveState : MonoBehaviour {
 		Climb,
 	}
 
-	public MoveStatement m_NowState;	// 現在ステート
+	// UnityEditor内で表示 //
+	[SerializeField, Range(0, 5)]
+	public float smoothTime = 0.65f;
+	public AnimationCurve m_Curve;	// ToDo:カーぶつかって個別制御用
+	[SerializeField] MoveStatement m_NowState;    // 現在ステート
+	[SerializeField] Vector3 m_PlayerPos;
+	[SerializeField] Vector3 m_MovePos;
+	[SerializeField] string m_AnimName;   // 再生されている（はず）のアニメーションの名前を受け取る
+
+	[SerializeField, Range(0, 10)]
+	Vector3 startPosition;
+	private Vector3 velocity = Vector3.zero;
+
 	private bool is_Move = false;       // MoveStateが動きを受け持っているかの判定
 
 	private Animator m_Animator;
 	private AllPlayerManager m_AllPlayerMgr;
-	public string m_AnimName;	// 再生されている（はず）のアニメーションの名前を受け取る
+	private Controller.Controller m_Controller;
+	private float startTime;
+	private float deltaCount;
 
 
 	// Use this for initialization
@@ -46,6 +56,37 @@ public class MoveState : MonoBehaviour {
 		m_NowState = MoveStatement.None;
 		m_Animator = GetComponent<Animator>();
 		m_AllPlayerMgr = AllPlayerManager.Instance;
+		m_Controller = GetComponent<Controller.Controller>();
+	}
+
+
+	// Updateの前に行う処理
+	private void FixedUpdate() {
+
+		// 座標関係の更新
+		m_PlayerPos = this.transform.position;
+		deltaCount += Time.deltaTime;
+
+		// 状態取得/切り替え部分
+		//DebugPrint.print("Animator.StateInfo = " + m_Animator.IsInTransition(0).ToString());
+		// ChangeStateから変更されたら都度アニメーターの状態を監視してプレイ中か判定する
+		if (is_Move) {
+
+			//is_Move = m_Animator.GetBool(m_AnimName);   // 再生されているはずのアニメーションの名前からひったくる
+			//if(!m_Animator.GetCurrentAnimatorStateInfo(0).IsName(m_AnimName)) {
+			if (m_Animator.IsInTransition(0)) {
+				is_Move = false;
+			}
+			// アニメーションの再生が終了した瞬間
+			if (!is_Move) {
+				//DebugPrint.print("MoveState Exit", 0.5f);
+				resetState();
+				return;
+			}
+		}
+
+
+
 	}
 
 	/// <summary>
@@ -57,10 +98,19 @@ public class MoveState : MonoBehaviour {
 			return;
 		}
 
+		float diff = deltaCount - startTime;
+		if (diff > smoothTime) {
+			transform.position = m_MovePos;
+		}
+
+		float rate = diff / smoothTime;
+		//var pos = curve.Evaluate(rate);
+
+
 		// 状態によって操作を分ける
 		switch (m_NowState) {
 		case MoveStatement.Vault:
-			Action();
+			ActionSlerp(rate);
 			break;
 
 		case MoveStatement.Slider:
@@ -68,7 +118,7 @@ public class MoveState : MonoBehaviour {
 			break;
 
 		case MoveStatement.Climb:
-			Action();
+			ActionLerp(rate);
 			break;
 
 		default:
@@ -77,33 +127,11 @@ public class MoveState : MonoBehaviour {
 		case MoveStatement.None:
 			break;
 		}
+
+		//transform.position = Vector3.Lerp(startPosition, endPosition, rate);
+		//transform.position = Vector3.Lerp (startPosition, endPosition, pos);
 	}
 
-	// Updateの前に行う処理
-	private void FixedUpdate() {
-
-		// 座標関係の更新
-		m_PlayerPos = this.transform.position;
-		
-
-		// 状態取得/切り替え部分
-		//DebugPrint.print("Animator.StateInfo = " + m_Animator.IsInTransition(0).ToString());
-		// ChangeStateから変更されたら都度アニメーターの状態を監視してプレイ中か判定する
-		if (is_Move) {
-
-			//is_Move = m_Animator.GetBool(m_AnimName);   // 再生されているはずのアニメーションの名前からひったくる
-			//if(!m_Animator.GetCurrentAnimatorStateInfo(0).IsName(m_AnimName)) {
-			if(m_Animator.IsInTransition(0)) {
-				is_Move = false;
-			}
-			// アニメーションの再生が終了した瞬間
-			if (!is_Move) {
-				//DebugPrint.print("MoveState Exit", 0.5f);
-				resetState();
-			}
-		}
-	
-	}
 
 	//============================================================
 	// アクション用
@@ -117,6 +145,31 @@ public class MoveState : MonoBehaviour {
 		this.transform.position = m_PlayerPos;
 	}
 
+
+	void ActionLerp(float rate) {
+		transform.position = Vector3.Lerp(startPosition, m_MovePos, rate);
+	}
+
+	void ActionSlerp(float rate) {
+		transform.position = Vector3.Slerp(startPosition, m_MovePos, rate);
+	}
+
+	// UnityEditorのときのみ
+	void OnDrawGizmosSelected() {
+#if UNITY_EDITOR
+
+		if (!UnityEditor.EditorApplication.isPlaying || enabled == false) {
+			startPosition = transform.position;
+		}
+
+		UnityEditor.Handles.Label(m_MovePos, m_MovePos.ToString());
+		UnityEditor.Handles.Label(startPosition, startPosition.ToString());
+#endif
+		Gizmos.DrawSphere(m_MovePos, 0.1f);
+		Gizmos.DrawSphere(startPosition, 0.1f);
+
+		Gizmos.DrawLine(startPosition, m_MovePos);
+	}
 
 	//============================================================
 	// 状態取得/変更
@@ -139,6 +192,9 @@ public class MoveState : MonoBehaviour {
 		m_NowState = mvState;
 		is_Move = true;
 		m_AnimName = AnimName;
+		startTime = Time.deltaTime;
+		deltaCount = startTime;
+		startPosition = transform.position;
 		//DebugPrint.print("MoveState Start",1.0f);
 	}
 
@@ -162,4 +218,5 @@ public class MoveState : MonoBehaviour {
 	public void setMovePosition(Vector3 MovePos) {
 		m_MovePos = MovePos;
 	}
+
 }

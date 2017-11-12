@@ -5,6 +5,11 @@ using UnityEngine;
 //============================================================
 // ==2017/10/31 Oyama Add
 //============================================================
+// オブジェクトの前に置いて衝突したプレイヤーの関数を呼ぶ
+// おもにブロックごとの指定アクションを再生させるための機構
+//
+/// Todo:タグを使っているのでどっかでまとめて管理しているところと連携した方が呼び出しミスとかなくなって良いか
+/// 
 public class ObjectActionArea : MonoBehaviour {
 
 	string m_tagValue;
@@ -28,10 +33,13 @@ public class ObjectActionArea : MonoBehaviour {
 	// コライダーに当たった
 	void OnTriggerEnter(Collider other) {
 		// ぶつかった対象にメッセージ(関数)を送る
+		// Stayだけでいけるみたい
+		/*
 		if (other.tag == "Player") {
 			other.GetComponent<PlayerManager>().setMovePosition(m_MovePos);//PlayerManagerの移動予定ポイントにMovePointの値をセット ホントはObjectManagerとか通した方が良い気がする
 			other.SendMessage(tag, m_tagValue);	// 設定されたタグ名(プレイヤーのアニメーション)の関数を呼ぶ
 		}
+		*/
 
 	}
 

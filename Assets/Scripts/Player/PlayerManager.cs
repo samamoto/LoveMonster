@@ -204,9 +204,10 @@ public partial class PlayerManager : MonoBehaviour
 	public int getPlayerID() {
 		return m_PlayerID;
 	}
+
+
 	//============================================================
 	// ==2017/10/31 Oyama Add
-	//
 	// ObjectActionAreaスクリプトから直接実行される部分
 	//
 	// オブジェクトに当たったらそのオブジェクトに応じたアクションを実行
@@ -249,6 +250,7 @@ public partial class PlayerManager : MonoBehaviour
             m_MoveState.changeState(MoveState.MoveStatement.Slider, name);
         }
     }
+	
 }
 
 /*メモ

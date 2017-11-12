@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93128babf11d2f54ba87c1a2c321ab9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpUpSpeed: 6
+  m_JumpUpSpeed: 2.5
 --- !u!114 &114326208930269536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -954,7 +954,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 1cb8ed3cbba15f0479fbae54e0a963df, type: 3}
-  m_Tag: 
+  m_Tag: WallRun
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1029,7 +1029,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 19ec296e23580134bbd879153dc81cf6, type: 3}
-  m_Tag: 
+  m_Tag: Climb
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
