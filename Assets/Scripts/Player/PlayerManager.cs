@@ -69,18 +69,18 @@ public partial class PlayerManager : MonoBehaviour
 		*/
 		// キャラクターが地上にいる状態で指定のキーが押された場合 oyama add
 		if (m_CharacterController.isGrounded) {
-			if (Input.GetKeyDown(KeyCode.Z) || this.m_Controller.GetButtonDown(Controller.Button.A)) {  // 一番操作しやすいキーに 2017/11/11 oyama add
+			if (Input.GetKeyDown(KeyCode.Space) || this.m_Controller.GetButtonDown(Controller.Button.A)) {  // 一番操作しやすいキーに 2017/11/11 oyama add
 				time = 0;
 				m_CharacterController.stepOffset = 0.9f;
 				//Debug.Break();
 				m_animator.SetBool("is_Jump", true);
 			}
 		}
-		/* Debug実装をコメントアウト 2017/11/11 oyama add
+		//Debug実装をコメントアウト 2017/11/11 oyama add
 		if (Input.GetKeyDown(KeyCode.X)) {
 			m_animator.SetBool("is_Slide", true);
 		}
-
+		/*
         if (Input.GetKeyDown(KeyCode.C))
         {
             m_animator.SetBool("is_Climb", true);

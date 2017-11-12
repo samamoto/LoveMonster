@@ -40,10 +40,12 @@ public class MoveState : MonoBehaviour {
 	[SerializeField] MoveStatement m_NowState;    // 現在ステート
 	[SerializeField] Vector3 m_MovePos;
 	[SerializeField] string m_AnimName;   // 再生されている（はず）のアニメーションの名前を受け取る
+	[SerializeField] float ActOffsetY = 1.0f;
 
 	Vector3 startPosition;              // 開始点
 	Vector3 m_PlayerPos;
 	private Vector3 velocity = Vector3.zero;
+
 
 	private bool is_Move = false;       // MoveStateが動きを受け持っているかの判定
 
@@ -114,15 +116,15 @@ public class MoveState : MonoBehaviour {
 		// 状態によって操作を分ける
 		switch (m_NowState) {
 		case MoveStatement.Vault:
-			ActionSlerp(rate);
+			ActionLerp(rate);
 			break;
 
 		case MoveStatement.Slider:
-			Action();
+			ActionSlerp(rate);
 			break;
 
 		case MoveStatement.Climb:
-			ActionLerp(rate);
+			Action();
 			break;
 
 		default:
@@ -224,7 +226,7 @@ public class MoveState : MonoBehaviour {
 	public void resetState() {
 		m_NowState = MoveStatement.None;
 		m_AnimName = "";
-
+		transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
 		//transform.rotation = new Quaternion(0, 1, 0, m_PrevRot.w); ;	// ないと登ったときに斜めになる
 	}
 
