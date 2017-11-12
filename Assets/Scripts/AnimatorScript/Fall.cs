@@ -24,7 +24,7 @@ public class Fall : AnimatorBase {
     {
 		//animator.SetBool("is_Fall", false);
 		// 10回ループされたら長時間落ちるモーションに
-		if(stateInfo.normalizedTime >= 10.0f) {
+		if(stateInfo.normalizedTime >= 20.0f) {
 			animator.SetBool("is_LongFall", true);
 			animator.SetBool("is_Fall", false);
 		}

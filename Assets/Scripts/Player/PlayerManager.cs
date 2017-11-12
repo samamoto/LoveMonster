@@ -74,7 +74,6 @@ public partial class PlayerManager : MonoBehaviour
 				m_CharacterController.stepOffset = 0.9f;
 				//Debug.Break();
 				m_animator.SetBool("is_Jump", true);
-				m_animator.SetFloat("JumpPower", m_AllPlayerManager.m_JumpPower);
 			}
 		}
 		/* Debug実装をコメントアウト 2017/11/11 oyama add

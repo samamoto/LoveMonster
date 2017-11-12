@@ -18,7 +18,7 @@ public class AllPlayerManager : MonoBehaviour {
     public float m_JumpTime = 2;
 
     //回転力
-    public float m_RotatePower = 5.0f;
+    public float m_RotatePower = 15.0f;
 
 	// プレイヤーの通常動作
 	public readonly string[] NormalAction = {
