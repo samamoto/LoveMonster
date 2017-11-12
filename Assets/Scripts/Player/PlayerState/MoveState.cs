@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Controller;
 
 //------------------------------------------------------------
 // プレイヤーがアクションを切り替えて移動をするときに使用する
@@ -23,40 +22,42 @@ public class MoveState : MonoBehaviour {
 
 	// 外部移動処理が必要な物のリスト
 	public enum MoveStatement {
-		None,
 		Vault,
 		Slider,
 		Climb,
+		None,
 	}
 
 	// UnityEditor内で表示 //
-	[SerializeField, Range(0, 5)]
-	public float smoothTime = 0.65f;
-	public AnimationCurve m_Curve;	// ToDo:カーぶつかって個別制御用
+	[SerializeField, MultilineAttribute(2)]
+	string smoothTimeMessage;
+
+	[SerializeField, Range(0.1f, 5)]
+	private float[] smoothTime = new float[4] { 0.65f, 0.65f, 1.65f, 9.99f };
+
+	public AnimationCurve m_Curve;	// ToDo:カーブつかって個別制御用
 	[SerializeField] MoveStatement m_NowState;    // 現在ステート
 	[SerializeField] Vector3 m_PlayerPos;
 	[SerializeField] Vector3 m_MovePos;
 	[SerializeField] string m_AnimName;   // 再生されている（はず）のアニメーションの名前を受け取る
 
-	[SerializeField, Range(0, 10)]
-	Vector3 startPosition;
+	Vector3 startPosition;				// 開始点
+
 	private Vector3 velocity = Vector3.zero;
 
 	private bool is_Move = false;       // MoveStateが動きを受け持っているかの判定
 
 	private Animator m_Animator;
 	private AllPlayerManager m_AllPlayerMgr;
-	private Controller.Controller m_Controller;
-	private float startTime;
-	private float deltaCount;
 
+	private float startTime;	// 開始時間
+	private float deltaCount;   // 開始時間からどれだけ経過したか
 
 	// Use this for initialization
 	void Start () {
 		m_NowState = MoveStatement.None;
 		m_Animator = GetComponent<Animator>();
 		m_AllPlayerMgr = AllPlayerManager.Instance;
-		m_Controller = GetComponent<Controller.Controller>();
 	}
 
 
@@ -99,11 +100,11 @@ public class MoveState : MonoBehaviour {
 		}
 
 		float diff = deltaCount - startTime;
-		if (diff > smoothTime) {
+		if (diff > smoothTime[(int)m_NowState]) {
 			transform.position = m_MovePos;
 		}
 
-		float rate = diff / smoothTime;
+		float rate = diff / smoothTime[(int)m_NowState];
 		//var pos = curve.Evaluate(rate);
 
 
@@ -141,7 +142,7 @@ public class MoveState : MonoBehaviour {
 	/// </summary>
 	void Action() {
 		// 指定位置まで指定時間で移動する
-		m_PlayerPos = Vector3.SmoothDamp(m_PlayerPos, m_MovePos, ref velocity, smoothTime);
+		m_PlayerPos = Vector3.SmoothDamp(m_PlayerPos, m_MovePos, ref velocity, smoothTime[(int)m_NowState]);
 		this.transform.position = m_PlayerPos;
 	}
 

@@ -16,6 +16,7 @@ public class ObjectActionArea : MonoBehaviour {
 	public GameObject MovePointObject;	// 移動位置に指定するゲームオブジェクト
 	Transform m_MoveTrans;
 	Vector3 m_MovePos;
+	PlayerManager m_PlayerMgr;
 
 	protected void Start() {
 		m_tagValue = tag;   // タグの名前コピー
@@ -32,23 +33,36 @@ public class ObjectActionArea : MonoBehaviour {
 
 	// コライダーに当たった
 	void OnTriggerEnter(Collider other) {
-		// ぶつかった対象にメッセージ(関数)を送る
-		// Stayだけでいけるみたい
-		/*
-		if (other.tag == "Player") {
-			other.GetComponent<PlayerManager>().setMovePosition(m_MovePos);//PlayerManagerの移動予定ポイントにMovePointの値をセット ホントはObjectManagerとか通した方が良い気がする
-			other.SendMessage(tag, m_tagValue);	// 設定されたタグ名(プレイヤーのアニメーション)の関数を呼ぶ
+
+		// 最初に触れたときだけ初期化する
+		if (m_PlayerMgr == null) {
+			m_PlayerMgr = other.GetComponent<PlayerManager>();
 		}
-		*/
 
 	}
 
 	// コライダーに当たってる
 	void OnTriggerStay(Collider other) {
-		// ぶつかった対象にメッセージ(関数)を送る
-		if (other.tag == "Player") {
-			other.GetComponent<PlayerManager>().setMovePosition(m_MovePos);//PlayerManagerの移動予定ポイントにMovePointの値をセット
+
+		// ぶつかった対象にメッセージ(関数)を送る 設定タグがあるか検索
+		if (other.tag == "Player" && TagCheck(tag)) {
+			m_PlayerMgr.setMovePosition(m_MovePos);//PlayerManagerの移動予定ポイントにMovePointの値をセット
 			other.SendMessage(tag, m_tagValue); // 設定されたタグ名(プレイヤーのアニメーション)の関数を呼ぶ
 		}
 	}
+
+	/// <summary>
+	/// 指定したタグがAllPlayerManagerの特別アクションに指定されているかを見る
+	/// </summary>
+	/// <param name="tag">タグ名</param>
+	/// <returns>ある/なし</returns>
+	bool TagCheck(string tag) {
+		for(int i=0; i<AllPlayerManager.Instance.SpecialAction.Length; i++) {
+			if(AllPlayerManager.Instance.SpecialAction[i] == tag) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
