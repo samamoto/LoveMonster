@@ -102,10 +102,10 @@ public partial class PlayerManager : MonoBehaviour
 			//transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
 		} else {
 			// 左右の回転処理
-			if (Input.GetKey(KeyCode.RightArrow) || m_Controller.GetAxisDown(Axis.L_x) == -1) {
+			if (Input.GetKey(KeyCode.RightArrow) || m_Controller.GetAxisDown(Axis.L_x) != 0) {
 				transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
 			}
-			if (Input.GetKey(KeyCode.LeftArrow) || m_Controller.GetAxisDown(Axis.L_x) == 1) {
+			if (Input.GetKey(KeyCode.LeftArrow) || m_Controller.GetAxisDown(Axis.L_x) != 0) {
 				transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
 			}
 
