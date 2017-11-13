@@ -24,6 +24,15 @@ namespace Controller
         //デバッグスクリーンのプレハブ
         public GameObject m_DebugScreenPrefab = null;
 
+        private enum DebugView
+        {
+            Raw,
+            Threshold,
+            Curve
+        }
+
+        [SerializeField] private DebugView m_AxisDebugView = DebugView.Raw;
+
         //このコントローラが持つデバッグスクリーン
         private GameObject m_DebugScreenClone = null;
 
@@ -36,7 +45,9 @@ namespace Controller
         /// <summary>
         /// 軸入力の閾値
         /// </summary>
-        public float AxisThreshold = 0.5f;
+        public float m_Threshold = 0.5f;
+
+        public AnimationCurve m_AxisCurve;
 
         //コントローラIDセット
         private void Start()
@@ -44,7 +55,7 @@ namespace Controller
             this.m_Button = new SingleButton[(int)Button.Max];
             this.m_Axis = new SingleAxis[(int)Axis.Max];
 
-            if (ControllerGenerator.GenerateController(this.m_ControllerID, this))
+            if (this.m_ControllerID != 999 && ControllerGenerator.GenerateController(this.m_ControllerID, this))
             {
                 if (m_DebugScreenPrefab)
                 {
@@ -64,45 +75,71 @@ namespace Controller
                     }
                 }
             }
+            else if (this.m_ControllerID == 999)
+            {
+                Debug.LogWarning("Not setting controller ID");
+            }
             else
             {
                 this.m_ControllerID = 999;
-                Debug.LogError("コントローラ取得失敗");
             }
         }
 
         private void Update()
         {
-            if (this.m_DebugScreenClone)
+            //デバッグモード
+            for (Button i = 0; i < Button.Max; i++)
             {
-                //デバッグモード
-                for (Button i = 0; i < Button.Max; i++)
+                bool check = this.GetButtonHold(i);
+                if (this.m_DebugScreenClone && check)
                 {
-                    bool check = this.GetButtonHold(i);
-                    if (this.m_DebugScreenClone && check)
-                    {
-                        this.m_DebugScreenClone.GetComponent<ControllerDebugScreen>().UpdateButtonScreen(i);
-                    }
+                    this.m_DebugScreenClone.GetComponent<ControllerDebugScreen>().UpdateButtonScreen(i);
                 }
+            }
 
-                for (Axis i = 0; i < Axis.Max; i++)
+            for (Axis i = 0; i < Axis.Max; i++)
+            {
+                if (this.m_DebugScreenClone)
                 {
-                    if (this.m_DebugScreenClone)
-                        this.m_DebugScreenClone.GetComponent<ControllerDebugScreen>().UpdateAxisScreen(i, this.GetAxisRaw(i));
+                    float value = 0.0f;
+                    switch (this.m_AxisDebugView)
+                    {
+                        case DebugView.Raw:
+                            value = this.GetAxisRaw(i);
+                            break;
+
+                        case DebugView.Threshold:
+                            value = this.GetAxisHold(i);
+                            break;
+
+                        case DebugView.Curve:
+                            value = this.GetAxisCurve(i);
+                            break;
+                    }
+                    this.m_DebugScreenClone.GetComponent<ControllerDebugScreen>().UpdateAxisScreen(i, value);
                 }
             }
         }
 
         private void LateUpdate()
         {
-            //ボタン更新
-            for (Button i = 0; i < Button.Max; i++)
+            Button button = 0;
+            Axis axis = 0;
+            try
             {
-                this.m_Button[(int)i].Update();
+                //ボタン更新
+                for (button = 0; button < Button.Max; button++)
+                {
+                    this.m_Button[(int)button].Update();
+                }
+                for (axis = 0; axis < Axis.Max; axis++)
+                {
+                    this.m_Axis[(int)axis].Update();
+                }
             }
-            for (Axis i = 0; i < Axis.Max; i++)
+            catch
             {
-                this.m_Axis[(int)i].Update();
+                Debug.LogError("Controller error button : " + button.ToString() + " axis : " + axis.ToString());
             }
         }
 
@@ -217,7 +254,7 @@ namespace Controller
             if (this.m_ControllerID != 999)
             {
                 int check = 0;
-                check = this.m_Axis[(int)axis].GetAxisHold(this.AxisThreshold);
+                check = this.m_Axis[(int)axis].GetAxisHold(this.m_Threshold);
                 return check;
             }
             else
@@ -237,7 +274,7 @@ namespace Controller
             if (this.m_ControllerID != 999)
             {
                 int check = 0;
-                check = this.m_Axis[(int)axis].GetAxisDown(this.AxisThreshold);
+                check = this.m_Axis[(int)axis].GetAxisDown(this.m_Threshold);
                 return check;
             }
             else
@@ -257,8 +294,23 @@ namespace Controller
             if (this.m_ControllerID != 999)
             {
                 int check = 0;
-                check = this.m_Axis[(int)axis].GetAxisUp(this.AxisThreshold);
+                check = this.m_Axis[(int)axis].GetAxisUp(this.m_Threshold);
                 return check; ;
+            }
+            else
+            {
+                Debug.LogWarning("Not having controller");
+                return 0;
+            }
+        }
+
+        public float GetAxisCurve(Axis axis)
+        {
+            if (this.m_ControllerID != 999)
+            {
+                float value = 0;
+                value = this.m_Axis[(int)axis].GetAxisCurve(this.m_AxisCurve);
+                return value; ;
             }
             else
             {

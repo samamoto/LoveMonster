@@ -11,8 +11,8 @@ internal class SingleAxis
     public float Sensitivity { set { ControllerGenerator.GetPropaty(_name, InputManagerGenerator.AxisPropaty.Sensitivity).floatValue = value; } get { return ControllerGenerator.GetPropaty(_name, InputManagerGenerator.AxisPropaty.Sensitivity).floatValue; } }
     public float Gravity { set { ControllerGenerator.GetPropaty(_name, InputManagerGenerator.AxisPropaty.Gravity).floatValue = value; } get { return ControllerGenerator.GetPropaty(_name, InputManagerGenerator.AxisPropaty.Gravity).floatValue; } }
 
-    private float _now = 0.0f;
-    private float _previous = 0.0f;
+    public float _now { get; private set; }
+    public float _previous { get; private set; }
 
     public bool Enabled { get; private set; }
 
@@ -23,6 +23,7 @@ internal class SingleAxis
         _name = name;
 
         Enabled = true;
+        //Debug.Log("Activated " + this._name.ToString());
     }
 
     //軸トリガー(0 | 1)
@@ -50,6 +51,11 @@ internal class SingleAxis
         int now = _now > threshold ? 1 : (_now < -threshold ? -1 : 0);
 
         return now;
+    }
+
+    public float GetAxisCurve(AnimationCurve animationCurve)
+    {
+        return animationCurve.Evaluate(this._now);
     }
 
     //軸(0.0f ~ 1.0f || -1.0f ~ 1.0f)

@@ -28,6 +28,9 @@ public class MoveState : MonoBehaviour {
 		None,
 	}
 
+	// Enumと文字列を管理する場所
+	public Dictionary<MoveStatement, string> StateDictionary = new Dictionary<MoveStatement, string>();
+
 	// UnityEditor内で表示 //
 	[SerializeField, MultilineAttribute(2)]
 	string smoothTimeMessage;
@@ -56,13 +59,22 @@ public class MoveState : MonoBehaviour {
 	private float deltaCount;   // 開始時間からどれだけ経過したか
 
 	private Quaternion m_PrevRot;
-	private float m_PrevRotY;   // オブジェクトに対して垂直に向きたい
 	private bool is_LookRot;	// LookRotationを使って回すか決める
+
+
 	// Use this for initialization
 	void Start () {
 		m_NowState = MoveStatement.None;
 		m_Animator = GetComponent<Animator>();
 		m_AllPlayerMgr = AllPlayerManager.Instance;
+
+		// Dictionaryの更新
+		StateDictionary.Add(MoveStatement.Vault, ConstAnimationStateTags.PlayerStateVault);
+		StateDictionary.Add(MoveStatement.Slider, ConstAnimationStateTags.PlayerStateSlider);
+		StateDictionary.Add(MoveStatement.Climb, ConstAnimationStateTags.PlayerStateClimb);
+		StateDictionary.Add(MoveStatement.None, "None");
+
+
 	}
 
 
@@ -217,7 +229,6 @@ public class MoveState : MonoBehaviour {
 			m_PrevRot = new Quaternion(0, m_PrevRot.y, 0, m_PrevRot.w);
 			transform.rotation = m_PrevRot;
 		}
-		//DebugPrint.print("MoveState Start",1.0f);
 	}
 
 	/// <summary>

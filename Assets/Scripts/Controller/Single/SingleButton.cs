@@ -18,6 +18,7 @@ internal class SingleButton
         this._name = name;
 
         this.Enabled = true;
+        //Debug.Log("Activated " + this._name.ToString());
     }
 
     public bool GetButtonDown()

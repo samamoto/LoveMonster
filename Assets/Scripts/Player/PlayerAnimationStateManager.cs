@@ -7,7 +7,7 @@ public class PlayerAnimationStateManager : MonoBehaviour {
     PlayerManager playerManager;
 	// Use this for initialization
 	void Start () {
-        playerManager = GetComponent<PlayerManager>();
+        //playerManager = GetComponent<PlayerManager>();
 	}
 	
 	// Update is called once per frame

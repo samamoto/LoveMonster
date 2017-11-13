@@ -45,8 +45,9 @@ public class ObjectActionArea : MonoBehaviour {
 
 		// ぶつかった対象にメッセージ(関数)を送る 設定タグがあるか検索
 		if (other.tag == "Player" && AllPlayerManager.TagCheck(tag)) {
-			m_PlayerMgr.setMovePosition(m_MovePos);//PlayerManagerの移動予定ポイントにMovePointの値をセット
-			other.SendMessage(tag, m_tagValue); // 設定されたタグ名(プレイヤーのアニメーション)の関数を呼ぶ
+			//m_PlayerMgr.setMovePosition(m_MovePos);//PlayerManagerの移動予定ポイントにMovePointの値をセット
+			//other.SendMessage(tag, m_tagValue); // 設定されたタグ名(プレイヤーのアニメーション)の関数を呼ぶ
+			//m_PlayerMgr.PlayAction(name);
 		}
 	}
 

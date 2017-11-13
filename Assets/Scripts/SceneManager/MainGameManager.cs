@@ -19,4 +19,12 @@ public class MainGameManager : MonoBehaviour {
     {
         m_ScreenChange._DebugInput();
     }
+
+	/// <summary>
+	/// プレイヤーが死んだ、落ちたときにする処理
+	/// </summary>
+	private void PlayerDead() {
+		
+	}
+
 }

@@ -59,6 +59,9 @@ public class ControllerGenerator : MonoBehaviour
                 controller.SetAxis((Controller.Axis)i, str_Player + strAxis[i]);
             }
             ms_bInitedController[useController - 1] = true;
+
+            Debug.Log("Create controller ID:" + useController.ToString());
+
             return true;
         }
         else if (useController == 0)
@@ -82,6 +85,11 @@ public class ControllerGenerator : MonoBehaviour
             Debug.Log("Create common controller");
 
             return true;
+        }
+        else if (ms_bInitedController[useController - 1])
+        {
+            Debug.LogError("Already exist controller ID : " + useController.ToString());
+            return false;
         }
         else
         {

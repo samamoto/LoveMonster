@@ -46,8 +46,9 @@ public partial class PlayerManager : MonoBehaviour
             return;                 // なにもしない
         }
 
+		/*
 		//TLookAtのテスト
-		/* Debug実装をコメントアウト 2017/11/11 oyama add
+		//Debug実装をコメントアウト 2017/11/11 oyama add
 		if (Input.GetKeyDown(KeyCode.U)) {
 			//word = "Cube1";
 		}
@@ -65,8 +66,8 @@ public partial class PlayerManager : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			transform.position = Vector3.zero;
 		}
-
 		*/
+
 		// キャラクターが地上にいる状態で指定のキーが押された場合 oyama add
 		if (m_CharacterController.isGrounded) {
 			if (Input.GetKeyDown(KeyCode.Space) || this.m_Controller.GetButtonDown(Controller.Button.A)) {  // 一番操作しやすいキーに 2017/11/11 oyama add
@@ -77,23 +78,24 @@ public partial class PlayerManager : MonoBehaviour
 			}
 		}
 		//Debug実装をコメントアウト 2017/11/11 oyama add
-		if (Input.GetKeyDown(KeyCode.X)) {
-			m_animator.SetBool("is_Slide", true);
-		}
 		/*
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            m_animator.SetBool("is_Climb", true);
-        }
+			if (Input.GetKeyDown(KeyCode.X)) {
+				m_animator.SetBool("is_Slide", true);
+			}
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            m_animator.SetBool("is_Vault", true);
-        }
+			if (Input.GetKeyDown(KeyCode.C))
+			{
+				m_animator.SetBool("is_Climb", true);
+			}
 
-		if (Input.GetKeyDown(KeyCode.B)) {
-			m_animator.SetBool("is_WallRun", true);
-		}
+			if (Input.GetKeyDown(KeyCode.V))
+			{
+				m_animator.SetBool("is_Vault", true);
+			}
+
+			if (Input.GetKeyDown(KeyCode.B)) {
+				m_animator.SetBool("is_WallRun", true);
+			}
 		*/
 		JumpUp.y = m_animator.GetFloat("JumpPower");
 
@@ -102,10 +104,10 @@ public partial class PlayerManager : MonoBehaviour
 			//transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
 		} else {
 			// 左右の回転処理
-			if (Input.GetKey(KeyCode.RightArrow) || m_Controller.GetAxisDown(Axis.L_x) != 0) {
+			if (Input.GetKey(KeyCode.RightArrow)) {
 				transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
 			}
-			if (Input.GetKey(KeyCode.LeftArrow) || m_Controller.GetAxisDown(Axis.L_x) != 0) {
+			if (Input.GetKey(KeyCode.LeftArrow)) {
 				transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
 			}
 
@@ -222,7 +224,7 @@ public partial class PlayerManager : MonoBehaviour
 	// そのあとは各スクリプトで状態を管理させる
 	// アニメーターのアニメーション名と関数を一致させること
 	//============================================================
-
+	/*
     /// <summary>
     /// ボルトアクション用
     /// </summary>
@@ -258,6 +260,29 @@ public partial class PlayerManager : MonoBehaviour
             m_MoveState.changeState(MoveState.MoveStatement.Slider, name);
         }
     }
+	*/
+
+	/// <summary>
+	/// 一個にまとめた
+	/// </summary>
+	/// <param name="name">タグ名</param>
+	public void PlayAction(string name) {
+
+		if (Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)){
+			m_animator.SetBool(name, true);
+
+			for(int i=0; i<(int)MoveState.MoveStatement.None; i++) {
+				// Dictionaryと検索してタグを検索
+				if (m_MoveState.StateDictionary[(MoveState.MoveStatement)i] == name) {
+					// MoveStatementのenumに変換したiと検出したタグ名を投げる
+					m_MoveState.changeState((MoveState.MoveStatement)i, name);
+				}
+			}
+
+		}
+
+	}
+
 	
 }
 

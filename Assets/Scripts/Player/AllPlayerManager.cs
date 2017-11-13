@@ -60,6 +60,7 @@ public class AllPlayerManager : MonoBehaviour {
 		return false;
 	}
 
+
 	// Singleton
 	//------------------------------------------------------------
 	//private AllPlayerManger() {
