@@ -229,6 +229,7 @@ public class MoveState : MonoBehaviour {
 			m_PrevRot = new Quaternion(0, m_PrevRot.y, 0, m_PrevRot.w);
 			transform.rotation = m_PrevRot;
 		}
+		GetComponent<Rigidbody>().isKinematic = true;	// 制御をONにして外部操作を無効
 	}
 
 	/// <summary>
@@ -238,7 +239,7 @@ public class MoveState : MonoBehaviour {
 		m_NowState = MoveStatement.None;
 		m_AnimName = "";
 		transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
-		//transform.rotation = new Quaternion(0, 1, 0, m_PrevRot.w); ;	// ないと登ったときに斜めになる
+		GetComponent<Rigidbody>().isKinematic = false;   // 制御をOFFにして操作を有効化
 	}
 
 	/// <summary>

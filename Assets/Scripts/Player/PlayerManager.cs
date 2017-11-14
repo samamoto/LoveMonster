@@ -1,192 +1,145 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Controller;
 
-public partial class PlayerManager : MonoBehaviour
+//RequireComponentで指定することでそのスクリプトが必須であることを示せる
+[RequireComponent(typeof(ThirdPersonCharacter))]
+[RequireComponent(typeof(MoveState))]
+[RequireComponent(typeof(Controller.Controller))]
+public class PlayerManager : MonoBehaviour
 {
 	// PlayerのID
 	public int m_PlayerID = 1; // 今は一人しかいない
 
 	private MoveState m_MoveState;	// 移動処理を任せる
 	private AllPlayerManager m_AllPlayerManager;
-	private Controller.Controller m_Controller;
-	private CharacterController m_CharacterController;
 	private Animator m_animator;
-	private float velocity;//加速度
-						   //ToDo:Test
-						   //string word = "Cube1";
-	bool lookAtFlag = false;
 
-	int time = 0;
-	//重力変数
-	// private Vector3 vel = Vector3.zero;
-	[SerializeField] private Vector3 JumpUp = Vector3.zero;//ジャンプ力
-	[SerializeField] private Vector3 JumpDown = Vector3.zero;//ジャンプ力
+	private Controller.Controller m_Controller;
+	public bool walkByDefault = false; // toggle for walking state
+
+	public bool lookInCameraDirection = true;// should the character be looking in the same direction that the camera is facing
+
+	private Vector3 lookPos; // The position that the character should be looking towards
+	private ThirdPersonCharacter character; // A reference to the ThirdPersonCharacter on the object
+	private Transform cam; // A reference to the main camera in the scenes transform
+	private Vector3 camForward; // The current forward direction of the camera
+
+	private Vector3 move;
+	private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
 
 	// Use this for initialization
 	void Start() {
 		m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
 		m_Controller = GetComponent<Controller.Controller>();
-		m_CharacterController = GetComponent<CharacterController>();
-		m_animator = GetComponent<Animator>();
 		m_MoveState = GetComponent<MoveState>();
-
-        //重力用データ
-        Physics.gravity = new Vector3(0, 9.81f, 0);
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        // MoveStateの状態確認
-        if (m_MoveState.isMove())
-        {
-            m_MoveState.Update();   // 外部から操作を受け付け
-            return;                 // なにもしない
-        }
-
-		/*
-		//TLookAtのテスト
-		//Debug実装をコメントアウト 2017/11/11 oyama add
-		if (Input.GetKeyDown(KeyCode.U)) {
-			//word = "Cube1";
-		}
-		if (Input.GetKeyDown(KeyCode.I)) {
-			// word = "Cube2";
-		}
-		if (Input.GetKeyDown(KeyCode.O)) {
-			//word = "Cube3";
-		}
-		if (Input.GetKeyDown(KeyCode.P)) {
-			lookAtFlag = !lookAtFlag;
-		}
+		m_animator = GetComponent<Animator>();
 		
-		//デバッグ処理　仮
-		if (Input.GetKeyDown(KeyCode.Space)) {
-			transform.position = Vector3.zero;
-		}
-		*/
-
-		// キャラクターが地上にいる状態で指定のキーが押された場合 oyama add
-		if (m_CharacterController.isGrounded) {
-			if (Input.GetKeyDown(KeyCode.Space) || this.m_Controller.GetButtonDown(Controller.Button.A)) {  // 一番操作しやすいキーに 2017/11/11 oyama add
-				time = 0;
-				m_CharacterController.stepOffset = 0.9f;
-				//Debug.Break();
-				m_animator.SetBool("is_Jump", true);
-			}
-		}
-		//Debug実装をコメントアウト 2017/11/11 oyama add
-		/*
-			if (Input.GetKeyDown(KeyCode.X)) {
-				m_animator.SetBool("is_Slide", true);
-			}
-
-			if (Input.GetKeyDown(KeyCode.C))
-			{
-				m_animator.SetBool("is_Climb", true);
-			}
-
-			if (Input.GetKeyDown(KeyCode.V))
-			{
-				m_animator.SetBool("is_Vault", true);
-			}
-
-			if (Input.GetKeyDown(KeyCode.B)) {
-				m_animator.SetBool("is_WallRun", true);
-			}
-		*/
-		JumpUp.y = m_animator.GetFloat("JumpPower");
-
-		//実装
-		if (lookAtFlag) {
-			//transform.rotation = Quaternion.LookRotation(workTrans - transform.position, Vector3.up);
+		// Initialize the third person character
+		//----------------------------------------------------------------------
+		// get the transform of the main camera
+		if (Camera.main != null) {
+			cam = Camera.main.transform;
 		} else {
-			// 左右の回転処理
-			if (Input.GetKey(KeyCode.RightArrow)) {
-				transform.Rotate(new Vector3(0.0f, m_AllPlayerManager.m_RotatePower, 0.0f));
-			}
-			if (Input.GetKey(KeyCode.LeftArrow)) {
-				transform.Rotate(new Vector3(0.0f, -m_AllPlayerManager.m_RotatePower, 0.0f));
-			}
-
-		}
-		//移動
-
-		if (Input.GetKey(KeyCode.UpArrow)) {
-			velocity += m_AllPlayerManager.m_RunSpeed;
-			if (velocity > m_AllPlayerManager.m_MaxRunSpeed) {
-				velocity = m_AllPlayerManager.m_MaxRunSpeed;
-			}
-		} else {
-			velocity -= m_AllPlayerManager.m_RunSpeed;
-			if (velocity <= 0.0f) {
-				velocity = 0.0f;
-			}
-		}
-		m_animator.SetFloat("Velocity", velocity);
-
-		//ダッシュ
-		m_CharacterController.Move(new Vector3(transform.forward.x * velocity * Time.deltaTime, JumpUp.y * Time.deltaTime, transform.forward.z * velocity * Time.deltaTime));
-
-		//ジャンプ
-		//m_CharacterController.Move(new Vector3(0, JumpUp.y * Time.deltaTime, 0));	// ↑の一個で良いんじゃね
-
-		//落下させる処理の条件
-		if (!m_CharacterController.isGrounded) {
-			if (m_animator.GetCurrentAnimatorStateInfo(0).IsTag("WalkRun") ||
-				m_animator.GetCurrentAnimatorStateInfo(0).IsTag("Idle")) {
-				m_animator.SetBool("is_Fall", true);    // 落下状態に				
-			}
+			Debug.LogWarning(
+				"Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.");
+			// we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
 		}
 
-		// キャラクターが浮いていたら
-		if (!m_CharacterController.isGrounded) {
-			// 落下
-			JumpDown.y -= (Physics.gravity.y * Time.deltaTime);
-			m_CharacterController.Move(JumpDown * Time.deltaTime);
+		// get the third person character ( this should never be null due to require component )
+		character = gameObject.GetComponent<ThirdPersonCharacter>();
 
-			// 着地していたら速度を0にする
-			if (m_CharacterController.isGrounded) {
-				m_animator.SetBool("is_Fall", false);
-				m_animator.SetBool("is_LongFall", false);
-				//Debug.Log("グラウンドオン");
-				//Debug.Log(m_CharacterController.stepOffset);
-				JumpDown.y = 0;
+		//character = GetComponents<ThirdPersonCharacter>();
+		if (character == null) {
+			character = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonCharacter>();    // 無理矢理探す
+			// なんか知らないけどGetComponentしてるのにnullを返してくる
+			//character = gameObject.AddComponent<ThirdPersonCharacter>();
+			if(character == null) {
+				Debug.LogWarning("Third Person Character Null Reference!!");
+				Debug.Break();
 			}
 		}
-		
-		// ジャンプ落下中に段差を登るための防止
-		if (m_animator.GetFloat("JumpPower") >= 1.0f) {
-			if (time > 10) {
-				time = 0;
-				m_CharacterController.stepOffset = 0.1f;
-			} else {
-
-				time++;
-			}
-		}
-
-		//// 落下
-		//JumpDown.y -= Physics.gravity.y * Time.fixedDeltaTime;
-		//m_CharacterController.Move(JumpDown * Time.fixedDeltaTime);
-
-		//// 着地していたら速度を0にする
-		//if (m_CharacterController.isGrounded)
-		//{
-		//    Debug.Log("グラウンドオン");
-		//    JumpDown.y = 0;
-		//}
 
 	}
 
-    // updateの前に走る
-    private void FixedUpdate()
+	// Update is called once per frame
+	void Update()
     {
-		// CharacterControllerのis_Groundedを引き渡す
-		m_animator.SetBool("is_Grounded" , m_CharacterController.isGrounded);
-    }
+        // MoveStateの状態確認
+        if (!m_MoveState.isMove()){
+			if (!jump) {
+				if (m_Controller.GetButtonDown(Controller.Button.A) || Input.GetButtonDown("Jump")) {
+					//jump = m_Controller.GetButtonDown(Controller.Button.A);
+					jump = true;
+				}
+				m_animator.SetBool("is_Jump", jump);    // oyama add
+			}
+		} else {
+			m_MoveState.Update();   // 外部から操作を受け付け
+			return;                 // なにもしない
+
+		}
+
+	}
+
+	/// <summary>
+	/// ThirdPersonFixedUpdate
+	/// </summary>
+	void FixedUpdate() {
+		// read inputs
+		bool crouch = false;
+		bool slide = false;
+		bool vault = false;
+		bool climb = false;
+		bool wallrun = false;
+
+		float h, v;
+
+		//get input from sticks and buttons
+		if (Controller.Controller.GetConnectControllers() > 0) {
+			h = m_Controller.GetAxisRaw(Axis.L_x);
+			v = m_Controller.GetAxisRaw(Axis.L_y) * -1; // なんか反転しちゃう
+											  //float v = Input.GetAxisRaw("Vertical");	// InputManagerのInvertがチェック入ってると反転
+		} else {
+			// つながってないとき
+			h = Input.GetAxis("Horizontal");
+			v = Input.GetAxis("Vertical");
+		}
+		//ToDo:鹿島
+		//インプットを作ったやつに変える
+		//Read in inputs and set true/false
+		// -true only if the button is pressed and the character is in the ActionArea)
+#if DEBUG
+		crouch = Input.GetKey(KeyCode.C);
+		slide = Input.GetKey(KeyCode.M) && (move.magnitude > 0);
+		vault = Input.GetKey(KeyCode.V);
+		climb = Input.GetKey(KeyCode.Z);
+		wallrun = Input.GetKey(KeyCode.X) && (move.magnitude > 0);
+#endif
+
+		// calculate move direction to pass to character
+		if (cam != null) {
+			// calculate camera relative direction to move:
+			camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
+			move = v * camForward + h * cam.right;
+		} else {
+			// we use world-relative directions in the case of no main camera
+			move = v * Vector3.forward + h * Vector3.right;
+		}
+
+		if (move.magnitude > 1) move.Normalize();
+
+		// calculate the head look target position
+		lookPos = lookInCameraDirection && cam != null
+						? transform.position + cam.forward * 100
+						: transform.position + transform.forward * 100;
+
+		// pass all parameters to the character control script
+		character.Move(move, crouch, jump, vault, slide, climb, wallrun, lookPos);
+		jump = false;
+		m_animator.SetBool("is_Jump", jump);	// add oyama
+	}
 
 	//============================================================
 	// Getter or Setter
@@ -224,7 +177,6 @@ public partial class PlayerManager : MonoBehaviour
 	// そのあとは各スクリプトで状態を管理させる
 	// アニメーターのアニメーション名と関数を一致させること
 	//============================================================
-	/*
     /// <summary>
     /// ボルトアクション用
     /// </summary>
@@ -260,7 +212,6 @@ public partial class PlayerManager : MonoBehaviour
             m_MoveState.changeState(MoveState.MoveStatement.Slider, name);
         }
     }
-	*/
 
 	/// <summary>
 	/// 一個にまとめた
@@ -269,13 +220,12 @@ public partial class PlayerManager : MonoBehaviour
 	public void PlayAction(string name) {
 
 		if (Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)){
-			m_animator.SetBool(name, true);
-
-			for(int i=0; i<(int)MoveState.MoveStatement.None; i++) {
+			for(MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
-				if (m_MoveState.StateDictionary[(MoveState.MoveStatement)i] == name) {
+				if (m_MoveState.StateDictionary[m] == name) {
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
-					m_MoveState.changeState((MoveState.MoveStatement)i, name);
+					m_animator.Play(name);
+					m_MoveState.changeState(m, name);
 				}
 			}
 

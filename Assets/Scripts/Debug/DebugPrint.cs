@@ -37,7 +37,9 @@ public class DebugPrint : MonoBehaviour {
 		return(DebugPrint.instance);
 	}
 
-	// テキストを表示する.
+	/// <summary>
+	/// テキストを表示する.
+	/// </summary>
 	public static void	print(string text, float lifetime = 0.0f)
 	{
 		DebugPrint	dp = DebugPrint.getInstance();
@@ -45,7 +47,9 @@ public class DebugPrint : MonoBehaviour {
 		dp.add_text(text, lifetime);
 	}
 
-	// 表示位置をセットする.
+	/// <summary>
+	/// 表示位置をセットする.
+	/// </summary>
 	public static void	setLocate(int x, int y)
 	{
 		DebugPrint	dp = DebugPrint.getInstance();
@@ -88,13 +92,17 @@ public class DebugPrint : MonoBehaviour {
 			this.clear();
 		}
 	}
-
+	/// <summary>
+	/// デバッグテキストの行を追加
+	/// </summary>
 	public void	create()
 	{
 		this.items = new List<TextItem>();
 	}
 
-	// バッファーをクリアーする.
+	/// <summary>
+	/// バッファーをクリアーする.
+	/// </summary>
 	private void	clear()
 	{
 		this.locate_x = 0;
