@@ -9,58 +9,83 @@ using UnityEngine;
 // 操作を受け付けないようにする
 // 移動処理中に外部から接触などの判定があった場合は別途相談
 //------------------------------------------------------------
-/// Todo:
-/// ・おおざっぱな移動処理は完成
+/// Todo　:　2017/11/09 oyama add
 /// ・各アクションごとに細かな移動制御が必要（高さも入ってない）
 /// ・複数MovePointの設定に対応したら壁を登る動作なども設定できるかも
 /// 　その際アニメーションのパーセンテージ（Normalize…なんとか）で0～1.0fで取れる
 /// ・MovePointに向けてキャラクターの回転動作が必要
 /// ・オブジェクトへの突っ込み方に応じて向きがばらついてしまうので
-/// ・2017/11/09 oyama add
+/// ・
+/// Todo ： 2017/11/15 oyama add
+/// ・とりあえずリファクタリングしよう
+/// ・各アクションごとにクラス分ける？
+/// ・MovePointを複数処理化　リスト使うかな
+/// ・MoveStateはもともと管理用に使おうと思ったから、具体的な処理関係は別のスクリプトに任せるか
+/// ・いったんクラス内でローカルクラス使ってTestしてできそうだったら分けていくかんじー…？
+/// ・enumとかDictionaryはここに置いてていっか
+
+
 
 public class MoveState : MonoBehaviour {
 
+	//--------------------------------------------------------------------------------
+	// 管理してるところ
+	//--------------------------------------------------------------------------------
 	// 外部移動処理が必要な物のリスト
 	public enum MoveStatement {
 		Vault,
 		Slider,
 		Climb,
+		//ClimbJump,
+		//WallRun,
 		None,
 	}
 
-	// Enumと文字列を管理する場所
+	// Enumと文字列を管理する場所↑と連携してStart()からAddすること
 	public Dictionary<MoveStatement, string> StateDictionary = new Dictionary<MoveStatement, string>();
+	//--------------------------------------------------------------------------------
 
+	//--------------------------------------------------------------------------------
 	// UnityEditor内で表示 //
+	//--------------------------------------------------------------------------------
 	[SerializeField, MultilineAttribute(2)]
 	string smoothTimeMessage;
 
-	[SerializeField, Range(0.1f, 5)]
+	[SerializeField, Range(0.1f, 10)]
 	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.65f, 0.65f, 1.65f};
 
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
-	[SerializeField] MoveStatement m_NowState;    // 現在ステート
-	[SerializeField] Vector3 m_MovePos;
-	[SerializeField] string m_AnimName;   // 再生されている（はず）のアニメーションの名前を受け取る
-	[SerializeField] float ActOffsetY = 1.0f;
+	[SerializeField] MoveStatement m_NowState;			// 現在ステート
+	private int m_LerpItr = 0;							// 今の移動場所
+	List<Vector3> m_MoveList = new List<Vector3>();	// 移動場所の格納リスト
+	[SerializeField] string m_AnimName;                 // 再生されている（はず）のアニメーションの名前を受け取る
 
+	// ボタンの入力処理関係
+	float m_HoldButtonTIme = 0f;    // ToDo：ボタン系はまだ
+	//--------------------------------------------------------------------------------
 	Vector3 startPosition;              // 開始点
-	Vector3 m_PlayerPos;
-	private Vector3 velocity = Vector3.zero;
+	Vector3 m_PlayerPos;                // Playerの
 
+	private Vector3 velocity = Vector3.zero;	// smoothDampで使う
 
-	private bool is_Move = false;       // MoveStateが動きを受け持っているかの判定
+	public bool is_Move = false;   // MoveStateが動きを受け持っているかの判定
 
+	public float startTime;		// 開始時間
+	public float deltaCount;		// 開始時間からどれだけ経過したか
+
+	private Quaternion m_PrevRot;	// 移動前の角度を保持	
+	private bool is_LookRot;        // LookRotationを使って回すか決める
+	public bool is_Arrival;		// 目的地に到着したか
+	//--------------------------------------------------------------------------------
+	// 参照いろいろ //
+	//--------------------------------------------------------------------------------
 	private Animator m_Animator;
 	private AllPlayerManager m_AllPlayerMgr;
 
-	private float startTime;	// 開始時間
-	private float deltaCount;   // 開始時間からどれだけ経過したか
-
-	private Quaternion m_PrevRot;
-	private bool is_LookRot;	// LookRotationを使って回すか決める
-
+	//================================================================================
+	// 関数
+	//================================================================================
 
 	// Use this for initialization
 	void Start () {
@@ -68,12 +93,14 @@ public class MoveState : MonoBehaviour {
 		m_Animator = GetComponent<Animator>();
 		m_AllPlayerMgr = AllPlayerManager.Instance;
 
-		// Dictionaryの更新
+		// --Dictionaryの更新 --//
 		StateDictionary.Add(MoveStatement.Vault, ConstAnimationStateTags.PlayerStateVault);
 		StateDictionary.Add(MoveStatement.Slider, ConstAnimationStateTags.PlayerStateSlider);
 		StateDictionary.Add(MoveStatement.Climb, ConstAnimationStateTags.PlayerStateClimb);
+		//StateDictionary.Add(MoveStatementClimbJump, ConstAnimationStateTags.PlayerStateClimbJump);
+		//StateDictionary.Add(MoveStatement.WallRun, ConstAnimationStateTags.PlayerStateWallRun);
 		StateDictionary.Add(MoveStatement.None, "None");
-
+		//--　　　ここまで　　　--//
 
 	}
 
@@ -86,20 +113,17 @@ public class MoveState : MonoBehaviour {
 		deltaCount += Time.deltaTime;
 
 		// 状態取得/切り替え部分
-		//DebugPrint.print("Animator.StateInfo = " + m_Animator.IsInTransition(0).ToString());
 		// ChangeStateから変更されたら都度アニメーターの状態を監視してプレイ中か判定する
 		if (is_Move) {
 
-			//is_Move = m_Animator.GetBool(m_AnimName);   // 再生されているはずのアニメーションの名前からひったくる
-			//if(!m_Animator.GetCurrentAnimatorStateInfo(0).IsName(m_AnimName)) {
-			if (m_Animator.IsInTransition(0)) {
+			//if (!m_Animator.IsInTransition(0) && MovePosList.Count - 1 == m_NowMoveNum) {
+			if (is_Arrival) {
 				is_Move = false;
 			}
-			// アニメーションの再生が終了した瞬間
+
+			// アニメーションの再生が終了、または移動が完了
 			if (!is_Move) {
-				//DebugPrint.print("MoveState Exit", 0.5f);
 				resetState();
-				return;
 			}
 		}
 
@@ -115,40 +139,61 @@ public class MoveState : MonoBehaviour {
 		}
 
 		// ステートに移行してからの差分の時間を取ってLerp関係処理に投げる
-		// 座標更新
+		// 経過時間diff
 		float diff = deltaCount - startTime;
-		if (diff > smoothTime[(int)m_NowState]) {
-			transform.position = m_MovePos;
+		// 全体再生時間を配列数と割り算して二点間の経過時間を計算する
+
+		// 最終ポイントに到着してなければ
+		if (!is_Arrival) {
+			// Iterator / n 時間で区切る
+			if (diff > (smoothTime[(int)m_NowState] / m_MoveList.Count)) {
+
+				// 最終ポイントに到着
+				if (m_LerpItr == m_MoveList.Count-1) {
+					transform.position = m_MoveList[m_MoveList.Count-1];
+					is_Arrival = true;
+				} else {
+					m_LerpItr++;    // まだならカウントを増やして次へ
+					startTime = Time.deltaTime;
+					deltaCount = startTime;
+					diff = deltaCount - startTime;
+				}
+			}
 		}
 
-		float rate = diff / smoothTime[(int)m_NowState];
-		//var pos = curve.Evaluate(rate);
-
+		// rate経過時間 / 
+		float rate = diff / (smoothTime[(int)m_NowState] / m_MoveList.Count);
 
 		// 状態によって操作を分ける
-		switch (m_NowState) {
-		case MoveStatement.Vault:
-			ActionLerp(rate);
-			break;
+		//--------------------------------------------------------------------------------
+		if (!is_Arrival) {
+			switch (m_NowState) {
+			case MoveStatement.Vault:
+				ActionLerp(rate);
+				break;
 
-		case MoveStatement.Slider:
-			ActionSlerp(rate);
-			break;
+			case MoveStatement.Slider:
+				ActionLerp(rate);
+				break;
 
-		case MoveStatement.Climb:
-			Action();
-			break;
+			case MoveStatement.Climb:
+				ActionSlerp(rate);
+				break;
 
-		default:
-			Action();	// Default動作
-			break;
-		case MoveStatement.None:
-			break;
+			default:
+				Action();   // Default動作
+				break;
+
+			case MoveStatement.None:
+				break;
+			}
+
+			// 角度の更新
+			if (is_LookRot) {
+				//transform.rotation = Quaternion.LookRotation(m_MoveList[m_MoveList.Count - 1], Vector3.up);    // 指定の位置を向く
+				//transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
+			}
 		}
-
-		// 角度の更新
-		if(is_LookRot)
-			transform.rotation = Quaternion.LookRotation(m_MovePos, Vector3.up);    // 指定の位置を向く
 
 	}
 
@@ -156,30 +201,46 @@ public class MoveState : MonoBehaviour {
 	//============================================================
 	// アクション用
 	//============================================================
+	
+	///--------------------------------------------------------------------------------
 	/// <summary>
 	/// アクションの移動制御(SmoothDamp)
 	/// </summary>
+	///--------------------------------------------------------------------------------
 	void Action() {
 		// 指定位置まで指定時間で移動する
-		m_PlayerPos = Vector3.SmoothDamp(m_PlayerPos, m_MovePos, ref velocity, smoothTime[(int)m_NowState]);
-		this.transform.position = m_PlayerPos;
+		transform.position = Vector3.SmoothDamp(m_PlayerPos, m_MoveList[m_LerpItr], ref velocity, smoothTime[(int)m_NowState]);
 	}
-
+	///--------------------------------------------------------------------------------
 	/// <summary>
 	/// Lerpを使った移動制御
 	/// </summary>
+	///--------------------------------------------------------------------------------
 	void ActionLerp(float rate) {
-		transform.position = Vector3.Lerp(startPosition, m_MovePos, rate);
+		if (m_LerpItr == 0) {
+			transform.position = Vector3.Lerp(startPosition, m_MoveList[m_LerpItr], rate);
+		} else {
+			transform.position = Vector3.Lerp(m_MoveList[m_LerpItr - 1], m_MoveList[m_LerpItr], rate);
+		}
 	}
 
+	///--------------------------------------------------------------------------------
 	/// <summary>
 	/// Slerpを使った移動制御
 	/// </summary>
+	///--------------------------------------------------------------------------------
 	void ActionSlerp(float rate) {
-		transform.position = Vector3.Slerp(startPosition, m_MovePos, rate);
+		if (m_LerpItr == 0) {
+			transform.position = Vector3.Slerp(startPosition, m_MoveList[m_LerpItr], rate);
+		} else {
+			transform.position = Vector3.Slerp(m_MoveList[m_LerpItr - 1], m_MoveList[m_LerpItr], rate);
+		}
 	}
 
+	///--------------------------------------------------------------------------------
 	// UnityEditorのときのみ
+	///--------------------------------------------------------------------------------
+	/// ゲームシーン上に経路を描画する
 	void OnDrawGizmosSelected() {
 #if UNITY_EDITOR
 
@@ -187,77 +248,116 @@ public class MoveState : MonoBehaviour {
 			startPosition = transform.position;
 		}
 
-		UnityEditor.Handles.Label(m_MovePos, m_MovePos.ToString());
-		UnityEditor.Handles.Label(startPosition, startPosition.ToString());
+		for (int i = 0; i < m_MoveList.Count; i++) {
+			if(i == 0) {
+				UnityEditor.Handles.Label(transform.position, "Start:\n"+transform.position.ToString());
+				Gizmos.DrawWireSphere(transform.position, 0.1f);
+			} else {
+				UnityEditor.Handles.Label(m_MoveList[i - 1], m_MoveList[i - 1].ToString());
+				Gizmos.DrawSphere(m_MoveList[i], 0.1f);
+				Gizmos.DrawLine(m_MoveList[i-1], m_MoveList[i]);
+			}
 #endif
-		Gizmos.DrawSphere(m_MovePos, 0.1f);
-		Gizmos.DrawSphere(startPosition, 0.1f);
-
-		Gizmos.DrawLine(startPosition, m_MovePos);
+		}
 	}
 
-	//============================================================
-	// 状態取得/変更
-	//============================================================
+	//================================================================================
+	// 状態取得/変更(public)
+	//================================================================================
+
+	///--------------------------------------------------------------------------------
 	/// <summary>
 	/// 状態を取得する
 	/// </summary>
+	///--------------------------------------------------------------------------------
 	public MoveStatement getState() {
 		return m_NowState;
 	}
 
+
+	///--------------------------------------------------------------------------------
 	/// <summary>
 	/// 状態を変更する
 	/// 外部(PlayerManager)から変更される
 	/// </summary>
 	/// <param name="mvState">切り替えるステート</param>
 	/// <param name="AnimName"></param>
+	///--------------------------------------------------------------------------------
 	public void changeState(MoveStatement mvState, string AnimName) {
-		// 再生情報を保存
+		// 移動するための初期値をセット
 		m_NowState = mvState;
 		is_Move = true;
 		m_AnimName = AnimName;
 		startTime = Time.deltaTime;
 		deltaCount = startTime;
 		startPosition = transform.position;
+		m_LerpItr = 0;
+		is_Arrival = false;
+		Vector3 aim = m_MoveList[m_MoveList.Count - 1] - this.transform.position;
+		GetComponent<Rigidbody>().isKinematic = true;   // 制御をONにして外部操作を無効
+
 		// LookRotで回す場合とそうでない場合
+		/// Todo:LookRotationで指定の位置に向かない Rigidbodyとか入れたせいかもしれないなんか切ってできるかどうか 現状スティックの向きで回転角度が変わる
 		if (is_LookRot) {
-			transform.rotation = Quaternion.LookRotation(m_MovePos, Vector3.up);    // 指定の位置を向く
+
+			Quaternion look = Quaternion.LookRotation(aim);
+			transform.rotation = look;    // 指定の位置を向く
 		} else {
 			// 回さない場合は移動前のY座標を上にして余計な回転をさせないようにする
 			//m_PrevRot = transform.rotation;
 			m_PrevRot = new Quaternion(0, m_PrevRot.y, 0, m_PrevRot.w);
 			transform.rotation = m_PrevRot;
 		}
-		GetComponent<Rigidbody>().isKinematic = true;	// 制御をONにして外部操作を無効
 	}
 
+	///--------------------------------------------------------------------------------
 	/// <summary>
 	/// 状態をリセットする
 	/// </summary>
+	///--------------------------------------------------------------------------------
 	public void resetState() {
 		m_NowState = MoveStatement.None;
 		m_AnimName = "";
 		transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
 		GetComponent<Rigidbody>().isKinematic = false;   // 制御をOFFにして操作を有効化
+		m_LerpItr = 0;
+		m_MoveList.Clear(); // ポジションリストをクリア
+		is_Arrival = false;
 	}
 
+	///--------------------------------------------------------------------------------
 	/// <summary>
 	/// MoveStateの移動処理が実行中か
 	/// </summary>
+	///--------------------------------------------------------------------------------
 	public bool isMove() {
 		return is_Move;
 	}
-	/// <summary>
-	/// 外部から移動予定ポイントを設定
-	/// </summary>
-	public void setMovePosition(Vector3 MovePos) {
-		m_MovePos = MovePos;
-	}
 
+	///--------------------------------------------------------------------------------
+	/// <summary>
+	/// プレイヤーの移動予定のポジションをセットする
+	/// </summary>
+	/// <param name="MovePos">移動予定場所の配列</param>
+	public void setMovePosition(Vector3[] MovePos) {
+		m_MoveList = new List<Vector3>();
+		for (int i = 0; i < MovePos.Length; i++) {
+			m_MoveList.Add(MovePos[i]);
+		}
+	}
+	/// <summary>
+	/// プレイヤーの移動予定のポジションをセットする
+	/// </summary>
+	/// <param name="MovePos">移動予定場所</param>
+	public void addMovePosition(Vector3 MovePos) {
+		m_MoveList.Add(MovePos);
+	}
+	///--------------------------------------------------------------------------------
+	///--------------------------------------------------------------------------------
 	/// <summary>
 	///	ブロックと当たったときに判定する
 	/// </summary>
+	///--------------------------------------------------------------------------------
 	public void OnTriggerEnter(Collider other) {
 
 		// 指定したアクションがあるかを調べる
@@ -267,10 +367,7 @@ public class MoveState : MonoBehaviour {
 			// 同じ向きでもともと作られている場合反転処理が個別に必要になるため気をつける
 			if (other.tag == ConstAnimationStateTags.PlayerStateClimb || other.tag == ConstAnimationStateTags.PlayerStateClimbJump) {
 				is_LookRot = false;
-				//m_PrevRotY = other.root.transform.rotation.y;    // 見つかったら座標を確保
-				//m_PrevRotY = other.transform.root.rotation.y;	    // 見つかったら（親の）座標を確保
 				m_PrevRot = transform.rotation;
-				//is_LookRot = true;	// ToDo:↑が上手くいかないのであきらめ(´・ω・｀)
 			} else {
 				// それ以外はオブジェクトの向き見て
 				is_LookRot = true;
