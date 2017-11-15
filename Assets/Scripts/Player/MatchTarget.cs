@@ -8,15 +8,16 @@ public class MatchTarget : MonoBehaviour {
     private bool                jumpFlag;	//　ジャンプ中かどうか
     private CharacterController charaCon;   //　キャラクターコントローラー
     public  Transform           jumpTarget; //　到達地点
+	public	AvatarTarget		avatarTarget;//	使う部位
 
-    //private NavMeshAgent agent;			//　ナビメッシュエージェント
+	//private NavMeshAgent agent;			//　ナビメッシュエージェント
 
-    private void Start()
+	private void Start()
     {
         animator = GetComponent<Animator>();
         charaCon = GetComponent<CharacterController>();
         jumpFlag = false;
-
+		avatarTarget = AvatarTarget.RightHand;
         //agent = GameObject.Find("point").GetComponent<NavMeshAgent>();
     }
 
@@ -43,8 +44,8 @@ public class MatchTarget : MonoBehaviour {
             animator.MatchTarget(
                 jumpTarget.position,
                 jumpTarget.rotation,
-                AvatarTarget.RightHand,
-                new MatchTargetWeightMask(new Vector3(1, 1, 1), 0), 0.180f, 0.302f);
+                avatarTarget,
+                new MatchTargetWeightMask(new Vector3(1, 1, 1), 0), 0.180f, 0.302f);	// 角度処理は直さなきゃいけない
         }
 
         //　ジャンプ終了したら元に戻す

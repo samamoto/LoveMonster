@@ -76,7 +76,7 @@ public class PlayerManager : MonoBehaviour
 				m_animator.SetBool("is_Jump", jump);    // oyama add
 			}
 		} else {
-			m_MoveState.Update();   // 外部から操作を受け付け
+			//m_MoveState.Update();   // 外部から操作を受け付け
 			return;                 // なにもしない
 
 		}
@@ -87,6 +87,10 @@ public class PlayerManager : MonoBehaviour
 	/// ThirdPersonFixedUpdate
 	/// </summary>
 	void FixedUpdate() {
+
+		if (m_MoveState.isMove()) {
+			return;
+		}
 		// read inputs
 		bool crouch = false;
 		bool slide = false;
@@ -99,7 +103,7 @@ public class PlayerManager : MonoBehaviour
 		//get input from sticks and buttons
 		if (Controller.Controller.GetConnectControllers() > 0) {
 			h = m_Controller.GetAxisRaw(Axis.L_x);
-			v = m_Controller.GetAxisRaw(Axis.L_y) * -1; // なんか反転しちゃう
+			v = m_Controller.GetAxisRaw(Axis.L_y)*-1; // なんか反転しちゃう
 											  //float v = Input.GetAxisRaw("Vertical");	// InputManagerのInvertがチェック入ってると反転
 		} else {
 			// つながってないとき
@@ -144,14 +148,6 @@ public class PlayerManager : MonoBehaviour
 	//============================================================
 	// Getter or Setter
 	//============================================================
-
-	/// <summary>
-	/// プレイヤーの移動予定のポジションをセットする
-	/// </summary>
-	/// <param name="MovePos">移動予定場所</param>
-	public void setMovePosition(Vector3 MovePos) {
-		m_MoveState.setMovePosition(MovePos);
-	}
 	/// <summary>
 	/// プレイヤーのポジションを返す
 	/// </summary>
@@ -177,41 +173,6 @@ public class PlayerManager : MonoBehaviour
 	// そのあとは各スクリプトで状態を管理させる
 	// アニメーターのアニメーション名と関数を一致させること
 	//============================================================
-    /// <summary>
-    /// ボルトアクション用
-    /// </summary>
-    /// <param name="name">タグ名</param>
-    public void Vault(string name)
-    {
-        // ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
-        if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name))
-        {
-            m_animator.Play(name);
-            m_MoveState.changeState(MoveState.MoveStatement.Vault, name);
-        }
-    }
-
-    // クライム
-    public void Climb(string name)
-    {
-        // ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
-        if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name))
-        {
-            m_animator.Play(name);
-            m_MoveState.changeState(MoveState.MoveStatement.Climb, name);
-        }
-    }
-
-    // スライダー
-    public void Slide(string name)
-    {
-        // ボタンが押されていたらステート切り替え かつ 現在再生されているアニメーションがVaultではない
-        if ((Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A)) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name))
-        {
-            m_animator.Play(name);
-            m_MoveState.changeState(MoveState.MoveStatement.Slider, name);
-        }
-    }
 
 	/// <summary>
 	/// 一個にまとめた
@@ -219,8 +180,10 @@ public class PlayerManager : MonoBehaviour
 	/// <param name="name">タグ名</param>
 	public void PlayAction(string name) {
 
-		if (Input.GetKey(KeyCode.S) || this.m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)){
-			for(MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
+		//if (m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+		if (m_Controller.GetButtonDown(Controller.Button.A)) {
+
+			for (MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
 				if (m_MoveState.StateDictionary[m] == name) {
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
