@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ChaseCamera : MonoBehaviour {
     public Transform target;
-    Vector3 offset;
+    public Vector3 offset;
 	// Use this for initialization
 	void Start () {
-        offset = transform.position - target.position;
+        transform.position = target.position + offset;
     }
 
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
