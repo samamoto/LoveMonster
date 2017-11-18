@@ -150,6 +150,14 @@ public class PlayerManager : MonoBehaviour
 	// Getter or Setter
 	//============================================================
 	/// <summary>
+	/// 現在プレイヤーがどのアクションをしているか
+	/// </summary>
+	//public string getPlayerAction(int id) {
+
+	//}
+
+	
+	/// <summary>
 	/// プレイヤーのポジションを返す
 	/// </summary>
 	/// <returns>プレイヤーの位置</returns>

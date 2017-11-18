@@ -10,19 +10,8 @@ using UnityEngine;
 // 移動処理中に外部から接触などの判定があった場合は別途相談
 //------------------------------------------------------------
 /// Todo　:　2017/11/09 oyama add
-/// ・各アクションごとに細かな移動制御が必要（高さも入ってない）
-/// ・複数MovePointの設定に対応したら壁を登る動作なども設定できるかも
-/// 　その際アニメーションのパーセンテージ（Normalize…なんとか）で0～1.0fで取れる
 /// ・MovePointに向けてキャラクターの回転動作が必要
 /// ・オブジェクトへの突っ込み方に応じて向きがばらついてしまうので
-/// ・
-/// Todo ： 2017/11/15 oyama add
-/// ・とりあえずリファクタリングしよう
-/// ・各アクションごとにクラス分ける？
-/// ・MovePointを複数処理化　リスト使うかな
-/// ・MoveStateはもともと管理用に使おうと思ったから、具体的な処理関係は別のスクリプトに任せるか
-/// ・いったんクラス内でローカルクラス使ってTestしてできそうだったら分けていくかんじー…？
-/// ・enumとかDictionaryはここに置いてていっか
 /// Todo :
 /// ・オブジェクトを斜面に這わせるには
 /// ・オブジェクトの名前を検索して、特定の名前なら45度とか-45度とかにする？
@@ -41,7 +30,7 @@ public class MoveState : MonoBehaviour {
 		Slider,
 		Climb,
 		//ClimbJump,
-		//WallRun,
+		WallRun,
 		None,
 	}
 
@@ -56,7 +45,7 @@ public class MoveState : MonoBehaviour {
 	string smoothTimeMessage;
 
 	[SerializeField, Range(0.1f, 10)]
-	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.65f, 0.65f, 1.65f};
+	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.65f, 0.65f, 1.65f, 1.0f};
 
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
@@ -102,7 +91,7 @@ public class MoveState : MonoBehaviour {
 		StateDictionary.Add(MoveStatement.Slider, ConstAnimationStateTags.PlayerStateSlider);
 		StateDictionary.Add(MoveStatement.Climb, ConstAnimationStateTags.PlayerStateClimb);
 		//StateDictionary.Add(MoveStatementClimbJump, ConstAnimationStateTags.PlayerStateClimbJump);
-		//StateDictionary.Add(MoveStatement.WallRun, ConstAnimationStateTags.PlayerStateWallRun);
+		StateDictionary.Add(MoveStatement.WallRun, ConstAnimationStateTags.PlayerStateWallRun);
 		StateDictionary.Add(MoveStatement.None, "None");
 		//--　　　ここまで　　　--//
 
@@ -184,8 +173,13 @@ public class MoveState : MonoBehaviour {
 				ActionSlerp(rate);
 				break;
 
+			case MoveStatement.WallRun:
+				ActionLerp(rate);
+				break;
+
+
 			default:
-				Action();   // Default動作
+				ActionLerp(rate);   // Default動作
 				break;
 
 			case MoveStatement.None:

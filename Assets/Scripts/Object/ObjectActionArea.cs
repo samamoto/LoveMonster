@@ -20,10 +20,9 @@ public class ObjectActionArea : MonoBehaviour {
 	MoveState m_MoveState;
 	bool is_FoundActTag;
 
+
 	protected void Start() {
 		Transform[] trs;
-		//m_MoveTrans = GameObject.FindGameObjectWithTag("MovePoint").transform;// Find使いたくない…けど↓で取れない
-		//m_MoveTrans = this.GetComponentInChildren<Transform>() as Transform;   // MovePointのTransformを取得
 		trs = MovePointObject.GetComponentsInChildren<Transform>();   // くっついてるポジションを全部
 		// 変換
 		for (int i = 0; i < trs.Length; i++) {

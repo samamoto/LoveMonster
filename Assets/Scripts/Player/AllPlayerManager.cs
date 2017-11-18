@@ -36,6 +36,8 @@ public class AllPlayerManager : MonoBehaviour {
 		ConstAnimationStateTags.PlayerStateClimbJump,
 	};
 
+
+
     // Use this for initialization
     void Start () {
 		
