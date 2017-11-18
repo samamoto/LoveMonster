@@ -173,7 +173,7 @@ public class ThirdPersonCharacter : MonoBehaviour
 
 
 		// David Add
-
+		/*
 		if (vault)
         {
             MA_Vault.Update();
@@ -194,7 +194,7 @@ public class ThirdPersonCharacter : MonoBehaviour
 
             MA_WallRun.Update();
         }
-
+		*/
         // control and velocity handling is different when grounded and airborne:
         if (onGround)
         {

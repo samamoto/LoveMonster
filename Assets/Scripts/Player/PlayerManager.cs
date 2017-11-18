@@ -114,6 +114,7 @@ public class PlayerManager : MonoBehaviour
 		//インプットを作ったやつに変える
 		//Read in inputs and set true/false
 		// -true only if the button is pressed and the character is in the ActionArea)
+		/*
 #if DEBUG
 		crouch = Input.GetKey(KeyCode.C);
 		slide = Input.GetKey(KeyCode.M) && (move.magnitude > 0);
@@ -121,7 +122,7 @@ public class PlayerManager : MonoBehaviour
 		climb = Input.GetKey(KeyCode.Z);
 		wallrun = Input.GetKey(KeyCode.X) && (move.magnitude > 0);
 #endif
-
+		*/
 		// calculate move direction to pass to character
 		if (cam != null) {
 			// calculate camera relative direction to move:
@@ -181,7 +182,7 @@ public class PlayerManager : MonoBehaviour
 	public void PlayAction(string name) {
 
 		//if (m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
-		if (m_Controller.GetButtonDown(Controller.Button.A)) {
+		if (m_Controller.GetButtonDown(Controller.Button.A) || Input.GetKey(KeyCode.Z)) {
 
 			for (MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
