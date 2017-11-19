@@ -13,6 +13,7 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour {
 
+
 	private static ObjectManager _instance; // インスタンス
 
 	// 一度しか使えないオブジェクト
@@ -23,18 +24,35 @@ public class ObjectManager : MonoBehaviour {
 	// 移動処理を任せるアニメーションはAllPlayerManagerにいる
 	//
 
-	
+	private Dictionary<int, string> PlayerActionDic = new Dictionary<int, string>();
 
-	
+	// 参照
+	AllPlayerManager m_AllPlayerManager;
+
+
+
 
 	// Use this for initialization
 	void Start () {
-		
+		m_AllPlayerManager = AllPlayerManager.Instance;
+
+		for(int i=0; i<ConstPlayerParameter.PlayerMax; i++) {
+			PlayerActionDic.Add(i, ConstAnimationStateTags.PlayerStateIdle);
+		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+
+		// アクション中か
+
+		// 各オブジェクトの実行状態をPlayerManagerに反映させる
+		// ObjectActionAreaから
+
+
+
 	}
 
 	//================================================================================
@@ -49,6 +67,20 @@ public class ObjectManager : MonoBehaviour {
 
 	//}
 
+
+	/// <summary>
+	/// 状態の登録
+	/// </summary>
+	public void setAction(int n, string action) {
+		PlayerActionDic[n] = action;
+	}
+
+	/// <summary>
+	/// 状態の登録 第二引数無しでクリア
+	/// </summary>
+	public void setAction(int n) {
+		PlayerActionDic[n] = ConstAnimationStateTags.PlayerStateIdle;	// 戻す
+	}
 
 	// Singleton
 	//------------------------------------------------------------

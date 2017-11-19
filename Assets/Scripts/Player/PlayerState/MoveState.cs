@@ -50,8 +50,8 @@ public class MoveState : MonoBehaviour {
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
 	[SerializeField] MoveStatement m_NowState;			// 現在ステート
-	private int m_LerpItr = 0;							// 今の移動場所
-	List<Vector3> m_MoveList = new List<Vector3>();	// 移動場所の格納リスト
+	private int m_LerpItr = 0;                   // 今の移動場所
+	[SerializeField] List<Vector3> m_MoveList = new List<Vector3>();	// 移動場所の格納リスト
 	[SerializeField] string m_AnimName;                 // 再生されている（はず）のアニメーションの名前を受け取る
 
 	// ボタンの入力処理関係
@@ -64,8 +64,8 @@ public class MoveState : MonoBehaviour {
 
 	public bool is_Move = false;   // MoveStateが動きを受け持っているかの判定
 
-	public float startTime;		// 開始時間
-	public float deltaCount;		// 開始時間からどれだけ経過したか
+	private float startTime;		// 開始時間
+	private float deltaCount;		// 開始時間からどれだけ経過したか
 
 	private Quaternion m_PrevRot;	// 移動前の角度を保持	
 	private bool is_LookRot;        // LookRotationを使って回すか決める
@@ -98,8 +98,9 @@ public class MoveState : MonoBehaviour {
 	}
 
 
-	// Updateの前に行う処理
-	private void FixedUpdate() {
+	// Updateのあとに行う処理
+	// FixedUpdateは物理処理以外は書くべきでないらしい
+	private void LateUpdate() {
 
 		// 座標関係の更新
 		m_PlayerPos = this.transform.position;
@@ -272,6 +273,10 @@ public class MoveState : MonoBehaviour {
 		return m_NowState;
 	}
 
+	public int getPlayerID() {
+		return this.GetComponent<PlayerManager>().getPlayerID();
+	}
+
 
 	///--------------------------------------------------------------------------------
 	/// <summary>
@@ -306,6 +311,10 @@ public class MoveState : MonoBehaviour {
 			m_PrevRot = new Quaternion(0, m_PrevRot.y, 0, m_PrevRot.w);
 			transform.rotation = m_PrevRot;
 		}
+
+		// ObjectManagerに実行状態を記録
+		ObjectManager.Instance.setAction(getPlayerID(), AnimName);
+
 	}
 
 	///--------------------------------------------------------------------------------
@@ -321,8 +330,20 @@ public class MoveState : MonoBehaviour {
 		m_LerpItr = 0;
 		m_MoveList.Clear(); // ポジションリストをクリア
 		is_Arrival = false;
+
+		// ObjectManagerに実行状態を記録
+		ObjectManager.Instance.setAction(getPlayerID());	// クリア
 	}
 
+	///--------------------------------------------------------------------------------
+	/// <summary>
+	/// 現在の再生アニメーション
+	/// </summary>
+	/// <returns>現在再生中の文字列</returns>
+	///--------------------------------------------------------------------------------
+	public string getPlayerAction() {
+		return StateDictionary[m_NowState];
+	}
 	///--------------------------------------------------------------------------------
 	/// <summary>
 	/// MoveStateの移動処理が実行中か

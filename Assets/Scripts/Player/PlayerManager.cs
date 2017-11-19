@@ -152,9 +152,9 @@ public class PlayerManager : MonoBehaviour
 	/// <summary>
 	/// 現在プレイヤーがどのアクションをしているか
 	/// </summary>
-	//public string getPlayerAction(int id) {
-
-	//}
+	public string getPlayerAction() {
+		return m_MoveState.getPlayerAction();
+	}
 
 	
 	/// <summary>
@@ -179,7 +179,7 @@ public class PlayerManager : MonoBehaviour
 	// ObjectActionAreaスクリプトから直接実行される部分
 	//
 	// オブジェクトに当たったらそのオブジェクトに応じたアクションを実行
-	// そのあとは各スクリプトで状態を管理させる
+	// そのあとは各スクリプトで状態を管理させる	
 	// アニメーターのアニメーション名と関数を一致させること
 	//============================================================
 
@@ -205,7 +205,17 @@ public class PlayerManager : MonoBehaviour
 
 	}
 
-	
+	/// <summary>
+	/// プレイヤー同士が接触したときの処理
+	/// </summary>
+	/// <param name="name">タグ名</param>
+	void OnTriggerStay(Collider other) {
+		if (other.tag == "Player") {
+			// 衝突したときの処理
+			// 上になんか送る
+		}
+	}
+
 }
 
 /*メモ
@@ -213,4 +223,3 @@ public class PlayerManager : MonoBehaviour
     コントローラの取得の仕方　仮
     if (this.m_Controller.GetButton(Controller.Button.A))
  */
-   
