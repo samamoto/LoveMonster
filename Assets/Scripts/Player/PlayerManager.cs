@@ -69,7 +69,8 @@ public class PlayerManager : MonoBehaviour
         // MoveStateの状態確認
         if (!m_MoveState.isMove()){
 			if (!jump) {
-				if (m_Controller.GetButtonDown(Controller.Button.A) || Input.GetButtonDown("Jump")) {
+				// キーボードのほうは全員でジャンプする（キーボードはID管理してない）
+				if (m_Controller.GetButtonDown(Controller.Button.A) || Input.GetKeyDown(KeyCode.Space)) {
 					//jump = m_Controller.GetButtonDown(Controller.Button.A);
 					jump = true;
 				}
