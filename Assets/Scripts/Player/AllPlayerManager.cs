@@ -36,13 +36,6 @@ public class AllPlayerManager : MonoBehaviour {
 		ConstAnimationStateTags.PlayerStateClimbJump,
 	};
 
-	// プレイヤーのアクション判定パターン
-	public enum ActionJudge{
-		Bad  = -1,	// NG
-		Good = 0,	// 普通	
-		Excellent,	// 良い
-		Fantastic,	// すごい
-	};
 
 
 	// ToDo:増えてきたらローカルクラスで管理しよう

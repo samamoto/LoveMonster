@@ -16,6 +16,21 @@ public class ObjectManager : MonoBehaviour {
 
 	private static ObjectManager _instance; // インスタンス
 
+
+	// プレイヤーのアクション判定パターン
+	public enum ActionJudge {
+		Bad = -1,   // NG
+		Good = 0,   // 普通	
+		Excellent,  // 良い
+		Fantastic,  // すごい
+		MAX,			// 判定する数
+	};
+
+	// 判定する境目を決める オブジェクトのスケール値と連動させる
+	// オブジェクトごとに一つずつ設定すると混乱するのであくまで範囲は一個にする
+	[SerializeField, Range(0.0f, 1.0f)]
+	private float[] JudgeZone = new float[(int)ActionJudge.MAX-1] { 0.2f, 0.65f};
+
 	// 一度しか使えないオブジェクト
 	public readonly string[] OnceObject = {
 		"CollapseBridge",		// 崩れる橋
@@ -25,6 +40,11 @@ public class ObjectManager : MonoBehaviour {
 	//
 
 	private Dictionary<int, string> PlayerActionDic = new Dictionary<int, string>();
+
+
+	Collider[] m_Col = new Collider[4];
+
+
 
 	// 参照
 	AllPlayerManager m_AllPlayerManager;
