@@ -79,7 +79,6 @@ public class PlayerManager : MonoBehaviour
         if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
         { 
             wallRunTimeUp = false;
-            Debug.Log("wall reset");
         }
 
         float v = m_Controller.GetAxisRaw(Axis.L_y) * -1;
@@ -254,7 +253,7 @@ public class PlayerManager : MonoBehaviour
 	public void PlayAction(string name) {
 
 		//if (m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
-		if (m_Controller.GetButtonDown(Controller.Button.A) || Input.GetKey(KeyCode.Z)) {
+		if (m_Controller.GetButtonDown(Controller.Button.X) || Input.GetKey(KeyCode.Z)) {
 
 			for (MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
