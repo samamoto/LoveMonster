@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using Controller;
 
 //RequireComponentで指定することでそのスクリプトが必須であることを示せる
@@ -29,17 +30,25 @@ public class PlayerManager : MonoBehaviour
 	private Vector3 move;
 	private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
 
-	// Use this for initialization
-	void Start() {
+    //david add
+    //wallrun varaiables 
+    public float wallRunSpeedFactor = 10.0f;
+    public float minWallRunSpeed = 5.0f; // minimum speed player has to move in order to maintain wall run
+    public float maxWallRunTime = 0.6f; // how long a player can wall run
+    private bool wallRunActivated = false; // set in Update() and used to activate wallRun in FixedUpdate()
+    private bool wallRunTimeUp = false; // controlling flag for handling when wall run time times up
+
+    // Use this for initialization
+    void Start() {
 		m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
 		m_Controller = GetComponent<Controller.Controller>();
 		m_MoveState = GetComponent<MoveState>();
 		m_animator = GetComponent<Animator>();
-		
-		// Initialize the third person character
-		//----------------------------------------------------------------------
-		// get the transform of the main camera
-		if (Camera.main != null) {
+
+        // Initialize the third person character
+        //----------------------------------------------------------------------
+        // get the transform of the main camera
+        if (Camera.main != null) {
 			cam = Camera.main.transform;
 		} else {
 			Debug.LogWarning(
@@ -66,6 +75,32 @@ public class PlayerManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+        //david add
+        if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
+        { 
+            wallRunTimeUp = false;
+            Debug.Log("wall reset");
+        }
+
+        float v = m_Controller.GetAxisRaw(Axis.L_y) * -1;
+        v = GetComponent<Rigidbody>().velocity.magnitude;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        Quaternion charRotation = transform.localRotation;
+
+        Vector3 adjustedDir = charRotation * character.GetComponent<Rigidbody>().velocity; // rotate velocity for rotation on character
+
+
+        // if the player can wallrun then wall run
+        if (CanWallRun(character.transform, v, adjustedDir, Input.GetButton("Jump")) && !wallRunTimeUp)
+        {
+            wallRunActivated = true; // turn on wallRun so it can be ran in fixedUpdate(better for rigibody manipulations)
+        }
+        else
+        {
+            character.wallRunning = false; // can't wallRun so turn the flags off
+            wallRunActivated = false;
+        }
+
         // MoveStateの状態確認
         if (!m_MoveState.isMove()){
 			if (!jump) {
@@ -80,8 +115,7 @@ public class PlayerManager : MonoBehaviour
 			return;                 // なにもしない
 
 		}
-
-	}
+    }
 
 	/// <summary>
 	/// ThirdPersonFixedUpdate
@@ -135,6 +169,34 @@ public class PlayerManager : MonoBehaviour
 
 		if (move.magnitude > 1) move.Normalize();
 
+        //david add
+        // wallRun action
+        if (wallRunActivated) // wallRun is called and the rigidbody processing is done here
+        {
+            Vector3 playerPosition = character.transform.position;
+            //RaycastHit hitInfo;
+            RaycastHit hitR;
+            RaycastHit hitL;
+            float rayCastDistance = 1.0f;
+            
+            if(Physics.Raycast(playerPosition, character.transform.right, out hitR, rayCastDistance))
+            {
+                Vector2 tmp = new Vector2(v, h); // get a value influenced by both axes
+
+                wallrun = wallRunActivated;
+                WallRun(hitR, v, h, Time.deltaTime, 1);
+                StartCoroutine(afterWallRun());
+            }
+            else if(Physics.Raycast(playerPosition, -character.transform.right, out hitL, rayCastDistance))
+            {
+                Vector2 tmp = new Vector2(v, h);
+
+                wallrun = wallRunActivated;
+                WallRun(hitL, v, h, Time.deltaTime, -1);
+                StartCoroutine(afterWallRun());
+            }
+        }
+
 		// calculate the head look target position
 		lookPos = lookInCameraDirection && cam != null
 						? transform.position + cam.forward * 100
@@ -143,8 +205,9 @@ public class PlayerManager : MonoBehaviour
 		// pass all parameters to the character control script
 		character.Move(move, crouch, jump, vault, slide, climb, wallrun, lookPos);
 		jump = false;
-		m_animator.SetBool("is_Jump", jump);	// add oyama
-	}
+		m_animator.SetBool("is_Jump", jump);    // add oyama
+        
+    }
 
 	//============================================================
 	// Getter or Setter
@@ -216,6 +279,102 @@ public class PlayerManager : MonoBehaviour
 		}
 	}
 
+    // david add
+    /// <summary>
+	/// Can the player wall run?
+    /// Requirements to wall run:
+    ///     1. Wall in direction of movement(either to the left or right)
+    ///     2. Moving fast enough( > minWallRunSpeed)
+    ///     3. Holding "jump" button
+    ///     4. Player is mid-air
+	/// </summary>
+	/// <param location="location of the player"> location of the player </param>
+    /// <param speed="speed of the player's movement(will be the value of the directional stick being held down)"></param>
+    /// <param moveDir="direction in which the player is moving"></param>
+    /// <param jumpButtonHold="whether or not the jump button is held down"></param>
+    private bool CanWallRun(Transform trans, float speed, Vector3 moveDir, bool jumpButtonHold)
+    {
+
+        bool canWallRun = false;
+        
+        // only wallrun if player is mid-air can he wall run and
+        // if the jump button is held down and the speed at which the player is moving is fast enough
+        if (!character.onGround && jumpButtonHold && (speed > minWallRunSpeed))
+        {
+            canWallRun = true;
+        }
+        return canWallRun;
+    }
+
+    // david add
+    /// <summary>
+    /// WallRun action
+    /// attaches player to the point on the wall and allows them to move in a straight line against factored by the designated speed
+    /// direction: -1 for going left, 1 for going right
+    /// </summary>
+    private void WallRun(RaycastHit hitInfo, float v, float h, float time, int direction)
+    {
+        character.wallRunning = true;
+            
+        Rigidbody rb = character.GetComponent<Rigidbody>();
+        Vector3 wallRunPoint = hitInfo.point;
+        Quaternion rotation = transform.rotation;
+        Vector3 charForward = new Vector3();
+
+        
+        charForward = Vector3.Cross(character.transform.up, hitInfo.normal);
+        // rotate the foward vector with respect to the direction the character is facing to get "true" forward vector cuz the original doesn't rotate
+        charForward = rotation * charForward * direction;
+
+        Vector3.Normalize(charForward);
+
+        // determine which direction player is facing relative to wall
+        float leftRightMatch = Vector3.Dot(Vector3.right, charForward);
+        float frontBackMatch = Vector3.Dot(Vector3.forward, charForward);
+
+        // TODO: Lots of black magic hard coding to get right numbers for horizontal and frontal wall running, FIX PLZ!
+        //       theres got to be a more elegant method
+        if (frontBackMatch < leftRightMatch) // player is facing on the x axis, for horizontal walls
+        {
+            charForward = Vector3.Cross(character.transform.up, hitInfo.normal);
+            float speed = Math.Abs(h);
+
+            // TODO: black magic hacking together the right values, think of better solution. This method has no versatility guarantees
+            if (h > 0)
+                charForward.x *= -1;
+
+            if (v < 0)
+            {
+                charForward.z *= -1;
+                speed *= -1;
+            }
+
+            rb.velocity = charForward * speed * wallRunSpeedFactor; // use the h value of stick to affect horizontal wall run
+
+        }
+        else // player is facing on the x axis, for horizontal walls
+        {
+            float speed = v;
+
+            rb.velocity = charForward * speed * wallRunSpeedFactor; // use the v value of stick to affect frontal wall run
+        }
+        // attach player to the wall
+        character.transform.position = Vector3.Lerp(character.transform.position, wallRunPoint, time);
+        rb.useGravity = false; // turn off gravity so the player doesn't fall during wall run
+        StartCoroutine(afterWallRun());
+    }
+
+    // coroutine for ending wallrun after a certain amount of time
+    // TODO: make it work correctly, right now not detecting time up
+    IEnumerator afterWallRun()
+    {
+        yield return new WaitForSeconds(maxWallRunTime);
+
+        Rigidbody rb = character.GetComponent<Rigidbody>();
+        rb.useGravity = true;
+
+        wallRunTimeUp = true;
+    }
 }
 
 /*メモ

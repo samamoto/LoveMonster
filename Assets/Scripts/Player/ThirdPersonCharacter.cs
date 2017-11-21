@@ -42,7 +42,8 @@ public class ThirdPersonCharacter : MonoBehaviour
     public LayerMask groundCheckMask;			// これをインスペクタからEverythingに
     public LayerMask crouchCheckMask;			// 設定しないとOnGround判定取られない気がする。ただAddComponentすると初期値のNothingになる oyama add
 
-    [SerializeField] private bool onGround; // Is the character on the ground
+    // david changed OnGround to public
+    [SerializeField] public bool onGround; // Is the character on the ground
     private Vector3 currentLookPos; // The current position where the character is looking
     private float originalHeight; // Used for tracking the original height of the characters capsule collider
     private Animator animator; // The animator for the character
@@ -70,6 +71,9 @@ public class ThirdPersonCharacter : MonoBehaviour
     private bool climbInput;
     private bool WallRunInput;
 
+    // david add
+    public bool wallRunning; // are we wall running
+
     //private MoveState m_MoveState;	// 移動処理を任せる
 
     //ToDo:ターゲットオブジェクト取得用パラメータ
@@ -86,6 +90,9 @@ public class ThirdPersonCharacter : MonoBehaviour
 	// Use this for initialization
 	void Start()
     {
+        //david add
+        wallRunning = false;
+
         animator = GetComponentInChildren<Animator>();
         capsule = GetComponent<Collider>() as CapsuleCollider;
 
@@ -138,13 +145,13 @@ public class ThirdPersonCharacter : MonoBehaviour
 
     // The Move function is designed to be called from a separate component
     // based on User input, or an AI control script
-    public void Move(Vector3 move, bool crouch, bool jump, bool vault,bool slide, bool climb, bool wallrun,Vector3 lookPos)
+    public void Move(Vector3 move, bool crouch, bool jump, bool vault, bool slide, bool climb, bool wallrun, Vector3 lookPos)
     {
 
         if (move.magnitude > 1) move.Normalize();
 
         // transfer input parameters to member variables.
-		// David Add
+        // David Add
         this.moveInput = move;
         this.crouchInput = crouch;
         this.jumpInput = jump;
@@ -159,7 +166,7 @@ public class ThirdPersonCharacter : MonoBehaviour
 
         ConvertMoveInput(); // converts the relative move vector into local turn & fwd values
 
-        TurnTowardsCameraForward(); // makes the character face the way the camera is looking
+        //TurnTowardsCameraForward(); // makes the character face the way the camera is looking
 
         PreventStandingInLowHeadroom(); // so the character's head doesn't penetrate a low ceiling
 
@@ -167,7 +174,20 @@ public class ThirdPersonCharacter : MonoBehaviour
 
         ApplyExtraTurnRotation(); // this is in addition to root rotation in the animations
 
-        GroundCheck(); // detect and stick to ground
+        // if wallRunning we want to handle gravity with the wallrun code
+        if (!wallRunning)
+        {
+            GroundCheck(); // detect and stick to ground
+
+            if (onGround)
+            {
+                HandleGroundedVelocities();
+            }
+            else
+            {
+                HandleAirborneVelocities();
+            }
+        }
 
         SetFriction(); // use low or high friction values depending on the current state
 
@@ -196,17 +216,9 @@ public class ThirdPersonCharacter : MonoBehaviour
         }
 		*/
         // control and velocity handling is different when grounded and airborne:
-        if (onGround)
-        {
-            HandleGroundedVelocities();
-        }
-        else
-        {
-            HandleAirborneVelocities();
-        }
 
         UpdateAnimator(); // send input and other state parameters to the animator
-
+        
         // reassign velocity, since it will have been modified by the above functions.
         GetComponent<Rigidbody>().velocity = velocity;
 
@@ -298,7 +310,8 @@ public class ThirdPersonCharacter : MonoBehaviour
         RaycastHit[] hits = Physics.RaycastAll(ray, .5f,groundCheckMask);
         System.Array.Sort(hits, rayHitComparer);
 
-        if (velocity.y < jumpPower*.5f)
+        
+        if (velocity.y < jumpPower * .5f)
         {
             onGround = false;
             GetComponent<Rigidbody>().useGravity = true;
@@ -313,7 +326,7 @@ public class ThirdPersonCharacter : MonoBehaviour
                     if (velocity.y <= 0)
                     {
                         GetComponent<Rigidbody>().position = Vector3.MoveTowards(GetComponent<Rigidbody>().position, hit.point,
-                                                                    Time.deltaTime*advancedSettings.groundStickyEffect);
+                                                                    Time.deltaTime * advancedSettings.groundStickyEffect);
                     }
 
                     onGround = true;
@@ -323,7 +336,7 @@ public class ThirdPersonCharacter : MonoBehaviour
             }
         }
 
-		animator.SetBool("is_Grounded", onGround);// oyama add
+        animator.SetBool("is_Grounded", onGround);// oyama add
 
         // remember when we were last in air, for jump delay
         if (!onGround) lastAirTime = Time.time;
