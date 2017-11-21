@@ -90,8 +90,9 @@ public class PlayerManager : MonoBehaviour
         Vector3 adjustedDir = charRotation * character.GetComponent<Rigidbody>().velocity; // rotate velocity for rotation on character
 
 
-        // if the player can wallrun then wall run
-        if (CanWallRun(character.transform, v, adjustedDir, Input.GetButton("Jump")) && !wallRunTimeUp)
+		// 仮にコントローラーのLBに設定した
+		// if the player can wallrun then wall run
+		if (CanWallRun(character.transform, v, adjustedDir, m_Controller.GetButtonHold(Button.LB)) && !wallRunTimeUp)
         {
             wallRunActivated = true; // turn on wallRun so it can be ran in fixedUpdate(better for rigibody manipulations)
         }
@@ -105,7 +106,7 @@ public class PlayerManager : MonoBehaviour
         if (!m_MoveState.isMove()){
 			if (!jump) {
 				// キーボードのほうは全員でジャンプする（キーボードはID管理してない）
-				if (m_Controller.GetButtonDown(Controller.Button.A) || Input.GetKeyDown(KeyCode.Space)) {
+				if (m_Controller.GetButtonDown(Button.A) || Input.GetKeyDown(KeyCode.Space)) {
 					//jump = m_Controller.GetButtonDown(Controller.Button.A);
 					jump = true;
 				}

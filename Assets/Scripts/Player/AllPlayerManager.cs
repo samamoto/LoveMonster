@@ -73,7 +73,7 @@ public class AllPlayerManager : MonoBehaviour {
 
 		// アクションの更新(全員分)
 		for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
-			m_PlayerActionNames[i] = m_PlayerManager[i].getPlayerAction();
+			//m_PlayerActionNames[i] = m_PlayerManager[i].getPlayerAction();
 		}
 		// スコアが更新
 		ScoreCheck();
