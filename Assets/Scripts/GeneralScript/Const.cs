@@ -55,7 +55,7 @@ public static class ConstSceneNames {
 
 
 /// <summary>
-/// シーンリスト
+/// オブジェクトの名前
 /// </summary>
 public static class ConstObjectNames {
 	public const string ActionBlockName = "Block";

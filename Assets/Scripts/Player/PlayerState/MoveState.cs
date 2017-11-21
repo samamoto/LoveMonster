@@ -10,20 +10,13 @@ using UnityEngine;
 // 移動処理中に外部から接触などの判定があった場合は別途相談
 //------------------------------------------------------------
 /// Todo　:　2017/11/09 oyama add
-/// ・各アクションごとに細かな移動制御が必要（高さも入ってない）
-/// ・複数MovePointの設定に対応したら壁を登る動作なども設定できるかも
-/// 　その際アニメーションのパーセンテージ（Normalize…なんとか）で0～1.0fで取れる
 /// ・MovePointに向けてキャラクターの回転動作が必要
 /// ・オブジェクトへの突っ込み方に応じて向きがばらついてしまうので
-/// ・
-/// Todo ： 2017/11/15 oyama add
-/// ・とりあえずリファクタリングしよう
-/// ・各アクションごとにクラス分ける？
-/// ・MovePointを複数処理化　リスト使うかな
-/// ・MoveStateはもともと管理用に使おうと思ったから、具体的な処理関係は別のスクリプトに任せるか
-/// ・いったんクラス内でローカルクラス使ってTestしてできそうだったら分けていくかんじー…？
-/// ・enumとかDictionaryはここに置いてていっか
-
+/// Todo :
+/// ・オブジェクトを斜面に這わせるには
+/// ・オブジェクトの名前を検索して、特定の名前なら45度とか-45度とかにする？
+/// 　ただしこうするとオブジェクトに対していきなりなっちゃう…
+/// ・壁に対して垂直にするとか、オブジェクト名をひたすら変える羽目になるからどっかでなんか起きそう
 
 
 public class MoveState : MonoBehaviour {
@@ -37,7 +30,7 @@ public class MoveState : MonoBehaviour {
 		Slider,
 		Climb,
 		//ClimbJump,
-		//WallRun,
+		WallRun,
 		None,
 	}
 
@@ -52,13 +45,13 @@ public class MoveState : MonoBehaviour {
 	string smoothTimeMessage;
 
 	[SerializeField, Range(0.1f, 10)]
-	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.65f, 0.65f, 1.65f};
+	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.65f, 0.65f, 1.65f, 1.0f};
 
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
 	[SerializeField] MoveStatement m_NowState;			// 現在ステート
-	private int m_LerpItr = 0;							// 今の移動場所
-	List<Vector3> m_MoveList = new List<Vector3>();	// 移動場所の格納リスト
+	private int m_LerpItr = 0;                   // 今の移動場所
+	[SerializeField] List<Vector3> m_MoveList = new List<Vector3>();	// 移動場所の格納リスト
 	[SerializeField] string m_AnimName;                 // 再生されている（はず）のアニメーションの名前を受け取る
 
 	// ボタンの入力処理関係
@@ -71,8 +64,8 @@ public class MoveState : MonoBehaviour {
 
 	public bool is_Move = false;   // MoveStateが動きを受け持っているかの判定
 
-	public float startTime;		// 開始時間
-	public float deltaCount;		// 開始時間からどれだけ経過したか
+	private float startTime;		// 開始時間
+	private float deltaCount;		// 開始時間からどれだけ経過したか
 
 	private Quaternion m_PrevRot;	// 移動前の角度を保持	
 	private bool is_LookRot;        // LookRotationを使って回すか決める
@@ -98,15 +91,16 @@ public class MoveState : MonoBehaviour {
 		StateDictionary.Add(MoveStatement.Slider, ConstAnimationStateTags.PlayerStateSlider);
 		StateDictionary.Add(MoveStatement.Climb, ConstAnimationStateTags.PlayerStateClimb);
 		//StateDictionary.Add(MoveStatementClimbJump, ConstAnimationStateTags.PlayerStateClimbJump);
-		//StateDictionary.Add(MoveStatement.WallRun, ConstAnimationStateTags.PlayerStateWallRun);
+		StateDictionary.Add(MoveStatement.WallRun, ConstAnimationStateTags.PlayerStateWallRun);
 		StateDictionary.Add(MoveStatement.None, "None");
 		//--　　　ここまで　　　--//
 
 	}
 
 
-	// Updateの前に行う処理
-	private void FixedUpdate() {
+	// Updateのあとに行う処理
+	// FixedUpdateは物理処理以外は書くべきでないらしい
+	private void LateUpdate() {
 
 		// 座標関係の更新
 		m_PlayerPos = this.transform.position;
@@ -180,8 +174,13 @@ public class MoveState : MonoBehaviour {
 				ActionSlerp(rate);
 				break;
 
+			case MoveStatement.WallRun:
+				ActionLerp(rate);
+				break;
+
+
 			default:
-				Action();   // Default動作
+				ActionLerp(rate);   // Default動作
 				break;
 
 			case MoveStatement.None:
@@ -274,6 +273,10 @@ public class MoveState : MonoBehaviour {
 		return m_NowState;
 	}
 
+	public int getPlayerID() {
+		return this.GetComponent<PlayerManager>().getPlayerID();
+	}
+
 
 	///--------------------------------------------------------------------------------
 	/// <summary>
@@ -308,6 +311,10 @@ public class MoveState : MonoBehaviour {
 			m_PrevRot = new Quaternion(0, m_PrevRot.y, 0, m_PrevRot.w);
 			transform.rotation = m_PrevRot;
 		}
+
+		// ObjectManagerに実行状態を記録
+		ObjectManager.Instance.setAction(getPlayerID(), AnimName);
+
 	}
 
 	///--------------------------------------------------------------------------------
@@ -323,8 +330,20 @@ public class MoveState : MonoBehaviour {
 		m_LerpItr = 0;
 		m_MoveList.Clear(); // ポジションリストをクリア
 		is_Arrival = false;
+
+		// ObjectManagerに実行状態を記録
+		ObjectManager.Instance.setAction(getPlayerID());	// クリア
 	}
 
+	///--------------------------------------------------------------------------------
+	/// <summary>
+	/// 現在の再生アニメーション
+	/// </summary>
+	/// <returns>現在再生中の文字列</returns>
+	///--------------------------------------------------------------------------------
+	public string getPlayerAction() {
+		return StateDictionary[m_NowState];
+	}
 	///--------------------------------------------------------------------------------
 	/// <summary>
 	/// MoveStateの移動処理が実行中か

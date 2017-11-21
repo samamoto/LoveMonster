@@ -36,15 +36,80 @@ public class AllPlayerManager : MonoBehaviour {
 		ConstAnimationStateTags.PlayerStateClimbJump,
 	};
 
-    // Use this for initialization
-    void Start () {
-		
+
+
+	// ToDo:増えてきたらローカルクラスで管理しよう
+	string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
+
+	// コンポーネント
+	//--------------------------------------------------------------------------------
+	PlayerManager[] m_PlayerManager = new PlayerManager[ConstPlayerParameter.PlayerMax];
+
+	// Use this for initialization
+	void Start () {
+		// とりあえずFindと名前使う…
+		// 名前のPlayer1~4を探す
+		for(int i=0; i<ConstPlayerParameter.PlayerMax; i++) {
+			m_PlayerManager[i] = GameObject.Find("Player" + i.ToString()).GetComponent<PlayerManager>();
+			m_PlayerActionNames[i] = ConstAnimationStateTags.PlayerStateIdle;
+		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
+		// 各プレイヤーの状態を確認するよ！ //
+
+		// オブジェクトに当たった
+
+			// アクション用？
+
+			// アイテム？
+
+		// プレイヤーと接触した
+			
+			// なんか起こす
+
+
+		// アクションの更新(全員分)
+		for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
+			//m_PlayerActionNames[i] = m_PlayerManager[i].getPlayerAction();
+		}
+		// スコアが更新
+		ScoreCheck();
+
+		// ランキングが更新
+		RankCheck();
+
+		// など
+
 	}
+
+	// Updateのあとに来る
+	private void LateUpdate() {
+		// Updateで確認したフラグ関係はこっちでリセットする //
+
+
+
+	}
+
+	//============================================================
+	// Function
+	//============================================================
+	/// <summary>
+	/// 各プレイヤーのスコアを更新
+	/// </summary>
+	void ScoreCheck() {
+		// ToDo:ScoreManagerと連携？
+	}
+
+	/// <summary>
+	/// 各プレイヤーのランクを更新
+	/// </summary>
+	void RankCheck() {
+		// ToDo:ScoreManagerと連携？
+	}
+
 
 	/// <summary>
 	/// 指定したタグがAllPlayerManagerの特別アクションに指定されているかを見る
