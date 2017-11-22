@@ -50,7 +50,7 @@ public class AllPlayerManager : MonoBehaviour {
 		// とりあえずFindと名前使う…
 		// 名前のPlayer1~4を探す
 		for(int i=0; i<ConstPlayerParameter.PlayerMax; i++) {
-			m_PlayerManager[i] = GameObject.Find("Player" + i.ToString()).GetComponent<PlayerManager>();
+			m_PlayerManager[i] = GameObject.Find("Player" + (i+1).ToString()).GetComponent<PlayerManager>();
 			m_PlayerActionNames[i] = ConstAnimationStateTags.PlayerStateIdle;
 		}
 	}
@@ -58,21 +58,36 @@ public class AllPlayerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		// 各プレイヤーの状態を確認するよ！ //
+		  // 各プレイヤーの状態を確認するよ！ //
 
-		// オブジェクトに当たった
+		  // オブジェクトに当たった
 
-			// アクション用？
+		  // アクション用？
 
-			// アイテム？
+		  // アイテム？
 
-		// プレイヤーと接触した
-			
-			// なんか起こす
+		  // プレイヤーと接触した
+
+		  // なんか起こす
 
 
-		// アクションの更新(全員分)
-		for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
+		  // アクションの更新(全員分)
+
+
+
+		  // debug
+		  for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
+				if (m_PlayerManager[i] == null) {
+					 resetAllPlayerManager();
+					 break;
+				}
+		  }
+		  for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
+				// デバッグリスタート
+				if(m_PlayerManager[i].transform.position.y < -20.0f) {
+					 //Debug.Break();
+					 SceneChange.Instance._SceneLoadString("GameSceneProto");  //2017年11月22日 oyama add
+				}
 			//m_PlayerActionNames[i] = m_PlayerManager[i].getPlayerAction();
 		}
 		// スコアが更新
@@ -87,19 +102,28 @@ public class AllPlayerManager : MonoBehaviour {
 
 	// Updateのあとに来る
 	private void LateUpdate() {
-		// Updateで確認したフラグ関係はこっちでリセットする //
+		  // Updateで確認したフラグ関係はこっちでリセットする //
 
 
-
-	}
+	 }
 
 	//============================================================
 	// Function
 	//============================================================
-	/// <summary>
-	/// 各プレイヤーのスコアを更新
-	/// </summary>
-	void ScoreCheck() {
+
+	// reset
+	void resetAllPlayerManager() {
+		  // 2017年11月22日 oyama add
+		  // シングルトンしていると読み込みの時にStartに行かないらしいのでテスト
+		  for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
+				m_PlayerManager[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<PlayerManager>();
+				m_PlayerActionNames[i] = ConstAnimationStateTags.PlayerStateIdle;
+		  }
+	 }
+	 /// <summary>
+	 /// 各プレイヤーのスコアを更新
+	 /// </summary>
+	 void ScoreCheck() {
 		// ToDo:ScoreManagerと連携？
 	}
 

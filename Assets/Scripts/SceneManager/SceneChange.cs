@@ -1,10 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChange : MonoBehaviour
+public class SceneChange : Singleton<SceneChange>
 {
-    //テスト用
-    public void _DebugInput()
+
+	 private void Update() {
+
+		  // 2017年11月22日 oyama add
+		  // 墜ちたらリセットする
+
+
+	 }
+
+	 //テスト用
+	 public void _DebugInput()
     {
         if (Input.GetKeyUp("1"))
         {
@@ -44,4 +53,13 @@ public class SceneChange : MonoBehaviour
     {
         SceneManager.LoadScene("TutorialScene");
     }
+
+	 /// <summary>
+	 /// 2017年11月22日 oyama add
+	 /// PrototypeStageの呼び出しにつかう
+	 /// </summary>
+	 public void _SceneLoadString(string name) {
+		  SceneManager.LoadScene(name);
+	 }
+
 }
