@@ -551,6 +551,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114930231765921162, guid: 4be0571ae305a134ca2db78cf4481d26,
+        type: 2}
+      propertyPath: crouchCheckMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114930231765921162, guid: 4be0571ae305a134ca2db78cf4481d26,
+        type: 2}
+      propertyPath: moveSpeedMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114930231765921162, guid: 4be0571ae305a134ca2db78cf4481d26,
+        type: 2}
+      propertyPath: animSpeedMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114930231765921162, guid: 4be0571ae305a134ca2db78cf4481d26,
+        type: 2}
+      propertyPath: airSpeed
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4be0571ae305a134ca2db78cf4481d26, type: 2}
   m_IsPrefabParent: 0
@@ -767,6 +787,16 @@ Prefab:
         type: 2}
       propertyPath: idNumber
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114542049947655068, guid: 007b9587f73d9e149bf4cb31e24107f3,
+        type: 2}
+      propertyPath: verticalSensitivity
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114542049947655068, guid: 007b9587f73d9e149bf4cb31e24107f3,
+        type: 2}
+      propertyPath: horizontalSensitivity
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 007b9587f73d9e149bf4cb31e24107f3, type: 2}
