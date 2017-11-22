@@ -10,25 +10,27 @@ using Controller;
 [RequireComponent(typeof(Controller.Controller))]
 public class PlayerManager : MonoBehaviour
 {
-	// PlayerのID
-	public int m_PlayerID = 1; // 今は一人しかいない
+	 // PlayerのID
+	 public int m_PlayerID = 1; // 今は一人しかいない
 
-	private MoveState m_MoveState;	// 移動処理を任せる
-	private AllPlayerManager m_AllPlayerManager;
-	private Animator m_animator;
+	 private MoveState m_MoveState;	// 移動処理を任せる
+	 private AllPlayerManager m_AllPlayerManager;
+	 private Animator m_animator;
 
-	private Controller.Controller m_Controller;
-	public bool walkByDefault = false; // toggle for walking state
+	 private Controller.Controller m_Controller;
+	 public bool walkByDefault = false; // toggle for walking state
 
-	public bool lookInCameraDirection = true;// should the character be looking in the same direction that the camera is facing
+	 public bool lookInCameraDirection = true;// should the character be looking in the same direction that the camera is facing
 
-	private Vector3 lookPos; // The position that the character should be looking towards
-	private ThirdPersonCharacter character; // A reference to the ThirdPersonCharacter on the object
-	private Transform cam; // A reference to the main camera in the scenes transform
-	private Vector3 camForward; // The current forward direction of the camera
+	 private Vector3 lookPos; // The position that the character should be looking towards
+	 private ThirdPersonCharacter character; // A reference to the ThirdPersonCharacter on the object
+	 private Transform cam; // A reference to the main camera in the scenes transform
+	 private Vector3 camForward; // The current forward direction of the camera
 
-	private Vector3 move;
-	private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
+	 private Vector3 move;
+	 private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
+
+
 
     //david add
     //wallrun varaiables 
