@@ -16,5 +16,6 @@ public class ArrowSignTarget : MonoBehaviour
 
         //モデルの向きによる補正
         transform.Rotate(offset);
+
     }
 }
