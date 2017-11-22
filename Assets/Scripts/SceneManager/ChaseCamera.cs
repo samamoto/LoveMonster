@@ -5,6 +5,9 @@ using UnityEngine;
 public class ChaseCamera : MonoBehaviour {
     public Transform target;
     public int idNumber; // id of the player(1-4)
+    public float verticalSensitivity;
+    public float horizontalSensitivity;
+
     private Vector3 offset;
 	AllCameraManager m_AllCam;
 	GameObject parent;
@@ -30,7 +33,7 @@ public class ChaseCamera : MonoBehaviour {
         //transform.position = target.position + m_AllCam.offset;
         //transform.RotateAround(target.position + m_AllCam.offset, axis , Time.deltaTime *10f);
         parent.transform.position = target.position;
-        parent.transform.localEulerAngles += new Vector3(v, h, 0);
+        parent.transform.localEulerAngles += new Vector3(v * verticalSensitivity, h * horizontalSensitivity, 0);
         //this.transform.position = target.position + offset;
 
     }
