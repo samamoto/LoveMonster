@@ -1,0 +1,41 @@
+﻿///**************
+///!	@file	:
+///!	@brief	:
+///!	@note	:
+///!	@author	:
+///**************
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+///==============
+///!	@class	:
+///!	@brief	:
+///==============
+public class #SCRIPTNAME# : MonoBehaviour {
+
+	///==============
+	///!	@fn		:Start
+	///!	@brief	:Use this for initialization
+	///!	@param	:
+	///!	@retval	:
+	///!	@note	:
+	///==============
+	void Start () {
+		#NOTRIM#
+	}
+	
+	///==============
+	///!	@fn		:Update
+	///!	@brief	:Update is called once per frame
+	///!	@param	:
+	///!	@retval	:
+	///!	@note	:
+	///============== 
+	void Update () {
+		#NOTRIM#
+	}
+}
+///*************
+///	End of file.
+///*************

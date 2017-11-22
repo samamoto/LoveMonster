@@ -1,19 +1,8 @@
-﻿///**************
-///!	@file	:CostomAudioSource.cs
-///!	@brief	:
-///!	@note	:
-///!	@author	:Kashima Yuhei
-///**************
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-///==============
-///!	@class	:CostomAudioSouce
-///!	@brief	:1サウンドを管理する
-///==============
 [System.Serializable]
 public class CostomAudioSouce
 {
@@ -38,14 +27,6 @@ public class CostomAudioSouce
 
     private bool m_Enable = false;
 
-    ///==============
-    ///!	@fn		:Init
-    ///!    @brief  :
-    ///!	@param	:AudioSource(引数に直接AddComponentする)
-    ///!    @param	:AudioReverbFilter(引数に直接AddComponentする)
-    ///!	@retval	:
-    ///!	@note	:
-    ///==============
     public void Init(AudioSource audioSource, AudioReverbFilter reverb)
     {
         if (!this.m_AudioSource)
@@ -76,13 +57,6 @@ public class CostomAudioSouce
             Debug.LogError("Not resister audioclip");
     }
 
-    ///==============
-    ///!	@fn		:Update
-    ///!	@brief	:更新
-    ///!	@param	:
-    ///!	@retval	:
-    ///!	@note	:音量、リバーブエフェクトの適用、リバーブプリセットの変更
-    ///==============
     public void Update()
     {
         if (this.m_Enable)
@@ -95,13 +69,6 @@ public class CostomAudioSouce
             Debug.LogError("Not resister audioclip");
     }
 
-    ///==============
-    ///!	@fn		:Play
-    ///!	@brief	:再生
-    ///!	@param	:
-    ///!	@retval	:
-    ///!	@note	:
-    ///==============
     public void Play()
     {
         if (this.m_Clip && this.m_Enable)
@@ -111,13 +78,6 @@ public class CostomAudioSouce
         }
     }
 
-    ///==============
-    ///!	@fn		:PlayOneShot
-    ///!	@brief	:ワンショット再生
-    ///!	@param	:
-    ///!	@retval	:
-    ///!	@note	:
-    ///==============
     public void PlayOneShot()
     {
         if (this.m_Clip && this.m_Enable)
@@ -127,13 +87,6 @@ public class CostomAudioSouce
         }
     }
 
-    ///==============
-    ///!	@fn		:Stop
-    ///!	@brief	:停止
-    ///!	@param	:
-    ///!	@retval	:
-    ///!	@note	:
-    ///==============
     public void Stop()
     {
         if (this.m_Clip && this.m_AudioSource.isPlaying && this.m_Enable)
@@ -143,13 +96,6 @@ public class CostomAudioSouce
         }
     }
 
-    ///==============
-    ///!	@fn		:Pause
-    ///!	@brief	:一時停止
-    ///!	@param	:
-    ///!	@retval	:
-    ///!	@note	:
-    ///==============
     public void Pause()
     {
         if (this.m_Clip && this.m_AudioSource.isPlaying && this.m_Enable)
@@ -159,13 +105,6 @@ public class CostomAudioSouce
         }
     }
 
-    ///==============
-    ///!	@fn		:Resume
-    ///!	@brief	:一時停止解除
-    ///!	@param	:
-    ///!	@retval	:
-    ///!	@note	:
-    ///==============
     public void Resume()
     {
         if (this.m_Clip && this.m_AudioSource.isPlaying && this.m_Enable)
@@ -175,7 +114,3 @@ public class CostomAudioSouce
         }
     }
 }
-
-///***************
-///	End of file.
-///***************
