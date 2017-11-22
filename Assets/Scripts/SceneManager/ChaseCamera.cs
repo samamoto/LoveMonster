@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class ChaseCamera : MonoBehaviour {
     public Transform target;
-    public Vector3 offset;
+    private Vector3 offset;
 	 AllCameraManager m_AllCam;
 	 GameObject parent;
 
 	// Use this for initialization
 	void Start () {
-		  //m_AllCam = transform.root.GetComponent<AllCameraManager>();
 		  //transform.position = target.position + offset;
+		  AllCameraManager gm = transform.root.GetComponent<AllCameraManager>();
+		  offset = gm.offset;
 		  transform.position = target.position + offset;
 		  parent = transform.parent.gameObject;
     }

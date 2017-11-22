@@ -255,8 +255,8 @@ public class PlayerManager : MonoBehaviour
 	/// <param name="name">タグ名</param>
 	public void PlayAction(string name) {
 
-		//if (m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
-		if (m_Controller.GetButtonDown(Controller.Button.X) || Input.GetKey(KeyCode.Z)) {
+		if (m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+		//if (m_Controller.GetButtonDown(Controller.Button.X) || Input.GetKey(KeyCode.Z)) {
 
 			for (MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索

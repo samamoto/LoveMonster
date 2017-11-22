@@ -8980,8 +8980,8 @@ Transform:
   m_Children:
   - {fileID: 4605533856981898}
   - {fileID: 4765846023065526}
-  - {fileID: 4815524727794750}
   - {fileID: 4923418223124386}
+  - {fileID: 4815524727794750}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9340,7 +9340,7 @@ Transform:
   m_Children:
   - {fileID: 4380548960407574}
   m_Father: {fileID: 4746584713846240}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4822293934726890
 Transform:
@@ -9939,7 +9939,7 @@ Transform:
   m_Children:
   - {fileID: 4903276595790874}
   m_Father: {fileID: 4746584713846240}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4927056061234028
 Transform:
@@ -10466,6 +10466,9 @@ MonoBehaviour:
   m_PlayerID: 2
   walkByDefault: 0
   lookInCameraDirection: 0
+  wallRunSpeedFactor: 10
+  minWallRunSpeed: 5
+  maxWallRunTime: 0.6
 --- !u!114 &114171378336375896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10480,6 +10483,9 @@ MonoBehaviour:
   m_PlayerID: 4
   walkByDefault: 0
   lookInCameraDirection: 0
+  wallRunSpeedFactor: 10
+  minWallRunSpeed: 5
+  maxWallRunTime: 0.6
 --- !u!114 &114187598381496452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10516,8 +10522,9 @@ MonoBehaviour:
   smoothTime:
   - 0.6
   - 0.6
-  - 1
-  - 5
+  - 0.65
+  - 0.97
+  - 3
   m_NowState: 0
   m_MoveList: []
   m_AnimName: 
@@ -10538,8 +10545,9 @@ MonoBehaviour:
   smoothTime:
   - 0.6
   - 0.6
-  - 1
-  - 5
+  - 0.65
+  - 0.97
+  - 3
   m_NowState: 0
   m_MoveList: []
   m_AnimName: 
@@ -10559,6 +10567,9 @@ MonoBehaviour:
   m_PlayerID: 3
   walkByDefault: 0
   lookInCameraDirection: 0
+  wallRunSpeedFactor: 10
+  minWallRunSpeed: 5
+  maxWallRunTime: 0.6
 --- !u!114 &114691352559129562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10574,8 +10585,9 @@ MonoBehaviour:
   smoothTime:
   - 0.6
   - 0.6
-  - 1
-  - 5
+  - 0.65
+  - 0.97
+  - 3
   m_NowState: 0
   m_MoveList: []
   m_AnimName: 
@@ -10622,6 +10634,7 @@ MonoBehaviour:
   onGround: 0
   lookBlendTime: 0
   lookWeight: 0
+  wallRunning: 0
   Target: {x: 0, y: 0, z: 0}
 --- !u!114 &114730441473375166
 MonoBehaviour:
@@ -10675,6 +10688,9 @@ MonoBehaviour:
   m_PlayerID: 1
   walkByDefault: 0
   lookInCameraDirection: 0
+  wallRunSpeedFactor: 10
+  minWallRunSpeed: 5
+  maxWallRunTime: 0.6
 --- !u!114 &114927926538216316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10716,6 +10732,7 @@ MonoBehaviour:
   onGround: 0
   lookBlendTime: 0
   lookWeight: 0
+  wallRunning: 0
   Target: {x: 0, y: 0, z: 0}
 --- !u!114 &114930231765921162
 MonoBehaviour:
@@ -10758,6 +10775,7 @@ MonoBehaviour:
   onGround: 0
   lookBlendTime: 0
   lookWeight: 0
+  wallRunning: 0
   Target: {x: 0, y: 0, z: 0}
 --- !u!114 &114930969183023634
 MonoBehaviour:
@@ -10800,6 +10818,7 @@ MonoBehaviour:
   onGround: 0
   lookBlendTime: 0
   lookWeight: 0
+  wallRunning: 0
   Target: {x: 0, y: 0, z: 0}
 --- !u!114 &114962452046106312
 MonoBehaviour:
@@ -10837,8 +10856,9 @@ MonoBehaviour:
   smoothTime:
   - 0.6
   - 0.6
-  - 1
-  - 5
+  - 0.65
+  - 0.97
+  - 3
   m_NowState: 0
   m_MoveList: []
   m_AnimName: 
