@@ -54,9 +54,9 @@ public class ObjectManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		m_AllPlayerManager = AllPlayerManager.Instance;
+		m_AllPlayerManager = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();  // Singletonをやめる
 
-		for(int i=0; i<ConstPlayerParameter.PlayerMax; i++) {
+		for (int i=0; i<ConstPlayerParameter.PlayerMax; i++) {
 			PlayerActionDic.Add(i, ConstAnimationStateTags.PlayerStateIdle);
 		}
 

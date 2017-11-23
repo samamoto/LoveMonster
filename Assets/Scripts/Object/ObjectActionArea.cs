@@ -10,8 +10,8 @@ using UnityEngine;
 // 親子関係を取るのでMovePointに移動予定のオブジェクトをくっつけて管理する
 
 /// Todo:タグを使っているのでどっかでまとめて管理しているところと連携した方が呼び出しミスとかなくなって良いか
-/// Todo:複数プレイヤー対応　2017/11/19
-/// 
+/// 複数プレイヤー対応　2017/11/19
+/// Todo:AllPlayerManagerのシングルトン外した影響
 
 [SelectionBase]//Sceneビューでキャラクタを選択したときにこのスクリプトの入っているヒエラルキーが優先して選択されるようになる
 public class ObjectActionArea : MonoBehaviour {
@@ -37,7 +37,8 @@ public class ObjectActionArea : MonoBehaviour {
 			m_MovePos.Add(trs[i].position);
 		}
 		//m_MovePos = m_MoveTrans.TransformPoint(m_MoveTrans.position);	// ワールド座標に変換
-		is_FoundActTag = AllPlayerManager.TagCheck(tag);                // 設定されたタグがあるかどうか
+		//is_FoundActTag = AllPlayerManager.TagCheck(tag);                // 設定されたタグがあるかどうか
+		is_FoundActTag = true;	// ToDo: oyama AllPlayerManagerをシングルトンから外すので一度なしにする
 	}
 
 	// コライダーに当たった

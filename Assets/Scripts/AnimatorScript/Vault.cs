@@ -17,7 +17,6 @@ public class Vault : AnimatorBase {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
-		//m_PM = AllPlayerManager.Instance;
 		// m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();	// 基底クラス内で取得
 		m_Vaiult = m_VaultUpSpeed;
 
