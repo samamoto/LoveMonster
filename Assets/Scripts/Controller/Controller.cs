@@ -319,31 +319,37 @@ namespace Controller
             }
         }
 
-		// 2017/11/14 oyama add 
-		/// <summary>
-		/// 現在一台でもコントローラーが接続されているか調べる（デバッグ用途）
-		/// </summary>
-		public static bool GetConnectController() {
-			// 接続されているコントローラの名前を調べる
-			string[] controllerNames = Input.GetJoystickNames();
-			if (controllerNames[0] == "" || controllerNames == null) {	// コントローラの名前が空っぽなら
-				return false;				// 繋がってない
-			}
-			return true;
-		}
+        // 2017/11/14 oyama add
+        /// <summary>
+        /// 現在一台でもコントローラーが接続されているか調べる（デバッグ用途）
+        /// </summary>
+        public static bool GetConnectController()
+        {
+            // 接続されているコントローラの名前を調べる
+            string[] controllerNames = Input.GetJoystickNames();
+            if (controllerNames[0] == "" || controllerNames == null)
+            {   // コントローラの名前が空っぽなら
+                return false;               // 繋がってない
+            }
+            return true;
+        }
 
-		// 2017/11/14 oyama add 
-		/// <summary>
-		/// 現在のコントローラーが接続されているか台数を調べる（デバッグ用途）
-		/// </summary>
-		public static int GetConnectControllers() {
-			// 接続されているコントローラの名前を調べる
-			string[] controllerNames = Input.GetJoystickNames();
-			if (controllerNames[0] == "" || controllerNames == null) { // コントローラの名前が空っぽなら
-				return 0;               // 繋がってない
-			} else {
-				return controllerNames.Length;
-			}
-		}
-	}
+        // 2017/11/14 oyama add
+        /// <summary>
+        /// 現在のコントローラーが接続されているか台数を調べる（デバッグ用途）
+        /// </summary>
+        public static int GetConnectControllers()
+        {
+            // 接続されているコントローラの名前を調べる
+            string[] controllerNames = Input.GetJoystickNames();
+            if (controllerNames[0] == "" || controllerNames == null)
+            { // コントローラの名前が空っぽなら
+                return 0;               // 繋がってない
+            }
+            else
+            {
+                return controllerNames.Length;
+            }
+        }
+    }
 }

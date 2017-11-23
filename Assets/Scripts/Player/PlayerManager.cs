@@ -83,7 +83,7 @@ public class PlayerManager : MonoBehaviour
             wallRunTimeUp = false;
         }
 
-        float v = m_Controller.GetAxisRaw(Axis.L_y) * -1;
+        float v = m_Controller.GetAxisRaw(Axis.L_y) ;
         v = GetComponent<Rigidbody>().velocity.magnitude;
         Rigidbody rb = GetComponent<Rigidbody>();
         Quaternion charRotation = transform.localRotation;
@@ -140,7 +140,7 @@ public class PlayerManager : MonoBehaviour
 		//get input from sticks and buttons
 		if (Controller.Controller.GetConnectControllers() > 0) {
 			h = m_Controller.GetAxisRaw(Axis.L_x);
-			v = m_Controller.GetAxisRaw(Axis.L_y)*-1; // なんか反転しちゃう
+			v = m_Controller.GetAxisRaw(Axis.L_y); // なんか反転しちゃう
 											  //float v = Input.GetAxisRaw("Vertical");	// InputManagerのInvertがチェック入ってると反転
 		} else {
 			// つながってないとき
