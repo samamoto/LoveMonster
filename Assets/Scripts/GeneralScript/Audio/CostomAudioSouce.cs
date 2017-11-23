@@ -27,7 +27,6 @@ public class CostomAudioSouce
 
     private bool m_Enable = false;
 
-    // Use this for initialization
     public void Init(AudioSource audioSource, AudioReverbFilter reverb)
     {
         if (!this.m_AudioSource)

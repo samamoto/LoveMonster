@@ -6,8 +6,6 @@ public class AudioList : MonoBehaviour
 {
     [SerializeField] public CostomAudioSouce[] m_CostomAudioSouce;
 
-    // Use this for initialization
-
     private void Awake()
     {
         for (int i = 0; i < this.m_CostomAudioSouce.Length; i++)
