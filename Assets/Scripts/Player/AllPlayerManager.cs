@@ -36,7 +36,8 @@ public class AllPlayerManager : MonoBehaviour {
 		ConstAnimationStateTags.PlayerStateClimbJump,
 	};
 
-
+	// 現存するPlayerの数
+	int m_PlayerNum = 0;
 
 	// ToDo:増えてきたらローカルクラスで管理しよう
 	string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
@@ -49,8 +50,11 @@ public class AllPlayerManager : MonoBehaviour {
 	void Start () {
 		// とりあえずFindと名前使う…
 		// 名前のPlayer1~4を探す
-		for(int i=0; i<ConstPlayerParameter.PlayerMax; i++) {
-			m_PlayerManager[i] = GameObject.Find("Player" + (i+1).ToString()).GetComponent<PlayerManager>();
+		// カウンタでタグの数を数える
+		m_PlayerNum = TagCount.CountTag("Player");
+		for (int i=0; i<m_PlayerNum; i++) {
+			// Null check
+			m_PlayerManager[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<PlayerManager>();
 			m_PlayerActionNames[i] = ConstAnimationStateTags.PlayerStateIdle;
 		}
 	}
@@ -76,13 +80,15 @@ public class AllPlayerManager : MonoBehaviour {
 
 
 		  // debug
-		  for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
-				if (m_PlayerManager[i] == null) {
-					 resetAllPlayerManager();
-					 break;
-				}
-		  }
-		  for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
+		  // 消えてしまえ
+		  //for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
+				//if (m_PlayerManager[i] == null) {
+				//	 resetAllPlayerManager();
+				//	 break;
+				//}
+		  //}
+		  //
+		  for (int i = 0; i < m_PlayerNum; i++) {
 				// デバッグリスタート
 				if(m_PlayerManager[i].transform.position.y < -20.0f) {
 					 //Debug.Break();
@@ -115,7 +121,7 @@ public class AllPlayerManager : MonoBehaviour {
 	void resetAllPlayerManager() {
 		  // 2017年11月22日 oyama add
 		  // シングルトンしていると読み込みの時にStartに行かないらしいのでテスト
-		  for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
+		  for (int i = 0; i < m_PlayerNum; i++) {
 				m_PlayerManager[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<PlayerManager>();
 				m_PlayerActionNames[i] = ConstAnimationStateTags.PlayerStateIdle;
 		  }
@@ -140,15 +146,21 @@ public class AllPlayerManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="tag">タグ名</param>
 	/// <returns>ある/なし</returns>
-	public static bool TagCheck(string tag) {
-		for (int i = 0; i < AllPlayerManager.Instance.SpecialAction.Length; i++) {
-			if (AllPlayerManager.Instance.SpecialAction[i] == tag) {
+	public bool TagCheck(string tag) {
+		for (int i = 0; i < SpecialAction.Length; i++) {
+			if (SpecialAction[i] == tag) {
 				return true;
 			}
 		}
 		return false;
 	}
 
+	//============================================================
+	// getter/setter
+	//============================================================
+	public int GetPlayerNum() {
+		return m_PlayerNum;
+	}
 
 	// Singleton
 	//------------------------------------------------------------
@@ -159,6 +171,8 @@ public class AllPlayerManager : MonoBehaviour {
 	/// <summary>
 	/// インスタンスの入手
 	/// </summary>
+	///
+	/* //シングルトンやめる
 	public static AllPlayerManager Instance {
 		get {
 			if (_instance == null) _instance = new AllPlayerManager();
@@ -166,4 +180,5 @@ public class AllPlayerManager : MonoBehaviour {
 			return _instance;
 		}
 	}
+	*/
 }

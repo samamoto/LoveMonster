@@ -9,9 +9,11 @@ using UnityEngine;
 
 public class AllCameraManager : MonoBehaviour {
 
-	 public Vector3 offset;
-	 // Use this for initialization
-	 void Start () {
+	public Vector3 offset;
+	public float verticalSensitivity;
+	public float horizontalSensitivity;
+	// Use this for initialization
+	void Start () {
 		
 	 }
 	

@@ -14,10 +14,10 @@ public class AnimatorBase : StateMachineBehaviour {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-		//PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
-		m_PM = AllPlayerManager.Instance;	//Singleton化してるのでFindからインスタンス取得手段を変更 2017/11/10 oyama add
-      
-    }
+		m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
+		//m_PM = AllPlayerManager.Instance;	//Singleton化してるのでFindからインスタンス取得手段を変更 2017/11/10 oyama add
+
+	}
 	/*
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

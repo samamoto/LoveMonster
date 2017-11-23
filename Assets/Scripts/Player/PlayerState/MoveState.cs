@@ -45,7 +45,8 @@ public class MoveState : MonoBehaviour {
 	string smoothTimeMessage;
 
 	[SerializeField, Range(0.1f, 10)]
-	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.65f, 0.65f, 1.65f, 1.0f};
+	// 調整値を適用　2017年11月23日 oyama add 
+	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.50f, 0.55f, 0.58f, 1.2f};
 
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
@@ -84,7 +85,7 @@ public class MoveState : MonoBehaviour {
 	void Start () {
 		m_NowState = MoveStatement.None;
 		m_Animator = GetComponent<Animator>();
-		m_AllPlayerMgr = AllPlayerManager.Instance;
+		m_AllPlayerMgr = GetComponentInParent<AllPlayerManager>();
 
 		// --Dictionaryの更新 --//
 		StateDictionary.Add(MoveStatement.Vault, ConstAnimationStateTags.PlayerStateVault);
@@ -379,8 +380,9 @@ public class MoveState : MonoBehaviour {
 	///--------------------------------------------------------------------------------
 	public void OnTriggerEnter(Collider other) {
 
+		// Todo:AllPlayerManagerをシングルトンから外す
 		// 指定したアクションがあるかを調べる
-		if (AllPlayerManager.TagCheck(other.tag)) {
+		//if (AllPlayerManager.TagCheck(other.tag)) {
 			// 指定のタグなら
 			// このときオブジェクトはプレイヤー（正面）に対して背面に作られている必要がある
 			// 同じ向きでもともと作られている場合反転処理が個別に必要になるため気をつける
@@ -391,7 +393,7 @@ public class MoveState : MonoBehaviour {
 				// それ以外はオブジェクトの向き見て
 				is_LookRot = true;
 			}
-		}
+		//}
 
 	}
 
