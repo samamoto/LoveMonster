@@ -17,6 +17,6 @@ public class iTeenTest : MonoBehaviour {
 		//iTween.MoveTo(obj, iTween.Hash("x", obj.transform.position.x+1, "time", 3));
 		//iTween.RotateTo(obj, iTween.Hash("y", 90, "time", 3));
 		// ついてくる
-		iTween.MoveUpdate(gameObject, iTween.Hash("position", obj.transform.position, "time", 5));
+		//iTween.MoveUpdate(gameObject, iTween.Hash("position", obj.transform.position, "time", 5));
 	}
 }
