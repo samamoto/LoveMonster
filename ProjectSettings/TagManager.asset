@@ -18,6 +18,7 @@ TagManager:
   - MovePoint
   - Slide
   - Slider
+  - FallFloor
   layers:
   - Default
   - TransparentFX

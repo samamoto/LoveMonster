@@ -385,3 +385,4 @@ public class PlayerManager : MonoBehaviour
     コントローラの取得の仕方　仮
     if (this.m_Controller.GetButton(Controller.Button.A))
  */
+
