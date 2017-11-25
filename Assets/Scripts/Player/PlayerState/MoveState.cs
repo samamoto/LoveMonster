@@ -31,6 +31,7 @@ public class MoveState : MonoBehaviour {
 		Climb,
 		//ClimbJump,
 		WallRun,
+		KongVault,
 		None,
 	}
 
@@ -46,7 +47,7 @@ public class MoveState : MonoBehaviour {
 
 	[SerializeField, Range(0.1f, 10)]
 	// 調整値を適用　2017年11月23日 oyama add 
-	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.50f, 0.55f, 0.58f, 1.2f};
+	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.50f, 0.55f, 0.58f, 1.2f, 0.5f};
 
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
@@ -93,6 +94,7 @@ public class MoveState : MonoBehaviour {
 		StateDictionary.Add(MoveStatement.Climb, ConstAnimationStateTags.PlayerStateClimb);
 		//StateDictionary.Add(MoveStatementClimbJump, ConstAnimationStateTags.PlayerStateClimbJump);
 		StateDictionary.Add(MoveStatement.WallRun, ConstAnimationStateTags.PlayerStateWallRun);
+		StateDictionary.Add(MoveStatement.KongVault, ConstAnimationStateTags.PlayerStateKongVault);
 		StateDictionary.Add(MoveStatement.None, "None");
 		//--　　　ここまで　　　--//
 
@@ -163,6 +165,7 @@ public class MoveState : MonoBehaviour {
 		//--------------------------------------------------------------------------------
 		if (!is_Arrival) {
 			switch (m_NowState) {
+			case MoveStatement.KongVault:	// 処理一緒
 			case MoveStatement.Vault:
 				ActionLerp(rate);
 				break;

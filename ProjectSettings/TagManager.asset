@@ -18,6 +18,7 @@ TagManager:
   - MovePoint
   - Slide
   - Slider
+  - KongVault
   layers:
   - Default
   - TransparentFX
