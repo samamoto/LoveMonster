@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-// Const
+﻿// Const
 // ----------------------------------------------------------------------------
 // ゲーム内で使用する定数リスト
 // ----------------------------------------------------------------------------
@@ -11,7 +7,6 @@ using UnityEngine;
 /// 現在存在するアニメーションのステートリスト＝タグ
 /// </summary>
 public static class ConstAnimationStateTags {
-
 	public const string PlayerStateDead = "Dead";
 	public const string PlayerStateIdle = "Idle";
 	public const string PlayerStateWalkRun = "WalkRun";
@@ -23,18 +18,14 @@ public static class ConstAnimationStateTags {
 	public const string PlayerStateWallRun = "WallRun";
 	public const string PlayerStateLand = "Land";           // 受け身
 	public const string PlayerStateBreakFall = "BreakFall";
-
 }
-
 
 /// <summary>
 /// プレイヤーパラメータ関係
 /// </summary>
 
 public static class ConstPlayerParameter {
-
 	public const int PlayerMax = 4;
-
 }
 
 /// <summary>
@@ -53,7 +44,6 @@ public static class ConstSceneNames {
 	public const string GameSceme = "GameScene_Stage";
 }
 
-
 /// <summary>
 /// オブジェクトの名前
 /// </summary>
@@ -66,5 +56,4 @@ public static class ConstObjectNames {
 	public const string ActionWallRun = ConstAnimationStateTags.PlayerStateWallRun + ConstObjectNames.ActionBlockName;
 	public const string ActionLand = ConstAnimationStateTags.PlayerStateLand + ConstObjectNames.ActionBlockName;
 	public const string ActionBreakFall = ConstAnimationStateTags.PlayerStateBreakFall + ConstObjectNames.ActionBlockName;
-
 }
