@@ -32,6 +32,7 @@ public class MoveState : MonoBehaviour {
 		//ClimbJump,
 		WallRun,
 		KongVault,
+		LongSlider,
 		None,
 	}
 
@@ -47,7 +48,7 @@ public class MoveState : MonoBehaviour {
 
 	[SerializeField, Range(0.1f, 10)]
 	// 調整値を適用　2017年11月23日 oyama add 
-	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.50f, 0.55f, 0.58f, 1.2f, 0.5f};
+	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.50f, 0.55f, 0.58f, 1.2f, 0.5f,1.2f};
 
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
@@ -77,7 +78,7 @@ public class MoveState : MonoBehaviour {
 	//--------------------------------------------------------------------------------
 	private Animator m_Animator;
 	private AllPlayerManager m_AllPlayerMgr;
-
+	private ObjectManager m_ObjMgr;
 	//================================================================================
 	// 関数
 	//================================================================================
@@ -87,7 +88,7 @@ public class MoveState : MonoBehaviour {
 		m_NowState = MoveStatement.None;
 		m_Animator = GetComponent<Animator>();
 		m_AllPlayerMgr = GetComponentInParent<AllPlayerManager>();
-
+		m_ObjMgr = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
 		// --Dictionaryの更新 --//
 		StateDictionary.Add(MoveStatement.Vault, ConstAnimationStateTags.PlayerStateVault);
 		StateDictionary.Add(MoveStatement.Slider, ConstAnimationStateTags.PlayerStateSlider);
@@ -95,6 +96,7 @@ public class MoveState : MonoBehaviour {
 		//StateDictionary.Add(MoveStatementClimbJump, ConstAnimationStateTags.PlayerStateClimbJump);
 		StateDictionary.Add(MoveStatement.WallRun, ConstAnimationStateTags.PlayerStateWallRun);
 		StateDictionary.Add(MoveStatement.KongVault, ConstAnimationStateTags.PlayerStateKongVault);
+		StateDictionary.Add(MoveStatement.LongSlider, ConstAnimationStateTags.PlayerStateLongSlider);
 		StateDictionary.Add(MoveStatement.None, "None");
 		//--　　　ここまで　　　--//
 
@@ -169,7 +171,7 @@ public class MoveState : MonoBehaviour {
 			case MoveStatement.Vault:
 				ActionLerp(rate);
 				break;
-
+			case MoveStatement.LongSlider:
 			case MoveStatement.Slider:
 				ActionLerp(rate);
 				break;
@@ -303,6 +305,13 @@ public class MoveState : MonoBehaviour {
 		Vector3 aim = m_MoveList[m_MoveList.Count - 1] - this.transform.position;
 		GetComponent<Rigidbody>().isKinematic = true;   // 制御をONにして外部操作を無効
 
+		// 個別で回転させたい場合 2017/11/26 oyama add
+		switch (m_NowState) {
+		case MoveStatement.LongSlider: transform.Rotate(new Vector3(0, 90, 0)); break;
+		default:
+			break;
+		}
+
 		// LookRotで回す場合とそうでない場合
 		/// Todo:LookRotationで指定の位置に向かない Rigidbodyとか入れたせいかもしれないなんか切ってできるかどうか 現状スティックの向きで回転角度が変わる
 		if (is_LookRot) {
@@ -327,6 +336,8 @@ public class MoveState : MonoBehaviour {
 	/// </summary>
 	///--------------------------------------------------------------------------------
 	public void resetState() {
+		string aniName = getPlayerAction();
+		m_Animator.SetBool("is_"+aniName, false);   // 再生中モーションをOFFに（ループモーション用）	2017年11月26日 oyama add
 		m_NowState = MoveStatement.None;
 		m_AnimName = "";
 		transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
@@ -336,7 +347,7 @@ public class MoveState : MonoBehaviour {
 		is_Arrival = false;
 
 		// ObjectManagerに実行状態を記録
-		ObjectManager.Instance.setAction(getPlayerID());	// クリア
+		m_ObjMgr.setAction(getPlayerID());	// クリア
 	}
 
 	///--------------------------------------------------------------------------------

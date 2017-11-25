@@ -255,14 +255,15 @@ public class PlayerManager : MonoBehaviour
 	/// <param name="name">タグ名</param>
 	public void PlayAction(string name) {
 
-		if (m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+		if ((m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) || Input.GetKey(KeyCode.Z)) {
 		//if (m_Controller.GetButtonDown(Controller.Button.X) || Input.GetKey(KeyCode.Z)) {
 
 			for (MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
 				if (m_MoveState.StateDictionary[m] == name) {
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
-					m_animator.Play(name);
+					//m_animator.Play(name);
+					m_animator.SetBool("is_" + name, true);
 					m_MoveState.changeState(m, name);
 				}
 			}

@@ -25,7 +25,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1056846427251252
 GameObject:
   m_ObjectHideFlags: 1
@@ -93,7 +93,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1519656583213468
 GameObject:
   m_ObjectHideFlags: 1
@@ -112,7 +112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1520389779348514
 GameObject:
   m_ObjectHideFlags: 1
@@ -165,7 +165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1616399507741900
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1962363953847996
 GameObject:
   m_ObjectHideFlags: 1
@@ -240,7 +240,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1227082765014048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4391013136517150}
@@ -708,16 +708,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3712629738c17fc4bad4e33da6f559f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseObject: {fileID: 1061429985435504, guid: 0fde71e30e486e5438110d014e7f4408,
-    type: 2}
-  Offset: {x: 0, y: 0, z: 0}
-  distance: 7
-  minDistance: 5
-  maxDistance: 20
+  chaseObject: {fileID: 0}
+  Offset: {x: 0, y: 1.53, z: 0}
+  distance: 2.78
+  minDistance: 2.78
+  maxDistance: 13.9
   deltaDistance: 1
-  polerAngle: 60
-  minPolerAngle: 5
-  maxPolerAngle: 75
+  polerAngle: 85
+  minPolerAngle: 30
+  maxPolerAngle: 85
   azimuthalAlngle: 270
   Cont_X_Secsitivity: 3
   Cont_Y_Secsitivity: 3

@@ -15,6 +15,7 @@ public static class ConstAnimationStateTags {
 	public const string PlayerStateClimb = "Climb";
 	public const string PlayerStateClimbJump = "ClimbJump";
 	public const string PlayerStateSlider = "Slide";
+	public const string PlayerStateLongSlider = "LongSlider";
 	public const string PlayerStateWallRun = "WallRun";
 	public const string PlayerStateKongVault = "KongVault";
 	public const string PlayerStateLand = "Land";           // 受け身
