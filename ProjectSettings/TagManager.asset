@@ -17,7 +17,8 @@ TagManager:
   - Block
   - MovePoint
   - Slide
-  - Slider
+  - KongVault
+  - LongSlider
   layers:
   - Default
   - TransparentFX

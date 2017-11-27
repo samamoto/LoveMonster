@@ -78,48 +78,51 @@ public class ObjectActionArea : MonoBehaviour {
 	// コライダーに当たってる
 	void OnTriggerStay(Collider other) {
 
-		int id = other.GetComponent<PlayerManager>().getPlayerID();
-		// MoveIDに登録
-		// 重複してない？
-		bool found = false;
-		for (int i = 0; i < m_MoveID.Count; i++) {
-			if (m_MoveID[i] == id) {
-				found = true;
-				break;
+		if (other.tag == "Player") {
+			int id = other.GetComponent<PlayerManager>().getPlayerID();
+			// MoveIDに登録
+			// 重複してない？
+			bool found = false;
+			for (int i = 0; i < m_MoveID.Count; i++) {
+				if (m_MoveID[i] == id) {
+					found = true;
+					break;
+				}
 			}
-		}
 
-		if (!found) { 
-			// いなければ追加
-			m_MoveID.Add(id);
-			// タスクに登録
-			m_MoveTask.Add(id, other.GetComponent<MoveState>());
-			// セット
-			m_MoveTask[id].setMovePosition(m_MovePos.ToArray());//PlayerManagerの移動予定ポイントにMovePointの値をセット
-		}
-
-		// まだ実行されてない
-		if(m_MoveTask[id].isMove() == false){
-			// ぶつかった対象にメッセージ(関数)を送る 設定タグがあるか検索
-			if (other.tag == "Player" && is_FoundActTag) {
-				other.SendMessage("PlayAction", tag);   // 設定されたタグ名を渡してアクションを再生する関数を呼ぶ　依存性を弱めたいからSend
+			if (!found) {
+				// いなければ追加
+				m_MoveID.Add(id);
+				// タスクに登録
+				m_MoveTask.Add(id, other.GetComponent<MoveState>());
+				// セット
+				m_MoveTask[id].setMovePosition(m_MovePos.ToArray());//PlayerManagerの移動予定ポイントにMovePointの値をセット
 			}
-		} else {
-			// 実行されてたら消す
-			m_MoveTask.Remove(id);
-			m_MoveID.Remove(id);
+
+			// まだ実行されてない
+			if (m_MoveTask[id].isMove() == false) {
+				// ぶつかった対象にメッセージ(関数)を送る 設定タグがあるか検索
+				if (other.tag == "Player" && is_FoundActTag) {
+					other.SendMessage("PlayAction", tag);   // 設定されたタグ名を渡してアクションを再生する関数を呼ぶ　依存性を弱めたいからSend
+				}
+			} else {
+				// 実行されてたら消す
+				m_MoveTask.Remove(id);
+				m_MoveID.Remove(id);
+			}
 		}
 	}
 
 	private void OnTriggerExit(Collider other) {
-		
-		int id = other.GetComponent<PlayerManager>().getPlayerID();
-		MoveState tmp;
-		// 抜けても消す
-		if (m_MoveTask.TryGetValue(id, out tmp)){	// 初期値なら消えてる
-			if(tmp == null) {
-				m_MoveTask.Remove(id);
-				m_MoveID.Remove(id);
+		if (other.tag == "Player") {
+			int id = other.GetComponent<PlayerManager>().getPlayerID();
+			MoveState tmp;
+			// 抜けても消す
+			if (m_MoveTask.TryGetValue(id, out tmp)) {  // 初期値なら消えてる
+				if (tmp == null) {
+					m_MoveTask.Remove(id);
+					m_MoveID.Remove(id);
+				}
 			}
 		}
 	}
