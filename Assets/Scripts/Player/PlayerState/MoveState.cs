@@ -148,7 +148,7 @@ public class MoveState : MonoBehaviour {
 			if (diff > (smoothTime[(int)m_NowState] / m_MoveList.Count)) {
 
 				// 最終ポイントに到着
-				if (m_LerpItr == m_MoveList.Count-1) {
+				if (m_LerpItr == m_MoveList.Count-1 && m_Animator.IsInTransition(0)) {
 					transform.position = m_MoveList[m_MoveList.Count-1];
 					is_Arrival = true;
 				} else {
