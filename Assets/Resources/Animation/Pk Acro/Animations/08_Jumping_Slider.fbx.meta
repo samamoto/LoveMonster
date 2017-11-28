@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e810c58fabfe40ac8bfd267183a1f2e
+guid: f18b49d5689431747bc29cbe03afe67d
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -226,7 +226,7 @@ ModelImporter:
       firstFrame: 87
       lastFrame: 114
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: 90
       level: 0
       cycleOffset: 0
       loop: 0
@@ -236,7 +236,7 @@ ModelImporter:
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0

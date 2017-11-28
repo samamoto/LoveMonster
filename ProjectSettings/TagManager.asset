@@ -19,6 +19,7 @@ TagManager:
   - Slide
   - KongVault
   - LongSlider
+  - ClimbOver
   layers:
   - Default
   - TransparentFX

@@ -20,6 +20,7 @@ public static class ConstAnimationStateTags {
 	public const string PlayerStateKongVault = "KongVault";
 	public const string PlayerStateLand = "Land";           // 受け身
 	public const string PlayerStateBreakFall = "BreakFall";
+	public const string PlayerStateClimbOver = "ClimbOver";
 }
 
 /// <summary>

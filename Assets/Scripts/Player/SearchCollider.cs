@@ -41,12 +41,16 @@ public class SearchCollider : MonoBehaviour {
 		// Rayが衝突したかを検知する
 		if (Physics.Raycast(m_DwRay, out hit, groundDistMax)) {
 			groundDist = hit.distance;
+#if DEBUG
 			Debug.Log(groundDist);
 			Debug.Log(m_DwRay.origin);
 			Debug.Log(hit.transform.ToString());
 			Debug.Log(hit.transform.tag);
+#endif
 		}
+#if DEBUG
 		Debug.DrawRay(transform.position, m_DwRay.direction, Color.red);
+#endif
 	}
 
 	//============================================================

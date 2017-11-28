@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e810c58fabfe40ac8bfd267183a1f2e
+guid: d9ba4c27d8f70004e92f3624f56e2db2
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -133,10 +133,9 @@ ModelImporter:
     400124: ANIM_Character_Spine01
     400126: ANIM_Character_Spine02
     400128: ANIM_Character_Spine03
-    7400000: Take_Off
-    7400002: Air_Time
-    7400004: Landing
-    7400006: Jump_High_Long
+    7400000: F_GAP_1M
+    7400002: F_GAP_2M
+    7400004: F_GAP_3M
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -165,12 +164,12 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take_Off
+      name: F_GAP_1M
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 24
+      lastFrame: 44
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: 30
       level: 0
       cycleOffset: 0
       loop: 0
@@ -178,9 +177,9 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
@@ -193,38 +192,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Air_Time
+      name: F_GAP_2M
       takeName: Take 001
-      firstFrame: 27
-      lastFrame: 85
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 1
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Landing
-      takeName: Take 001
-      firstFrame: 87
-      lastFrame: 114
+      firstFrame: 47
+      lastFrame: 89
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -249,10 +220,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Jump_High_Long
+      name: F_GAP_3M
       takeName: Take 001
-      firstFrame: 117
-      lastFrame: 155
+      firstFrame: 92
+      lastFrame: 135
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -262,7 +233,7 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
