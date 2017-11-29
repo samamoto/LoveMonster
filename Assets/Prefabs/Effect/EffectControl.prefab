@@ -56,3 +56,4 @@ MonoBehaviour:
   eff_speedUp: {fileID: 194330, guid: 3455177aaf185484b9f9ac5f764282b0, type: 2}
   eff_powUp: {fileID: 102840, guid: 079d859a77888466487a5b2889cb1b64, type: 2}
   eff_dust: {fileID: 142034, guid: 259c32c26c1c248cf8664a61e1535a6f, type: 2}
+  eff_burst: {fileID: 135710, guid: b8753ba549a46459eba7e6f806add77a, type: 2}
