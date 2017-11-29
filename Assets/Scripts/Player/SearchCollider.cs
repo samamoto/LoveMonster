@@ -26,26 +26,32 @@ public class SearchCollider : MonoBehaviour {
 	// Use this for initialization
 	private void Start() {
 		// プレイヤーの下側にRayを出す
-		m_DwRay = new Ray(transform.parent.position+new Vector3(0f,0.45f,0f),transform.TransformVector(Vector3.down));
+		m_DwRay = new Ray(transform.parent.position+new Vector3(0f,0.45f,0f),Vector3.down);
 #if DEBUG
 		dbg_DistDic = new List<string>();
 #endif
 	}
 
 	// Update is called once per frame
-	/*
-	 * //RayCasyが下方法に上手く取れない
-	private void FixedUpdate() {
-		transform.position = transform.parent.position + new Vector3(0f, 0.45f, 0f);
-		RaycastHit hit;
+	private void Update() {
+		//transform.position = transform.parent.position + new Vector3(0f, 0.45f, 0f);
+		RaycastHit hit = new RaycastHit();
+		m_DwRay = new Ray(transform.parent.position + new Vector3(0f, 0.1f, 0f), Vector3.down);
+
 		// Rayが衝突したかを検知する
-		if (Physics.Raycast(m_DwRay, out hit, groundDistMax,mask)) {
+		if (Physics.Raycast(m_DwRay, out hit, groundDistMax)) {
 			groundDist = hit.distance;
+#if DEBUG
 			Debug.Log(groundDist);
+			Debug.Log(m_DwRay.origin);
+			Debug.Log(hit.transform.ToString());
+			Debug.Log(hit.transform.tag);
+#endif
 		}
-		Debug.DrawRay(transform.position, m_DwRay.direction, Color.blue);
+#if DEBUG
+		Debug.DrawRay(transform.position, m_DwRay.direction, Color.red);
+#endif
 	}
-	*/
 
 	//============================================================
 	// Function
@@ -62,7 +68,7 @@ public class SearchCollider : MonoBehaviour {
 			m_DistDic.TryGetValueEx(id, 0.0f);	// 先にNullと初期値格納
 			m_DistDic[id] = Vector3.Distance(transform.parent.position, other.transform.position);  // 距離を格納
 #if DEBUG
-			Debug.Log(m_DistDic[id].ToString());
+			//Debug.Log(m_DistDic[id].ToString());
 			KeyValuePair<int, float> pair = new KeyValuePair<int, float>(id, m_DistDic[id]);
 			dbg_DistDic.Add(pair.ToString());
 #endif

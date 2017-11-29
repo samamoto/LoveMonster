@@ -138,6 +138,7 @@ ModelImporter:
     7400004: KV_3M
     7400006: KV_4M
     7400008: KV_5M
+    7400010: kongvault
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -152,7 +153,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'ANIM_Character_Spine03' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 1
@@ -299,6 +303,164 @@ ModelImporter:
       curves: []
       events: []
       transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: kongvault
+      takeName: Take 001
+      firstFrame: 70
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ANIM_Character_Hips
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_L_Thigh
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_L_Thigh/ANIM_Character_L_Shin
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_L_Thigh/ANIM_Character_L_Shin/ANIM_Character_L_Foot
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_L_Thigh/ANIM_Character_L_Shin/ANIM_Character_L_Foot/ANIM_Character_L_Toes
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_L_Thigh/ANIM_Character_L_Shin/ANIM_Character_L_Foot/ANIM_Character_L_Toes/ANIM_Character_L_ToeEND
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_R_Thigh
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_R_Thigh/ANIM_Character_R_Shin
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_R_Thigh/ANIM_Character_R_Shin/ANIM_Character_R_Foot
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_R_Thigh/ANIM_Character_R_Shin/ANIM_Character_R_Foot/ANIM_Character_R_Toe
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_R_Thigh/ANIM_Character_R_Shin/ANIM_Character_R_Foot/ANIM_Character_R_Toe/ANIM_Character_R_ToeEND
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Index01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Index01/ANIM_Character_L_Index02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Index01/ANIM_Character_L_Index02/ANIM_Character_L_Index03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Index01/ANIM_Character_L_Index02/ANIM_Character_L_Index03/ANIM_Character_L_Index03END
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Middle01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Middle01/ANIM_Character_L_Middle02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Middle01/ANIM_Character_L_Middle02/ANIM_Character_L_Middle03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Middle01/ANIM_Character_L_Middle02/ANIM_Character_L_Middle03/ANIM_Character_L_Middle03END
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Pinky01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Pinky01/ANIM_Character_L_Pinky02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Pinky01/ANIM_Character_L_Pinky02/ANIM_Character_L_Pinky03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Pinky01/ANIM_Character_L_Pinky02/ANIM_Character_L_Pinky03/ANIM_Character_L_Pinky03END
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Ring01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Ring01/ANIM_Character_L_Ring02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Ring01/ANIM_Character_L_Ring02/ANIM_Character_L_Ring03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Ring01/ANIM_Character_L_Ring02/ANIM_Character_L_Ring03/ANIM_Character_L_Ring03END
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Thumb01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Thumb01/ANIM_Character_L_Thumb02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Thumb01/ANIM_Character_L_Thumb02/ANIM_Character_L_Thumb03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_L_Shoulder/ANIM_Character_L_UArm/ANIM_Character_L_Forearm/ANIM_Character_L_Hand/ANIM_Character_L_Thumb01/ANIM_Character_L_Thumb02/ANIM_Character_L_Thumb03/ANIM_Character_L_Thumb03END
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_Neck
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_Neck/ANIM_Character_Head
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Index01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Index01/ANIM_Character_R_Index02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Index01/ANIM_Character_R_Index02/ANIM_Character_R_Index03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Index01/ANIM_Character_R_Index02/ANIM_Character_R_Index03/ANIM_Character_R_Index03END
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Middle01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Middle01/ANIM_Character_R_Middle02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Middle01/ANIM_Character_R_Middle02/ANIM_Character_R_Middle03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Middle01/ANIM_Character_R_Middle02/ANIM_Character_R_Middle03/ANIM_Character_R_Middle03END
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Pinky01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Pinky01/ANIM_Character_R_Pinky02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Pinky01/ANIM_Character_R_Pinky02/ANIM_Character_R_Pinky03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Pinky01/ANIM_Character_R_Pinky02/ANIM_Character_R_Pinky03/ANIM_Character_R_Pinky03END
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Ring01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Ring01/ANIM_Character_R_Ring02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Ring01/ANIM_Character_R_Ring02/ANIM_Character_R_Ring03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Ring01/ANIM_Character_R_Ring02/ANIM_Character_R_Ring03/ANIM_Character_R_Ring03END
+        weight: 0
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Thumb01
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Thumb01/ANIM_Character_R_Thumb02
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Thumb01/ANIM_Character_R_Thumb02/ANIM_Character_R_Thumb03
+        weight: 1
+      - path: ANIM_Character_Hips/ANIM_Character_Spine01/ANIM_Character_Spine02/ANIM_Character_Spine03/ANIM_Character_R_Shoulder/ANIM_Character_R_UArm/ANIM_Character_R_Forearm/ANIM_Character_R_Hand/ANIM_Character_R_Thumb01/ANIM_Character_R_Thumb02/ANIM_Character_R_Thumb03/ANIM_Character_R_Thumb03END
+        weight: 0
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0

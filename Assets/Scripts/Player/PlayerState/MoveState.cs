@@ -33,6 +33,7 @@ public class MoveState : MonoBehaviour {
 		WallRun,
 		KongVault,
 		LongSlider,
+		ClimbOver,
 		None,
 	}
 
@@ -48,7 +49,7 @@ public class MoveState : MonoBehaviour {
 
 	[SerializeField, Range(0.1f, 10)]
 	// 調整値を適用　2017年11月23日 oyama add 
-	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.50f, 0.55f, 0.58f, 1.2f, 0.5f,1.2f};
+	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.50f, 0.55f, 0.58f, 1.2f, 0.5f,1.2f, 0.47f};
 
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
@@ -97,6 +98,7 @@ public class MoveState : MonoBehaviour {
 		StateDictionary.Add(MoveStatement.WallRun, ConstAnimationStateTags.PlayerStateWallRun);
 		StateDictionary.Add(MoveStatement.KongVault, ConstAnimationStateTags.PlayerStateKongVault);
 		StateDictionary.Add(MoveStatement.LongSlider, ConstAnimationStateTags.PlayerStateLongSlider);
+		StateDictionary.Add(MoveStatement.ClimbOver, ConstAnimationStateTags.PlayerStateClimbOver);
 		StateDictionary.Add(MoveStatement.None, "None");
 		//--　　　ここまで　　　--//
 
@@ -178,6 +180,10 @@ public class MoveState : MonoBehaviour {
 
 			case MoveStatement.Climb:
 				ActionSlerp(rate);
+				break;
+
+			case MoveStatement.ClimbOver:
+				ActionLerp(rate);
 				break;
 
 			case MoveStatement.WallRun:
@@ -400,7 +406,8 @@ public class MoveState : MonoBehaviour {
 			// 指定のタグなら
 			// このときオブジェクトはプレイヤー（正面）に対して背面に作られている必要がある
 			// 同じ向きでもともと作られている場合反転処理が個別に必要になるため気をつける
-			if (other.tag == ConstAnimationStateTags.PlayerStateClimb || other.tag == ConstAnimationStateTags.PlayerStateClimbJump) {
+			if (other.tag == ConstAnimationStateTags.PlayerStateClimb 
+			|| other.tag == ConstAnimationStateTags.PlayerStateClimbOver) {
 				is_LookRot = false;
 				m_PrevRot = transform.rotation;
 			} else {
