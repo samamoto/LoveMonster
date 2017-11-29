@@ -146,6 +146,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: WallOnRight
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -2014,7 +2020,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: WallRun
-  m_Speed: 1.2
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101482430974077862}
@@ -2025,12 +2031,12 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
+  m_MirrorParameterActive: 1
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bde466a5c0ff540f6b641a38850daaf7, type: 3}
+  m_Motion: {fileID: 7400002, guid: a9af35dbef0f3124ea4376395ef8f336, type: 3}
   m_Tag: WallRun
   m_SpeedParameter: 
-  m_MirrorParameter: 
+  m_MirrorParameter: WallOnRight
   m_CycleOffsetParameter: 
 --- !u!1102 &1102965011407533576
 AnimatorState:

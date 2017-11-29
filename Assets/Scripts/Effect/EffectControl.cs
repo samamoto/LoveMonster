@@ -7,8 +7,8 @@ public class EffectControl : MonoBehaviour {
 	public GameObject	eff_itemHit = null; // アイテム取得.
 	public GameObject eff_speedUp = null;   // スピードアップ.
 	public GameObject eff_powUp = null;   // パワーアップ.
-	public GameObject eff_dust = null;		// 土埃.
-
+	public GameObject eff_dust = null;      // 土埃.
+	public GameObject eff_burst = null;		// 爆発
 	// ================================================================ //
 	// MonoBehaviour からの継承.
 
@@ -103,6 +103,21 @@ public class EffectControl : MonoBehaviour {
 		go.transform.position = position;
 	}
 
+	/// <summary>
+	/// 爆発エフェクト
+	/// </summary>
+	public void createBurst(Vector3 vec) {
+		GameObject go = Instantiate(this.eff_burst) as GameObject;
+
+		go.AddComponent<Effect>();
+
+		Vector3 position = vec;
+
+		// 位置調整
+		//position.y += 0.1f;
+
+		go.transform.position = position;
+	}
 	// ================================================================ //
 	//																	//
 	// ================================================================ //

@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     //wallrun varaiables 
     public float wallRunSpeedFactor = 10.0f;
     public float minWallRunSpeed = 5.0f; // minimum speed player has to move in order to maintain wall run
-    public float maxWallRunTime = 0.6f; // how long a player can wall run
+    public float maxWallRunTime = 0.1f; // how long a player can wall run
     private bool wallRunActivated = false; // set in Update() and used to activate wallRun in FixedUpdate()
     private bool wallRunTimeUp = false; // controlling flag for handling when wall run time times up
 
@@ -336,9 +336,18 @@ public class PlayerManager : MonoBehaviour
         float leftRightMatch = Vector3.Dot(Vector3.right, charForward);
         float frontBackMatch = Vector3.Dot(Vector3.forward, charForward);
 
-        // TODO: Lots of black magic hard coding to get right numbers for horizontal and frontal wall running, FIX PLZ!
-        //       theres got to be a more elegant method
-        if (frontBackMatch < leftRightMatch) // player is facing on the x axis, for horizontal walls
+		if (direction == 1) // wall is on the players right side
+		{
+			GetComponent<Animator>().SetBool("WallOnRight", true);
+		} else // wall is on the players left side
+		  {
+			GetComponent<Animator>().SetBool("WallOnRight", false);
+		}
+
+		// TODO: Lots of black magic hard coding to get right numbers for horizontal and frontal wall running, FIX PLZ!
+		//       theres got to be a more elegant method
+		/*
+		if (frontBackMatch < leftRightMatch) // player is facing on the x axis, for horizontal walls
         {
             charForward = Vector3.Cross(character.transform.up, hitInfo.normal);
             float speed = Math.Abs(h);
@@ -362,6 +371,7 @@ public class PlayerManager : MonoBehaviour
 
             rb.velocity = charForward * speed * wallRunSpeedFactor; // use the v value of stick to affect frontal wall run
         }
+		*/
         // attach player to the wall
         character.transform.position = Vector3.Lerp(character.transform.position, wallRunPoint, time);
         rb.useGravity = false; // turn off gravity so the player doesn't fall during wall run
