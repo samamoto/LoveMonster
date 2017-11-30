@@ -8,56 +8,32 @@ public class CollisionTrigger : MonoBehaviour
 
     void Start()
     {
-        float weight;
-
-        foreach (Rigidbody RigidB in GameObject.FindObjectsOfType(typeof(Rigidbody)))
-        {
-
-            BoxCollider Box = RigidB.GetComponent<BoxCollider>();
-            RigidB.name = RigidB.GetInstanceID().ToString();
-            RigidB.Sleep();
-
-            Box.size = Box.size / 1.5f;
-            weight = Box.size.x + Box.size.y + Box.size.z;
-            if (weight == 0)
-            {
-                Destroy(RigidB);
-            }
-            else
-                RigidB.GetComponent<Rigidbody>().mass = weight * 10.0f;
-
-        }
-        InvokeRepeating("checkRigidBodySpeed", 0.5f, 1.0f);
+       
     }
 
+    //Explosionのタグに当たった時
     void OnCollisionEnter(Collision other)
     {
-
         if (other.collider.tag.ToString() == "Explosion")
         {
             Dest(other.collider.gameObject.name);
-            this.GetComponent<Animation>().Play();
             Coll = true;
         }
     }
 
+    //触れられた場所を崩す
     void Dest(string Obj)
     {
-
         Rigidbody RigidObj = GameObject.Find(Obj).GetComponent<Rigidbody>();
+        BoxCollider Box = GameObject.Find(Obj).GetComponent<BoxCollider>();
         if (RigidObj && Coll == true)
         {
+            Box.isTrigger = true;
             RigidObj.isKinematic = false;
-            RigidObj.WakeUp();
         }
     }
 
-    void OnCollisionStay(Collision other)
-    {
-        if (other.collider.tag.ToString() == "Explosion")
-            this.GetComponent<Animation>().Play();
-    }
-
+    //何もしていない間は処理できなくする
     void OnCollisionExit(Collision other)
     {
         Coll = false;
