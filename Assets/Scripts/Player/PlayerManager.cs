@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
 	 private Vector3 move;
 	 private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
 
+	private Vector3 m_RestartPoint = Vector3.zero;
 
 
     //david add
@@ -239,6 +240,13 @@ public class PlayerManager : MonoBehaviour
 		return m_PlayerID;
 	}
 
+	/// <summary>
+	/// プレイヤーのリスタート位置をセットする.上書き
+	/// </summary>
+	/// <returns>プレイヤーID</returns>
+	public void setRestartPosition(Vector3 vec) {
+		m_RestartPoint = vec;
+	}
 
 	//============================================================
 	// ==2017/10/31 Oyama Add
@@ -272,6 +280,19 @@ public class PlayerManager : MonoBehaviour
 
 	}
 
+	// 2017年12月01日 oyama add
+	/// <summary>
+	/// プレイヤーがリスタートする時の処理
+	/// Todo:エフェクトとかもいる
+	/// </summary>
+	public void restartPlayer() {
+		EffectControl eff = EffectControl.get();
+		transform.position = m_RestartPoint;
+		eff.createItemHit(m_RestartPoint);	// 仮にエフェクト再生
+	}
+
+
+	//============================================================
 	/// <summary>
 	/// プレイヤー同士が接触したときの処理
 	/// </summary>

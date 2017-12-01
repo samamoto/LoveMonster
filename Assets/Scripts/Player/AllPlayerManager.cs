@@ -77,22 +77,12 @@ public class AllPlayerManager : MonoBehaviour {
 
 		  // アクションの更新(全員分)
 
-
-
-		  // debug
-		  // 消えてしまえ
-		  //for (int i = 0; i < ConstPlayerParameter.PlayerMax; i++) {
-				//if (m_PlayerManager[i] == null) {
-				//	 resetAllPlayerManager();
-				//	 break;
-				//}
-		  //}
-		  //
 		  for (int i = 0; i < m_PlayerNum; i++) {
 				// デバッグリスタート
-				if(m_PlayerManager[i].transform.position.y < -20.0f) {
-					 //Debug.Break();
-					 SceneChange.Instance._SceneLoadString("GameSceneProto");  //2017年11月22日 oyama add
+				if(m_PlayerManager[i].transform.position.y < -15.0f) {
+
+					m_PlayerManager[i].restartPlayer();	// 2017/12/01 oyama add
+					 //SceneChange.Instance._SceneLoadString("GameSceneProto");  //2017年11月22日 oyama add
 				}
 			//m_PlayerActionNames[i] = m_PlayerManager[i].getPlayerAction();
 		}
