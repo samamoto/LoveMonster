@@ -18,8 +18,7 @@ public class RollingSystem : MonoBehaviour {
 	void Update () {
         flag = animator.GetBool("is_Grounded");
 
-		if (Input.GetButton("Fire2")
-            &&flag)
+		if (Input.GetButton("Fire2"))
         {
             Debug.Log("Rolling");
             animator.SetBool("is_Rolling", true);
