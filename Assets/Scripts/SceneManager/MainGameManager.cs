@@ -32,7 +32,6 @@ public class MainGameManager : MonoBehaviour {
     private void Update()
     {
 
-		
 		// AllPlayerMgr側でPauseキー押されたことを検知
     }
 
