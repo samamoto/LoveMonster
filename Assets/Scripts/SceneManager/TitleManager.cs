@@ -17,6 +17,6 @@ public class TitleManager : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
-        m_ScreenChange._DebugInput();
+        //m_ScreenChange._DebugInput();
     }
 }

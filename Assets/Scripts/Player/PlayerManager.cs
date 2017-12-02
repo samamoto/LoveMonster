@@ -30,12 +30,11 @@ public class PlayerManager : MonoBehaviour
 	 private Vector3 move;
 	 private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
 
-	private Vector3 m_RestartPoint = Vector3.zero;
+	private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
 
-
-    //david add
-    //wallrun varaiables 
-    public float wallRunSpeedFactor = 10.0f;
+	//david add
+	//wallrun varaiables 
+	public float wallRunSpeedFactor = 10.0f;
     public float minWallRunSpeed = 5.0f; // minimum speed player has to move in order to maintain wall run
     public float maxWallRunTime = 0.1f; // how long a player can wall run
     private bool wallRunActivated = false; // set in Update() and used to activate wallRun in FixedUpdate()
@@ -78,8 +77,10 @@ public class PlayerManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        //david add
-        if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
+
+	
+		//david add
+		if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
         { 
             wallRunTimeUp = false;
         }
@@ -141,27 +142,13 @@ public class PlayerManager : MonoBehaviour
 		//get input from sticks and buttons
 		if (Controller.Controller.GetConnectControllers() > 0) {
 			h = m_Controller.GetAxisRaw(Axis.L_x);
-			v = m_Controller.GetAxisRaw(Axis.L_y); // なんか反転しちゃう
-											  //float v = Input.GetAxisRaw("Vertical");	// InputManagerのInvertがチェック入ってると反転
+			v = m_Controller.GetAxisRaw(Axis.L_y);
 		} else {
 			// つながってないとき
 			h = Input.GetAxis("Horizontal");
 			v = Input.GetAxis("Vertical");
 		}
-		//ToDo:鹿島
-		//インプットを作ったやつに変える
-		//Read in inputs and set true/false
-		// -true only if the button is pressed and the character is in the ActionArea)
-		/*
-#if DEBUG
-		crouch = Input.GetKey(KeyCode.C);
-		slide = Input.GetKey(KeyCode.M) && (move.magnitude > 0);
-		vault = Input.GetKey(KeyCode.V);
-		climb = Input.GetKey(KeyCode.Z);
-		wallrun = Input.GetKey(KeyCode.X) && (move.magnitude > 0);
-#endif
-		*/
-		// calculate move direction to pass to character
+
 		if (cam != null) {
 			// calculate camera relative direction to move:
 			camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
