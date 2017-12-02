@@ -3850,11 +3850,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114517979316800966, guid: 4be0571ae305a134ca2db78cf4481d26,
-        type: 2}
-      propertyPath: m_AxisCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4746584713846240, guid: 4be0571ae305a134ca2db78cf4481d26, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3886,26 +3881,6 @@ Prefab:
     - target: {fileID: 4746584713846240, guid: 4be0571ae305a134ca2db78cf4481d26, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114070376517417806, guid: 4be0571ae305a134ca2db78cf4481d26,
-        type: 2}
-      propertyPath: smoothTime.Array.data[5]
-      value: 2.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 114517979316800966, guid: 4be0571ae305a134ca2db78cf4481d26,
-        type: 2}
-      propertyPath: m_AxisCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114517979316800966, guid: 4be0571ae305a134ca2db78cf4481d26,
-        type: 2}
-      propertyPath: m_AxisCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114517979316800966, guid: 4be0571ae305a134ca2db78cf4481d26,
-        type: 2}
-      propertyPath: m_AxisCurve.m_RotationOrder
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4be0571ae305a134ca2db78cf4481d26, type: 2}

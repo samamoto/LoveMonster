@@ -78,6 +78,12 @@ public class PlayerManager : MonoBehaviour
 	void Update()
     {
 
+		// 状態管理
+		bool Roll = m_animator.GetBool("is_Rolling");
+
+		if (m_MoveState.isMove()) {
+			return;
+		}
 	
 		//david add
 		if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
@@ -106,19 +112,12 @@ public class PlayerManager : MonoBehaviour
         }
 
         // MoveStateの状態確認
-        if (!m_MoveState.isMove()){
-			if (!jump) {
-				// キーボードのほうは全員でジャンプする（キーボードはID管理してない）
-				if (m_Controller.GetButtonDown(Button.A) || Input.GetKeyDown(KeyCode.Space)) {
-					//jump = m_Controller.GetButtonDown(Controller.Button.A);
-					jump = true;
-				}
-				m_animator.SetBool("is_Jump", jump);    // oyama add
+		if (!jump && !Roll) {
+			// キーボードのほうは全員でジャンプする（キーボードはID管理してない）
+			if (m_Controller.GetButtonDown(Button.A) || Input.GetKeyDown(KeyCode.Space)) {
+				jump = true;
 			}
-		} else {
-			//m_MoveState.Update();   // 外部から操作を受け付け
-			return;                 // なにもしない
-
+			m_animator.SetBool("is_Jump", jump);    // oyama add
 		}
     }
 
@@ -250,14 +249,14 @@ public class PlayerManager : MonoBehaviour
 	/// <param name="name">タグ名</param>
 	public void PlayAction(string name) {
 
-		if ((m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) || Input.GetKey(KeyCode.Z)) {
+		if ((m_Controller.GetButtonDown(Controller.Button.A) &&
+			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) || Input.GetKey(KeyCode.Z)) {
 		//if (m_Controller.GetButtonDown(Controller.Button.X) || Input.GetKey(KeyCode.Z)) {
 
 			for (MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
 				if (m_MoveState.StateDictionary[m] == name) {
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
-					//m_animator.Play(name);
 					m_animator.SetBool("is_" + name, true);
 					m_MoveState.changeState(m, name);
 				}
