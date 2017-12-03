@@ -7,47 +7,80 @@ using Controller;
 /// 2017年11月22日 oyama 右スティック回転を暫定的に追加
 /// 2017年11月23日 David PS4コントローラで対応に変更、調整できるように
 /// 2017年11月23日 oyama AllCameraに調整値を移動,コントローラとの名前一致で回転できるように
+/// 2017年11月25日 kashima 全体的に改変
 /// </summary>
 
+public class ChaseCamera : MonoBehaviour
+{
+    public GameObject chaseObject;
+    public Vector3 Offset;
 
-public class ChaseCamera : MonoBehaviour {
-    public Transform target;
-    public int idNumber; // id of the player(1-4)
-    private float verticalSensitivity;
-    private float horizontalSensitivity;
+    private Controller.Controller chaseObjController;
 
-    private Vector3 offset;
-	public string ControllerName = "Controller (Gamepad F310)";
-	GameObject parent;
+	private PauseManager m_Pause;
 
-	// Use this for initialization
-	void Start () {
-		//transform.position = target.position + offset;
-		AllCameraManager gm = transform.root.GetComponent<AllCameraManager>();
-		offset = gm.offset;
-		verticalSensitivity = gm.verticalSensitivity;
-		horizontalSensitivity = gm.horizontalSensitivity;
-		transform.position = target.position + offset;
-		parent = transform.parent.gameObject;
+    [SerializeField, Tooltip("距離")] private float distance = 7.0f;
+    [SerializeField, Tooltip("最小距離")] private float minDistance = 5.0f;
+    [SerializeField, Tooltip("最大距離")] private float maxDistance = 20.0f;
+    [SerializeField, Tooltip("移動距離")] private float deltaDistance = 1.0f;
 
+    [SerializeField, Tooltip("仰角")] private float polerAngle = 60.0f;
+    [SerializeField, Tooltip("最小仰角")] private float minPolerAngle = 5.0f;
+    [SerializeField, Tooltip("最大仰角")] private float maxPolerAngle = 75.0f;
+
+    [SerializeField, Tooltip("方位角")] private float azimuthalAlngle = 270;
+    [SerializeField, Tooltip("x軸感度")] private float Cont_X_Secsitivity = 3.0f;
+    [SerializeField, Tooltip("y軸感度")] private float Cont_Y_Secsitivity = 3.0f;
+    [SerializeField, Tooltip("移動閾値")] private float Cont_Threshold = 0.1f;
+
+    // Use this for initialization
+    private void Start()
+    {
+        ///コントローラ取得
+        this.chaseObjController = chaseObject.GetComponent<Controller.Controller>();
+		m_Pause = GameObject.Find("PauseManager").GetComponent<PauseManager>();
     }
 
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
-    void LateUpdate()
+    private void LateUpdate()
     {
-        float v = Input.GetAxis("Vertical2");
-        float h = Input.GetAxis("Horizontal2");
-        //float v = Input.GetAxis("Vertical" + idNumber); // for use later with multiplayer
-        //float h = Input.GetAxis("Horizontal" + idNumber);	// Vertical1~4の設定がいる（将来的にPlayerManagerから値渡すはず）
-															// また、同一コントローラ使う場合設定が被って他人の画面が動くようになるから一度処理を止める
+		if (m_Pause.getPauseState()) return;
 
-        parent.transform.position = target.position;
-		//parent.transform.localEulerAngles += new Vector3(v * verticalSensitivity, h * horizontalSensitivity, 0);
-		// コントローラーが接続されていなければ回転しない
-		// 接続されているコントローラが手持ちの物と一緒なら
-		if(Controller.Controller.GetConnectController() && Controller.Controller.GetConnectControllerName(idNumber) == ControllerName)
-			parent.transform.localEulerAngles += new Vector3(v * verticalSensitivity, h * horizontalSensitivity, 0);
-		//this.transform.position = target.position + offset;
+		Vector2 angle = new Vector2(
+            chaseObjController.GetAxisRawThreshold(Controller.Axis.R_x, Cont_Threshold),
+            chaseObjController.GetAxisRawThreshold(Controller.Axis.R_y, Cont_Threshold));
 
-	}
+        updateAngle(angle);
+
+        if (chaseObjController.GetButtonDown(Controller.Button.RStick))
+        {
+            distance += deltaDistance;
+            if (distance > maxDistance)
+                distance = minDistance;
+        }
+
+        Vector3 lookAtPos = chaseObject.transform.position + Offset;
+        this.updatePosition(lookAtPos);
+        transform.LookAt(lookAtPos);
+    }
+
+    private void updateAngle(Vector2 angle)
+    {
+        angle.x = azimuthalAlngle - angle.x * Cont_X_Secsitivity;
+        ///360度を超えた時0に戻る
+        azimuthalAlngle = Mathf.Repeat(angle.x, 360);
+
+        angle.y = polerAngle - angle.y * Cont_Y_Secsitivity;
+        polerAngle = Mathf.Clamp(angle.y, minPolerAngle, maxPolerAngle);
+    }
+
+    private void updatePosition(Vector3 lookat)
+    {
+        var da = azimuthalAlngle * Mathf.Deg2Rad;
+        var dp = polerAngle * Mathf.Deg2Rad;
+        this.transform.position = new Vector3(
+            lookat.x + distance * Mathf.Sin(dp) * Mathf.Cos(da),
+            lookat.y + distance * Mathf.Cos(dp),
+       lookat.z + distance * Mathf.Sin(dp) * Mathf.Sin(da));
+    }
 }

@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1963691229557796}
+  m_IsPrefabParent: 1
+--- !u!1 &1963691229557796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4937386662406196}
+  - component: {fileID: 114504595450560590}
+  m_Layer: 0
+  m_Name: _QuickSet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4937386662406196
+Transform:
+  m_ObjectHideFlags: 8
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1963691229557796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114504595450560590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1963691229557796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88feefde72da499ca436f0cacb7c96a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasBeenInitialized: 1
+  ObjectGroups:
+  - GOs:
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: e79bfc574e77688468cf013fe4f17a14, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: 1bc14113034ab5c458d4022405dbb87d, type: 2}
+    - IsSelected: 1
+      GO: {fileID: 100000, guid: fc1a7d4836f306648b724e5695e0bc59, type: 2}
+    GroupParent: {fileID: 0}
+    IsOpen: 1
+    GroupName: Block
+  - GOs:
+    - IsSelected: 0
+      GO: {fileID: 1138342071823360, guid: d0e69a23f7bf05a4ba1edc0d3b732355, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1576873043477720, guid: b1e1a934d50634a4fa29d11fad47cebd, type: 2}
+    GroupParent: {fileID: 0}
+    IsOpen: 1
+    GroupName: Bridge
+  - GOs:
+    - IsSelected: 0
+      GO: {fileID: 1708576523022976, guid: 9888b89127296544d8e289757f3d24e9, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1058210814286184, guid: 31401ab839caa03499232028602e874d, type: 2}
+    GroupParent: {fileID: 0}
+    IsOpen: 1
+    GroupName: Stairs
+  - GOs:
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: 61fc27a5772baad4c9a071654e0daec4, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: 6119b1bcc9acffe4b961753fd2c075fb, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: 6cfad68802c558f4086213acbae117ca, type: 2}
+    GroupParent: {fileID: 0}
+    IsOpen: 1
+    GroupName: Floors
+  - GOs:
+    - IsSelected: 0
+      GO: {fileID: 1556607509100966, guid: 46d0d03b7197d654986e641da63f4bb4, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1750121629297360, guid: 3281849e2646df4488fe34bf19a14e85, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1210666825371280, guid: bc1c6859af07b4445a4a63774f95dbb1, type: 2}
+    GroupParent: {fileID: 0}
+    IsOpen: 1
+    GroupName: Ramps
+  - GOs:
+    - IsSelected: 0
+      GO: {fileID: 1375339908483564, guid: afab2d4afd422ec439a83bfc758a3325, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1375339908483564, guid: 810f4d9b1644c91499a332dc6bdc829a, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1375339908483564, guid: 17449ba66e1552746b221b1bad202858, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1312944006041136, guid: 5dc08085940ea8d489c366ce37b5b0c0, type: 2}
+    GroupParent: {fileID: 0}
+    IsOpen: 1
+    GroupName: Action
+  SelectedObjectId: {x: 0, y: 2}
+  RayMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  Offset: {x: 0, y: 0, z: 0}
+  Rotation: {x: 0, y: 0, z: 0}
+  Scale: {x: 1, y: 1, z: 1}
+  SnapX: 1
+  SnapY: 1
+  SnapZ: 1
+  AutoSetX: 0
+  AutoSetY: 0
+  AutoSetZ: 0
+  AutoXPos: 0
+  AutoYPos: 0
+  AutoZPos: 0
+  GridSize: 200
+  DrawXY: 0
+  DrawXZ: 1
+  DrawYZ: 0

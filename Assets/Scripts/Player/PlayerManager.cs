@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;	// SendMessageの受信側
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -8,7 +9,7 @@ using Controller;
 [RequireComponent(typeof(ThirdPersonCharacter))]
 [RequireComponent(typeof(MoveState))]
 [RequireComponent(typeof(Controller.Controller))]
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, PlayerReciever
 {
 	 // PlayerのID
 	 public int m_PlayerID = 1; // 今は一人しかいない
@@ -30,13 +31,13 @@ public class PlayerManager : MonoBehaviour
 	 private Vector3 move;
 	 private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
 
+	private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
 
-
-    //david add
-    //wallrun varaiables 
-    public float wallRunSpeedFactor = 10.0f;
+	//david add
+	//wallrun varaiables 
+	public float wallRunSpeedFactor = 10.0f;
     public float minWallRunSpeed = 5.0f; // minimum speed player has to move in order to maintain wall run
-    public float maxWallRunTime = 0.6f; // how long a player can wall run
+    public float maxWallRunTime = 0.1f; // how long a player can wall run
     private bool wallRunActivated = false; // set in Update() and used to activate wallRun in FixedUpdate()
     private bool wallRunTimeUp = false; // controlling flag for handling when wall run time times up
 
@@ -77,8 +78,16 @@ public class PlayerManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        //david add
-        if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
+
+		// 状態管理
+		bool Roll = m_animator.GetBool("is_Rolling");
+
+		if (m_MoveState.isMove()) {
+			return;
+		}
+	
+		//david add
+		if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
         { 
             wallRunTimeUp = false;
         }
@@ -104,19 +113,12 @@ public class PlayerManager : MonoBehaviour
         }
 
         // MoveStateの状態確認
-        if (!m_MoveState.isMove()){
-			if (!jump) {
-				// キーボードのほうは全員でジャンプする（キーボードはID管理してない）
-				if (m_Controller.GetButtonDown(Button.A) || Input.GetKeyDown(KeyCode.Space)) {
-					//jump = m_Controller.GetButtonDown(Controller.Button.A);
-					jump = true;
-				}
-				m_animator.SetBool("is_Jump", jump);    // oyama add
+		if (!jump && !Roll) {
+			// キーボードのほうは全員でジャンプする（キーボードはID管理してない）
+			if (m_Controller.GetButtonDown(Button.A) || Input.GetKeyDown(KeyCode.Space)) {
+				jump = true;
 			}
-		} else {
-			//m_MoveState.Update();   // 外部から操作を受け付け
-			return;                 // なにもしない
-
+			m_animator.SetBool("is_Jump", jump);    // oyama add
 		}
     }
 
@@ -140,27 +142,13 @@ public class PlayerManager : MonoBehaviour
 		//get input from sticks and buttons
 		if (Controller.Controller.GetConnectControllers() > 0) {
 			h = m_Controller.GetAxisRaw(Axis.L_x);
-			v = m_Controller.GetAxisRaw(Axis.L_y); // なんか反転しちゃう
-											  //float v = Input.GetAxisRaw("Vertical");	// InputManagerのInvertがチェック入ってると反転
+			v = m_Controller.GetAxisRaw(Axis.L_y);
 		} else {
 			// つながってないとき
 			h = Input.GetAxis("Horizontal");
 			v = Input.GetAxis("Vertical");
 		}
-		//ToDo:鹿島
-		//インプットを作ったやつに変える
-		//Read in inputs and set true/false
-		// -true only if the button is pressed and the character is in the ActionArea)
-		/*
-#if DEBUG
-		crouch = Input.GetKey(KeyCode.C);
-		slide = Input.GetKey(KeyCode.M) && (move.magnitude > 0);
-		vault = Input.GetKey(KeyCode.V);
-		climb = Input.GetKey(KeyCode.Z);
-		wallrun = Input.GetKey(KeyCode.X) && (move.magnitude > 0);
-#endif
-		*/
-		// calculate move direction to pass to character
+
 		if (cam != null) {
 			// calculate camera relative direction to move:
 			camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
@@ -239,6 +227,13 @@ public class PlayerManager : MonoBehaviour
 		return m_PlayerID;
 	}
 
+	/// <summary>
+	/// プレイヤーのリスタート位置をセットする.上書き
+	/// </summary>
+	/// <returns>プレイヤーID</returns>
+	public void setRestartPosition(Vector3 vec) {
+		m_RestartPoint = vec;
+	}
 
 	//============================================================
 	// ==2017/10/31 Oyama Add
@@ -250,27 +245,69 @@ public class PlayerManager : MonoBehaviour
 	//============================================================
 
 	/// <summary>
-	/// 一個にまとめた
+	/// アクションを再生する
 	/// </summary>
 	/// <param name="name">タグ名</param>
 	public void PlayAction(string name) {
+		PlayAction(name, Button.A);
+	}
 
-		if (m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
-		//if (m_Controller.GetButtonDown(Controller.Button.X) || Input.GetKey(KeyCode.Z)) {
+	/// <summary>
+	/// アクションを再生する
+	/// </summary>
+	/// <param name="name">タグ名</param>
+	/// <param name="button">実行するときに使うボタン</param>
+	public void PlayAction(string name, Controller.Button button) {
 
-			for (MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
+		if ( (m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z) ) &&
+			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+
+			for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
 				if (m_MoveState.StateDictionary[m] == name) {
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
+					m_animator.SetBool("is_" + name, true);
 					m_animator.Play(name);
 					m_MoveState.changeState(m, name);
 				}
 			}
-
 		}
-
 	}
 
+	/// <summary>
+	/// アクションを再生する
+	/// </summary>
+	/// <param name="name">タグ名</param>
+	/// <param name="button">実行するときに使うボタン</param>
+	public void PlayAction(string name, Controller.Button button, Vector3[] move) {
+		// 指定されたボタンが押され、現在の再生アニメーションがアクション予定と違う
+		if ((m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z)) &&
+			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+			m_MoveState.setMovePosition(move);
+			for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--) {
+				// Dictionaryと検索してタグを検索
+				if (m_MoveState.StateDictionary[m] == name) {
+					// MoveStatementのenumに変換したiと検出したタグ名を投げる
+					m_animator.SetBool("is_" + name, true);
+					m_animator.Play(name);
+					m_MoveState.changeState(m, name);
+				}
+			}
+		}
+	}
+	// 2017年12月01日 oyama add
+	/// <summary>
+	/// プレイヤーがリスタートする時の処理
+	/// Todo:エフェクトとかもいる
+	/// </summary>
+	public void restartPlayer() {
+		EffectControl eff = EffectControl.get();
+		transform.position = m_RestartPoint;
+		eff.createItemHit(m_RestartPoint);	// 仮にエフェクト再生
+	}
+
+
+	//============================================================
 	/// <summary>
 	/// プレイヤー同士が接触したときの処理
 	/// </summary>
@@ -335,9 +372,18 @@ public class PlayerManager : MonoBehaviour
         float leftRightMatch = Vector3.Dot(Vector3.right, charForward);
         float frontBackMatch = Vector3.Dot(Vector3.forward, charForward);
 
-        // TODO: Lots of black magic hard coding to get right numbers for horizontal and frontal wall running, FIX PLZ!
-        //       theres got to be a more elegant method
-        if (frontBackMatch < leftRightMatch) // player is facing on the x axis, for horizontal walls
+		if (direction == 1) // wall is on the players right side
+		{
+			GetComponent<Animator>().SetBool("WallOnRight", true);
+		} else // wall is on the players left side
+		  {
+			GetComponent<Animator>().SetBool("WallOnRight", false);
+		}
+
+		// TODO: Lots of black magic hard coding to get right numbers for horizontal and frontal wall running, FIX PLZ!
+		//       theres got to be a more elegant method
+		/*
+		if (frontBackMatch < leftRightMatch) // player is facing on the x axis, for horizontal walls
         {
             charForward = Vector3.Cross(character.transform.up, hitInfo.normal);
             float speed = Math.Abs(h);
@@ -361,6 +407,7 @@ public class PlayerManager : MonoBehaviour
 
             rb.velocity = charForward * speed * wallRunSpeedFactor; // use the v value of stick to affect frontal wall run
         }
+		*/
         // attach player to the wall
         character.transform.position = Vector3.Lerp(character.transform.position, wallRunPoint, time);
         rb.useGravity = false; // turn off gravity so the player doesn't fall during wall run
