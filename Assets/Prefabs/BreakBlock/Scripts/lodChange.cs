@@ -19,5 +19,4 @@ public class lodChange : MonoBehaviour
             this.gameObject.SetActive(false);
         }
     }
-
 }

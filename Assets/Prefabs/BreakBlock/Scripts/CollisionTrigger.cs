@@ -3,41 +3,45 @@ using System.Collections;
 
 public class CollisionTrigger : MonoBehaviour
 {
-
-    private bool Coll = false;
+    private bool coll = false;      //処理をするかしないか
+    public float breakBlockTime;    //ブロックの崩れる時間を指定
 
     void Start()
     {
-       
+
     }
 
-    //Explosionのタグに当たった時
-    void OnCollisionEnter(Collision other)
+    //Explosionのタグに触れている間処理をする
+    void OnCollisionStay(Collision other)
     {
         if (other.collider.tag.ToString() == "Explosion")
         {
             Dest(other.collider.gameObject.name);
-            Coll = true;
+            coll = true;
         }
     }
 
-    //触れられた場所を崩す
+    //触れている場所に対しての処理
     void Dest(string Obj)
     {
         Rigidbody RigidObj = GameObject.Find(Obj).GetComponent<Rigidbody>();
         BoxCollider Box = GameObject.Find(Obj).GetComponent<BoxCollider>();
-        if (RigidObj && Coll == true)
+        BreakBlockStatus  status = GameObject.Find(Obj).GetComponent<BreakBlockStatus>();
+
+        //指定の時間を超えるとブロックを落とす処理
+        if (status.breakBlockTime >= breakBlockTime)
         {
-            Box.isTrigger = true;
-            RigidObj.isKinematic = false;
-        }
+            if (RigidObj && coll == true)
+            {
+                Box.isTrigger = true;
+                RigidObj.isKinematic = false;
+            }
+        }   
     }
 
     //何もしていない間は処理できなくする
     void OnCollisionExit(Collision other)
     {
-        Coll = false;
+        coll = false;
     }
-
-
 }
