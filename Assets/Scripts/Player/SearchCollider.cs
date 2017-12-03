@@ -16,6 +16,8 @@ public class SearchCollider : MonoBehaviour {
 	private Ray m_DwRay;                    // 下に飛ばしてJump中の情報などを得る
 	public float groundDist;				// 下までの距離
 	public float groundDistMax = 10.0f;    // 探知距離の長さ
+	private float old_groundDist;           // 落下中かどうかを検証するための値
+	Animator m_Animator;
 
 	// 取得可能なDictionary
 	//!GameObjectのUniqueな値intと、距離floatを取り、齟齬がないように管理する
@@ -23,6 +25,7 @@ public class SearchCollider : MonoBehaviour {
 #if DEBUG
 	public List<string> dbg_DistDic;
 #endif
+
 	// Use this for initialization
 	private void Start() {
 		// プレイヤーの下側にRayを出す
@@ -30,6 +33,7 @@ public class SearchCollider : MonoBehaviour {
 #if DEBUG
 		dbg_DistDic = new List<string>();
 #endif
+		m_Animator = transform.parent.GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -37,6 +41,8 @@ public class SearchCollider : MonoBehaviour {
 		//transform.position = transform.parent.position + new Vector3(0f, 0.45f, 0f);
 		RaycastHit hit = new RaycastHit();
 		m_DwRay = new Ray(transform.parent.position + new Vector3(0f, 0.1f, 0f), Vector3.down);
+
+		old_groundDist = groundDist;
 
 		// Rayが衝突したかを検知する
 		if (Physics.Raycast(m_DwRay, out hit, groundDistMax)) {
@@ -58,7 +64,8 @@ public class SearchCollider : MonoBehaviour {
 		// 親のプレイヤーを基準に、エリアに入った物の距離を全て取得し、格納していく
 		// ただしオブジェクト名にAction Areaがついていたら
 		int id = other.GetInstanceID();
-		if (other.name == "ActionArea") {
+		string word = "ActionArea";	// 部分一致検索用-1は見つからなかった
+		if (other.name.IndexOf(word) != -1) {
 			m_DistDic.TryGetValueEx(id, 0.0f);	// 先にNullと初期値格納
 			m_DistDic[id] = Vector3.Distance(transform.parent.position, other.transform.position);  // 距離を格納
 #if DEBUG
@@ -121,8 +128,29 @@ public class SearchCollider : MonoBehaviour {
 		return dist.ToArray();
 	}
 
+	/**
+	 * @brief <summary>地上までの距離を取得</summary>
+	 * @return 距離
+	 */
+	public float GetGroundDistance() {
+		return groundDist;
+	}
 
+	/**
+	 * @brief <summary>プレイヤーがJump中かどうか</summary>
+	 * @return<returns>-1:落下/0:地上/1:Jump</returns>
+	 */
+	 public int GetPlayerJump() {
+		// 地上なら0
+		if (m_Animator.GetBool("is_Grounded") == true)
+			return 0;
+		if(old_groundDist < groundDist) {
+			return 1;
+		}
+		return -1;
+	}
 }
+
 /**
  * @fn
  * ここに関数の説明を書く

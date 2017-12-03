@@ -13,6 +13,7 @@ public class MainGameManager : MonoBehaviour {
 		CountDown,
 		Game,
 		Pause,
+		Goal,
 		None,
 	};
 
@@ -31,8 +32,6 @@ public class MainGameManager : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
-
-		
 		// AllPlayerMgr側でPauseキー押されたことを検知
     }
 
@@ -46,9 +45,41 @@ public class MainGameManager : MonoBehaviour {
 
 	/// <summary>
 	/// プレイヤーが死んだ、落ちたときにする処理
+	/// AllPlayerManagerから落ちたプレイヤーのIDが投げられる
 	/// </summary>
-	private void PlayerDead() {
-		
+	public void isPlayerDead(int id, Vector3 fallPos) {
+		// べつのマネージャと連携するとか
+		// 誰かが落ちたら1以上
+		// 次回フレームからリスタート場所
+		if (id > 0) {
+
+		}
+	}
+
+	/// <summary>
+	/// ゴールしたプレイヤーに対してする処理
+	/// </summary>
+	public void isPlayerGoal(int id, Vector3 goalPos) {
+		// 誰かがゴールしたら1以上
+		if(id > 0) {
+			// 演出エフェクトとかUIとか発生させるのに使う
+			// 指定時間以上経過したらシーンを遷移させる
+			// とりあえず今はさっさと遷移する
+			SceneChange.Instance._SceneLoadResult();
+		}
+	}
+
+	/// <summary>
+	/// StartとGoalまでのステージの長さを返す
+	/// </summary>
+	/// <returns>ステージの直線距離の長さ</returns>
+	public float getStageLength() {
+		Vector3 start, goal;
+		start = GameObject.Find("StartPoint").GetComponent<Transform>().position;
+		goal = GameObject.Find("GoalPoint").GetComponent<Transform>().position;
+		Debug.Log(Vector3.Distance(start, goal));
+		return Vector3.Distance(start, goal);
+
 	}
 
 }

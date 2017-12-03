@@ -17,6 +17,8 @@ public class ChaseCamera : MonoBehaviour
 
     private Controller.Controller chaseObjController;
 
+	private PauseManager m_Pause;
+
     [SerializeField, Tooltip("距離")] private float distance = 7.0f;
     [SerializeField, Tooltip("最小距離")] private float minDistance = 5.0f;
     [SerializeField, Tooltip("最大距離")] private float maxDistance = 20.0f;
@@ -36,12 +38,15 @@ public class ChaseCamera : MonoBehaviour
     {
         ///コントローラ取得
         this.chaseObjController = chaseObject.GetComponent<Controller.Controller>();
+		m_Pause = GameObject.Find("PauseManager").GetComponent<PauseManager>();
     }
 
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
     private void LateUpdate()
     {
-        Vector2 angle = new Vector2(
+		if (m_Pause.getPauseState()) return;
+
+		Vector2 angle = new Vector2(
             chaseObjController.GetAxisRawThreshold(Controller.Axis.R_x, Cont_Threshold),
             chaseObjController.GetAxisRawThreshold(Controller.Axis.R_y, Cont_Threshold));
 

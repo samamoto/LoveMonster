@@ -7,7 +7,7 @@ using Controller;
 public class PauseManager : MonoBehaviour {
 
 	public GameObject refController;	// コントローラーの参照先
-	//public GameObject[] player;			// 動きを止めるもの
+	//public GameObject[] StopObj;			// 動きを止めるもの
 
 	public GameObject OnPanel;
 
@@ -20,9 +20,16 @@ public class PauseManager : MonoBehaviour {
 	}
 
 	public void Update() {
-		if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonUp(Button.Menu)) {
-			pauseGame = !pauseGame;
-
+		if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonUp(Button.Menu) || m_Con.GetButtonDown(Button.RB)) {
+			if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonUp(Button.Menu)) {
+				pauseGame = !pauseGame;
+			}
+#if DEBUG
+			// デバッグ処理　ポーズしながらRBでシーンをリセットする
+			if (m_Con.GetButtonDown(Button.RB)) {
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 再読み込み
+			}
+#endif
 			if (pauseGame == true) {
 				OnPause();
 			} else {
@@ -45,8 +52,7 @@ public class PauseManager : MonoBehaviour {
 		}
 		this.enabled = true;    // 生き残らせる　めっちゃ力尽く
 		m_Con.enabled = true;
-		// シーンのGameObjectをすべて取得
-		// 止めろ！！
+		// timeScale=0で停止する
 		// ポーズマネージャだけ生き残らせる
 		// ⇒ポーズ完成
 		// ちゃんとやるならPlayerのコンポーネントだけ、などの対処が必要
@@ -71,6 +77,7 @@ public class PauseManager : MonoBehaviour {
 	/// ポーズ状態の確認
 	/// ただ全部止めてるので値を受け取る側はenabled = true;にすること
 	/// </summary>
+	/// <returns>true:ポーズ中</returns>
 	public bool getPauseState() {
 		return pauseGame;
 	}

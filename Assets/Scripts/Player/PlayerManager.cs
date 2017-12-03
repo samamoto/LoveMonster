@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;	// SendMessageの受信側
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -8,7 +9,7 @@ using Controller;
 [RequireComponent(typeof(ThirdPersonCharacter))]
 [RequireComponent(typeof(MoveState))]
 [RequireComponent(typeof(Controller.Controller))]
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, PlayerReciever
 {
 	 // PlayerのID
 	 public int m_PlayerID = 1; // 今は一人しかいない
@@ -78,6 +79,12 @@ public class PlayerManager : MonoBehaviour
 	void Update()
     {
 
+		// 状態管理
+		bool Roll = m_animator.GetBool("is_Rolling");
+
+		if (m_MoveState.isMove()) {
+			return;
+		}
 	
 		//david add
 		if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
@@ -106,19 +113,12 @@ public class PlayerManager : MonoBehaviour
         }
 
         // MoveStateの状態確認
-        if (!m_MoveState.isMove()){
-			if (!jump) {
-				// キーボードのほうは全員でジャンプする（キーボードはID管理してない）
-				if (m_Controller.GetButtonDown(Button.A) || Input.GetKeyDown(KeyCode.Space)) {
-					//jump = m_Controller.GetButtonDown(Controller.Button.A);
-					jump = true;
-				}
-				m_animator.SetBool("is_Jump", jump);    // oyama add
+		if (!jump && !Roll) {
+			// キーボードのほうは全員でジャンプする（キーボードはID管理してない）
+			if (m_Controller.GetButtonDown(Button.A) || Input.GetKeyDown(KeyCode.Space)) {
+				jump = true;
 			}
-		} else {
-			//m_MoveState.Update();   // 外部から操作を受け付け
-			return;                 // なにもしない
-
+			m_animator.SetBool("is_Jump", jump);    // oyama add
 		}
     }
 
@@ -245,28 +245,56 @@ public class PlayerManager : MonoBehaviour
 	//============================================================
 
 	/// <summary>
-	/// 一個にまとめた
+	/// アクションを再生する
 	/// </summary>
 	/// <param name="name">タグ名</param>
 	public void PlayAction(string name) {
+		PlayAction(name, Button.A);
+	}
 
-		if ((m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) || Input.GetKey(KeyCode.Z)) {
-		//if (m_Controller.GetButtonDown(Controller.Button.X) || Input.GetKey(KeyCode.Z)) {
+	/// <summary>
+	/// アクションを再生する
+	/// </summary>
+	/// <param name="name">タグ名</param>
+	/// <param name="button">実行するときに使うボタン</param>
+	public void PlayAction(string name, Controller.Button button) {
 
-			for (MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
+		if ( (m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z) ) &&
+			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+
+			for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
 				if (m_MoveState.StateDictionary[m] == name) {
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
-					//m_animator.Play(name);
 					m_animator.SetBool("is_" + name, true);
+					m_animator.Play(name);
 					m_MoveState.changeState(m, name);
 				}
 			}
-
 		}
-
 	}
 
+	/// <summary>
+	/// アクションを再生する
+	/// </summary>
+	/// <param name="name">タグ名</param>
+	/// <param name="button">実行するときに使うボタン</param>
+	public void PlayAction(string name, Controller.Button button, Vector3[] move) {
+		// 指定されたボタンが押され、現在の再生アニメーションがアクション予定と違う
+		if ((m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z)) &&
+			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+			m_MoveState.setMovePosition(move);
+			for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--) {
+				// Dictionaryと検索してタグを検索
+				if (m_MoveState.StateDictionary[m] == name) {
+					// MoveStatementのenumに変換したiと検出したタグ名を投げる
+					m_animator.SetBool("is_" + name, true);
+					m_animator.Play(name);
+					m_MoveState.changeState(m, name);
+				}
+			}
+		}
+	}
 	// 2017年12月01日 oyama add
 	/// <summary>
 	/// プレイヤーがリスタートする時の処理
