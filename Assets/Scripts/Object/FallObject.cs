@@ -61,7 +61,7 @@ public class FallObject : MonoBehaviour {
         touchFlag = true;
     }
 
-    //  ただのデリート処理
+    //  オブジェクトデリート
     void deleteObject(){ Destroy(this.gameObject); }
 
 }
