@@ -924,8 +924,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 110100036}
   - {fileID: 110161005}
-  m_StateMachineBehaviours:
-  - {fileID: 114864200409635204}
+  m_StateMachineBehaviours: []
   m_Position: {x: 444, y: 240, z: 0}
   m_IKOnFeet: 1
   m_WriteDefaultValues: 1
@@ -1866,7 +1865,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: KongVault
-  m_Speed: 1.2
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101992985964144254}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;	// SendMessageの受信側
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -8,7 +9,7 @@ using Controller;
 [RequireComponent(typeof(ThirdPersonCharacter))]
 [RequireComponent(typeof(MoveState))]
 [RequireComponent(typeof(Controller.Controller))]
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, PlayerReciever
 {
 	 // PlayerのID
 	 public int m_PlayerID = 1; // 今は一人しかいない
@@ -244,16 +245,24 @@ public class PlayerManager : MonoBehaviour
 	//============================================================
 
 	/// <summary>
-	/// 一個にまとめた
+	/// アクションを再生する
 	/// </summary>
 	/// <param name="name">タグ名</param>
 	public void PlayAction(string name) {
+		PlayAction(name, Button.A);
+	}
 
-		if ((m_Controller.GetButtonDown(Controller.Button.A) &&
-			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) || Input.GetKey(KeyCode.Z)) {
-		//if (m_Controller.GetButtonDown(Controller.Button.X) || Input.GetKey(KeyCode.Z)) {
+	/// <summary>
+	/// アクションを再生する
+	/// </summary>
+	/// <param name="name">タグ名</param>
+	/// <param name="button">実行するときに使うボタン</param>
+	public void PlayAction(string name, Controller.Button button) {
 
-			for (MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
+		if ( (m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z) ) &&
+			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+
+			for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
 				if (m_MoveState.StateDictionary[m] == name) {
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
@@ -261,10 +270,9 @@ public class PlayerManager : MonoBehaviour
 					m_MoveState.changeState(m, name);
 				}
 			}
-
 		}
-
 	}
+
 
 	// 2017年12月01日 oyama add
 	/// <summary>
