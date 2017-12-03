@@ -20,9 +20,16 @@ public class PauseManager : MonoBehaviour {
 	}
 
 	public void Update() {
-		if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonUp(Button.Menu)) {
-			pauseGame = !pauseGame;
-
+		if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonUp(Button.Menu) || m_Con.GetButtonDown(Button.RB)) {
+			if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonUp(Button.Menu)) {
+				pauseGame = !pauseGame;
+			}
+#if DEBUG
+			// デバッグ処理　ポーズしながらRBでシーンをリセットする
+			if (m_Con.GetButtonDown(Button.RB)) {
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 再読み込み
+			}
+#endif
 			if (pauseGame == true) {
 				OnPause();
 			} else {
