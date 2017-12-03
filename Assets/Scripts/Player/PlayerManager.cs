@@ -138,15 +138,15 @@ public class PlayerManager : MonoBehaviour
 		float h, v;
 
 		//get input from sticks and buttons
-		if (Controller.Controller.GetConnectControllers() > 0) {
-			h = m_Controller.GetAxisRaw(Axis.L_x);
-			v = m_Controller.GetAxisRaw(Axis.L_y)*-1; // なんか反転しちゃう
-											  //float v = Input.GetAxisRaw("Vertical");	// InputManagerのInvertがチェック入ってると反転
-		} else {
+		//if (Controller.Controller.GetConnectControllers() > 0) {
+		//	h = m_Controller.GetAxisRaw(Axis.L_x);
+		//	v = m_Controller.GetAxisRaw(Axis.L_y)*-1; // なんか反転しちゃう
+		//									  //float v = Input.GetAxisRaw("Vertical");	// InputManagerのInvertがチェック入ってると反転
+		//} else {
 			// つながってないとき
 			h = Input.GetAxis("Horizontal");
 			v = Input.GetAxis("Vertical");
-		}
+		//}
 		//ToDo:鹿島
 		//インプットを作ったやつに変える
 		//Read in inputs and set true/false
@@ -255,7 +255,7 @@ public class PlayerManager : MonoBehaviour
 	/// <param name="name">タグ名</param>
 	public void PlayAction(string name) {
 
-		if (m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+		if ((m_Controller.GetButtonDown(Controller.Button.A) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) || Input.GetKey(KeyCode.Z)) {
 		//if (m_Controller.GetButtonDown(Controller.Button.X) || Input.GetKey(KeyCode.Z)) {
 
 			for (MoveState.MoveStatement m=MoveState.MoveStatement.None ; m>=MoveState.MoveStatement.None-MoveState.MoveStatement.None; m--) {
