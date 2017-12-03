@@ -23,15 +23,16 @@ public class ObjectActionArea : MonoBehaviour {
 	public Dictionary<int ,MoveState> m_MoveTask = new Dictionary<int, MoveState>();
 	public List<int> m_MoveID = new List<int>();
 
-	MoveState m_MoveState;
 	PlayerManager m_PlayerMgr;
 
 	bool is_FoundActTag;
 
 	public int MaxActionNum = 4;  // 何人まで同時実行か
-	int[] actID = new int[ConstPlayerParameter.PlayerMax];		// Playerの実行順
+	int[] actID = new int[ConstPlayerParameter.PlayerMax];      // Playerの実行順
 
+	//--------------------------------------------------------------------------------
 
+	// start //
 	protected void Start() {
 		Transform[] trs;
 		trs = MovePointObject.GetComponentsInChildren<Transform>();   // くっついてるポジションを全部
@@ -44,12 +45,14 @@ public class ObjectActionArea : MonoBehaviour {
 
 	// コライダーに当たった
 	void OnTriggerEnter(Collider other) {
-		m_PlayerMgr = other.GetComponent<PlayerManager>();
+		if (other.tag == "Player") {
+			m_PlayerMgr = other.GetComponent<PlayerManager>();
 #if DEBUG
-		// 見つからなかったらLog
-		if (!is_FoundActTag)
-			Debug.Log(name + ":" + tag + " NotFound! 設定されたアクションはリストにありません");
+			// 見つからなかったらLog
+			if (!is_FoundActTag)
+				Debug.Log(name + ":" + tag + " NotFound! 設定されたアクションはリストにありません");
 #endif
+		}
 
 		// 新しく触れた物だけ状態を更新して上書きする
 		// ObjectManagerに送る
@@ -80,15 +83,20 @@ public class ObjectActionArea : MonoBehaviour {
 				m_MoveTask[id].setMovePosition(m_MovePos.ToArray());//PlayerManagerの移動予定ポイントにMovePointの値をセット
 			}
 
+			// 今いるMovePointのタグとActionAreaのタグが一致していること
+
+
+
 			// まだ実行されてない
 			if (m_MoveTask[id].isMove() == false) {
 				// ぶつかった対象にメッセージ(関数)を送る 設定タグがあるか検索
-				if (other.tag == "Player" && is_FoundActTag) {
-					//other.SendMessage("PlayAction", tag);   // 設定されたタグ名を渡してアクションを再生する関数を呼ぶ　依存性を弱めたいからSend
+				//other.SendMessage("PlayAction", tag);   // 設定されたタグ名を渡してアクションを再生する関数を呼ぶ　依存性を弱めたいからSend
+				// 移動予定オブジェクトのタグとActionAreaのタグが一致したら再生
+				if (MovePointObject.tag == tag) {
 					ExecuteEvents.Execute<PlayerReciever>(
 						target: other.gameObject,
 						eventData: null,
-						functor: (reciever, y) => reciever.PlayAction(tag, actButton)
+						functor: (reciever, y) => reciever.PlayAction(tag, actButton, m_MovePos.ToArray())
 					);
 				}
 			} else {

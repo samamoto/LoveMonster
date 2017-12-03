@@ -64,7 +64,8 @@ public class SearchCollider : MonoBehaviour {
 		// 親のプレイヤーを基準に、エリアに入った物の距離を全て取得し、格納していく
 		// ただしオブジェクト名にAction Areaがついていたら
 		int id = other.GetInstanceID();
-		if (other.name == "ActionArea") {
+		string word = "ActionArea";	// 部分一致検索用-1は見つからなかった
+		if (other.name.IndexOf(word) != -1) {
 			m_DistDic.TryGetValueEx(id, 0.0f);	// 先にNullと初期値格納
 			m_DistDic[id] = Vector3.Distance(transform.parent.position, other.transform.position);  // 距離を格納
 #if DEBUG

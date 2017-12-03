@@ -267,13 +267,34 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 				if (m_MoveState.StateDictionary[m] == name) {
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
 					m_animator.SetBool("is_" + name, true);
+					m_animator.Play(name);
 					m_MoveState.changeState(m, name);
 				}
 			}
 		}
 	}
 
-
+	/// <summary>
+	/// アクションを再生する
+	/// </summary>
+	/// <param name="name">タグ名</param>
+	/// <param name="button">実行するときに使うボタン</param>
+	public void PlayAction(string name, Controller.Button button, Vector3[] move) {
+		// 指定されたボタンが押され、現在の再生アニメーションがアクション予定と違う
+		if ((m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z)) &&
+			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+			m_MoveState.setMovePosition(move);
+			for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--) {
+				// Dictionaryと検索してタグを検索
+				if (m_MoveState.StateDictionary[m] == name) {
+					// MoveStatementのenumに変換したiと検出したタグ名を投げる
+					m_animator.SetBool("is_" + name, true);
+					m_animator.Play(name);
+					m_MoveState.changeState(m, name);
+				}
+			}
+		}
+	}
 	// 2017年12月01日 oyama add
 	/// <summary>
 	/// プレイヤーがリスタートする時の処理
