@@ -17,7 +17,12 @@ TagManager:
   - Block
   - MovePoint
   - Slide
-  - Slider
+  - KongVault
+  - LongSlider
+  - ClimbOver
+  - Start
+  - Goal
+  - GameManager
   layers:
   - Default
   - TransparentFX

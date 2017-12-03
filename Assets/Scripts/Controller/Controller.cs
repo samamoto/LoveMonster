@@ -245,6 +245,29 @@ namespace Controller
         }
 
         /// <summary>
+        /// Get axis raw param and truncate under threshold(-1.0f ~ 0.0f ~ 1.0f)
+        /// </summary>
+        /// <param name="axis"></param>
+        /// <param name="threshold"></param>
+        /// <returns></returns>
+        public float GetAxisRawThreshold(Axis axis, float threshold)
+        {
+            if (this.m_ControllerID != 999)
+            {
+                float check = 0.0f;
+                check = this.m_Axis[(int)axis].GetAxisRaw();
+                if (check < 0 && check > -threshold || 0 < check && check < threshold)
+                    check = 0.0f;
+                return check;
+            }
+            else
+            {
+                Debug.LogWarning("Not having controller");
+                return 0.0f;
+            }
+        }
+
+        /// <summary>
         /// Get axis hold(-1|| 0 || 1)
         /// </summary>
         /// <param name="axis"></param>
@@ -319,51 +342,62 @@ namespace Controller
             }
         }
 
-		// 2017/11/14 oyama add 
-		/// <summary>
-		/// 現在一台でもコントローラーが接続されているか調べる（デバッグ用途）
-		/// </summary>
-		public static bool GetConnectController() {
-			// 接続されているコントローラの名前を調べる
-			string[] controllerNames = Input.GetJoystickNames();
-			if (controllerNames[0] == "" || controllerNames == null) {	// コントローラの名前が空っぽなら
-				return false;				// 繋がってない
-			}
-			return true;
-		}
+        // 2017/11/14 oyama add
+        /// <summary>
+        /// 現在一台でもコントローラーが接続されているか調べる（デバッグ用途）
+        /// </summary>
+        public static bool GetConnectController()
+        {
+            // 接続されているコントローラの名前を調べる
+            string[] controllerNames = Input.GetJoystickNames();
+            if (controllerNames[0] == "" || controllerNames == null)
+            {   // コントローラの名前が空っぽなら
+                return false;               // 繋がってない
+            }
+            return true;
+        }
 
-		// 2017/11/14 oyama add 
-		/// <summary>
-		/// 現在のコントローラーが接続されているか台数を調べる（デバッグ用途）
-		/// </summary>
-		public static int GetConnectControllers() {
-			// 接続されているコントローラの名前を調べる
-			string[] controllerNames = Input.GetJoystickNames();
-			if (controllerNames[0] == "" || controllerNames == null) { // コントローラの名前が空っぽなら
-				return 0;               // 繋がってない
-			} else {
-				return controllerNames.Length;
-			}
-		}
+        // 2017/11/14 oyama add
+        /// <summary>
+        /// 現在のコントローラーが接続されているか台数を調べる（デバッグ用途）
+        /// </summary>
+        public static int GetConnectControllers()
+        {
+            // 接続されているコントローラの名前を調べる
+            string[] controllerNames = Input.GetJoystickNames();
+            if (controllerNames.Length == 0 || controllerNames[0] == "" || controllerNames == null)
+            { // コントローラの名前が空っぽなら
+                return 0;               // 繋がってない
+            }
+            else
+            {
+                return controllerNames.Length;
+            }
+        }
 
-		// 2017/11/14 oyama add 
-		/// <summary>
-		/// 現在のコントローラーの名前を調べる（デバッグ用途）
-		/// </summary>
-		/// <param name="n">プレイヤーのID</param>
-		public static string GetConnectControllerName(int n) {
-			// 接続されているコントローラの名前を調べる
-			string[] controllerNames = Input.GetJoystickNames();
-			if(controllerNames[0] == "" || controllerNames == null) {
-				return "";
-			}
-			// 雑なエラー処理
-			if (n == 0) {
-				return controllerNames[n + 1];
-			} else if (n > 0 && n < 5){
-				return controllerNames[n - 1];
-			}
-			return "";			
-		}
-	}
+        // 2017/11/14 oyama add
+        /// <summary>
+        /// 現在のコントローラーの名前を調べる（デバッグ用途）
+        /// </summary>
+        /// <param name="n">プレイヤーのID</param>
+        public static string GetConnectControllerName(int n)
+        {
+            // 接続されているコントローラの名前を調べる
+            string[] controllerNames = Input.GetJoystickNames();
+            if (controllerNames.Length == 0 || controllerNames[0] == "" || controllerNames == null)
+            {
+                return "";
+            }
+            // 雑なエラー処理
+            if (n == 0)
+            {
+                return controllerNames[n + 1];
+            }
+            else if (n > 0 && n < 5)
+            {
+                return controllerNames[n - 1];
+            }
+            return "";
+        }
+    }
 }

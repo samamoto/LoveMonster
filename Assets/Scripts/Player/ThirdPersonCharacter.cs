@@ -191,30 +191,6 @@ public class ThirdPersonCharacter : MonoBehaviour
 
         SetFriction(); // use low or high friction values depending on the current state
 
-
-		// David Add
-		/*
-		if (vault)
-        {
-            MA_Vault.Update();
-            //Vault(ConstAnimationStateTags.PlayerStateVault);
-        }
-        if(slide)
-        {
-
-            MA_Slide.Update();
-        }
-        if(climb)
-        {
-
-            MA_Climb.Update();
-        }
-        if(wallrun)
-        {
-
-            MA_WallRun.Update();
-        }
-		*/
         // control and velocity handling is different when grounded and airborne:
 
         UpdateAnimator(); // send input and other state parameters to the animator

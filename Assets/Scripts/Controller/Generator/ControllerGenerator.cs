@@ -54,8 +54,11 @@ public class ControllerGenerator : MonoBehaviour
 
             for (int i = 0; i < (int)Controller.Axis.Max; i++)
             {
+                bool invert = false;
+                if (i == (int)Controller.Axis.Cross_y || i == (int)Controller.Axis.L_y || i == (int)Controller.Axis.R_y)
+                    invert = true;
                 //LStick_x ~ DPad_y
-                ms_InputGenerator.AddAxis(InputAxis.CreatePadAxis(str_Player + strAxis[i], useController, i + 1));
+                ms_InputGenerator.AddAxis(InputAxis.CreatePadAxis(str_Player + strAxis[i], useController, i + 1, invert));
                 controller.SetAxis((Controller.Axis)i, str_Player + strAxis[i]);
             }
             ms_bInitedController[useController - 1] = true;
@@ -77,8 +80,13 @@ public class ControllerGenerator : MonoBehaviour
             for (int i = 0; i < (int)Controller.Axis.Max; i++)
             {
                 if (!ms_bInitedCommonController)
+                {
+                    bool invert = false;
+                    if (i == (int)Controller.Axis.Cross_y || i == (int)Controller.Axis.L_y || i == (int)Controller.Axis.R_y)
+                        invert = true;
                     //LStick_x ~ DPad_y
-                    ms_InputGenerator.AddAxis(InputAxis.CreatePadAxis(str_Player + strAxis[i], 0, i + 1));
+                    ms_InputGenerator.AddAxis(InputAxis.CreatePadAxis(str_Player + strAxis[i], 0, i + 1, invert));
+                }
                 controller.SetAxis((Controller.Axis)i, str_Player + strAxis[i]);
             }
             ms_bInitedCommonController = true;
