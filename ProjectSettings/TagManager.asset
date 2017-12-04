@@ -20,6 +20,9 @@ TagManager:
   - KongVault
   - LongSlider
   - ClimbOver
+  - Start
+  - Goal
+  - GameManager
   layers:
   - Default
   - TransparentFX

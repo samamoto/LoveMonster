@@ -1,24 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AllPlayerManager : MonoBehaviour {
-
 	private static AllPlayerManager _instance;
 
-    //走る速さ
-    public float m_RunSpeed = 0.2f;
-    public float m_MaxRunSpeed = 5.0f;
-    public float m_SideRunSpeed = 0.05f;
+	//走る速さ
+	public float m_RunSpeed = 0.2f;
 
-    //ジャンプ力
-    public float m_JumpPower = 2f;
+	public float m_MaxRunSpeed = 5.0f;
+	public float m_SideRunSpeed = 0.05f;
 
-    //ジャンプ時間
-    public float m_JumpTime = 2;
+	//ジャンプ力
+	public float m_JumpPower = 2f;
 
-    //回転力
-    public float m_RotatePower = 15.0f;
+	//ジャンプ時間
+	public float m_JumpTime = 2;
+
+	//回転力
+	public float m_RotatePower = 15.0f;
 
 	// プレイヤーの通常動作
 	public readonly string[] NormalAction = {
@@ -37,53 +35,64 @@ public class AllPlayerManager : MonoBehaviour {
 	};
 
 	// 現存するPlayerの数
-	int m_PlayerNum = 0;
+	private int m_PlayerNum = 0;
 
 	// ToDo:増えてきたらローカルクラスで管理しよう
-	string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
+	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
 
 	// コンポーネント
 	//--------------------------------------------------------------------------------
-	PlayerManager[] m_PlayerManager = new PlayerManager[ConstPlayerParameter.PlayerMax];
+	private PlayerManager[] m_PlayerManager = new PlayerManager[ConstPlayerParameter.PlayerMax];
+	private GameObject m_Start;
+	private GoalObject m_Goal;
+	private MainGameManager m_GameManager;
 
 	// Use this for initialization
-	void Start () {
+	private void Start() {
 		// とりあえずFindと名前使う…
 		// 名前のPlayer1~4を探す
 		// カウンタでタグの数を数える
 		m_PlayerNum = TagCount.CountTag("Player");
-		for (int i=0; i<m_PlayerNum; i++) {
+		for (int i = 0; i < m_PlayerNum; i++) {
 			// Null check
 			m_PlayerManager[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<PlayerManager>();
 			m_PlayerActionNames[i] = ConstAnimationStateTags.PlayerStateIdle;
 		}
+		m_Goal = GameObject.FindWithTag("Goal").GetComponent<GoalObject>();
+		m_Start = GameObject.FindWithTag("Start");
+		m_GameManager = GameObject.FindWithTag("GameManager").GetComponent<MainGameManager>();
 	}
 
 	// Update is called once per frame
-	void Update () {
+	private void Update() {
+		// 各プレイヤーの状態を確認するよ！ //
 
-		  // 各プレイヤーの状態を確認するよ！ //
+		// オブジェクトに当たった
 
-		  // オブジェクトに当たった
+		// アクション用？
 
-		  // アクション用？
+		// アイテム？
 
-		  // アイテム？
+		// プレイヤーと接触した
 
-		  // プレイヤーと接触した
+		// なんか起こす
 
-		  // なんか起こす
+		// アクションの更新(全員分)
 
+		// ゴールしているか
+		if (m_Goal.getGoal()) {
+			int id = m_Goal.getGoalPlayerNo();
+			m_GameManager.isPlayerGoal(id, m_PlayerManager[id].getPlayerPos());	// ゴールしたプレイヤーのIDを投げる
+		}
 
-		  // アクションの更新(全員分)
-
-		  for (int i = 0; i < m_PlayerNum; i++) {
-				// デバッグリスタート
-				if(m_PlayerManager[i].transform.position.y < -15.0f) {
-
-					m_PlayerManager[i].restartPlayer();	// 2017/12/01 oyama add
-					 //SceneChange.Instance._SceneLoadString("GameSceneProto");  //2017年11月22日 oyama add
-				}
+		// 落下リスタート処理
+		for (int i = 0; i < m_PlayerNum; i++) {
+			// デバッグリスタート
+			if (m_PlayerManager[i].transform.position.y < -15.0f) {
+				m_GameManager.isPlayerDead(i, transform.position);		// GameManagerに落ちたプレイヤーのIDを投げる
+				m_PlayerManager[i].restartPlayer(); // 2017/12/01 oyama add
+													//SceneChange.Instance._SceneLoadString("GameSceneProto");  //2017年11月22日 oyama add
+			}
 			//m_PlayerActionNames[i] = m_PlayerManager[i].getPlayerAction();
 		}
 		// スコアが更新
@@ -93,43 +102,50 @@ public class AllPlayerManager : MonoBehaviour {
 		RankCheck();
 
 		// など
-
 	}
 
 	// Updateのあとに来る
 	private void LateUpdate() {
-		  // Updateで確認したフラグ関係はこっちでリセットする //
-
-
-	 }
+		// Updateで確認したフラグ関係はこっちでリセットする //
+	}
 
 	//============================================================
 	// Function
 	//============================================================
 
 	// reset
-	void resetAllPlayerManager() {
-		  // 2017年11月22日 oyama add
-		  // シングルトンしていると読み込みの時にStartに行かないらしいのでテスト
-		  for (int i = 0; i < m_PlayerNum; i++) {
-				m_PlayerManager[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<PlayerManager>();
-				m_PlayerActionNames[i] = ConstAnimationStateTags.PlayerStateIdle;
-		  }
-	 }
-	 /// <summary>
-	 /// 各プレイヤーのスコアを更新
-	 /// </summary>
-	 void ScoreCheck() {
+	private void resetAllPlayerManager() {
+		// 2017年11月22日 oyama add
+		// シングルトンしていると読み込みの時にStartに行かないらしいのでテスト
+		for (int i = 0; i < m_PlayerNum; i++) {
+			m_PlayerManager[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<PlayerManager>();
+			m_PlayerActionNames[i] = ConstAnimationStateTags.PlayerStateIdle;
+		}
+	}
+
+	/// <summary>
+	/// 各プレイヤーのスコアを更新
+	/// </summary>
+	private void ScoreCheck() {
 		// ToDo:ScoreManagerと連携？
 	}
 
 	/// <summary>
 	/// 各プレイヤーのランクを更新
 	/// </summary>
-	void RankCheck() {
+	private void RankCheck() {
 		// ToDo:ScoreManagerと連携？
 	}
 
+	/// <summary>
+	/// 誰かがゴールしているか
+	/// </summary>
+	public bool isGoal() {
+		if (m_Goal.getGoal()) {
+			return true;
+		}
+		return false;
+	}
 
 	/// <summary>
 	/// 指定したタグがAllPlayerManagerの特別アクションに指定されているかを見る
@@ -148,8 +164,25 @@ public class AllPlayerManager : MonoBehaviour {
 	//============================================================
 	// getter/setter
 	//============================================================
+	/// <summary>
+	/// プレイヤー人数
+	/// </summary>
 	public int GetPlayerNum() {
 		return m_PlayerNum;
+	}
+
+	/// <summary>
+	/// PlayerManagerのインスタンスを返す
+	/// </summary>
+	public PlayerManager GetPlayerManagerInstance(int n) {
+		return m_PlayerManager[n];
+	}
+
+	/// <summary>
+	/// PlayerManagerのインスタンスを全て返す
+	/// </summary>
+	public PlayerManager[] GetPlayerManagerInstances() {
+		return m_PlayerManager;
 	}
 
 	// Singleton
