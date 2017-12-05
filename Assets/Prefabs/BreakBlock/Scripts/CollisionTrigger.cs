@@ -24,10 +24,10 @@ public class CollisionTrigger : MonoBehaviour
     //触れている場所に対しての処理
     void Dest(string Obj)
     {
+        /* 踏んだ合計で落とす処理
         Rigidbody RigidObj = GameObject.Find(Obj).GetComponent<Rigidbody>();
         BoxCollider Box = GameObject.Find(Obj).GetComponent<BoxCollider>();
         BreakBlockStatus  status = GameObject.Find(Obj).GetComponent<BreakBlockStatus>();
-
         //指定の時間を超えるとブロックを落とす処理
         if (status.breakBlockTime >= breakBlockTime)
         {
@@ -37,6 +37,11 @@ public class CollisionTrigger : MonoBehaviour
                 RigidObj.isKinematic = false;
             }
         }   
+        */
+
+        //触れた時にトリガーをOnにして　時間が経てば自動的に落とす処理
+        BreakBlockStatus status = GameObject.Find(Obj).GetComponent<BreakBlockStatus>();
+        status._OnBreakTrigger(breakBlockTime);
     }
 
     //何もしていない間は処理できなくする

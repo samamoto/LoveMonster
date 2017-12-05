@@ -8,25 +8,35 @@ using UnityEngine;
 
 public class BreakBlockStatus : MonoBehaviour {
 
-    public float breakBlockTime;
-    float destroyTime;
+    public float breakBlockTime;    //時間で落とす用
+    float countTime;
+    float destroyPos;
+    bool onBreakTrigger;
 
     // Use this for initialization
     void Start () {
-        destroyTime = 50;
+        countTime = 0;
+        destroyPos = 50;
+        onBreakTrigger = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
         Transform myTransform = this.transform;
 
-        if (myTransform.position.y <= -destroyTime)
+        if (onBreakTrigger)
+        {
+            Dest();
+        }
+
+        if (myTransform.position.y <= -destroyPos)
         {
             deleteObject();
         }
         
     }
 
+     /* 踏んだ合計で落とす処理
     //Explosionのタグに触れている間
     void OnCollisionStay(Collision other)
     {
@@ -34,6 +44,25 @@ public class BreakBlockStatus : MonoBehaviour {
         {
             breakBlockTime += Time.deltaTime;
         }
+    }
+    */
+
+    //時間が経てば自動的に落とす処理
+    void Dest()
+    {
+        if( breakBlockTime <= countTime)
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<BoxCollider>().isTrigger = true;
+        }
+        countTime += Time.deltaTime;
+    }
+
+    //　踏まれた時にOnにする
+    public void _OnBreakTrigger(float breaktime){
+        if (onBreakTrigger) { return; }
+        onBreakTrigger = true;
+        breakBlockTime = breaktime;
     }
 
     //  オブジェクトデリート
