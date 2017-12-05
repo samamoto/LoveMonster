@@ -9,9 +9,9 @@ using UnityEngine;
 public class BreakBlockStatus : MonoBehaviour {
 
     public float breakBlockTime;    //時間で落とす用
-    float countTime;
-    float destroyPos;
-    bool onBreakTrigger;
+    float countTime;                //カウント用タイム
+    float destroyPos;               //一定まで落ちると削除する
+    bool onBreakTrigger;            //起動用のトリガー
 
     // Use this for initialization
     void Start () {
