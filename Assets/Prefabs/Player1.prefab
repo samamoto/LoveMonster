@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 114017450885303158}
   - component: {fileID: 114090654404745724}
   - component: {fileID: 95733629723604688}
+  - component: {fileID: 114208516901782514}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -1800,7 +1801,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1061429985435504}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.9, y: 0, z: 17.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4386118592364358}
@@ -2673,6 +2674,19 @@ MonoBehaviour:
   wallRunSpeedFactor: 10
   minWallRunSpeed: 5
   maxWallRunTime: 0.6
+--- !u!114 &114208516901782514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1061429985435504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07cc4502e10cdc44a1e1cd905a598f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleDistance: 1.1
+  normalizedTime: 0.789
 --- !u!114 &114477738266513704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2684,13 +2698,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cebe1fc7d5a2e245a4bba1a734553e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothTimeMessage: "Vault,Slide,Climb\u306E\u518D\u751F\u901F\u5EA6\nNone"
+  smoothTimeMessage: "Vault,Slide,Climb,WallRun,\nKongVault,LongSlider,ClimbOver\nNone\u306E\u518D\u751F\u901F\u5EA6"
   smoothTime:
-  - 0.6
-  - 0.6
-  - 1
-  - 5
-  m_NowState: 0
+  - 0.5
+  - 0.5
+  - 0.58
+  - 1.2
+  - 0.56
+  - 2.43
+  - 0.47
+  m_NowState: 7
   m_MoveList: []
   m_AnimName: 
   is_Move: 0

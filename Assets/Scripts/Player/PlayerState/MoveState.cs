@@ -49,17 +49,17 @@ public class MoveState : MonoBehaviour {
 
 	[SerializeField, Range(0.1f, 10)]
 	// 調整値を適用　2017年11月23日 oyama add 
-	private float[] smoothTime = new float[(int)MoveStatement.None] { 0.50f, 0.55f, 0.58f, 1.2f, 0.5f,1.2f, 0.47f};
+	private float[] smoothTime = new float[(int)MoveStatement.None] {
+		0.50f, 0.55f, 0.58f, 1.2f, 0.5f, 1.2f, 0.47f
+	};
 
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
 	[SerializeField] MoveStatement m_NowState;			// 現在ステート
-	private int m_LerpItr = 0;                   // 今の移動場所
+	private int m_LerpItr = 0;							// 今の移動場所
 	[SerializeField] List<Vector3> m_MoveList = new List<Vector3>();	// 移動場所の格納リスト
 	[SerializeField] string m_AnimName;                 // 再生されている（はず）のアニメーションの名前を受け取る
 
-	// ボタンの入力処理関係
-	float m_HoldButtonTIme = 0f;    // ToDo：ボタン系はまだ
 	//--------------------------------------------------------------------------------
 	Vector3 startPosition;              // 開始点
 	Vector3 m_PlayerPos;                // Playerの
@@ -80,6 +80,7 @@ public class MoveState : MonoBehaviour {
 	private Animator m_Animator;
 	private AllPlayerManager m_AllPlayerMgr;
 	private ObjectManager m_ObjMgr;
+	private RollingSystem m_Roll;
 	//================================================================================
 	// 関数
 	//================================================================================
@@ -90,6 +91,7 @@ public class MoveState : MonoBehaviour {
 		m_Animator = GetComponent<Animator>();
 		m_AllPlayerMgr = GetComponentInParent<AllPlayerManager>();
 		m_ObjMgr = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
+		m_Roll = GetComponent<RollingSystem>();
 		// --Dictionaryの更新 --//
 		StateDictionary.Add(MoveStatement.Vault, ConstAnimationStateTags.PlayerStateVault);
 		StateDictionary.Add(MoveStatement.Slider, ConstAnimationStateTags.PlayerStateSlider);
@@ -351,7 +353,7 @@ public class MoveState : MonoBehaviour {
 		m_LerpItr = 0;
 		m_MoveList.Clear(); // ポジションリストをクリア
 		is_Arrival = false;
-
+		m_Roll.resetRolling();	// ローリングの処理もリセットする
 		// ObjectManagerに実行状態を記録
 		m_ObjMgr.setAction(getPlayerID());	// クリア
 	}

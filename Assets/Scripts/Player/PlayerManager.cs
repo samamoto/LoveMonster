@@ -79,13 +79,13 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 	void Update()
     {
 
-		// 状態管理
-		bool Roll = m_animator.GetBool("is_Rolling");
-
 		if (m_MoveState.isMove()) {
 			return;
 		}
-	
+
+		// 状態管理
+		bool Roll = m_animator.GetBool("is_Rolling");
+
 		//david add
 		if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
         { 
@@ -129,7 +129,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 
 		if (m_MoveState.isMove()) {
 			return;
-		}
+	}
 		// read inputs
 		bool crouch = false;
 		bool slide = false;

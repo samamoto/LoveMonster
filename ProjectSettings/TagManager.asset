@@ -23,6 +23,7 @@ TagManager:
   - Start
   - Goal
   - GameManager
+  - ObjectManager
   layers:
   - Default
   - TransparentFX
