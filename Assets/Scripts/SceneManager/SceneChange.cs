@@ -11,10 +11,9 @@ public class SceneChange : Singleton<SceneChange>
 
 
 	 }
-#if DEBUG
-	/*
-	//テスト用
-	public void _DebugInput()
+
+	 //テスト用
+	 public void _DebugInput()
     {
         if (Input.GetKeyUp("1"))
         {
@@ -35,11 +34,10 @@ public class SceneChange : Singleton<SceneChange>
         {
             _SceneLoadTutorial();
         }
-    }*/
+    }
 
-#endif
-	//Scene変更
-	public void _SceneLoadTitle()
+    //Scene変更
+    public void _SceneLoadTitle()
     {
         SceneManager.LoadScene("TitleScene");
     }

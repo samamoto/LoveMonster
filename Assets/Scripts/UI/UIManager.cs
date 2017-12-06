@@ -1,19 +1,29 @@
-﻿using UnityEngine;
-using UnityEditor;
-
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// それぞれのUIを管理するScript
 /// PlayerのUI用のScriptは表示のみ(中身の構成)を
 /// 行い、値の変動はこちらで管理する。
+/// 
+/// 全体で共有している表示(現在の案だと画面上部のStartからGoalまでの道のりの表示)
+/// を管理する。
+/// 
 /// </summary>
 
 
-public class UIManager : ScriptableObject
+
+public class UIManager : MonoBehaviour
 {
-    [MenuItem("Tools/MyTool/Do It in C#")]
-    static void DoIt()
+    public void Start()
     {
-        EditorUtility.DisplayDialog("MyTool", "Do It in C# !", "OK", "");
+
     }
+    public void Update()
+    {
+
+    }
+
 }
