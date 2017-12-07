@@ -15,11 +15,12 @@ public class TimeManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_Timer = GetComponent<Timer>();
+		m_Timer.startTimer();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		m_Timer.getTimeString();
 	}
 
 	/// <summary>
@@ -43,12 +44,5 @@ public class TimeManager : MonoBehaviour {
 		m_Timer.resetTimer();
 	}
 
-	/// <summary>
-	/// 現在時間を文字列で返す
-	/// </summary>
-	/// <returns>表示時間の文字列</returns>
-	public string getTimeString() {
-		return m_Timer.getProgressTime().minute.ToString() + ":" + m_Timer.getProgressTime().second.ToString(); 
-	}
 
 }

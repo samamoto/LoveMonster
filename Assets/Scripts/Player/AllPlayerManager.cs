@@ -116,16 +116,6 @@ public class AllPlayerManager : MonoBehaviour {
 	// Function
 	//============================================================
 
-	// reset
-	private void resetAllPlayerManager() {
-		// 2017年11月22日 oyama add
-		// シングルトンしていると読み込みの時にStartに行かないらしいのでテスト
-		for (int i = 0; i < m_PlayerNum; i++) {
-			m_PlayerManager[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<PlayerManager>();
-			m_PlayerActionNames[i] = ConstAnimationStateTags.PlayerStateIdle;
-		}
-	}
-
 	/// <summary>
 	/// 各プレイヤーのスコアを更新
 	/// </summary>
@@ -140,14 +130,23 @@ public class AllPlayerManager : MonoBehaviour {
 		// ToDo:ScoreManagerと連携？
 	}
 
+
 	/// <summary>
-	/// 誰かがゴールしているか
+	/// プレイヤーの操作を不可にする
 	/// </summary>
-	public bool isGoal() {
-		if (m_Goal.getGoal()) {
-			return true;
+	public void stopPlayerControl() {
+		for (int i = 0; i < m_PlayerNum; i++) {
+			m_PlayerManager[i].stopControl(true);
 		}
-		return false;
+	}
+
+	/// <summary>
+	/// プレイヤーの操作を戻す
+	/// </summary>
+	public void returnPlayerControl() {
+		for (int i = 0; i < m_PlayerNum; i++) {
+			m_PlayerManager[i].stopControl(false);
+		}
 	}
 
 	/// <summary>
@@ -167,6 +166,16 @@ public class AllPlayerManager : MonoBehaviour {
 	//============================================================
 	// getter/setter
 	//============================================================
+	/// <summary>
+	/// 誰かがゴールしているか
+	/// </summary>
+	public bool isGoal() {
+		if (m_Goal.getGoal()) {
+			return true;
+		}
+		return false;
+	}
+
 	/// <summary>
 	/// プレイヤー人数
 	/// </summary>

@@ -18,21 +18,10 @@ public class Timer : MonoBehaviour {
     private int minute; //分
     private float second;   //秒
     private int oldSecond;
-    private bool timerFlag= true;
+    private bool timerFlag= false;
     private char textField;
     float countTime = 0;
-    
-	public class TimeContents {
-		public int minute;
-		public float second;
-		public void setTime(float sec, int min) {
-			minute = min;
-			second = sec;
-		}
-	}
 
-	private TimeContents timeContents;
-   
     // Use this for initialization
     void Start () {
         minute = 0;
@@ -68,8 +57,6 @@ public class Timer : MonoBehaviour {
             }
             oldSecond = Convert.ToInt32(second);
 
-			// 追加
-			timeContents.setTime(second, minute);
         }
 
 
@@ -97,14 +84,17 @@ public class Timer : MonoBehaviour {
 		minute = 0;
 		second = 0;
 		oldSecond = 0;
-		timeContents.setTime(0f, 0);
 	}
 
 	/// <summary>
-	/// 現在の時間を返す
+	/// 現在時間を文字列で返す
 	/// </summary>
-	/// <returns>秒と時間の構造体</returns>
-	public TimeContents getProgressTime() {
-		return timeContents;
+	/// <returns>表示時間の文字列</returns>
+	public string getTimeString() {
+		string s = minute.ToString("00") + ":" + Convert.ToInt32(second).ToString("00");
+#if DEBUG
+		DebugPrint.print(s);
+#endif
+		return s;
 	}
 }

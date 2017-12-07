@@ -11,7 +11,6 @@ public class GlobalParam : MonoBehaviour {
 
 	// 保持する変数 //
 	private int hiScore = 0;	// Sample
-
 	// ---------- //
 
 	private static GlobalParam instance = null; // インスタンス

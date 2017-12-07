@@ -17,9 +17,13 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 	 private MoveState m_MoveState;	// 移動処理を任せる
 	 private AllPlayerManager m_AllPlayerManager;
 	 private Animator m_animator;
-
 	 private Controller.Controller m_Controller;
-	 public bool walkByDefault = false; // toggle for walking state
+
+	 private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
+	private bool is_StopControl = false;                // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add 
+
+	// Third parson character --
+	public bool walkByDefault = false; // toggle for walking state
 
 	 public bool lookInCameraDirection = true;// should the character be looking in the same direction that the camera is facing
 
@@ -30,8 +34,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 
 	 private Vector3 move;
 	 private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
-
-	private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
+	 // --Third parson character
 
 	//david add
 	//wallrun varaiables 
@@ -78,8 +81,8 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 	// Update is called once per frame
 	void Update()
     {
-
-		if (m_MoveState.isMove()) {
+		// MoveStateの移動制御が走っている場合、または、外部から止められている
+		if (m_MoveState.isMove() || is_StopControl) {
 			return;
 		}
 
@@ -127,9 +130,10 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 	/// </summary>
 	void FixedUpdate() {
 
-		if (m_MoveState.isMove()) {
+		// MoveStateの移動制御が走っている場合、または、外部から止められている
+		if (m_MoveState.isMove() || is_StopControl) {
 			return;
-	}
+		}
 		// read inputs
 		bool crouch = false;
 		bool slide = false;
@@ -295,6 +299,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 			}
 		}
 	}
+
 	// 2017年12月01日 oyama add
 	/// <summary>
 	/// プレイヤーがリスタートする時の処理
@@ -306,6 +311,13 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 		eff.createItemHit(m_RestartPoint);	// 仮にエフェクト再生
 	}
 
+	/// <summary>
+	/// プレイヤーのコントロールを停止させる
+	/// </summary>
+	/// <param name="flag">false:通常|true:停止</param>
+	public void stopControl(bool flag) {
+		is_StopControl = flag;
+	}
 
 	//============================================================
 	/// <summary>

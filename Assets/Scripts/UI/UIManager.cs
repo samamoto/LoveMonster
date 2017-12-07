@@ -20,16 +20,17 @@ public class UIManager : MonoBehaviour
 
 	private MainGameManager m_Game;
 	private TimeManager m_Time;
-
+	private CountDownSystem m_Count;
     public void Start()
     {
 		m_Game = GameObject.FindWithTag("GameManager").GetComponent<MainGameManager>();
 		m_Time = GameObject.Find("TimeManager").GetComponent<TimeManager>();
-
+		m_Count = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
 	}
+
     public void Update()
     {
-
+		
     }
 
 }
