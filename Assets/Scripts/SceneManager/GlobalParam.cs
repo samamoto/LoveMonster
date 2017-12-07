@@ -10,7 +10,8 @@ using UnityEngine;
 public class GlobalParam : MonoBehaviour {
 
 	// 保持する変数 //
-	private int hiScore = 0;	// Sample
+	private int hiScore = 0;    // Sample
+	private int[] ranking = new int[ConstPlayerParameter.PlayerMax];	// ランキングを保持 0~3->1~4
 	// ---------- //
 
 	private static GlobalParam instance = null; // インスタンス
@@ -42,4 +43,34 @@ public class GlobalParam : MonoBehaviour {
 		this.hiScore = hiScore;
 	}
 	// --HISCORE-- //
+
+	// --RANKING-- //
+	/// <summary>
+	/// 1PをPlayerID=0としてランキングをセットする
+	/// </summary>
+	/// <param name="id">PlayerのID(0から)</param>
+	/// <param name="rank">ランキング番号1~4</param>
+	public void SetRanking(int id, int rank) {
+		int n = id;
+		// エラーチェック
+		if(n > 3) {
+			n = 3;
+		}
+		if(0 > n) {
+			n = 0;
+		}
+
+		ranking[id] = rank;	// ランキングをセット
+	}
+
+	/// <summary>
+	/// パラメータをすべてリセットする
+	/// </summary>
+	public void resetParameter() {
+		hiScore = 0;
+		for(int i=0; i<ConstPlayerParameter.PlayerMax; i++) {
+			ranking[i] = 0;
+		}
+	}
+
 }

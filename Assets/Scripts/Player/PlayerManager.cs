@@ -11,23 +11,24 @@ using Controller;
 [RequireComponent(typeof(Controller.Controller))]
 public class PlayerManager : MonoBehaviour, PlayerReciever
 {
-	 // PlayerのID
-	 public int m_PlayerID = 1; // 今は一人しかいない
+	// PlayerのID
+	public int m_PlayerID = 1; // 今は一人しかいない
+	 
+	private MoveState m_MoveState;	// 移動処理を任せる
+	private AllPlayerManager m_AllPlayerManager;
+	private Animator m_animator;
+	private Controller.Controller m_Controller;
+	private PrintScore m_Score;
 
-	 private MoveState m_MoveState;	// 移動処理を任せる
-	 private AllPlayerManager m_AllPlayerManager;
-	 private Animator m_animator;
-	 private Controller.Controller m_Controller;
-
-	 private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
+	private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
 	private bool is_StopControl = false;                // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add 
 
 	// Third parson character --
 	public bool walkByDefault = false; // toggle for walking state
 
-	 public bool lookInCameraDirection = true;// should the character be looking in the same direction that the camera is facing
+	public bool lookInCameraDirection = true;// should the character be looking in the same direction that the camera is facing
 
-	 private Vector3 lookPos; // The position that the character should be looking towards
+	private Vector3 lookPos; // The position that the character should be looking towards
 	 private ThirdPersonCharacter character; // A reference to the ThirdPersonCharacter on the object
 	 private Transform cam; // A reference to the main camera in the scenes transform
 	 private Vector3 camForward; // The current forward direction of the camera
@@ -50,11 +51,12 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 		m_Controller = GetComponent<Controller.Controller>();
 		m_MoveState = GetComponent<MoveState>();
 		m_animator = GetComponent<Animator>();
+		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
 
-        // Initialize the third person character
-        //----------------------------------------------------------------------
-        // get the transform of the main camera
-        if (Camera.main != null) {
+		// Initialize the third person character
+		//----------------------------------------------------------------------
+		// get the transform of the main camera
+		if (Camera.main != null) {
 			cam = Camera.main.transform;
 		} else {
 			Debug.LogWarning(
@@ -283,7 +285,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 	/// </summary>
 	/// <param name="name">タグ名</param>
 	/// <param name="button">実行するときに使うボタン</param>
-	public void PlayAction(string name, Controller.Button button, Vector3[] move) {
+	public void PlayAction(string name, Controller.Button button, Vector3[] move, int score) {
 		// 指定されたボタンが押され、現在の再生アニメーションがアクション予定と違う
 		if ((m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z)) &&
 			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
@@ -294,6 +296,13 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
 					m_animator.SetBool("is_" + name, true);
 					m_animator.Play(name);
+					// PrintScoreにスコアの基準値を投げる
+					// スコアマネージャに送信
+					ExecuteEvents.Execute<ScoreReciever>(
+						target: m_Score.gameObject,
+						eventData: null,
+						functor: (reciever, y) => reciever.ReceivePlayerScore(this.m_PlayerID, score)
+					);
 					m_MoveState.changeState(m, name);
 				}
 			}
