@@ -51,7 +51,8 @@ public class PrintScore : MonoBehaviour, ScoreReciever
     public void ReceivePlayerScore(int id, int score)
     {
 		//値を受け取る それぞれ(1P～4P)に用意された変数に格納 Rateを乗算する
-		PlayerScore[id] += score * ScoreRate[id];		
+		// idそのまま飛んでくるので-1
+		PlayerScore[id-1] += score * ScoreRate[id-1];		
 	}
 
 	//プレイヤースコアを送る(他のスクリプから値を受けとる時に使う)
@@ -73,10 +74,11 @@ public class PrintScore : MonoBehaviour, ScoreReciever
 #if DEBUG
 		string str = string.Empty;
 		for (int i = 0; i < 4; i++) {
-			str += (i + 1).ToString() + ":" + ScoreRate[i].ToString() + " " + PlayerScore[i] + "\n";
+			str += (i + 1).ToString() + ":" + ScoreRate[i].ToString() + " " + PlayerScore[i].ToString() + "\n";
 		}
-		GetComponent<Text>().text = str;	// textフィールドに表示
+		GetComponent<Text>().text = str;    // textフィールドに表示
 #endif
+		DebugPrint.print(PlayerScore[0].ToString());
 
 	}
 
