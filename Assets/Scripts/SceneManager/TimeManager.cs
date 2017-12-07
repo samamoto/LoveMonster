@@ -15,7 +15,7 @@ public class TimeManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_Timer = GetComponent<Timer>();
-		m_Timer.startTimer();
+		//m_Timer.startTimer();
 	}
 	
 	// Update is called once per frame
