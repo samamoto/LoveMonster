@@ -5,8 +5,38 @@ using UnityEngine;
 public class AudioList : MonoBehaviour
 {
     [SerializeField] public CostomAudioSouce[] m_CostomAudioSouce;
+	// oyama
+	public enum SoundList_BGM {
+		BGM_Game_Stage0 = 0,
+		BGM_Game_Stage1,
+		BGM_Game_Stage2,
+		BGM_Game_Stage3,
+		BGM_Game_Bonus0,
+		BGM_Tutorial0,
+		BGM_None,
+	}
+	public enum SoundList_SE {
+		SE_ActionComboBad = SoundList_BGM.BGM_None-1,	// 繋がってる
+		SE_ActionComboGodd,
+		SE_ActionGrab,
+		SE_ActionHit,
+		SE_ActionJump,
+		SE_ActionLanding,
+		SE_ActionSlide,
+		SE_ActionVault,
+		SE_ActionCountDown,
+		SE_ActionPowup,
+		SE_SceneMove,
+		SE_UI_Menu_Decision,
+		SE_UI_Menu_Cancel,
+		SE_UI_Menu_Cursor,
+		SE_UI_Title_Decision,
+		SE_None,
+	}
 
-    private void Awake()
+
+
+	private void Awake()
     {
         for (int i = 0; i < this.m_CostomAudioSouce.Length; i++)
         {

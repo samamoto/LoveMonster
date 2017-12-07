@@ -18,12 +18,14 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 	private AllPlayerManager m_AllPlayerManager;
 	private Animator m_animator;
 	private Controller.Controller m_Controller;
-	private PrintScore m_Score;
+	private PrintScore m_Score;     // スコア管理
+	private AudioList m_Audio;		// 音声再生用
+
 
 	private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
-	private bool is_StopControl = false;                // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add 
+	private bool is_StopControl = false;            // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add 
 
-	// Third parson character --
+	// Third parson character ------
 	public bool walkByDefault = false; // toggle for walking state
 
 	public bool lookInCameraDirection = true;// should the character be looking in the same direction that the camera is facing
@@ -35,7 +37,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 
 	 private Vector3 move;
 	 private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
-	 // --Third parson character
+	 // ------Third parson character
 
 	//david add
 	//wallrun varaiables 
@@ -52,6 +54,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 		m_MoveState = GetComponent<MoveState>();
 		m_animator = GetComponent<Animator>();
 		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
+		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 
 		// Initialize the third person character
 		//----------------------------------------------------------------------
@@ -71,7 +74,6 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 		if (character == null) {
 			character = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonCharacter>();    // 無理矢理探す
 			// なんか知らないけどGetComponentしてるのにnullを返してくる
-			//character = gameObject.AddComponent<ThirdPersonCharacter>();
 			if(character == null) {
 				Debug.LogWarning("Third Person Character Null Reference!!");
 				Debug.Break();

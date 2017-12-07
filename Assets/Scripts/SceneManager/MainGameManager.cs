@@ -7,14 +7,13 @@ public class MainGameManager : MonoBehaviour {
 
 	//スクリプト群
 	private SceneChange m_ScreenChange;
-
 	private AllPlayerManager m_AllPlayerMgr;
 
 	// 2017年12月07日 oyama add　
 	private TimeManager m_TimeMgr;
-
 	private PauseManager m_PauseMgr;
 	private CountDownSystem m_CountSys;
+	private AudioList m_Audio;
 
 	public enum PhaseLevel {
 		Start,
@@ -39,17 +38,22 @@ public class MainGameManager : MonoBehaviour {
 		m_TimeMgr = GameObject.Find("TimeManager").GetComponent<TimeManager>();
 		m_PauseMgr = GameObject.Find("PauseManager").GetComponent<PauseManager>();
 		m_CountSys = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
+		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 	}
 
 	// Update is called once per frame
 	private void Update() {
 		// 現在のPhaseに合わせて処理を分ける
 		switch (m_Phase) {
+		//================================================================================
+		// CountStart-Phase
+		//================================================================================
 		// ステージ読み込み時の処理
 		case PhaseLevel.Start:
 			setPhaseState(PhaseLevel.CountDown);    // シーン読み込まれたら次のカウントへ
 			m_CountSys.startCountDown();
 			m_AllPlayerMgr.stopPlayerControl();     // プレイヤーのコントロールをOFF
+			m_Audio.PlayOneShot(AudioList.SoundList_BGM.);
 			break;
 
 		//================================================================================
