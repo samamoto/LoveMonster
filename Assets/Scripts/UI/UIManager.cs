@@ -17,10 +17,16 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+
+	private MainGameManager m_Game;
+	private TimeManager m_Time;
+
     public void Start()
     {
+		m_Game = GameObject.FindWithTag("GameManager").GetComponent<MainGameManager>();
+		m_Time = GameObject.Find("TimeManager").GetComponent<TimeManager>();
 
-    }
+	}
     public void Update()
     {
 

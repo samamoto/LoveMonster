@@ -52,9 +52,9 @@ public class AnimatorBase : StateMachineBehaviour {
 	protected void resetAnimatorParameter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		animator.SetFloat("JumpPower", 0f);
 		animator.SetFloat("Velocity", 0f);
-		animator.SetFloat("AngularSpeed", 0f);
+		//animator.SetFloat("AngularSpeed", 0f);
 		animator.SetFloat("Direction", 0f);
-		animator.SetFloat("Jump", 0f);
+		//animator.SetFloat("Jump", 0f);
 		animator.SetFloat("JumpLeg", 0f);
 	}
 

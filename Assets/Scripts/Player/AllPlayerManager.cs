@@ -3,7 +3,9 @@
 public class AllPlayerManager : MonoBehaviour {
 	private static AllPlayerManager _instance;
 
+	// 使われてない
 	//走る速さ
+	/*
 	public float m_RunSpeed = 0.2f;
 
 	public float m_MaxRunSpeed = 5.0f;
@@ -17,6 +19,7 @@ public class AllPlayerManager : MonoBehaviour {
 
 	//回転力
 	public float m_RotatePower = 15.0f;
+	*/
 
 	// プレイヤーの通常動作
 	public readonly string[] NormalAction = {
@@ -82,7 +85,7 @@ public class AllPlayerManager : MonoBehaviour {
 		// ゴールしているか
 		if (m_Goal.getGoal()) {
 			int id = m_Goal.getGoalPlayerNo();
-			m_GameManager.isPlayerGoal(id, m_PlayerManager[id].getPlayerPos());	// ゴールしたプレイヤーのIDを投げる
+			m_GameManager.isPlayerGoal(id, m_PlayerManager[id-1].getPlayerPos());	// ゴールしたプレイヤーのIDを投げる
 		}
 
 		// 落下リスタート処理

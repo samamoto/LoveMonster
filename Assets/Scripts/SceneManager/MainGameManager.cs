@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//RequireComponentで指定することでそのスクリプトが必須であることを示せる
+[RequireComponent(typeof(PauseManager))]
+[RequireComponent(typeof(TimeManager))]
 public class MainGameManager : MonoBehaviour {
     //スクリプト群
     private SceneChange m_ScreenChange;
