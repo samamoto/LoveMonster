@@ -23,11 +23,11 @@ public class ObjectActionArea : MonoBehaviour {
 	public Dictionary<int ,MoveState> m_MoveTask = new Dictionary<int, MoveState>();
 	public List<int> m_MoveID = new List<int>();
 
-	PlayerManager m_PlayerMgr;
+	public int ScoreStandard = 100;	// スコアの基準値
 
+	PlayerManager m_PlayerMgr;
 	bool is_FoundActTag;
 
-	public int MaxActionNum = 4;  // 何人まで同時実行か
 	int[] actID = new int[ConstPlayerParameter.PlayerMax];      // Playerの実行順
 
 	//--------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ public class ObjectActionArea : MonoBehaviour {
 		for (int i = 0; i < trs.Length; i++) {
 			m_MovePos.Add(trs[i].position);
 		}
-		is_FoundActTag = true;	// ToDo: oyama AllPlayerManagerをシングルトンから外すので一度なしにする
+		is_FoundActTag = true;  // ToDo: oyama AllPlayerManagerをシングルトンから外すので一度なしにする
 	}
 
 	// コライダーに当たった
@@ -85,8 +85,6 @@ public class ObjectActionArea : MonoBehaviour {
 
 			// 今いるMovePointのタグとActionAreaのタグが一致していること
 
-
-
 			// まだ実行されてない
 			if (m_MoveTask[id].isMove() == false) {
 				// ぶつかった対象にメッセージ(関数)を送る 設定タグがあるか検索
@@ -96,7 +94,7 @@ public class ObjectActionArea : MonoBehaviour {
 					ExecuteEvents.Execute<PlayerReciever>(
 						target: other.gameObject,
 						eventData: null,
-						functor: (reciever, y) => reciever.PlayAction(tag, actButton, m_MovePos.ToArray())
+						functor: (reciever, y) => reciever.PlayAction(tag, actButton, m_MovePos.ToArray(), ScoreStandard)
 					);
 				}
 			} else {

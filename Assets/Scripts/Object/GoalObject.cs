@@ -24,7 +24,7 @@ public class GoalObject : MonoBehaviour {
 #endif
 			if(timer >= transitionTimer) {
 				isGoal = true;
-				SceneChange.Instance._SceneLoadResult();
+				//SceneChange.Instance._SceneLoadResult();
 			}
 		}
 	}

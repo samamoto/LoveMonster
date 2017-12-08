@@ -42,7 +42,7 @@ public class ObjectManager : MonoBehaviour {
 	private Dictionary<int, string> PlayerActionDic = new Dictionary<int, string>();
 
 
-	Collider[] m_Col = new Collider[4];
+	//Collider[] m_Col = new Collider[4];
 
 
 

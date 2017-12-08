@@ -19,7 +19,7 @@ public class CountDownSystem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        CountDown_flag = true;  //カウントダウンのフラグをONに
+        //CountDown_flag = true;  //カウントダウンのフラグをONに
     }
 
     // Update is called once per frame
@@ -50,4 +50,30 @@ public class CountDownSystem : MonoBehaviour
                 CountDown_flag = false;
             }
     }
+
+	/// <summary>
+	/// カウントダウンを開始する
+	/// </summary>
+	public void startCountDown() {
+		GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+		CountDown_flag = true;
+	}
+
+	/// <summary>
+	/// カウントダウンを停止する
+	/// </summary>
+	public void stopCountDown() {
+		CountDown_flag = false;
+		// 状態もリセットしておく
+		Count = 0;
+		GetComponent<TMPro.TextMeshProUGUI>().enabled = false;
+	}
+
+	/// <summary>
+	/// 現在の実行状態を返す
+	/// </summary>
+	/// <returns>1:カウント実行中|0:待機</returns>
+	public bool getCountStatus() {
+		return CountDown_flag;
+	}
 }
