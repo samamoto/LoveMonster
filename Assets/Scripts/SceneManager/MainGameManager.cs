@@ -53,7 +53,7 @@ public class MainGameManager : MonoBehaviour {
 			setPhaseState(PhaseLevel.CountDown);    // シーン読み込まれたら次のカウントへ
 			m_CountSys.startCountDown();
 			m_AllPlayerMgr.stopPlayerControl();     // プレイヤーのコントロールをOFF
-			m_Audio.Play((int)AudioList.SoundList_BGM.BGM_Game_Stage0);
+			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionCountDown );
 			break;
 
 		//================================================================================
@@ -78,6 +78,7 @@ public class MainGameManager : MonoBehaviour {
 			m_TimeMgr.startTimer();
 			m_AllPlayerMgr.returnPlayerControl();     // プレイヤーのコントロールをON
 			setPhaseState(PhaseLevel.Game);
+			m_Audio.Play((int)AudioList.SoundList_BGM.BGM_Game_Stage0);
 			break;
 
 		//================================================================================
