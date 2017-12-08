@@ -155,6 +155,12 @@ MonoBehaviour:
     GroupParent: {fileID: 0}
     IsOpen: 1
     GroupName: Start/Restart/Goal
+  - GOs:
+    - IsSelected: 0
+      GO: {fileID: 1748500676486230, guid: 50a41df54561ad94c8bb85e8f5ce8e97, type: 2}
+    GroupParent: {fileID: 0}
+    IsOpen: 1
+    GroupName: Gimick
   SelectedObjectId: {x: 5, y: 3}
   RayMask:
     serializedVersion: 2

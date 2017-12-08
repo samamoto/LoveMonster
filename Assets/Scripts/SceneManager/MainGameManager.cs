@@ -91,7 +91,6 @@ public class MainGameManager : MonoBehaviour {
 				setPhaseState(PhaseLevel.Pause);
 			}
 			// Pauseメニュー表示 //
-
 			break;
 
 		//================================================================================
