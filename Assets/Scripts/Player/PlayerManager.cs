@@ -60,7 +60,9 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 		//----------------------------------------------------------------------
 		// get the transform of the main camera
 		if (Camera.main != null) {
-			cam = Camera.main.transform;
+			//cam = Camera.main.transform;
+			string camStr = "MainCamera" + m_PlayerID.ToString();
+			cam = GameObject.Find(camStr).GetComponent<Transform>();
 		} else {
 			Debug.LogWarning(
 				"Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.");

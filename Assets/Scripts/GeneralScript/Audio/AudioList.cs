@@ -38,9 +38,10 @@ public class AudioList : MonoBehaviour
 
 	private void Awake()
     {
+		AudioReverbFilter filter = gameObject.AddComponent<AudioReverbFilter>();
         for (int i = 0; i < this.m_CostomAudioSouce.Length; i++)
         {
-            this.m_CostomAudioSouce[i].Init(gameObject.AddComponent<AudioSource>(), gameObject.AddComponent<AudioReverbFilter>());
+            this.m_CostomAudioSouce[i].Init(gameObject.AddComponent<AudioSource>(),filter );
         }
     }
 
