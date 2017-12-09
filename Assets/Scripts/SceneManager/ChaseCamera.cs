@@ -37,13 +37,12 @@ public class ChaseCamera : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-		AllCameraManager AllCam;
-		AllCam = transform.root.GetComponent<AllCameraManager>();
 		if (PlayerID == 0)
 			PlayerID = 1;
-		chaseObject = AllCam.getChaseObject(PlayerID);
-        ///コントローラ取得
-        this.chaseObjController = chaseObject.GetComponent<Controller.Controller>();
+		string strPlayer = "Player" + PlayerID.ToString();
+		chaseObject = GameObject.Find(strPlayer);    // Player1~4を探す
+		///コントローラ取得
+		this.chaseObjController = chaseObject.GetComponent<Controller.Controller>();
 		m_Pause = GameObject.Find("PauseManager").GetComponent<PauseManager>();
     }
 
