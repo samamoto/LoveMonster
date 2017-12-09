@@ -9,16 +9,22 @@ using UnityEngine;
 
 public class AllCameraManager : MonoBehaviour {
 
-	public Vector3 offset;
-	public float verticalSensitivity;
-	public float horizontalSensitivity;
+	private GameObject[] chaseObject = new GameObject[4];
+
 	// Use this for initialization
 	void Start () {
-		
+		for (int i = 0; i < 4; i++) {
+			string strPlayer = "Player" + (i + 1).ToString();
+			chaseObject[i] = GameObject.Find(strPlayer);	// Player1~4を探す
+		}
 	 }
 	
 	 // Update is called once per frame
 	 void Update () {
 		
 	 }
+
+	public GameObject getChaseObject(int PlayerID) {
+		return chaseObject[PlayerID - 1];	// IDそのまま来るので-1する
+	}
 }

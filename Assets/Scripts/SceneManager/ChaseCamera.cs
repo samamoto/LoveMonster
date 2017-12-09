@@ -12,7 +12,8 @@ using Controller;
 
 public class ChaseCamera : MonoBehaviour
 {
-    public GameObject chaseObject;
+	public int PlayerID;
+    private GameObject chaseObject;	// privateにした prefab更新のたびに毎回設定するのがめんどい
     public Vector3 Offset;
 
     private Controller.Controller chaseObjController;
@@ -36,6 +37,11 @@ public class ChaseCamera : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+		AllCameraManager AllCam;
+		AllCam = transform.root.GetComponent<AllCameraManager>();
+		if (PlayerID == 0)
+			PlayerID = 1;
+		chaseObject = AllCam.getChaseObject(PlayerID);
         ///コントローラ取得
         this.chaseObjController = chaseObject.GetComponent<Controller.Controller>();
 		m_Pause = GameObject.Find("PauseManager").GetComponent<PauseManager>();

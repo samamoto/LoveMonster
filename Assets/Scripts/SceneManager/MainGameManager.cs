@@ -14,6 +14,7 @@ public class MainGameManager : MonoBehaviour {
 	private PauseManager m_PauseMgr;
 	private CountDownSystem m_CountSys;
 	private AudioList m_Audio;
+	public AudioList.SoundList_BGM gameBGM = AudioList.SoundList_BGM.BGM_Game_Stage0;
 
 	public enum PhaseLevel {
 		Start,
@@ -26,7 +27,7 @@ public class MainGameManager : MonoBehaviour {
 		None,
 	};
 
-	public  PhaseLevel m_Phase = PhaseLevel.None;
+	[SerializeField] private PhaseLevel m_Phase = PhaseLevel.None;
 	private PhaseLevel m_oldPhase = PhaseLevel.None;
 
 	// Use this for initialization
@@ -78,7 +79,7 @@ public class MainGameManager : MonoBehaviour {
 			m_TimeMgr.startTimer();
 			m_AllPlayerMgr.returnPlayerControl();     // プレイヤーのコントロールをON
 			setPhaseState(PhaseLevel.Game);
-			m_Audio.Play((int)AudioList.SoundList_BGM.BGM_Game_Stage0);
+			m_Audio.Play((int)gameBGM);
 			break;
 
 		//================================================================================
