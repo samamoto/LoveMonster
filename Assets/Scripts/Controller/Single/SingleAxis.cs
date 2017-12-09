@@ -6,11 +6,11 @@ internal class SingleAxis
 {
     private Controller.Axis _axis;
     private string _name;
-
+#if UNITY_EDITOR
     public float Dead { set { ControllerGenerator.GetPropaty(_name, InputManagerGenerator.AxisPropaty.Dead).floatValue = value; } get { return ControllerGenerator.GetPropaty(_name, InputManagerGenerator.AxisPropaty.Dead).floatValue; } }
     public float Sensitivity { set { ControllerGenerator.GetPropaty(_name, InputManagerGenerator.AxisPropaty.Sensitivity).floatValue = value; } get { return ControllerGenerator.GetPropaty(_name, InputManagerGenerator.AxisPropaty.Sensitivity).floatValue; } }
     public float Gravity { set { ControllerGenerator.GetPropaty(_name, InputManagerGenerator.AxisPropaty.Gravity).floatValue = value; } get { return ControllerGenerator.GetPropaty(_name, InputManagerGenerator.AxisPropaty.Gravity).floatValue; } }
-
+#endif
     public float _now { get; private set; }
     public float _previous { get; private set; }
 
