@@ -55,7 +55,7 @@ public class MoveState : MonoBehaviour {
 
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
 
-	[SerializeField] MoveStatement m_NowState;			// 現在ステート
+	[SerializeField] public MoveStatement m_NowState;			// 現在ステート
 	private int m_LerpItr = 0;							// 今の移動場所
 	[SerializeField] List<Vector3> m_MoveList = new List<Vector3>();	// 移動場所の格納リスト
 	[SerializeField] string m_AnimName;                 // 再生されている（はず）のアニメーションの名前を受け取る
@@ -256,7 +256,6 @@ public class MoveState : MonoBehaviour {
 	/// ゲームシーン上に経路を描画する
 	void OnDrawGizmosSelected() {
 #if UNITY_EDITOR
-
 		if (!UnityEditor.EditorApplication.isPlaying || enabled == false) {
 			startPosition = transform.position;
 		}
@@ -270,10 +269,10 @@ public class MoveState : MonoBehaviour {
 				Gizmos.DrawSphere(m_MoveList[i], 0.1f);
 				Gizmos.DrawLine(m_MoveList[i-1], m_MoveList[i]);
 			}
-#endif
-		}
-	}
 
+		}
+#endif
+	}
 	//================================================================================
 	// 状態取得/変更(public)
 	//================================================================================
