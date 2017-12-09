@@ -78,7 +78,7 @@ public class SaveDataManager : Singleton<SaveDataManager>
     public bool WriteSaveData()
     {
         //iCloudに保存させない
-        UnityEngine.iOS.Device.SetNoBackupFlag(savedataPath);
+        //UnityEngine.iOS.Device.SetNoBackupFlag(savedataPath);
         //書き出し
         XmlUtility.Seialize<SaveData[]>(savedataPath, savedata);
         Debug.Log("Write savedata Path:" + this.savedataPath);
