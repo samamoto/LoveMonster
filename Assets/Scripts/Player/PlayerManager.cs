@@ -11,107 +11,110 @@ using Controller;
 [RequireComponent(typeof(Controller.Controller))]
 public class PlayerManager : MonoBehaviour, PlayerReciever
 {
-	// PlayerのID
-	public int m_PlayerID = 1; // 今は一人しかいない
-	 
-	private MoveState m_MoveState;	// 移動処理を任せる
-	private AllPlayerManager m_AllPlayerManager;
-	private Animator m_animator;
-	private Controller.Controller m_Controller;
-	private PrintScore m_Score;     // スコア管理
-	private AudioList m_Audio;		// 音声再生用
+    // PlayerのID
+    public int m_PlayerID = 1; // 今は一人しかいない
 
+    private MoveState m_MoveState;  // 移動処理を任せる
+    private AllPlayerManager m_AllPlayerManager;
+    private Animator m_animator;
+    private Controller.Controller m_Controller;
+    private PrintScore m_Score;     // スコア管理
+    private AudioList m_Audio;      // 音声再生用
 
-	private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
-	private bool is_StopControl = false;            // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add 
+    private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
+    private bool is_StopControl = false;            // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add
 
-	// Third parson character ------
-	public bool walkByDefault = false; // toggle for walking state
+    // Third parson character ------
+    public bool walkByDefault = false; // toggle for walking state
 
-	public bool lookInCameraDirection = true;// should the character be looking in the same direction that the camera is facing
+    public bool lookInCameraDirection = true;// should the character be looking in the same direction that the camera is facing
 
-	private Vector3 lookPos; // The position that the character should be looking towards
-	 private ThirdPersonCharacter character; // A reference to the ThirdPersonCharacter on the object
-	 private Transform cam; // A reference to the main camera in the scenes transform
-	 private Vector3 camForward; // The current forward direction of the camera
+    private Vector3 lookPos; // The position that the character should be looking towards
+    private ThirdPersonCharacter character; // A reference to the ThirdPersonCharacter on the object
+    private Transform cam; // A reference to the main camera in the scenes transform
+    private Vector3 camForward; // The current forward direction of the camera
 
-	 private Vector3 move;
-	 private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
-	 // ------Third parson character
+    private Vector3 move;
+    private bool jump;// the world-relative desired move direction, calculated from the camForward and user input.
+                      // ------Third parson character
 
-	//david add
-	//wallrun varaiables 
-	public float wallRunSpeedFactor = 10.0f;
+    //david add
+    //wallrun varaiables
+    public float wallRunSpeedFactor = 10.0f;
+
     public float minWallRunSpeed = 5.0f; // minimum speed player has to move in order to maintain wall run
     public float maxWallRunTime = 0.1f; // how long a player can wall run
     private bool wallRunActivated = false; // set in Update() and used to activate wallRun in FixedUpdate()
     private bool wallRunTimeUp = false; // controlling flag for handling when wall run time times up
 
     // Use this for initialization
-    void Start() {
-		m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
-		m_Controller = GetComponent<Controller.Controller>();
-		m_MoveState = GetComponent<MoveState>();
-		m_animator = GetComponent<Animator>();
-		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
-		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
-
-		// Initialize the third person character
-		//----------------------------------------------------------------------
-		// get the transform of the main camera
-		if (Camera.main != null) {
-			//cam = Camera.main.transform;
-			string camStr = "MainCamera" + m_PlayerID.ToString();
-			cam = GameObject.Find(camStr).GetComponent<Transform>();
-		} else {
-			Debug.LogWarning(
-				"Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.");
-			// we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
-		}
-
-		// get the third person character ( this should never be null due to require component )
-		character = gameObject.GetComponent<ThirdPersonCharacter>();
-
-		//character = GetComponents<ThirdPersonCharacter>();
-		if (character == null) {
-			character = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonCharacter>();    // 無理矢理探す
-			// なんか知らないけどGetComponentしてるのにnullを返してくる
-			if(character == null) {
-				Debug.LogWarning("Third Person Character Null Reference!!");
-				Debug.Break();
-			}
-		}
-
-	}
-
-	// Update is called once per frame
-	void Update()
+    private void Start()
     {
-		// MoveStateの移動制御が走っている場合、または、外部から止められている
-		if (m_MoveState.isMove() || is_StopControl) {
-			return;
-		}
+        m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
+        m_Controller = GetComponent<Controller.Controller>();
+        m_MoveState = GetComponent<MoveState>();
+        m_animator = GetComponent<Animator>();
+        m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
+        m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 
-		// 状態管理
-		bool Roll = m_animator.GetBool("is_Rolling");
+        // Initialize the third person character
+        //----------------------------------------------------------------------
+        // get the transform of the main camera
+        if (Camera.main != null)
+        {
+            cam = GameObject.Find("MainCamera" + m_PlayerID.ToString()).GetComponent<Transform>();
+        }
+        else
+        {
+            Debug.LogWarning(
+                "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.");
+            // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
+        }
 
-		//david add
-		if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
-        { 
+        // get the third person character ( this should never be null due to require component )
+        character = gameObject.GetComponent<ThirdPersonCharacter>();
+
+        //character = GetComponents<ThirdPersonCharacter>();
+        if (character == null)
+        {
+            character = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonCharacter>();    // 無理矢理探す
+                                                                                                            // なんか知らないけどGetComponentしてるのにnullを返してくる
+            if (character == null)
+            {
+                Debug.LogWarning("Third Person Character Null Reference!!");
+                Debug.Break();
+            }
+        }
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        // MoveStateの移動制御が走っている場合、または、外部から止められている
+        if (m_MoveState.isMove() || is_StopControl)
+        {
+            return;
+        }
+
+        // 状態管理
+        bool Roll = m_animator.GetBool("is_Rolling");
+
+        //david add
+        if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
+        {
             wallRunTimeUp = false;
         }
 
-        float v = m_Controller.GetAxisRaw(Axis.L_y) ;
+        float v = m_Controller.GetAxisRaw(Axis.L_y);
         v = GetComponent<Rigidbody>().velocity.magnitude;
         Rigidbody rb = GetComponent<Rigidbody>();
         Quaternion charRotation = transform.localRotation;
 
         Vector3 adjustedDir = charRotation * character.GetComponent<Rigidbody>().velocity; // rotate velocity for rotation on character
 
-
-		// 仮にコントローラーのLBに設定した
-		// if the player can wallrun then wall run
-		if (CanWallRun(character.transform, v, adjustedDir, m_Controller.GetButtonHold(Button.LB)) && !wallRunTimeUp)
+        // 仮にコントローラーのLBに設定した
+        // if the player can wallrun then wall run
+        if (CanWallRun(character.transform, v, adjustedDir, m_Controller.GetButtonHold(Button.LB)) && !wallRunTimeUp)
         {
             wallRunActivated = true; // turn on wallRun so it can be ran in fixedUpdate(better for rigibody manipulations)
         }
@@ -122,53 +125,62 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
         }
 
         // MoveStateの状態確認
-		if (!jump && !Roll) {
-			// キーボードのほうは全員でジャンプする（キーボードはID管理してない）
-			if (m_Controller.GetButtonDown(Button.A) || Input.GetKeyDown(KeyCode.Space)) {
-				jump = true;
-			}
-			m_animator.SetBool("is_Jump", jump);    // oyama add
-		}
+        if (!jump && !Roll)
+        {
+            // キーボードのほうは全員でジャンプする（キーボードはID管理してない）
+            if (m_Controller.GetButtonDown(Button.A) || Input.GetKeyDown(KeyCode.Space))
+            {
+                jump = true;
+            }
+            m_animator.SetBool("is_Jump", jump);    // oyama add
+        }
     }
 
-	/// <summary>
-	/// ThirdPersonFixedUpdate
-	/// </summary>
-	void FixedUpdate() {
+    /// <summary>
+    /// ThirdPersonFixedUpdate
+    /// </summary>
+    private void FixedUpdate()
+    {
+        // MoveStateの移動制御が走っている場合、または、外部から止められている
+        if (m_MoveState.isMove() || is_StopControl)
+        {
+            return;
+        }
+        // read inputs
+        bool crouch = false;
+        bool slide = false;
+        bool vault = false;
+        bool climb = false;
+        bool wallrun = false;
 
-		// MoveStateの移動制御が走っている場合、または、外部から止められている
-		if (m_MoveState.isMove() || is_StopControl) {
-			return;
-		}
-		// read inputs
-		bool crouch = false;
-		bool slide = false;
-		bool vault = false;
-		bool climb = false;
-		bool wallrun = false;
+        float h, v;
 
-		float h, v;
+        //get input from sticks and buttons
+        if (Controller.Controller.GetConnectControllers() > 0)
+        {
+            h = m_Controller.GetAxisRaw(Axis.L_x);
+            v = m_Controller.GetAxisRaw(Axis.L_y);
+        }
+        else
+        {
+            // つながってないとき
+            h = Input.GetAxis("Horizontal");
+            v = Input.GetAxis("Vertical");
+        }
 
-		//get input from sticks and buttons
-		if (Controller.Controller.GetConnectControllers() > 0) {
-			h = m_Controller.GetAxisRaw(Axis.L_x);
-			v = m_Controller.GetAxisRaw(Axis.L_y);
-		} else {
-			// つながってないとき
-			h = Input.GetAxis("Horizontal");
-			v = Input.GetAxis("Vertical");
-		}
+        if (cam != null)
+        {
+            // calculate camera relative direction to move:
+            camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
+            move = v * camForward + h * cam.right;
+        }
+        else
+        {
+            // we use world-relative directions in the case of no main camera
+            move = v * Vector3.forward + h * Vector3.right;
+        }
 
-		if (cam != null) {
-			// calculate camera relative direction to move:
-			camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
-			move = v * camForward + h * cam.right;
-		} else {
-			// we use world-relative directions in the case of no main camera
-			move = v * Vector3.forward + h * Vector3.right;
-		}
-
-		if (move.magnitude > 1) move.Normalize();
+        if (move.magnitude > 1) move.Normalize();
 
         //david add
         // wallRun action
@@ -179,8 +191,8 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
             RaycastHit hitR;
             RaycastHit hitL;
             float rayCastDistance = 1.0f;
-            
-            if(Physics.Raycast(playerPosition, character.transform.right, out hitR, rayCastDistance))
+
+            if (Physics.Raycast(playerPosition, character.transform.right, out hitR, rayCastDistance))
             {
                 Vector2 tmp = new Vector2(v, h); // get a value influenced by both axes
 
@@ -188,7 +200,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
                 WallRun(hitR, v, h, Time.deltaTime, 1);
                 StartCoroutine(afterWallRun());
             }
-            else if(Physics.Raycast(playerPosition, -character.transform.right, out hitL, rayCastDistance))
+            else if (Physics.Raycast(playerPosition, -character.transform.right, out hitL, rayCastDistance))
             {
                 Vector2 tmp = new Vector2(v, h);
 
@@ -198,151 +210,164 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
             }
         }
 
-		// calculate the head look target position
-		lookPos = lookInCameraDirection && cam != null
-						? transform.position + cam.forward * 100
-						: transform.position + transform.forward * 100;
+        // calculate the head look target position
+        lookPos = lookInCameraDirection && cam != null
+                        ? transform.position + cam.forward * 100
+                        : transform.position + transform.forward * 100;
 
-		// pass all parameters to the character control script
-		character.Move(move, crouch, jump, vault, slide, climb, wallrun, lookPos);
-		jump = false;
-		m_animator.SetBool("is_Jump", jump);    // add oyama
-        
+        // pass all parameters to the character control script
+        character.Move(move, crouch, jump, vault, slide, climb, wallrun, lookPos);
+        jump = false;
+        m_animator.SetBool("is_Jump", jump);    // add oyama
     }
 
-	//============================================================
-	// Getter or Setter
-	//============================================================
-	/// <summary>
-	/// 現在プレイヤーがどのアクションをしているか
-	/// </summary>
-	public string getPlayerAction() {
-		return m_MoveState.getPlayerAction();
-	}
+    //============================================================
+    // Getter or Setter
+    //============================================================
+    /// <summary>
+    /// 現在プレイヤーがどのアクションをしているか
+    /// </summary>
+    public string getPlayerAction()
+    {
+        return m_MoveState.getPlayerAction();
+    }
 
-	
-	/// <summary>
-	/// プレイヤーのポジションを返す
-	/// </summary>
-	/// <returns>プレイヤーの位置</returns>
-	public Vector3 getPlayerPos() {
-		return transform.position;
-	}
+    /// <summary>
+    /// プレイヤーのポジションを返す
+    /// </summary>
+    /// <returns>プレイヤーの位置</returns>
+    public Vector3 getPlayerPos()
+    {
+        return transform.position;
+    }
 
-	/// <summary>
-	/// プレイヤーのIDを返す
-	/// </summary>
-	/// <returns>プレイヤーID</returns>
-	public int getPlayerID() {
-		return m_PlayerID;
-	}
+    /// <summary>
+    /// プレイヤーのIDを返す
+    /// </summary>
+    /// <returns>プレイヤーID</returns>
+    public int getPlayerID()
+    {
+        return m_PlayerID;
+    }
 
-	/// <summary>
-	/// プレイヤーのリスタート位置をセットする.上書き
-	/// </summary>
-	/// <returns>プレイヤーID</returns>
-	public void setRestartPosition(Vector3 vec) {
-		m_RestartPoint = vec;
-	}
+    /// <summary>
+    /// プレイヤーのリスタート位置をセットする.上書き
+    /// </summary>
+    /// <returns>プレイヤーID</returns>
+    public void setRestartPosition(Vector3 vec)
+    {
+        m_RestartPoint = vec;
+    }
 
-	//============================================================
-	// ==2017/10/31 Oyama Add
-	// ObjectActionAreaスクリプトから直接実行される部分
-	//
-	// オブジェクトに当たったらそのオブジェクトに応じたアクションを実行
-	// そのあとは各スクリプトで状態を管理させる	
-	// アニメーターのアニメーション名と関数を一致させること
-	//============================================================
+    //============================================================
+    // ==2017/10/31 Oyama Add
+    // ObjectActionAreaスクリプトから直接実行される部分
+    //
+    // オブジェクトに当たったらそのオブジェクトに応じたアクションを実行
+    // そのあとは各スクリプトで状態を管理させる
+    // アニメーターのアニメーション名と関数を一致させること
+    //============================================================
 
-	/// <summary>
-	/// アクションを再生する
-	/// </summary>
-	/// <param name="name">タグ名</param>
-	public void PlayAction(string name) {
-		PlayAction(name, Button.A);
-	}
+    /// <summary>
+    /// アクションを再生する
+    /// </summary>
+    /// <param name="name">タグ名</param>
+    public void PlayAction(string name)
+    {
+        PlayAction(name, Button.A);
+    }
 
-	/// <summary>
-	/// アクションを再生する
-	/// </summary>
-	/// <param name="name">タグ名</param>
-	/// <param name="button">実行するときに使うボタン</param>
-	public void PlayAction(string name, Controller.Button button) {
+    /// <summary>
+    /// アクションを再生する
+    /// </summary>
+    /// <param name="name">タグ名</param>
+    /// <param name="button">実行するときに使うボタン</param>
+    public void PlayAction(string name, Controller.Button button)
+    {
+        if ((m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z)) &&
+            !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name))
+        {
+            for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--)
+            {
+                // Dictionaryと検索してタグを検索
+                if (m_MoveState.StateDictionary[m] == name)
+                {
+                    // MoveStatementのenumに変換したiと検出したタグ名を投げる
+                    m_animator.SetBool("is_" + name, true);
+                    m_animator.Play(name);
+                    m_MoveState.changeState(m, name);
+                }
+            }
+        }
+    }
 
-		if ( (m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z) ) &&
-			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
+    /// <summary>
+    /// アクションを再生する
+    /// </summary>
+    /// <param name="name">タグ名</param>
+    /// <param name="button">実行するときに使うボタン</param>
+    public void PlayAction(string name, Controller.Button button, Vector3[] move, int score)
+    {
+        // 指定されたボタンが押され、現在の再生アニメーションがアクション予定と違う
+        if ((m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z)) &&
+            !m_animator.GetCurrentAnimatorStateInfo(0).IsName(name))
+        {
+            m_MoveState.setMovePosition(move);
+            for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--)
+            {
+                // Dictionaryと検索してタグを検索
+                if (m_MoveState.StateDictionary[m] == name)
+                {
+                    // MoveStatementのenumに変換したiと検出したタグ名を投げる
+                    m_animator.SetBool("is_" + name, true);
+                    m_animator.Play(name);
+                    // PrintScoreにスコアの基準値を投げる
+                    // スコアマネージャに送信
+                    ExecuteEvents.Execute<ScoreReciever>(
+                        target: m_Score.gameObject,
+                        eventData: null,
+                        functor: (reciever, y) => reciever.ReceivePlayerScore(this.m_PlayerID, score)
+                    );
+                    m_MoveState.changeState(m, name);
+                }
+            }
+        }
+    }
 
-			for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--) {
-				// Dictionaryと検索してタグを検索
-				if (m_MoveState.StateDictionary[m] == name) {
-					// MoveStatementのenumに変換したiと検出したタグ名を投げる
-					m_animator.SetBool("is_" + name, true);
-					m_animator.Play(name);
-					m_MoveState.changeState(m, name);
-				}
-			}
-		}
-	}
+    // 2017年12月01日 oyama add
+    /// <summary>
+    /// プレイヤーがリスタートする時の処理
+    /// Todo:エフェクトとかもいる
+    /// </summary>
+    public void restartPlayer()
+    {
+        EffectControl eff = EffectControl.get();
+        transform.position = m_RestartPoint;
+        eff.createItemHit(m_RestartPoint);  // 仮にエフェクト再生
+    }
 
-	/// <summary>
-	/// アクションを再生する
-	/// </summary>
-	/// <param name="name">タグ名</param>
-	/// <param name="button">実行するときに使うボタン</param>
-	public void PlayAction(string name, Controller.Button button, Vector3[] move, int score) {
-		// 指定されたボタンが押され、現在の再生アニメーションがアクション予定と違う
-		if ((m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z)) &&
-			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
-			m_MoveState.setMovePosition(move);
-			for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--) {
-				// Dictionaryと検索してタグを検索
-				if (m_MoveState.StateDictionary[m] == name) {
-					// MoveStatementのenumに変換したiと検出したタグ名を投げる
-					m_animator.SetBool("is_" + name, true);
-					m_animator.Play(name);
-					// PrintScoreにスコアの基準値を投げる
-					// スコアマネージャに送信
-					ExecuteEvents.Execute<ScoreReciever>(
-						target: m_Score.gameObject,
-						eventData: null,
-						functor: (reciever, y) => reciever.ReceivePlayerScore(this.m_PlayerID, score)
-					);
-					m_MoveState.changeState(m, name);
-				}
-			}
-		}
-	}
+    /// <summary>
+    /// プレイヤーのコントロールを停止させる
+    /// </summary>
+    /// <param name="flag">false:通常|true:停止</param>
+    public void stopControl(bool flag)
+    {
+        is_StopControl = flag;
+    }
 
-	// 2017年12月01日 oyama add
-	/// <summary>
-	/// プレイヤーがリスタートする時の処理
-	/// Todo:エフェクトとかもいる
-	/// </summary>
-	public void restartPlayer() {
-		EffectControl eff = EffectControl.get();
-		transform.position = m_RestartPoint;
-		eff.createItemHit(m_RestartPoint);	// 仮にエフェクト再生
-	}
-
-	/// <summary>
-	/// プレイヤーのコントロールを停止させる
-	/// </summary>
-	/// <param name="flag">false:通常|true:停止</param>
-	public void stopControl(bool flag) {
-		is_StopControl = flag;
-	}
-
-	//============================================================
-	/// <summary>
-	/// プレイヤー同士が接触したときの処理
-	/// </summary>
-	/// <param name="name">タグ名</param>
-	void OnTriggerStay(Collider other) {
-		if (other.tag == "Player") {
-			// 衝突したときの処理
-			// 上になんか送る
-		}
-	}
+    //============================================================
+    /// <summary>
+    /// プレイヤー同士が接触したときの処理
+    /// </summary>
+    /// <param name="name">タグ名</param>
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            // 衝突したときの処理
+            // 上になんか送る
+        }
+    }
 
     // david add
     /// <summary>
@@ -359,9 +384,8 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
     /// <param jumpButtonHold="whether or not the jump button is held down"></param>
     private bool CanWallRun(Transform trans, float speed, Vector3 moveDir, bool jumpButtonHold)
     {
-
         bool canWallRun = false;
-        
+
         // only wallrun if player is mid-air can he wall run and
         // if the jump button is held down and the speed at which the player is moving is fast enough
         if (!character.onGround && jumpButtonHold && (speed > minWallRunSpeed))
@@ -380,13 +404,12 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
     private void WallRun(RaycastHit hitInfo, float v, float h, float time, int direction)
     {
         character.wallRunning = true;
-            
+
         Rigidbody rb = character.GetComponent<Rigidbody>();
         Vector3 wallRunPoint = hitInfo.point;
         Quaternion rotation = transform.rotation;
         Vector3 charForward = new Vector3();
 
-        
         charForward = Vector3.Cross(character.transform.up, hitInfo.normal);
         // rotate the foward vector with respect to the direction the character is facing to get "true" forward vector cuz the original doesn't rotate
         charForward = rotation * charForward * direction;
@@ -397,17 +420,18 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
         float leftRightMatch = Vector3.Dot(Vector3.right, charForward);
         float frontBackMatch = Vector3.Dot(Vector3.forward, charForward);
 
-		if (direction == 1) // wall is on the players right side
-		{
-			GetComponent<Animator>().SetBool("WallOnRight", true);
-		} else // wall is on the players left side
-		  {
-			GetComponent<Animator>().SetBool("WallOnRight", false);
-		}
+        if (direction == 1) // wall is on the players right side
+        {
+            GetComponent<Animator>().SetBool("WallOnRight", true);
+        }
+        else // wall is on the players left side
+        {
+            GetComponent<Animator>().SetBool("WallOnRight", false);
+        }
 
-		// TODO: Lots of black magic hard coding to get right numbers for horizontal and frontal wall running, FIX PLZ!
-		//       theres got to be a more elegant method
-		/*
+        // TODO: Lots of black magic hard coding to get right numbers for horizontal and frontal wall running, FIX PLZ!
+        //       theres got to be a more elegant method
+        /*
 		if (frontBackMatch < leftRightMatch) // player is facing on the x axis, for horizontal walls
         {
             charForward = Vector3.Cross(character.transform.up, hitInfo.normal);
@@ -424,7 +448,6 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
             }
 
             rb.velocity = charForward * speed * wallRunSpeedFactor; // use the h value of stick to affect horizontal wall run
-
         }
         else // player is facing on the x axis, for horizontal walls
         {
@@ -441,7 +464,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 
     // coroutine for ending wallrun after a certain amount of time
     // TODO: make it work correctly, right now not detecting time up
-    IEnumerator afterWallRun()
+    private IEnumerator afterWallRun()
     {
         yield return new WaitForSeconds(maxWallRunTime);
 
