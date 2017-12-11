@@ -197,6 +197,24 @@ public class AllPlayerManager : MonoBehaviour {
 		return m_PlayerManager;
 	}
 
+	/// <summary>
+	/// Playerの全ての位置を返す
+	/// </summary>
+	public Vector3[] getPlayerPositions(int id) {
+		Vector3[] vecs = new Vector3[4];
+		for(int i =0; i<4; i++) {
+			vecs[i] = m_PlayerManager[i].getPlayerPos();
+		}
+		return vecs;
+	}
+
+	public Vector3 getPlayerPosision(int id) {
+		if(id > 0 && id < 5) {
+			return m_PlayerManager[id-1].getPlayerPos();
+		}
+		return Vector3.zero;
+	}
+
 	// Singleton
 	//------------------------------------------------------------
 	//private AllPlayerManger() {
