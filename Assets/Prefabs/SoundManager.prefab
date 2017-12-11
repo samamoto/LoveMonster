@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4441832653978742}
   - component: {fileID: 114748036841873592}
+  - component: {fileID: 81463208160278116}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -40,6 +41,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &81463208160278116
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1230081618322152}
+  m_Enabled: 1
 --- !u!114 &114748036841873592
 MonoBehaviour:
   m_ObjectHideFlags: 1
