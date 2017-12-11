@@ -19,8 +19,8 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 	private Animator m_animator;
 	private Controller.Controller m_Controller;
 	private PrintScore m_Score;     // スコア管理
-	private AudioList m_Audio;		// 音声再生用
-
+	private AudioList m_Audio;      // 音声再生用
+	private ComboSystem m_Combo;	// コンボシステム
 
 	private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
 	private bool is_StopControl = false;            // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add 
@@ -56,6 +56,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 		m_animator = GetComponent<Animator>();
 		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+		m_Combo = GetComponent<ComboSystem>();
 
 		// Initialize the third person character
 		//----------------------------------------------------------------------
@@ -372,6 +373,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 						eventData: null,
 						functor: (reciever, y) => reciever.ReceivePlayerScore(this.m_PlayerID, score)
 					);
+					m_Combo._AddCombo();	// アクションが実行されるたびにコンボを＋１
 					m_MoveState.changeState(m, name);
 				}
 			}

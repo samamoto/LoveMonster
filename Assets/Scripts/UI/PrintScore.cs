@@ -78,7 +78,7 @@ public class PrintScore : MonoBehaviour, ScoreReciever
 		}
 		GetComponent<Text>().text = str;    // textフィールドに表示
 #endif
-		DebugPrint.print(PlayerScore[0].ToString());
+		//DebugPrint.print(PlayerScore[0].ToString());
 
 	}
 

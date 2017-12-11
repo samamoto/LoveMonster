@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// ・プレイヤーのスピードアップはオブジェクトのアクションを成功させたコンボ数
@@ -11,15 +12,15 @@ using UnityEngine;
 
 public class ComboSystem : MonoBehaviour {
 
-    private const float MAX_TIME = 5.0f;
-    private const int   MAX_POWER = 5;
+    public const float MAX_TIME = 5.0f;
+    public const int   MAX_POWER = 5;
   
     private float[] multiList;
 
     private float downTime; //５秒経過用タイム
     private float cntTime;  //１秒経過用タイム
 
-    private int power;
+    public int power;
     public int cntCombo { get; private set; }
 
     // Use this for initialization
