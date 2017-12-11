@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public class ControllerGenerator : MonoBehaviour
@@ -110,9 +112,10 @@ public class ControllerGenerator : MonoBehaviour
     {
         ms_InputGenerator.ClearSetting();
     }
-
+#if UNITY_EDITOR
     public static SerializedProperty GetPropaty(string axisName, InputManagerGenerator.AxisPropaty axisPropaty)
     {
         return ms_InputGenerator.GetProperty(axisName, axisPropaty);
     }
+#endif
 }

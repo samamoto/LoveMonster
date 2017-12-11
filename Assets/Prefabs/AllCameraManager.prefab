@@ -2413,17 +2413,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 1
   Offset: {x: 0, y: 1.53, z: 0}
-  distance: 2.78
-  minDistance: 2.78
-  maxDistance: 13.9
-  deltaDistance: 1
-  polerAngle: 85
-  minPolerAngle: 30
-  maxPolerAngle: 85
-  azimuthalAlngle: 270
-  Cont_X_Secsitivity: 3
-  Cont_Y_Secsitivity: 3
-  Cont_Threshold: 0.1
+  m_Distance: 2.78
+  m_PolarAngle: 85
+  m_AzimuthalAngle: 270
+  m_MinPolar: 30
+  m_MaxPolar: 85
+  m_Cont_x_Secsitivity: 3
+  m_Cont_y_Secsitivity: 3
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
+  m_LerpTimeMultiply: 5
 --- !u!114 &114100865920952128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3177,17 +3176,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 4
   Offset: {x: 0, y: 1.53, z: 0}
-  distance: 2.78
-  minDistance: 2.78
-  maxDistance: 13.9
-  deltaDistance: 1
-  polerAngle: 85
-  minPolerAngle: 30
-  maxPolerAngle: 85
-  azimuthalAlngle: 270
-  Cont_X_Secsitivity: 3
-  Cont_Y_Secsitivity: 3
-  Cont_Threshold: 0.1
+  m_Distance: 2.78
+  m_PolarAngle: 85
+  m_AzimuthalAngle: 270
+  m_MinPolar: 30
+  m_MaxPolar: 85
+  m_Cont_x_Secsitivity: 3
+  m_Cont_y_Secsitivity: 3
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
+  m_LerpTimeMultiply: 0.1
 --- !u!114 &114469121593791250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3284,17 +3282,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 0
   Offset: {x: 0, y: 1.53, z: 0}
-  distance: 2.78
-  minDistance: 2.78
-  maxDistance: 13.9
-  deltaDistance: 1
-  polerAngle: 85
-  minPolerAngle: 30
-  maxPolerAngle: 85
-  azimuthalAlngle: 270
-  Cont_X_Secsitivity: 3
-  Cont_Y_Secsitivity: 3
-  Cont_Threshold: 0.1
+  m_Distance: 2.78
+  m_PolarAngle: 85
+  m_AzimuthalAngle: 270
+  m_MinPolar: 30
+  m_MaxPolar: 85
+  m_Cont_x_Secsitivity: 3
+  m_Cont_y_Secsitivity: 3
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
+  m_LerpTimeMultiply: 0.1
 --- !u!114 &114542166161922264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4157,17 +4154,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 1
   Offset: {x: 0, y: 1.53, z: 0}
-  distance: 2.78
-  minDistance: 2.78
-  maxDistance: 13.9
-  deltaDistance: 1
-  polerAngle: 85
-  minPolerAngle: 30
-  maxPolerAngle: 85
-  azimuthalAlngle: 270
-  Cont_X_Secsitivity: 3
-  Cont_Y_Secsitivity: 3
-  Cont_Threshold: 0.1
+  m_Distance: 2.78
+  m_PolarAngle: 85
+  m_AzimuthalAngle: 270
+  m_MinPolar: 30
+  m_MaxPolar: 85
+  m_Cont_x_Secsitivity: 3
+  m_Cont_y_Secsitivity: 3
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
+  m_LerpTimeMultiply: 0.1
 --- !u!114 &114756291846853900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4315,17 +4311,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 2
   Offset: {x: 0, y: 1.53, z: 0}
-  distance: 2.78
-  minDistance: 2.78
-  maxDistance: 13.9
-  deltaDistance: 1
-  polerAngle: 85
-  minPolerAngle: 30
-  maxPolerAngle: 85
-  azimuthalAlngle: 270
-  Cont_X_Secsitivity: 3
-  Cont_Y_Secsitivity: 3
-  Cont_Threshold: 0.1
+  m_Distance: 2.78
+  m_PolarAngle: 85
+  m_AzimuthalAngle: 270
+  m_MinPolar: 30
+  m_MaxPolar: 85
+  m_Cont_x_Secsitivity: 3
+  m_Cont_y_Secsitivity: 3
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
+  m_LerpTimeMultiply: 0.1
 --- !u!114 &114870661552211046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4351,17 +4346,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 3
   Offset: {x: 0, y: 1.53, z: 0}
-  distance: 2.78
-  minDistance: 2.78
-  maxDistance: 13.9
-  deltaDistance: 1
-  polerAngle: 85
-  minPolerAngle: 30
-  maxPolerAngle: 85
-  azimuthalAlngle: 270
-  Cont_X_Secsitivity: 3
-  Cont_Y_Secsitivity: 3
-  Cont_Threshold: 0.1
+  m_Distance: 2.78
+  m_PolarAngle: 85
+  m_AzimuthalAngle: 270
+  m_MinPolar: 30
+  m_MaxPolar: 85
+  m_Cont_x_Secsitivity: 3
+  m_Cont_y_Secsitivity: 3
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
+  m_LerpTimeMultiply: 0.1
 --- !u!114 &114882508647330748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4613,17 +4607,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 0
   Offset: {x: 0, y: 1.53, z: 0}
-  distance: 2.78
-  minDistance: 2.78
-  maxDistance: 13.9
-  deltaDistance: 1
-  polerAngle: 85
-  minPolerAngle: 30
-  maxPolerAngle: 85
-  azimuthalAlngle: 270
-  Cont_X_Secsitivity: 3
-  Cont_Y_Secsitivity: 3
-  Cont_Threshold: 0.1
+  m_Distance: 2.78
+  m_PolarAngle: 85
+  m_AzimuthalAngle: 270
+  m_MinPolar: 30
+  m_MaxPolar: 85
+  m_Cont_x_Secsitivity: 3
+  m_Cont_y_Secsitivity: 3
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
+  m_LerpTimeMultiply: 0.1
 --- !u!114 &114997243743907172
 MonoBehaviour:
   m_ObjectHideFlags: 1

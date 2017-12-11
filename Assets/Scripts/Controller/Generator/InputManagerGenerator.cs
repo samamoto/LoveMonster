@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 /// <summary>
@@ -8,17 +10,20 @@ using UnityEngine;
 /// </summary>
 public class InputManagerGenerator
 {
+#if UNITY_EDITOR
     private SerializedObject serializedObject;
     private SerializedProperty axesProperty;
-
+#endif
     /// <summary>
     /// コンストラクタ
     /// </summary>
     public InputManagerGenerator()
     {
         // InputManager.assetをシリアライズされたオブジェクトとして読み込む
+#if UNITY_EDITOR
         serializedObject = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
         axesProperty = serializedObject.FindProperty("m_Axes");
+#endif
     }
 
     public enum AxisPropaty
@@ -38,6 +43,7 @@ public class InputManagerGenerator
     /// <param name="axis">Axis.</param>
     public void AddAxis(InputAxis axis)
     {
+#if UNITY_EDITOR
         if (axis.axis < 1)
             Debug.LogError("Axisは1以上に設定してください。");
         SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
@@ -64,6 +70,7 @@ public class InputManagerGenerator
         GetChildProperty(axisProperty, "joyNum").intValue = axis.joyNum;
 
         serializedObject.ApplyModifiedProperties();
+#endif
     }
 
     /// <summary>
@@ -72,6 +79,8 @@ public class InputManagerGenerator
     /// <returns>The child property.</returns>
     /// <param name="parent">Parent.</param>
     /// <param name="name">Name.</param>
+
+#if UNITY_EDITOR
     private SerializedProperty GetChildProperty(SerializedProperty parent, string name)
     {
         SerializedProperty child = parent.Copy();
@@ -91,12 +100,17 @@ public class InputManagerGenerator
         return GetChildProperty(GetChildProperty(axesProperty, axisName), strAxisPropaty[(int)getPropaty]);
     }
 
+#endif
+
+
     /// <summary>
     /// 設定を全てクリアします。
     /// </summary>
     public void ClearSetting()
     {
+#if UNITY_EDITOR
         axesProperty.ClearArray();
         serializedObject.ApplyModifiedProperties();
+#endif
     }
 }
