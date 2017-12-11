@@ -208,7 +208,7 @@ public class AllPlayerManager : MonoBehaviour {
 		return vecs;
 	}
 
-	public Vector3 getPlayerPosision(int id) {
+	public Vector3 getPlayerPosition(int id) {
 		if(id > 0 && id < 5) {
 			return m_PlayerManager[id-1].getPlayerPos();
 		}

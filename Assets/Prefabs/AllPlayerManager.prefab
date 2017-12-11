@@ -10625,8 +10625,8 @@ MonoBehaviour:
   airSpeed: 9
   airControl: 2
   gravityMultiplier: 2
-  moveSpeedMultiplier: 1.5
-  animSpeedMultiplier: 1
+  moveSpeedMultiplier: 1.65
+  animSpeedMultiplier: 1.2
   advancedSettings:
     stationaryTurnSpeed: 540
     movingTurnSpeed: 1080
@@ -10664,6 +10664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b168fcfe104641438658b0880fdc616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 0
 --- !u!114 &114104599979664428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10725,8 +10726,8 @@ MonoBehaviour:
   airSpeed: 9
   airControl: 2
   gravityMultiplier: 2
-  moveSpeedMultiplier: 1.5
-  animSpeedMultiplier: 1
+  moveSpeedMultiplier: 1.65
+  animSpeedMultiplier: 1.2
   advancedSettings:
     stationaryTurnSpeed: 540
     movingTurnSpeed: 1080
@@ -10815,6 +10816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b168fcfe104641438658b0880fdc616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 0
 --- !u!114 &114374244545579152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10938,6 +10940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b168fcfe104641438658b0880fdc616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 0
 --- !u!114 &114573896438876366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10970,8 +10973,8 @@ MonoBehaviour:
   airSpeed: 9
   airControl: 2
   gravityMultiplier: 2
-  moveSpeedMultiplier: 1.5
-  animSpeedMultiplier: 1
+  moveSpeedMultiplier: 1.65
+  animSpeedMultiplier: 1.2
   advancedSettings:
     stationaryTurnSpeed: 540
     movingTurnSpeed: 1080
@@ -11105,8 +11108,8 @@ MonoBehaviour:
   airSpeed: 9
   airControl: 2
   gravityMultiplier: 2
-  moveSpeedMultiplier: 1.5
-  animSpeedMultiplier: 1
+  moveSpeedMultiplier: 1.65
+  animSpeedMultiplier: 1.2
   advancedSettings:
     stationaryTurnSpeed: 540
     movingTurnSpeed: 1080
@@ -11169,6 +11172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b168fcfe104641438658b0880fdc616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 0
 --- !u!114 &114944925115567026
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -24,6 +24,7 @@ TagManager:
   - Goal
   - GameManager
   - ObjectManager
+  - MiniMap
   layers:
   - Default
   - TransparentFX
