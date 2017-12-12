@@ -22,18 +22,29 @@ public class ComboSystem : MonoBehaviour {
 
     public int power;
     public int cntCombo { get; private set; }
+	private int m_id;
+
+	// 参照
+	private PrintScore m_Score;
 
     // Use this for initialization
     void Start () {
-        multiList = new float[6];
+        multiList = new float[MAX_POWER];
+		for(int i=0; i<MAX_POWER; i++) {
+			multiList[i] = 1.0f + (i * 0.1f);
+		}
+		/*
         multiList[0] = 1.0f;
         multiList[1] = 1.1f;
         multiList[2] = 1.2f;
         multiList[3] = 1.3f;
         multiList[4] = 1.4f;
         multiList[5] = 1.5f;
+		*/
+		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
+		m_id = GetComponent<PlayerManager>().getPlayerID();
 
-        Init();
+		Init();
     }
 
     //初期化
@@ -49,6 +60,8 @@ public class ComboSystem : MonoBehaviour {
         //コンボが０の時処理しねえ
         if (cntCombo == 0){ return; }
 
+		// PrintScore(ScoreManager代わり)の更新
+
         if (downTime <= 0)
         {
             //0以下になったら
@@ -58,11 +71,13 @@ public class ComboSystem : MonoBehaviour {
             //タイムを進める
             CountTime();
         }
-        
-    }
 
-    //タイムの初期化
-    void TimeReset() { downTime = 0; }
+		m_Score.setScoreRate(m_id, power);    // PrintScoreに現在のプレイヤーのスコアレートを設定
+
+	}
+
+	//タイムの初期化
+	void TimeReset() { downTime = 0; }
 
     //時間を進める
     void CountTime() { downTime -= Time.deltaTime; }
@@ -94,7 +109,6 @@ public class ComboSystem : MonoBehaviour {
         cntTime = 0;
 
         cntCombo++;                     //コンボカウントを進める
-
         //上限用
         if (power >= MAX_POWER)
         {
@@ -103,13 +117,21 @@ public class ComboSystem : MonoBehaviour {
         else {
             power++;
         }
-    }
 
-    //コンボのカウント初期化
-    public void _ClearCombo() { Init(); }
+	}
+
+	//コンボのカウント初期化
+	public void _ClearCombo() { Init(); }
 
     //入力にList[0~5] を積算して返す
     public float _Multiply(float speed) { 
         return speed * multiList[power];
     }
+	/// <summary>
+	///	現在のコンボ数(パワー)を返す
+	/// </summary>
+	public int getComboNum() {
+		return power;
+	}
+
 }

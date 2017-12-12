@@ -8,6 +8,7 @@ using Controller;
 /// 2017年11月23日 David PS4コントローラで対応に変更、調整できるように
 /// 2017年11月23日 oyama AllCameraに調整値を移動,コントローラとの名前一致で回転できるように
 /// 2017年11月25日 kashima 全体的に改変
+/// 2017年12月09日 oyama m_ChaseObjectをプレイヤーをFindで探す仕組みに変更(Prefab更新のたびにリセットされるため)
 /// </summary>
 
 public class ChaseCamera : MonoBehaviour
