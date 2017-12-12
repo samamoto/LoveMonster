@@ -57,3 +57,12 @@ MonoBehaviour:
   eff_powUp: {fileID: 102840, guid: 079d859a77888466487a5b2889cb1b64, type: 2}
   eff_dust: {fileID: 142034, guid: 259c32c26c1c248cf8664a61e1535a6f, type: 2}
   eff_burst: {fileID: 135710, guid: b8753ba549a46459eba7e6f806add77a, type: 2}
+  eff_clearShine: {fileID: 177910, guid: e507068367c814190a81db0e83974f5d, type: 2}
+  eff_actionTrail: {fileID: 1635419299567992, guid: 27fd66c1ee204084ca6a353253eced17,
+    type: 2}
+  eff_lightPulse: {fileID: 1167829014183474, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+    type: 2}
+  eff_lightTrail: {fileID: 1718889451860312, guid: 72650a4d8bbf43f439d7d72f77d36ad8,
+    type: 2}
+  eff_slideSpark: {fileID: 1679617242457014, guid: 237a153941eace248b8452466759a9a7,
+    type: 2}

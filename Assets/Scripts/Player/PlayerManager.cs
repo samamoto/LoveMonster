@@ -139,6 +139,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 	/// アクションが再生される時にSEを鳴らす
 	/// </summary>
 	void ActionSE() {
+		
 		//着地
 		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Crouching")) {
 			if (m_seDelay == 0) {
@@ -151,6 +152,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 			if (m_seDelay == 0) {
 				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
 				m_seDelay = 0.82f;
+				GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
 			}
 		}
 		//ロングスライド
