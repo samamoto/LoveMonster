@@ -376,7 +376,6 @@ public class PlayerManager : MonoBehaviour, PlayerReciever
 						functor: (reciever, y) => reciever.ReceivePlayerScore(this.m_PlayerID, score)
 					);
 					m_Combo._AddCombo();    // アクションが実行されるたびにコンボを＋１
-					GetComponentInChildren<ActionTrailManager>().setActive(true, this.gameObject);
 					m_MoveState.changeState(m, name);
 				}
 			}
