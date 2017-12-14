@@ -14,7 +14,7 @@ public class ComboSystem : MonoBehaviour {
 
 	public const float MAX_TIME = 5.0f;
 	public const int MAX_POWER = 10;
-	public const float SPD_UP_RATE = 0.05f;
+	public const float SPD_UP_RATE = 0.03f;
 	private float[] multiList;
 
 	private float downTime; //５秒経過用タイム
@@ -29,6 +29,8 @@ public class ComboSystem : MonoBehaviour {
 	// 参照
 	private PrintScore m_Score;
 	private ThirdPersonCharacter m_TPerson;
+	private Gauge[] m_Gauge = new Gauge[4];
+
     // Use this for initialization
     void Start () {
         multiList = new float[MAX_POWER];
@@ -41,7 +43,10 @@ public class ComboSystem : MonoBehaviour {
 		m_TPerson = GetComponent<ThirdPersonCharacter>();
 		m_MoveSpeed = m_TPerson.getMoveSpeed();
 		m_AnimSpeed = m_TPerson.getAnimSpeed();
-
+		// GanbaruGauge_1P~4P
+		for (int i = 0; i < 4; i++) {
+			m_Gauge[i] = GameObject.Find("GanbaruGauge_" + m_id.ToString() + "P").GetComponent<Gauge>();
+		}
 		Init();
     }
 
@@ -76,6 +81,15 @@ public class ComboSystem : MonoBehaviour {
 			m_TPerson.setMoveSpeed(m_MoveSpeed * multiList[power]);
 			m_TPerson.setAnimSpeed(m_AnimSpeed * ((multiList[power] - 1) * 0.5f + 1.0f));// ちょっとだけモーションも速くする
 		}
+		// ゲージに現在のコンボ比率を送る(テンション的なの)
+		for (int i = 0; i < 4; i++) {
+			ExecuteEvents.Execute<GaugeReciever>(
+				target: m_Gauge[i].gameObject,
+				eventData: null,
+				functor: (reciever, y) => reciever.ReceivePlayerGauge((1.0f/MAX_POWER)*power+1)
+			);
+		}
+
 	}
 
 	//タイムの初期化
