@@ -79,14 +79,6 @@ public class ThirdPersonCharacter : MonoBehaviour
     //ToDo:ターゲットオブジェクト取得用パラメータ
     public Vector3 Target;
 
-    //Actionの計算部分
-    ActionVault MA_Vault = new ActionVault();
-    ActionSlide MA_Slide = new ActionSlide();
-    ActionClimb MA_Climb = new ActionClimb();
-    ActionWallRun MA_WallRun = new ActionWallRun();
-
-	/// end
-
 	// Use this for initialization
 	void Start()
     {
@@ -107,10 +99,6 @@ public class ThirdPersonCharacter : MonoBehaviour
             capsule.center = Vector3.up*originalHeight*half;
         }
 
-        MA_Vault.Start();
-        MA_Slide.Start();
-        MA_Climb.Start();
-        MA_WallRun.Start();
 
         rayHitComparer = new RayHitComparer();
 
@@ -503,5 +491,17 @@ public class ThirdPersonCharacter : MonoBehaviour
         capsule.height = Mathf.MoveTowards(capsule.height, originalHeight * advancedSettings.crouchHeightFactor,Time.deltaTime * 4);
         capsule.center = Vector3.MoveTowards(capsule.center,Vector3.up * originalHeight * advancedSettings.crouchHeightFactor * half,Time.deltaTime * 2);
     }
+
+	/// <summary>
+	/// 現在の移動速度を返す
+	/// </summary>
+	public float getMoveSpeed() { return moveSpeedMultiplier; }
+	public void setMoveSpeed(float spd) { moveSpeedMultiplier = spd; }
+
+	/// <summary>
+	/// 現在のアニメーション速度を返す
+	/// </summary>
+	public float getAnimSpeed() { return animSpeedMultiplier; }
+	public void setAnimSpeed(float spd) { animSpeedMultiplier = spd; }
 
 }

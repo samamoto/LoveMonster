@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// ・プレイヤーのスピードアップはオブジェクトのアクションを成功させたコンボ数
@@ -11,28 +12,42 @@ using UnityEngine;
 
 public class ComboSystem : MonoBehaviour {
 
-    private const float MAX_TIME = 5.0f;
-    private const int   MAX_POWER = 5;
-  
-    private float[] multiList;
+	public const float MAX_TIME = 5.0f;
+	public const int MAX_POWER = 11;
+	public const float SPD_UP_RATE = 0.03f;
+	private float[] multiList;
 
-    private float downTime; //５秒経過用タイム
-    private float cntTime;  //１秒経過用タイム
+	private float downTime; //５秒経過用タイム
+	private float cntTime;  //１秒経過用タイム
 
-    private int power;
-    public int cntCombo { get; private set; }
+	public int power;
+	public int cntCombo { get; private set; }
+	private int m_id;
+	private float m_MoveSpeed;
+	private float m_AnimSpeed;
+
+	// 参照
+	private PrintScore m_Score;
+	private ThirdPersonCharacter m_TPerson;
+	private Gauge[] m_Gauge = new Gauge[4];
 
     // Use this for initialization
     void Start () {
-        multiList = new float[6];
-        multiList[0] = 1.0f;
-        multiList[1] = 1.1f;
-        multiList[2] = 1.2f;
-        multiList[3] = 1.3f;
-        multiList[4] = 1.4f;
-        multiList[5] = 1.5f;
+        multiList = new float[MAX_POWER];
+		for(int i=0; i<MAX_POWER; i++) {
+			multiList[i] = 1.0f + (i * SPD_UP_RATE);
+		}
 
-        Init();
+		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
+		m_id = GetComponent<PlayerManager>().getPlayerID();
+		m_TPerson = GetComponent<ThirdPersonCharacter>();
+		m_MoveSpeed = m_TPerson.getMoveSpeed();
+		m_AnimSpeed = m_TPerson.getAnimSpeed();
+		// GanbaruGauge_1P~4P
+		for (int i = 0; i < 4; i++) {
+			m_Gauge[i] = GameObject.Find("GanbaruGauge_" + m_id.ToString() + "P").GetComponent<Gauge>();
+		}
+		Init();
     }
 
     //初期化
@@ -48,6 +63,7 @@ public class ComboSystem : MonoBehaviour {
         //コンボが０の時処理しねえ
         if (cntCombo == 0){ return; }
 
+
         if (downTime <= 0)
         {
             //0以下になったら
@@ -57,11 +73,27 @@ public class ComboSystem : MonoBehaviour {
             //タイムを進める
             CountTime();
         }
-        
-    }
 
-    //タイムの初期化
-    void TimeReset() { downTime = 0; }
+		// PrintScore(ScoreManager代わり)の更新
+		m_Score.setScoreRate(m_id, power);    // PrintScoreに現在のプレイヤーのスコアレートを設定
+		// スピードアップ処理
+		if (power <= MAX_POWER) {
+			m_TPerson.setMoveSpeed(m_MoveSpeed * multiList[power]);
+			m_TPerson.setAnimSpeed(m_AnimSpeed * ((multiList[power] - 1) * 0.5f + 1.0f));// ちょっとだけモーションも速くする
+		}
+		// ゲージに現在のコンボ比率を送る(テンション的なの)
+		for (int i = 0; i < 4; i++) {
+			ExecuteEvents.Execute<GaugeReciever>(
+				target: m_Gauge[i].gameObject,
+				eventData: null,
+				functor: (reciever, y) => reciever.ReceivePlayerGauge((1.0f/MAX_POWER)*power+1)
+			);
+		}
+
+	}
+
+	//タイムの初期化
+	void TimeReset() { downTime = 0; }
 
     //時間を進める
     void CountTime() { downTime -= Time.deltaTime; }
@@ -93,7 +125,6 @@ public class ComboSystem : MonoBehaviour {
         cntTime = 0;
 
         cntCombo++;                     //コンボカウントを進める
-
         //上限用
         if (power >= MAX_POWER)
         {
@@ -102,13 +133,21 @@ public class ComboSystem : MonoBehaviour {
         else {
             power++;
         }
-    }
 
-    //コンボのカウント初期化
-    public void _ClearCombo() { Init(); }
+	}
+
+	//コンボのカウント初期化
+	public void _ClearCombo() { Init(); }
 
     //入力にList[0~5] を積算して返す
     public float _Multiply(float speed) { 
         return speed * multiList[power];
     }
+	/// <summary>
+	///	現在のコンボ数(パワー)を返す
+	/// </summary>
+	public int getComboNum() {
+		return power;
+	}
+
 }

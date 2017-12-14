@@ -358,4 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovePointObject: {fileID: 1696991026617892}
+  actButton: 1
   m_MovePos: []
+  m_MoveID: 
+  ScoreStandard: 100

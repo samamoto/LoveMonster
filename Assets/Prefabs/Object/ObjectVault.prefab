@@ -389,10 +389,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovePointObject: {fileID: 0}
-  actButton: 0
+  actButton: 1
   m_MovePos: []
   m_MoveID: 
-  MaxActionNum: 4
+  ScoreStandard: 100
 --- !u!114 &114919134765745620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovePointObject: {fileID: 1821128147694326}
-  actButton: 0
+  actButton: 1
   m_MovePos: []
   m_MoveID: 
-  MaxActionNum: 4
+  ScoreStandard: 100

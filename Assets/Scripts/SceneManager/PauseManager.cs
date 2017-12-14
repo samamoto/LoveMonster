@@ -6,7 +6,7 @@ using Controller;
 
 public class PauseManager : MonoBehaviour {
 
-	public GameObject refController;	// コントローラーの参照先
+	private GameObject refController;	// コントローラーの参照先
 	//public GameObject[] StopObj;			// 動きを止めるもの
 
 	public GameObject OnPanel;
@@ -15,6 +15,7 @@ public class PauseManager : MonoBehaviour {
 	private Controller.Controller m_Con;
 
 	void Start() {
+		refController = GameObject.Find("Player1");	// 1Pコントローラーを使う
 		m_Con = refController.GetComponent<Controller.Controller>();
 		OnUnPause();
 	}

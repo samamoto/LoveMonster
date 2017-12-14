@@ -8,7 +8,12 @@ public class EffectControl : MonoBehaviour {
 	public GameObject eff_speedUp = null;   // スピードアップ.
 	public GameObject eff_powUp = null;   // パワーアップ.
 	public GameObject eff_dust = null;      // 土埃.
-	public GameObject eff_burst = null;		// 爆発
+	public GameObject eff_burst = null;     // 爆発
+	public GameObject eff_clearShine = null;      // クリア時の光
+	public GameObject eff_actionTrail = null;      // アクションの軌跡
+	public GameObject eff_lightPulse = null;      // 光のパルス
+	public GameObject eff_lightTrail = null;        // 光の軌跡
+	public GameObject eff_slideSpark = null;        // スライド時の火花
 	// ================================================================ //
 	// MonoBehaviour からの継承.
 
@@ -118,6 +123,82 @@ public class EffectControl : MonoBehaviour {
 
 		go.transform.position = position;
 	}
+	/// <summary>
+	/// 光の軌跡
+	/// </summary>
+	public void createLightTrail(Vector3 vec) {
+		GameObject go = Instantiate(this.eff_lightTrail) as GameObject;
+
+		go.AddComponent<Effect>();
+
+		Vector3 position = vec;
+
+		// 位置調整
+		//position.y += 0.1f;
+
+		go.transform.position = position;
+	}
+	/// <summary>
+	/// 光のパルス
+	/// </summary>
+	public void createLightPulse(Vector3 vec) {
+		GameObject go = Instantiate(this.eff_lightPulse) as GameObject;
+
+		go.AddComponent<Effect>();
+
+		Vector3 position = vec;
+
+		// 位置調整
+		//position.y += 0.1f;
+
+		go.transform.position = position;
+	}
+	/// <summary>
+	/// クリア時の光
+	/// </summary>
+	public void createClearShine(Vector3 vec) {
+		GameObject go = Instantiate(this.eff_clearShine) as GameObject;
+
+		go.AddComponent<Effect>();
+
+		Vector3 position = vec;
+
+		// 位置調整
+		//position.y += 0.1f;
+
+		go.transform.position = position;
+	}
+	/// <summary>
+	/// アクションの軌跡
+	/// </summary>
+	public void createActionTrail(Vector3 vec) {
+		GameObject go = Instantiate(this.eff_actionTrail) as GameObject;
+
+		go.AddComponent<Effect>();
+
+		Vector3 position = vec;
+
+		// 位置調整
+		//position.y += 0.1f;
+
+		go.transform.position = position;
+	}
+	/// <summary>
+	/// スライド時の火花
+	/// </summary>
+	public void createSlideSpark(Vector3 vec) {
+		GameObject go = Instantiate(this.eff_slideSpark) as GameObject;
+
+		go.AddComponent<Effect>();
+
+		Vector3 position = vec;
+
+		// 位置調整
+		//position.y -= 0.2f;
+
+		go.transform.position = position;
+	}
+
 	// ================================================================ //
 	//																	//
 	// ================================================================ //

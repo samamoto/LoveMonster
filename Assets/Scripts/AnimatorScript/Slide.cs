@@ -35,8 +35,10 @@ public class Slide : AnimatorBase {
         //アニメーターにスライドの値をセット
         animator.SetFloat("Velocity", m_SlideSpeed);
 
-        //スライドに移行していたらフラグを切る
-        animator.SetBool("is_Slide", false);
+		//スライドに移行していたらフラグを切る
+		if (stateInfo.normalizedTime >= 1.0f) {
+			animator.SetBool("is_Slide", false);
+		}
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

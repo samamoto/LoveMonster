@@ -43,7 +43,7 @@ public class ItemBase : MonoBehaviour {
 	/// <summary>
 	/// 触れたとき
 	/// </summary>
-	public void OnTriggerEnter(Collider other) {
+	protected void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
 			hitItemDirection(other);
 			Destroy(gameObject, m_ItemVanishTime);
@@ -69,6 +69,10 @@ public class ItemBase : MonoBehaviour {
 	 * @brief アイテムを取得したときのエフェクト/サウンド
 	   </summary>*/
 	protected void hitItemDirection(Collider other) {
+
+		AudioList audio;
+		audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+		audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionPowup);
 		EffectControl eff = EffectControl.get();
 		eff.createItemHit(other.transform.position);
 
