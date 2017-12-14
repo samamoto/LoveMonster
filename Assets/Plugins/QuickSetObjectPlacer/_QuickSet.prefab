@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4937386662406196}
   - component: {fileID: 114504595450560590}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: _QuickSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ MonoBehaviour:
       GO: {fileID: 1174549546419714, guid: e1941735c067e1d439891d6b7be5f984, type: 2}
     - IsSelected: 0
       GO: {fileID: 1316718567633146, guid: 0cf18b22f65e8a043af7ac0f414e05c7, type: 2}
-    - IsSelected: 0
+    - IsSelected: 1
       GO: {fileID: 1109954058643762, guid: 20f9b4648c5e32643ab217acfda025cd, type: 2}
     - IsSelected: 0
       GO: {fileID: 1929360401085884, guid: b6cf86c93b87a3045852d4f1b88f552c, type: 2}
@@ -87,7 +87,7 @@ MonoBehaviour:
     - IsSelected: 0
       GO: {fileID: 1576873043477720, guid: b1e1a934d50634a4fa29d11fad47cebd, type: 2}
     GroupParent: {fileID: 0}
-    IsOpen: 1
+    IsOpen: 0
     GroupName: Bridge
   - GOs:
     - IsSelected: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
       GO: {fileID: 1375339908483564, guid: 810f4d9b1644c91499a332dc6bdc829a, type: 2}
     - IsSelected: 0
       GO: {fileID: 1375339908483564, guid: 17449ba66e1552746b221b1bad202858, type: 2}
-    - IsSelected: 1
+    - IsSelected: 0
       GO: {fileID: 1130921134663148, guid: 02956601ce5a55242954b300b50f5c14, type: 2}
     - IsSelected: 0
       GO: {fileID: 1312944006041136, guid: 5dc08085940ea8d489c366ce37b5b0c0, type: 2}
@@ -157,16 +157,18 @@ MonoBehaviour:
     GroupName: Start/Restart/Goal
   - GOs:
     - IsSelected: 0
-      GO: {fileID: 1748500676486230, guid: 50a41df54561ad94c8bb85e8f5ce8e97, type: 2}
+      GO: {fileID: 1842854675819730, guid: 55261530476b83d47a403a146ab16ab8, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1964928737670410, guid: 16440f14759e6f94aaf70d3b30b0036e, type: 2}
     GroupParent: {fileID: 0}
     IsOpen: 1
     GroupName: Gimick
-  SelectedObjectId: {x: 5, y: 3}
+  SelectedObjectId: {x: 0, y: 9}
   RayMask:
     serializedVersion: 2
     m_Bits: 4294967295
   Offset: {x: 0, y: 0, z: 0}
-  Rotation: {x: 0, y: 0, z: 0}
+  Rotation: {x: 0, y: 45, z: 0}
   Scale: {x: 1, y: 1, z: 1}
   SnapX: 1
   SnapY: 1
@@ -175,7 +177,7 @@ MonoBehaviour:
   AutoSetY: 0
   AutoSetZ: 0
   AutoXPos: 0
-  AutoYPos: 0
+  AutoYPos: 5
   AutoZPos: 0
   GridSize: 300
   DrawXY: 0

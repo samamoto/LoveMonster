@@ -13,7 +13,7 @@ using UnityEngine.EventSystems;
 public class ComboSystem : MonoBehaviour {
 
 	public const float MAX_TIME = 5.0f;
-	public const int MAX_POWER = 10;
+	public const int MAX_POWER = 11;
 	public const float SPD_UP_RATE = 0.03f;
 	private float[] multiList;
 

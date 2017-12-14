@@ -49,7 +49,7 @@ public class SearchCollider : MonoBehaviour {
 			groundDist = hit.distance;
 		}
 #if DEBUG
-		Debug.DrawRay(transform.position, m_DwRay.direction, Color.red);
+		//Debug.DrawRay(transform.position, m_DwRay.direction, Color.red);
 #endif
 	}
 
