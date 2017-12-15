@@ -192,7 +192,7 @@ public class MainGameManager : MonoBehaviour {
 		Vector3 start, goal;
 		start = GameObject.Find("StartPoint").GetComponent<Transform>().position;
 		goal = GameObject.Find("GoalPoint").GetComponent<Transform>().position;
-		Debug.Log(Vector3.Distance(start, goal));
+		//Debug.Log(Vector3.Distance(start, goal));
 		return Vector3.Distance(start, goal);
 	}
 }
