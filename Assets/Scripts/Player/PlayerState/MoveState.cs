@@ -50,7 +50,7 @@ public class MoveState : MonoBehaviour {
 	[SerializeField, Range(0.1f, 10)]
 	// 調整値を適用　2017年11月23日 oyama add 
 	private float[] smoothTime = new float[(int)MoveStatement.None] {
-		0.50f, 0.55f, 0.58f, 1.2f, 0.5f, 1.2f, 0.47f
+		0.43f, 0.28f, 0.55f, 1.2f, 0.46f, 2.43f, 0.47f
 	};
 
 	//private AnimationCurve[] m_Curve = new AnimationCurve[(int)MoveStatement.None];	// ToDo:カーブつかって個別制御用
