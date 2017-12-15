@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameSceneProto_ReReRe.unity
     guid: 19918d2eb2f803a4185e9b09a2fb22fa
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameSceneKameProto.unity
     guid: c28ce9a5cc388ed4eb1476927eef27f0
   - enabled: 1
