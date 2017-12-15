@@ -1,0 +1,71 @@
+*******************************************************************************
+デバッグ用
+一番上のusingの真下あたりに追加
+*******************************************************************************
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+*******************************************************************************
+デバッグ用
+unityで触りたい変数のすべてにいちいちつける必要あり
+初期化するときはこのタイミングでする
+Start()で初期化するとunityで変更かけられなくなる
+publicは書いてもunityに表示されなくなるので注意
+*******************************************************************************
+[SerializeField]
+Vector3 velocity;
+[SerializeField]
+int intNum;
+[SerializeField]
+bool boolNum = false; //初期化は宣言時に
+
+*******************************************************************************
+unity側で触れるようにしたい変数を指定する用のやつ
+クラスの中に以下の文章コピペして使う
+クラス外に書く書き方もあるみたいだけど中に書くやり方でやります
+*******************************************************************************
+#if UNITY_EDITOR
+    /**
+     * Inspector拡張クラス
+     */
+    [CustomEditor(typeof(Player))]
+    public class CharacterEditor : Editor
+    {
+        // 経由用
+        SerializedProperty velocity;
+        SerializedProperty intNum;
+        SerializedProperty boolNum;
+
+        void OnEnable()
+        {
+		// 基礎クラスからSerializedPropertyで受け取る
+            	velocity = serializedObject.FindProperty("velocity");
+          	intNum = serializedObject.FindProperty("intNum");
+            	boolNum = serializedObject.FindProperty("boolNum");
+        }
+
+
+        public override void OnInspectorGUI()
+	{
+		//Vector3
+		velocity.vector3Value = EditorGUILayout.Vector3Field("テスト",velocity.vector3Value);
+
+		//int
+		intNum.intValue = EditorGUILayout.IntField(intNum.intValue);
+
+		//bool
+		boolNum.boolValue = EditorGUILayout.Toggle(boolNum.boolValue);
+
+
+            if (GUILayout.Button("元に戻す"))
+            {
+		//Unityで触った数値などをScriptの数値に戻す用のボタン
+		intNum.intValue = m_defaultIntNum;
+            }
+		
+
+	serializedObject.ApplyModifiedProperties();
+        }
+    }
+#endif
