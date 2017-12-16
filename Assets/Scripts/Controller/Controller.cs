@@ -143,6 +143,11 @@ namespace Controller
             }
         }
 
+        private void OnDestroy()
+        {
+            ControllerGenerator.ReleaseController(m_ControllerID);
+        }
+
         /// <summary>
         /// this function use ControllerGenerator only
         /// </summary>
