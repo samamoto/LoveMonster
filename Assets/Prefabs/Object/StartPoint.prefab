@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4933360811286950}
+  - component: {fileID: 114692682148707476}
   m_Layer: 0
   m_Name: StartPoint
   m_TagString: Start
@@ -70,6 +71,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114692682148707476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1748500676486230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6e4522d894f64cb149cc045c6b601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartPlayerID: 0
 --- !u!198 &198477469994171996
 ParticleSystem:
   m_ObjectHideFlags: 1
