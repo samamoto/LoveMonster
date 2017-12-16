@@ -5,6 +5,7 @@
 /// </summary>
 public class GoalObject : MonoBehaviour {
 
+	public Transform nextStagePoint;		// 次の移動場所
 	public float transitionTimer = 2.0f;    // 移行時間
 	float timer;
 	bool isTimerStart;
@@ -29,8 +30,10 @@ public class GoalObject : MonoBehaviour {
 		}
 	}
 
-	private void OnTriggerStay(Collider other) {
+	private void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
+			EffectControl eff = EffectControl.get();
+			eff.createClearShine(other.transform.position);
 			GoalID = other.GetComponent<PlayerManager>().getPlayerID();	// ゴールしたプレイヤーのIDを格納
 			isTimerStart = true;
 		}
@@ -50,4 +53,10 @@ public class GoalObject : MonoBehaviour {
 		return GoalID;
 	}
 
+	/// <summary>
+	/// 次のステージのスタートポイントを示す
+	/// </summary>
+	public Vector3 getNextStagePoint() {
+		return nextStagePoint.position;
+	}
 }
