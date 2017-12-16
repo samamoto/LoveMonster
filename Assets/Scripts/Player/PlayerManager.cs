@@ -115,9 +115,11 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 
 
 		// 仮にコントローラーのLBに設定した
+		// 2017年12月17日 oyama change
+		// 壁蹴りがあるのでWallRunをなくした
 		// if the player can wallrun then wall run
 		if (CanWallRun(character.transform, v, adjustedDir, m_Controller.GetButtonHold(Button.LB)) && !wallRunTimeUp) {
-			wallRunActivated = true; // turn on wallRun so it can be ran in fixedUpdate(better for rigibody manipulations)
+			//wallRunActivated = true; // turn on wallRun so it can be ran in fixedUpdate(better for rigibody manipulations)
 		} else {
 			character.wallRunning = false; // can't wallRun so turn the flags off
 			wallRunActivated = false;

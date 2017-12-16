@@ -460,9 +460,12 @@ public class ThirdPersonCharacter : MonoBehaviour {
 	/// コライダーが壁に当たっている時に壁蹴りができる
 	/// /// </summary>
 	void OnCollisionStay(Collision collision) {
+		
 		if (!onGround && collision.contacts[0].normal.y < 0.1f) // 空中にいる、かつ壁が傾いていないことが成立していないと壁蹴りはできない
 		{
-			if (jumpInput) {
+			// Jump入力があり、かつ、地上からの距離が0.2f以上であれば成立 2017年12月17日 oyama add
+			float GroundDistance = GetComponentInChildren<SearchCollider>().GetGroundDistance();
+			if (jumpInput && GroundDistance > 0.2f) {
 				float dotDirection = Vector3.Dot(collision.contacts[0].normal, GetComponent<Rigidbody>().transform.forward);
 
 				velocity = (collision.contacts[0].normal + GetComponent<Rigidbody>().transform.forward).normalized * airSpeed;
