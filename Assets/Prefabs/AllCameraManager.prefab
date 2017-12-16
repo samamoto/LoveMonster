@@ -2095,7 +2095,7 @@ MonoBehaviour:
   m_PolarAngle: 85
   m_AzimuthalAngle: 270
   m_MinPolar: 30
-  m_MaxPolar: 85
+  m_MaxPolar: 115
   m_Cont_x_Secsitivity: 3
   m_Cont_y_Secsitivity: 3
   m_Cont_x_Threshold: 0.05
@@ -2819,7 +2819,7 @@ MonoBehaviour:
   m_PolarAngle: 85
   m_AzimuthalAngle: 180
   m_MinPolar: 30
-  m_MaxPolar: 85
+  m_MaxPolar: 115
   m_Cont_x_Secsitivity: 3
   m_Cont_y_Secsitivity: 3
   m_Cont_x_Threshold: 0.05
@@ -3774,7 +3774,7 @@ MonoBehaviour:
   m_PolarAngle: 85
   m_AzimuthalAngle: 360
   m_MinPolar: 30
-  m_MaxPolar: 85
+  m_MaxPolar: 115
   m_Cont_x_Secsitivity: 3
   m_Cont_y_Secsitivity: 3
   m_Cont_x_Threshold: 0.05
@@ -3811,7 +3811,7 @@ MonoBehaviour:
   m_PolarAngle: 85
   m_AzimuthalAngle: 90
   m_MinPolar: 30
-  m_MaxPolar: 85
+  m_MaxPolar: 115
   m_Cont_x_Secsitivity: 3
   m_Cont_y_Secsitivity: 3
   m_Cont_x_Threshold: 0.05
