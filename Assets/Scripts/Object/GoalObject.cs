@@ -18,6 +18,11 @@ public class GoalObject : MonoBehaviour {
 
 	// Update is called once per frame
 	private void Update() {
+		// ゴールしていたらリセットする
+		if (isGoal) {
+			resetGoal();
+		}
+
 		if (isTimerStart) {
 			timer += Time.deltaTime;
 #if DEBUG
@@ -25,6 +30,7 @@ public class GoalObject : MonoBehaviour {
 #endif
 			if(timer >= transitionTimer) {
 				isGoal = true;
+
 				//SceneChange.Instance._SceneLoadResult();
 			}
 		}
@@ -38,6 +44,13 @@ public class GoalObject : MonoBehaviour {
 			isTimerStart = true;
 		}
 	}
+
+	private void resetGoal() {
+		isTimerStart = isGoal = false;
+		timer = 0f;
+		GoalID = 0;
+	}
+
 	/// <summary>
 	/// 誰かがゴールしたらtrue
 	/// </summary>

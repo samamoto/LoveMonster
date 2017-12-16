@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class AllPlayerManager : MonoBehaviour {
 	private static AllPlayerManager _instance;
@@ -27,7 +28,7 @@ public class AllPlayerManager : MonoBehaviour {
 	// 現存するPlayerの数
 	private int m_PlayerNum = 0;
 	// プレイヤーがステージを周回する回数
-	private const int NEED_GOAL_NUM = 3;
+	private const int NEED_GOAL_NUM = 4;
 
 	// ToDo:増えてきたらローカルクラスで管理しよう
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
@@ -35,12 +36,13 @@ public class AllPlayerManager : MonoBehaviour {
 	// コンポーネント
 	//--------------------------------------------------------------------------------
 	private PlayerManager[] m_PlayerManager = new PlayerManager[ConstPlayerParameter.PlayerMax];
-	private GameObject m_Start;
-	private GoalObject m_Goal;
+	private List<StartObject> m_StartList = new List<StartObject>();
+	private List<GoalObject> m_GoalList = new List<GoalObject>();
 	private MainGameManager m_GameManager;
 
 	// Use this for initialization
 	private void Awake() {
+		m_GameManager = GameObject.FindWithTag("GameManager").GetComponent<MainGameManager>();
 		// とりあえずFindと名前使う…
 		// 名前のPlayer1~4を探す カウンタでタグの数を数える
 		m_PlayerNum = TagCount.CountTag("Player");
@@ -49,9 +51,27 @@ public class AllPlayerManager : MonoBehaviour {
 			m_PlayerManager[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<PlayerManager>();
 			m_PlayerActionNames[i] = ConstAnimationStateTags.PlayerStateIdle;
 		}
-		m_Goal = GameObject.FindWithTag("Goal").GetComponent<GoalObject>();
-		m_Start = GameObject.FindWithTag("Start");
-		m_GameManager = GameObject.FindWithTag("GameManager").GetComponent<MainGameManager>();
+		// ゴールとスタートの取得
+		GameObject[] game;
+		game = GameObject.FindGameObjectsWithTag("Goal");
+		m_GoalList = new List<GoalObject>();
+		for(int i=0; i<game.Length; i++) {
+			m_GoalList.Add(game[i].GetComponent<GoalObject>());
+		}
+		game.Initialize();
+		// Start
+		game = GameObject.FindGameObjectsWithTag("Start");
+		m_StartList = new List<StartObject>();
+		for (int i = 0; i < game.Length; i++) {
+			m_StartList.Add(game[i].GetComponent<StartObject>());
+		}
+		// 順不同なのでもうループ
+		for (int i = 0; i < game.Length; i++) {
+			// プレイヤーのポジションをセット
+			int id = m_StartList[i].StartPlayerID-1;
+			Debug.Log(id);
+			m_PlayerManager[id].startPlayerPostion(m_StartList[i].transform.position, m_StartList[i].transform.rotation);
+		}
 	}
 
 	// Update is called once per frame
@@ -70,19 +90,25 @@ public class AllPlayerManager : MonoBehaviour {
 		// アイテム？
 
 		// プレイヤーと接触した
-		
+
 		// なんか起こす
 
 
 		// ゴールしているか
-		if (m_Goal.getGoal()) {
-			int id = m_Goal.getGoalPlayerNo();
-			m_PlayerManager[id-1].plusGoalFrequency();    // ゴール回数を追加
-			// 必要な回数を上回ればゴール判定
-			if (m_PlayerManager[id-1].getGoalFrequency() == NEED_GOAL_NUM) {
-				m_GameManager.isPlayerGoal(id, m_PlayerManager[id - 1].getPlayerPos()); // ゴールしたプレイヤーのIDを投げる
-			} else {
-				m_PlayerManager[id - 1].transform.position = m_Goal.getNextStagePoint();
+		for (int i=0; i < m_GoalList.Capacity; i++) {
+			if (m_GoalList[i].getGoal()) {
+				int id = m_GoalList[i].getGoalPlayerNo();
+				m_PlayerManager[id - 1].plusGoalFrequency();    // ゴール回数を追加
+
+				// 必要な回数を上回ればゴール判定
+				if (m_PlayerManager[id - 1].getGoalFrequency() >= NEED_GOAL_NUM) {
+					m_GameManager.isPlayerGoal(id, m_PlayerManager[id - 1].getPlayerPos()); // ゴールしたプレイヤーのIDを投げる
+				} else {
+					// 0 ~ 3をぐるぐる
+					m_PlayerManager[(id - 1)].startPlayerPostion(
+						m_GoalList[i].getNextStagePoint(), 
+						m_GoalList[i].transform.rotation);
+				}
 			}
 		}
 
@@ -180,8 +206,10 @@ public class AllPlayerManager : MonoBehaviour {
 	/// 誰かがゴールしているか
 	/// </summary>
 	public bool isGoal() {
-		if (m_Goal.getGoal()) {
-			return true;
+		for (int i = 0; i < m_GoalList.Capacity; i++) {
+			if (m_GoalList[i].getGoal()) {
+				return true;
+			}
 		}
 		return false;
 	}

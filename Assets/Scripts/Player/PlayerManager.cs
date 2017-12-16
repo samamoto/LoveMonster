@@ -326,6 +326,11 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	public int getGoalFrequency() {
 		return m_GoalCount;
 	}
+	
+	public void startPlayerPostion(Vector3 pos, Quaternion rot) {
+		gameObject.transform.position = pos;
+		gameObject.transform.rotation = rot;
+	}
 
 	//============================================================
 	// ==2017/10/31 Oyama Add
