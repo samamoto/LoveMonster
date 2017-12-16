@@ -22,17 +22,11 @@ public class SearchCollider : MonoBehaviour {
 	// 取得可能なDictionary
 	//!GameObjectのUniqueな値intと、距離floatを取り、齟齬がないように管理する
 	public Dictionary<int, float> m_DistDic = new Dictionary<int, float>();    // オブジェクトまでの距離近い順に並べ替える
-#if DEBUG
-	public List<string> dbg_DistDic;
-#endif
 
 	// Use this for initialization
 	private void Start() {
 		// プレイヤーの下側にRayを出す
 		m_DwRay = new Ray(transform.parent.position+new Vector3(0f,0.45f,0f),Vector3.down);
-#if DEBUG
-		dbg_DistDic = new List<string>();
-#endif
 		m_Animator = transform.parent.GetComponent<Animator>();
 	}
 
@@ -48,9 +42,6 @@ public class SearchCollider : MonoBehaviour {
 		if (Physics.Raycast(m_DwRay, out hit, groundDistMax)) {
 			groundDist = hit.distance;
 		}
-#if DEBUG
-		//Debug.DrawRay(transform.position, m_DwRay.direction, Color.red);
-#endif
 	}
 
 	//============================================================
@@ -68,11 +59,6 @@ public class SearchCollider : MonoBehaviour {
 		if (other.name.IndexOf(word) != -1) {
 			m_DistDic.TryGetValueEx(id, 0.0f);	// 先にNullと初期値格納
 			m_DistDic[id] = Vector3.Distance(transform.parent.position, other.transform.position);  // 距離を格納
-#if DEBUG
-			//Debug.Log(m_DistDic[id].ToString());
-			KeyValuePair<int, float> pair = new KeyValuePair<int, float>(id, m_DistDic[id]);
-			dbg_DistDic.Add(pair.ToString());
-#endif
 		}
 	}
 

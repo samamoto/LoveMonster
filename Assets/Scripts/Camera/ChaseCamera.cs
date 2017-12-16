@@ -13,7 +13,7 @@ using Controller;
 
 public class ChaseCamera : MonoBehaviour
 {
-    public int PlayerID;
+	public int PlayerID;
     private GameObject m_ChaseObject;	// privateにした prefab更新のたびに毎回設定するのがめんどい
     public Vector3 Offset;
 
@@ -137,4 +137,10 @@ public class ChaseCamera : MonoBehaviour
             lerpTime = Mathf.Clamp01(lerpTime + Time.deltaTime * m_LerpTimeMultiply);
         }
     }
+	/// <summary>
+	/// カメラのID取得
+	/// </summary>
+	public int getCameraID() {
+		return PlayerID;
+	}
 }
