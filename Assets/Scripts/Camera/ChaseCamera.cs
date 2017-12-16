@@ -52,6 +52,7 @@ public class ChaseCamera : MonoBehaviour
             PlayerID = 1;
         string strPlayer = "Player" + PlayerID.ToString();
         m_ChaseObject = GameObject.Find(strPlayer);    // Player1~4を探す
+		transform.rotation = m_ChaseObject.transform.rotation;
                                                        ///コントローラ取得
         //ターゲットのこんとろーらーをげっと
         this.controller = m_ChaseObject.GetComponent<Controller.Controller>();

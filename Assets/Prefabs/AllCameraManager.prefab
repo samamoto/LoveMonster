@@ -1280,14 +1280,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1446727886100662}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4290670895375252}
   m_Father: {fileID: 4365267326488160}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4848491546059152
 Transform:
   m_ObjectHideFlags: 1
@@ -2817,7 +2817,7 @@ MonoBehaviour:
   Offset: {x: 0, y: 1.53, z: 0}
   m_Distance: 2.78
   m_PolarAngle: 85
-  m_AzimuthalAngle: 270
+  m_AzimuthalAngle: 180
   m_MinPolar: 30
   m_MaxPolar: 85
   m_Cont_x_Secsitivity: 3
@@ -3772,7 +3772,7 @@ MonoBehaviour:
   Offset: {x: 0, y: 1.53, z: 0}
   m_Distance: 2.78
   m_PolarAngle: 85
-  m_AzimuthalAngle: 270
+  m_AzimuthalAngle: 360
   m_MinPolar: 30
   m_MaxPolar: 85
   m_Cont_x_Secsitivity: 3
@@ -3809,7 +3809,7 @@ MonoBehaviour:
   Offset: {x: 0, y: 1.53, z: 0}
   m_Distance: 2.78
   m_PolarAngle: 85
-  m_AzimuthalAngle: 270
+  m_AzimuthalAngle: 90
   m_MinPolar: 30
   m_MaxPolar: 85
   m_Cont_x_Secsitivity: 3
