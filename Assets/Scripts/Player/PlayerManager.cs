@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 
 	private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
 	private bool is_StopControl = false;            // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add 
+	private int m_GoalCount = 0;					// ゴールした回数　これが3回ほどするとゴール判定
 
 	// Third parson character ------
 	public bool walkByDefault = false; // toggle for walking state
@@ -313,6 +314,17 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	/// <returns>プレイヤーID</returns>
 	public void setRestartPosition(Vector3 vec) {
 		m_RestartPoint = vec;
+	}
+
+	/// <summary>
+	/// ゴールした回数を追加
+	/// </summary>
+	public void plusGoalFrequency() {
+		m_GoalCount++;
+	}
+
+	public int getGoalFrequency() {
+		return m_GoalCount;
 	}
 
 	//============================================================
