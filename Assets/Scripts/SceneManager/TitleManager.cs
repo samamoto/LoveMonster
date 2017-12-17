@@ -24,19 +24,20 @@ public class TitleManager : MonoBehaviour {
     private InputManagerGenerator inputmanage;
 
     private bool MovieEndFlag=false;  //ムービー再生終了フラグ
-    
+	private Animator animator;
 
 
     // Use this for initialization
     private void Start()
     {
-        //m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
+		//m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
 
-        //フェード       仕様書によって場所変更アリ(現在は一番最初)
-        //追加シーン     ここでフェードを読み込むのもアリ
-        //SceneManager.LoadScene("TitleScene", LoadSceneMode.Additive);
+		//フェード       仕様書によって場所変更アリ(現在は一番最初)
+		//追加シーン     ここでフェードを読み込むのもアリ
+		//SceneManager.LoadScene("TitleScene", LoadSceneMode.Additive);
 
-
+		animator = GameObject.Find("Player1").GetComponent<Animator>();
+		animator.SetTrigger("BHS_FlashKick");
         //ここにムービー再生処理を追加?　→MovieTextureにフラグを追加するべき?
         MovieEndFlag = false;       //再生フラグ初期化
     }
@@ -44,9 +45,10 @@ public class TitleManager : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
-        //if (MovieEndFlag == true)   //動画の再生が終了していたら
-        //{
-            SceneToNext();  //次のシーンへ移動(チュートリアルへ)
+		//if (MovieEndFlag == true)   //動画の再生が終了していたら
+		//{
+		//仮
+			SceneToNext();  //次のシーンへ移動(チュートリアルへ)
         //}
     }
 
@@ -55,9 +57,9 @@ public class TitleManager : MonoBehaviour {
         //m_ScreenChange._DebugInput();
         if (Input.GetKeyUp(KeyCode.Space))//スペースキーで
         {
-            //移動したいシーンへ移動(チュートリアルシーン)
-            SceneManager.LoadScene("TutorialScene");
-            
+			//移動したいシーンへ移動(チュートリアルシーン)
+			//SceneManager.LoadScene("TutorialScene");
+			SceneChange.Instance._SceneLoadTutorial();
                
         }
 

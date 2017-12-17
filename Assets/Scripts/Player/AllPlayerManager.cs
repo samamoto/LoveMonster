@@ -69,6 +69,7 @@ public class AllPlayerManager : MonoBehaviour {
 		for (int i = 0; i < game.Length; i++) {
 			// プレイヤーのポジションをセット
 			int id = m_StartList[i].StartPlayerID-1;
+			Debug.Log(id);
 			m_PlayerManager[id].startPlayerPostion(m_StartList[i].transform.position, m_StartList[i].transform.rotation);
 		}
 	}

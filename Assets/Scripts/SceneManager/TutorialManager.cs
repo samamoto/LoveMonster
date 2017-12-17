@@ -22,7 +22,8 @@ public class TutorialManager : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.Space))  //スペースキーで
         {
-            SceneManager.LoadScene("GameSceneProto");//ゲームシーンへ移動
+			//SceneManager.LoadScene("GameSceneProto");//ゲームシーンへ移動
+			SceneChange.Instance._SceneLoadGame();
         }
 
     }
