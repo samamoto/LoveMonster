@@ -86,6 +86,11 @@ public class WallInvisible : MonoBehaviour
     /// </summary>
     private void OnPreRender()
     {
+        //当たったやつと当たってたやつ取得 
+        Collider[] nowCol = Physics.OverlapSphere(transform.position, GetComponent<SphereCollider>().radius);
+        List<Collider> nowColList = new List<Collider>();
+        nowColList.AddRange(nowCol);
+
         //すべてのカメラを判定
         for (int cameraCount = 0; cameraCount < ACM.CameraNum; cameraCount++)
         {
@@ -111,7 +116,7 @@ public class WallInvisible : MonoBehaviour
                     }
 
                     //nowCount nowHitに入っているオブジェクトの数
-                    for (int nowCount = 0; nowCount < ACM.nowHit[myNum, rayCount].Count; nowCount++)
+                    for (int nowCount = 0; nowCount < ACM.nowHit[cameraCount, rayCount].Count; nowCount++)
                     {
                         //ワーク
                         GameObject GOnow = ACM.nowHit[myNum, rayCount][nowCount].collider.gameObject;
@@ -131,64 +136,94 @@ public class WallInvisible : MonoBehaviour
                 }
 
                 //oldHitの更新
-                UpdateRay(myNum, rayCount);
+                UpdateRay(cameraCount, rayCount);
             }
 
 
-            //レイにあたらないもの（自分と重なるもの）を判定
-            for (int oldCount = 0; oldCount < ACM.oldselfHit[cameraCount].Count; oldCount++)
-            {
-                bool rendFlag = false;
-                //ワーク
-                GameObject GOold = ACM.oldselfHit[cameraCount][oldCount].transform.gameObject;
-                Renderer rend = GOold.transform.GetComponent<Renderer>();
-                //rendererのついてないものは無視
-                if (rend == null)
-                {
-                    continue;
-                }
+            ////レイにあたらないもの（自分と重なるもの）を判定
+            //for (int oldCount = 0; oldCount < ACM.oldselfHit[cameraCount].Count; oldCount++)
+            //{
+            //    bool rendFlag = false;
+            //    //ワーク
+            //    GameObject GOold = ACM.oldselfHit[cameraCount][oldCount].transform.gameObject;
+            //    Renderer rend = GOold.transform.GetComponent<Renderer>();
+            //    //rendererのついてないものは無視
+            //    if (rend == null)
+            //    {
+            //        continue;
+            //    }
 
-                //比較して透明かどうか決める
-                for (int nowCount = 0; nowCount < ACM.selfHit[myNum].Count; nowCount++)
-                {
-                    //ワーク
-                    GameObject GOnow = ACM.selfHit[myNum][nowCount].transform.gameObject;
-                    if (GOold == GOnow)
-                    {
-                        rendFlag = true;
-                        //Debug.Log("色変わる");
-                        Translucent(rend);
-                        break;
-                    }
-                }
-                if (!rendFlag)
-                {
-                    //if(name == "MainCamera1") Debug.Log("色戻る");
-                    RestoreColor(rend);
-                }
-            }
+            //    //比較して透明かどうか決める
+            //    for (int nowCount = 0; nowCount < ACM.selfHit[cameraCount].Count; nowCount++)
+            //    {
+            //        //ワーク
+            //        GameObject GOnow = ACM.selfHit[cameraCount][nowCount].transform.gameObject;
+            //        if (GOold == GOnow)
+            //        {
+            //            rendFlag = true;
+            //            //Debug.Log("色変わる");
+            //            Translucent(rend);
+            //            break;
+            //        }
+            //    }
+            //    if (!rendFlag)
+            //    {
+            //        //if(name == "MainCamera1") Debug.Log("色戻る");
+            //        RestoreColor(rend);
+            //    }
+            //}
+
+            for (int oldCount = 0; oldCount < ACM.oldColList[cameraCount].Count; oldCount++) 
+            { 
+                bool nowFlag = false; 
+                GameObject oldObj = ACM.oldColList[cameraCount][oldCount].gameObject; 
+                Renderer rend = oldObj.transform.GetComponent<Renderer>(); 
+                //rendererのついてないものは無視 
+                if (rend == null) 
+                { 
+                    continue; 
+                } 
+
+                //比較して透明かどうか決める 
+                for (int nowCount = 0; nowCount < nowCol.Length; nowCount++) 
+                { 
+                    GameObject nowObj = nowCol[nowCount].gameObject; 
+                    if (oldObj == nowObj) 
+                    { 
+                        nowFlag = true; 
+                        Translucent(rend); 
+                        break; 
+                    } 
+                } 
+                if (nowFlag == false) 
+                { 
+                    RestoreColor(rend); 
+                } 
+            } 
+            ACM.oldColList[myNum] = new List<Collider>(nowColList);
+
 
             //oldの更新
-            ACM.oldselfHit[myNum] = new List<GameObject>(ACM.selfHit[myNum]);
+            // ACM.oldselfHit[cameraCount] = new List<GameObject>(ACM.selfHit[cameraCount]);
         }
 
 
     }
 
-    /// <summary>
-    /// カメラ自身の接触しているものを取得する
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerEnter(Collider other)
-    {
-        ACM.selfHit[myNum].Add(other.transform.gameObject);
-		/*
-        if(name == "MainCamera1")
-        {
-            //Debug.Log(name + "　が　" +other.name + "　に当たった" + ACM.selfHit[myNum].Count);
-        }
-		*/
-    }
+  //  /// <summary>
+  //  /// カメラ自身の接触しているものを取得する
+  //  /// </summary>
+  //  /// <param name="other"></param>
+  //  private void OnTriggerEnter(Collider other)
+  //  {
+  //      ACM.selfHit[myNum].Add(other.transform.gameObject);
+		///*
+  //      if(name == "MainCamera1")
+  //      {
+  //          //Debug.Log(name + "　が　" +other.name + "　に当たった" + ACM.selfHit[myNum].Count);
+  //      }
+		//*/
+  //  }
 
     private void OnTriggerStay(Collider other)
     {
@@ -200,20 +235,20 @@ public class WallInvisible : MonoBehaviour
 		*/
     }
 
-    /// <summary>
-    /// カメラが離れたものをよける
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerExit(Collider other)
-    {
-        ACM.selfHit[myNum].Remove(other.transform.gameObject);
-		/*
-		if (name == "MainCamera1")
-        {
-            //Debug.Log(name + "　が　" + other.name + "　から離れた" + ACM.selfHit[myNum].Count);
-        }
-		*/
-    }
+  //  /// <summary>
+  //  /// カメラが離れたものをよける
+  //  /// </summary>
+  //  /// <param name="other"></param>
+  //  private void OnTriggerExit(Collider other)
+  //  {
+  //      ACM.selfHit[myNum].Remove(other.transform.gameObject);
+		///*
+		//if (name == "MainCamera1")
+  //      {
+  //          //Debug.Log(name + "　が　" + other.name + "　から離れた" + ACM.selfHit[myNum].Count);
+  //      }
+		//*/
+  //  }
 
     /// <summary>
     /// レイの更新

@@ -34,6 +34,8 @@ public class AllCameraManager : MonoBehaviour {
     //[HideInInspector]
     //public int myNumAll = 0;
 
+    public List<Collider>[] oldColList;
+
 
     private void Awake()
     {
@@ -49,10 +51,13 @@ public class AllCameraManager : MonoBehaviour {
         selfHit = new List<GameObject>[CameraNum];
         oldselfHit = new List<GameObject>[CameraNum];
 
+        oldColList = new List<Collider>[CameraNum];
+
         for (int i = 0; i < CameraNum; i++)
         {
             selfHit[i] = new List<GameObject>();
             oldselfHit[i] = new List<GameObject>();
+            oldColList[i] = new List<Collider>();
             for (int j = 0; j < rayNum; j++)
             {
                 nowHit[i, j] = new List<RaycastHit>();
