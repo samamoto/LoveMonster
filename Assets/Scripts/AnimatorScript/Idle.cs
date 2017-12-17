@@ -9,37 +9,22 @@ using UnityEngine;
 
 public class Idle : AnimatorBase {
 
-    //AllPlayerManager m_PM;        //プレイヤーの基礎データ取得用
-
-    private float m_dashSpeed;    //プレイヤーのダッシュ用変数
-
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-		// m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();	// 基底クラス内で取得
-		m_dashSpeed = 0.0f;
-    }
+		// 最初に来るのはIdleなのでNullだったらFindしてインスタンスを取得しておく
+		if(m_Audio == null)
+			m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+	}
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-		if (animator.GetBool("is_Grounded")) {
-			animator.SetBool("is_Fall", false);
-			animator.SetBool("is_LongFall", false);
-		}
 	}
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // アニメーターの中のデータをもらってくる
-        m_dashSpeed = animator.GetFloat("Velocity");
-
-        // 走り始めたらWorkRunのフラグをオン
-        if (m_dashSpeed >= 0.1f)
-        {
-            animator.SetBool("is_WalkRun", true);
-        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

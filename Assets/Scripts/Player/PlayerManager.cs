@@ -141,7 +141,13 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	/// アクションが再生される時にSEを鳴らす
 	/// </summary>
 	void ActionSE() {
-
+		// Jump
+		if (m_animator.GetBool("is_Jump") && m_animator.GetBool("is_Grounded")　&& !m_animator.GetCurrentAnimatorStateInfo(0).IsName("Crouching")) {
+			if(m_seDelay == 0) {
+				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionJump);
+				//m_seDelay = 0.4f;
+			}
+		}
 		//着地
 		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Crouching")) {
 			if (m_seDelay == 0) {
@@ -149,14 +155,16 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 				m_seDelay = 0.4f;
 			}
 		}
-		//スライド
-		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide")) {
+		/*
+		//スライド 音声が遅いのでStateMacineBehavior側でやってる
+		if (m_animator.GetBool("is_Slide")) {
 			if (m_seDelay == 0) {
 				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
 				m_seDelay = 0.82f;
 				GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
 			}
 		}
+		*/
 		//ロングスライド
 		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("LongSlider")) {
 			if (m_seDelay == 0) {

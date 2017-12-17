@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StartObject : MonoBehaviour {
-	public int StartPlayerID { get; private set; }
+	public int StartPlayerID = 0;
 
 	// Use this for initialization
 	void Start () {
