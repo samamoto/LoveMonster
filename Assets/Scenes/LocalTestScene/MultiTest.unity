@@ -2144,9 +2144,19 @@ Prefab:
       propertyPath: AutoYPos
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114504595450560590, guid: e5a94cdc260b52f4b9933bd5a63b5bdc,
+        type: 2}
+      propertyPath: GridSize
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5a94cdc260b52f4b9933bd5a63b5bdc, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1492886347 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1963691229557796, guid: e5a94cdc260b52f4b9933bd5a63b5bdc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1492886346}
 --- !u!1001 &1515510920
 Prefab:
   m_ObjectHideFlags: 0
@@ -2682,8 +2692,6 @@ MonoBehaviour:
     - gameObjects: []
     - gameObjects: []
   m_RecentGameObjects:
-  - gameObject: {fileID: 79519319}
-    timestamp: 636490536314953627
   - gameObject: {fileID: 919014410}
     timestamp: 636490536328919429
   - gameObject: {fileID: 1560773423}
@@ -2702,6 +2710,8 @@ MonoBehaviour:
     timestamp: 636490580605651172
   - gameObject: {fileID: 1696909479}
     timestamp: 636490580612616609
+  - gameObject: {fileID: 1492886347}
+    timestamp: 636491502657184584
 --- !u!4 &1716890379
 Transform:
   m_ObjectHideFlags: 16
