@@ -1,31 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
 //*****************************************************************************
 //インスペクタで閲覧できるが編集不可な変数を作る用
 //*****************************************************************************
-namespace ReadOnly
-{
-    public class ReadOnlyAttribute : PropertyAttribute
-    {
+namespace ReadOnly {
+#if UNITY_EDITOR
+	public class ReadOnlyAttribute : PropertyAttribute {
 
-    }
+	}
 
-    [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
-    public class ReadOnlyDrawer : PropertyDrawer
-    {
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            return EditorGUI.GetPropertyHeight(property, label, true);
-        }
+	[CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
+	public class ReadOnlyDrawer : PropertyDrawer {
+		public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
+			return EditorGUI.GetPropertyHeight(property, label, true);
+		}
 
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-        {
-            GUI.enabled = false;
-            EditorGUI.PropertyField(position, property, label, true);
-            GUI.enabled = true;
-        }
-    }
-
+		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+			GUI.enabled = false;
+			EditorGUI.PropertyField(position, property, label, true);
+			GUI.enabled = true;
+		}
+	}
+#endif
 }

@@ -11,9 +11,10 @@ public class WallInvisible : MonoBehaviour
 	private GameObject Target;   // Rayの方向　privateにした prefab更新のたびに毎回設定するのがめんどい
 	float[] distance;
     Ray[] ray;
-
-    [SerializeField, ReadOnly]
-    int myNum;//自分の番号
+#if UNITY_EDITOR
+	[SerializeField, ReadOnly]
+#endif
+	int myNum;//自分の番号
 
 
 

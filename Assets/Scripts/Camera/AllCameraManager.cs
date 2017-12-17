@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ReadOnly;
+
 /// <summary>
 /// カメラ初期位置、オフセット値などの設定
 /// 設定された値を各Cameraに投げる
@@ -27,9 +28,10 @@ public class AllCameraManager : MonoBehaviour {
     //レイヤー番号11のとき
     //ToDo:"Player"レイヤーを何番にしたかで数値が変わる
     public int PlayerLayerMask = 0xf7ff;
-
-    [SerializeField, ReadOnly]
-    public int CameraNum;//カメラの数
+#if UNITY_EDITOR
+	[SerializeField, ReadOnly]
+#endif
+	public int CameraNum;//カメラの数
 
     //[HideInInspector]
     //public int myNumAll = 0;
