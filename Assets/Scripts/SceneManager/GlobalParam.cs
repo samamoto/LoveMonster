@@ -10,8 +10,13 @@ using UnityEngine;
 public class GlobalParam : MonoBehaviour {
 
 	// 保持する変数 //
-	private int hiScore = 0;    // Sample
+	private float[] hiScore = new float[ConstPlayerParameter.PlayerMax];    // Sample
 	private int[] ranking = new int[ConstPlayerParameter.PlayerMax];	// ランキングを保持 0~3->1~4
+	private int[] tension = new int[ConstPlayerParameter.PlayerMax];		// がんば…テンションゲージ
+	private float[] mapProgress = new float[ConstPlayerParameter.PlayerMax];	// マップ進捗率
+	private int[] getFlagNum = new int[ConstPlayerParameter.PlayerMax];			// ボーナスステージでゲットしたフラグの数
+
+
 	// ---------- //
 
 	private static GlobalParam instance = null; // インスタンス
@@ -34,42 +39,120 @@ public class GlobalParam : MonoBehaviour {
 	//-- Sample --//
 	// --HISCORE-- //
 	// HISCOREを返す.
-	public int GetHiScore() {
+	public float[] GetHiScore() {
 		return hiScore;
 	}
 
 	// HISCOREを保持する.
-	public void SetHiScore(int hiScore) {
+	public void SetHiScore(float[] hiScore) {
 		this.hiScore = hiScore;
 	}
 	// --HISCORE-- //
 
 	// --RANKING-- //
 	/// <summary>
-	/// 1PをPlayerID=0としてランキングをセットする
+	/// 1PをPlayerID=1としてランキングをセットする
 	/// </summary>
-	/// <param name="id">PlayerのID(0から)</param>
+	/// <param name="id">PlayerのID(1から)</param>
 	/// <param name="rank">ランキング番号1~4</param>
 	public void SetRanking(int id, int rank) {
 		int n = id;
 		// エラーチェック
-		if(n > 3) {
-			n = 3;
+		if(n > 4) {
+			n = 4;
 		}
-		if(0 > n) {
-			n = 0;
+		if(1 > n) {
+			n = 1;
 		}
 
-		ranking[id] = rank;	// ランキングをセット
+		ranking[n-1] = rank;	// ランキングをセット
 	}
+
+	public void SetRankings(int[] rank) {
+		ranking = rank;
+	}
+	public int[] GetRankings() {
+		return ranking;
+	}
+
+	// --Tension-- //
+	/// <summary>
+	/// テンションをセットする
+	/// </summary>
+	/// <param name="id">PlayerのID(1から)</param>
+	/// <param name="rate">0以上の数値</param>
+	public void SetTension(int id, int rate) {
+		int n = id;
+		// エラーチェック
+		if (n > 4) {
+			n = 4;
+		}
+		if (1 > n) {
+			n = 1;
+		}
+		tension[n - 1] = rate;  // 値をセット
+	}
+
+	public void SetTensions(int[] rate) {
+		tension = rate;
+	}
+	public int[] GetTensions() { return tension; }
+
+	// --mapProgress-- //
+	/// <summary>
+	/// マップの進捗率をセットする
+	/// </summary>
+	/// <param name="id">PlayerのID(1から)</param>
+	/// <param name="rate">0以上の数値</param>
+	public void SetMapProgress(int id, float rate) {
+		int n = id;
+		// エラーチェック
+		if (n > 4) {
+			n = 4;
+		}
+		if (1 > n) {
+			n = 1;
+		}
+		mapProgress[n - 1] = rate;  // 値をセット
+	}
+
+	public void SetMapProgresses(float[] rate) {
+		mapProgress = rate;
+	}
+	public float[] GetMapProgresses() { return mapProgress; }
+
+	// --Flag数-- //
+	/// <summary>
+	/// フラグ数をセットする
+	/// </summary>
+	/// <param name="id">PlayerのID(1から)</param>
+	/// <param name="rate">0以上の数値</param>
+	public void SetFlagNum(int id, int num) {
+		int n = id;
+		// エラーチェック
+		if (n > 4) {
+			n = 4;
+		}
+		if (1 > n) {
+			n = 1;
+		}
+		getFlagNum[n - 1] = num;  // 値をセット
+	}
+	public void SetFlagNums(int[] num) {
+		getFlagNum = num;
+	}
+	public int[] GetFlagNums() { return getFlagNum; }
 
 	/// <summary>
 	/// パラメータをすべてリセットする
 	/// </summary>
 	public void resetParameter() {
-		hiScore = 0;
 		for(int i=0; i<ConstPlayerParameter.PlayerMax; i++) {
+			hiScore[i] = 0;
 			ranking[i] = 0;
+			tension[i] = 0;
+			mapProgress[i] = 0f;
+			getFlagNum[i] = 0;
 		}
 	}
 

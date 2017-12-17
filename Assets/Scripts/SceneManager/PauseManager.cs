@@ -28,7 +28,8 @@ public class PauseManager : MonoBehaviour {
 #if DEBUG
 			// デバッグ処理　ポーズしながらRBでシーンをリセットする
 			if (m_Con.GetButtonDown(Button.RB)) {
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 再読み込み
+				//SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 再読み込み
+				SceneChange.Instance._SceneReload();
 			}
 #endif
 			if (pauseGame == true) {
@@ -83,12 +84,5 @@ public class PauseManager : MonoBehaviour {
 		return pauseGame;
 	}
 
-	// 使ってない
-	public void OnRetry() {
-		//SceneManager.LoadScene("Scene_01");
-	}
 
-	public void OnResume() {
-		OnUnPause();
-	}
 }

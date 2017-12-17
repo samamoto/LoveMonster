@@ -62,17 +62,17 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 	//スコアの更新(表示)
 	private void ScoreUpdate() {
 		//うごおおおおおおおおおおお
-#if DEBUG
 		string str = string.Empty;
-		for (int i = 0; i < 4; i++) {
-			str += (i + 1).ToString() + ":" + ScoreRate[i].ToString() + " " + PlayerScore[i].ToString() + "\n";
-		}
-		GetComponent<Text>().text = str;    // textフィールドに表示
-#endif
+		//for (int i = 0; i < 4; i++) {
+		//	str += (i + 1).ToString() + ":" + ScoreRate[i].ToString() + " " + PlayerScore[i].ToString() + "\n";
+		//}
+		GetComponent<Text>().text = str;    // textフィールドに表示 Todo:UI表示必要
+
 		// スコアが徐々に増加する方式
 		graduallyAddScore();
 
-		//DebugPrint.print(PlayerScore[0].ToString());
+		// GlobalParamに投げて値を保持する 2017年12月17日 oyama add
+		GlobalParam.GetInstance().SetHiScore(PlayerScore);
 	}
 
 	/// <summary>
