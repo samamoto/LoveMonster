@@ -8,6 +8,8 @@ using System;
 /// 現在は数字を加算していくだけなので、これをまずは分,秒に直す
 /// 制限時間とタイムアタック両方に対応させる。
 /// 
+/// 
+/// タイマーのテキストを00.00.00に直す
 /// (バグ)
 /// 60秒経過した時に00に戻らず60になる
 /// 
@@ -17,6 +19,7 @@ using System;
 public class Timer : MonoBehaviour {
     private int minute; //分
     private float second;   //秒
+    private float second_2;   //秒　下2桁
     private int oldSecond;
     private bool timerFlag= false;
     private char textField;
@@ -49,15 +52,17 @@ public class Timer : MonoBehaviour {
             if (second >= 60.0f)
             {
                 minute++;   //分追加
-                second = second - 60;   //秒を0に戻す
+                second = second - 60.0f;   //秒を0に戻す
+                //second_2 = second_2 - second;
             }
-            if (Convert.ToInt32(second) != oldSecond)
-            {
-                GetComponent<Text>().text = minute.ToString("00") + ":" + Convert.ToInt32(second).ToString("00");
-            }
-            oldSecond = Convert.ToInt32(second);
+           
+            //   GetComponent<Text>().text = minute.ToString("00") + ":" + Convert.ToInt32(second).ToString("F2") + ":" + second.ToString("00");
+            //}
+            GetComponent<Text>().text = minute.ToString("00") + "." + second.ToString("F2");
+        
+        //oldSecond = Convert.ToInt32(second);
 
-        }
+    }
 
 
     }

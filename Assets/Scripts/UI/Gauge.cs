@@ -15,13 +15,15 @@ using UnityEngine.EventSystems;
 
 public class Gauge : MonoBehaviour, GaugeReciever
 	{
-    private float GaugePointMax=100;       //マップの長さ(距離)
+    private float GaugePointMax=1.0f;      //ゲージの最大値
 
 	//public float[] GaugePoint = new float[4];      //プレイヤーの頑張るゲージ!の格納用の配列 プレイヤー1～4
 	// 仮にGauge１：Point１で組む
 	public float GaugePoint;      //プレイヤーの頑張るゲージ!の格納用 プレイヤー1～4
 
 	int count = 0;
+
+    GameObject Gauge_ui;
 
     // Use this for initialization
     void Start()
@@ -33,12 +35,13 @@ public class Gauge : MonoBehaviour, GaugeReciever
         }
 		*/
 		GaugePoint = 0;
+        Gauge_ui = GameObject.Find("Gauge_2").gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Gauge_ui.GetComponent<Image>().fillAmount = GaugePoint;
     }
 
 	/// <summary>
