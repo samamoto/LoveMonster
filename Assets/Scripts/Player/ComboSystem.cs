@@ -98,7 +98,7 @@ public class ComboSystem : MonoBehaviour
             ExecuteEvents.Execute<GaugeReciever>(
                 target: m_Gauge[i].gameObject,
                 eventData: null,
-                functor: (reciever, y) => reciever.ReceivePlayerGauge((1.0f / MAX_POWER) * power + 1)
+                functor: (reciever, y) => reciever.ReceivePlayerGauge(m_id,(1.0f / MAX_POWER-1) * power)
             );
         }
     }
