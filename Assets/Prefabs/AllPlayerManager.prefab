@@ -10924,6 +10924,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   onGround: 0
+  wallJumpFactor: 0.8
   lookBlendTime: 0
   lookWeight: 0
   wallRunning: 0
@@ -10940,6 +10941,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0
+  mulMove: 0
+  mulAnim: 0
 --- !u!114 &114104599979664428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11025,6 +11028,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   onGround: 0
+  wallJumpFactor: 0.8
   lookBlendTime: 0
   lookWeight: 0
   wallRunning: 0
@@ -11045,7 +11049,6 @@ MonoBehaviour:
     m_Bits: 4294967295
   groundDist: 0
   groundDistMax: 10
-  dbg_DistDic: []
 --- !u!114 &114323596460631674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11063,6 +11066,7 @@ MonoBehaviour:
   wallRunSpeedFactor: 10
   minWallRunSpeed: 5
   maxWallRunTime: 0.6
+  isWallJumping: 0
 --- !u!114 &114344835446107608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11079,7 +11083,6 @@ MonoBehaviour:
     m_Bits: 4294967295
   groundDist: 0
   groundDistMax: 10
-  dbg_DistDic: []
 --- !u!114 &114347436097123450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11092,6 +11095,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0
+  mulMove: 0
+  mulAnim: 0
 --- !u!114 &114374244545579152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11121,7 +11126,6 @@ MonoBehaviour:
     m_Bits: 4294967295
   groundDist: 0
   groundDistMax: 10
-  dbg_DistDic: []
 --- !u!114 &114407788144576058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11229,6 +11233,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0
+  mulMove: 0
+  mulAnim: 0
 --- !u!114 &114573896438876366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11246,6 +11252,7 @@ MonoBehaviour:
   wallRunSpeedFactor: 10
   minWallRunSpeed: 5
   maxWallRunTime: 0.6
+  isWallJumping: 0
 --- !u!114 &114605019388171282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11285,6 +11292,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   onGround: 0
+  wallJumpFactor: 0.8
   lookBlendTime: 0
   lookWeight: 0
   wallRunning: 0
@@ -11305,7 +11313,6 @@ MonoBehaviour:
     m_Bits: 4294967295
   groundDist: 0
   groundDistMax: 10
-  dbg_DistDic: []
 --- !u!114 &114617597056124228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11314,7 +11321,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1390720259296086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4fd6c07a3965cd4b933c64539690dd3, type: 3}
+  m_Script: {fileID: 11500000, guid: bf94c8a3a0e82db43b940b52f4814778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 0
@@ -11381,6 +11388,7 @@ MonoBehaviour:
   wallRunSpeedFactor: 10
   minWallRunSpeed: 5
   maxWallRunTime: 0.6
+  isWallJumping: 0
 --- !u!114 &114874638491143276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11433,6 +11441,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   onGround: 0
+  wallJumpFactor: 0.8
   lookBlendTime: 0
   lookWeight: 0
   wallRunning: 0
@@ -11487,6 +11496,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0
+  mulMove: 0
+  mulAnim: 0
 --- !u!114 &114944925115567026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11504,6 +11515,7 @@ MonoBehaviour:
   wallRunSpeedFactor: 10
   minWallRunSpeed: 5
   maxWallRunTime: 0.6
+  isWallJumping: 0
 --- !u!114 &114968783220667916
 MonoBehaviour:
   m_ObjectHideFlags: 1

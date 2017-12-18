@@ -33,6 +33,9 @@ public class AllPlayerManager : MonoBehaviour {
 	// ToDo:増えてきたらローカルクラスで管理しよう
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
 
+	// テンションが何％でボーナスに遷移するか
+	public const float m_PlayerTension = 0.8f;
+
 	// コンポーネント
 	//--------------------------------------------------------------------------------
 	private PlayerManager[] m_PlayerManager = new PlayerManager[ConstPlayerParameter.PlayerMax];
@@ -93,7 +96,10 @@ public class AllPlayerManager : MonoBehaviour {
 
 		// なんか起こす
 
+		// テンションが規定値を上回れば移動させる
+		for (int i = 0; i < m_PlayerNum; i++) {
 
+		}
 		// ゴールしているか
 		for (int i=0; i < m_GoalList.Capacity; i++) {
 			if (m_GoalList[i].getGoal()) {
@@ -115,7 +121,7 @@ public class AllPlayerManager : MonoBehaviour {
 		// 落下リスタート処理
 		for (int i = 0; i < m_PlayerNum; i++) {
 			// デバッグリスタート
-			if (m_PlayerManager[i].transform.position.y < -25.0f) {
+			if (m_PlayerManager[i].transform.position.y < -20.0f) {
 				m_GameManager.isPlayerDead(i, transform.position);		// GameManagerに落ちたプレイヤーのIDを投げる
 				m_PlayerManager[i].restartPlayer(); // 2017/12/01 oyama add
 													//SceneChange.Instance._SceneLoadString("GameSceneProto");  //2017年11月22日 oyama add

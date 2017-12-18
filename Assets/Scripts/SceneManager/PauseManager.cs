@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 // 追加
 using UnityEngine.SceneManagement;
 using Controller;
 
 public class PauseManager : MonoBehaviour
 {
-
     private GameObject refController;   // コントローラーの参照先
                                         //public GameObject[] StopObj;			// 動きを止めるもの
 
@@ -15,8 +15,7 @@ public class PauseManager : MonoBehaviour
     private bool pauseGame = false;
     private Controller.Controller m_Con;
 
-
-    private int MenuID = 3;   //デフォルト設定は現在一番下   
+    private int MenuID = 3;   //デフォルト設定は現在一番下
                               //誤ってポーズを押したときにタイトルに戻ってしまうのを防ぐため、
                               //本来は「ゲーム本編に戻る」の部分に合わせる
 
@@ -24,22 +23,19 @@ public class PauseManager : MonoBehaviour
 
     private int Choice_count;   //選択移動における、一時停止用のカウント
 
-    GameObject Choice_Image;    //選択用画像
+    private GameObject Choice_Image;    //選択用画像
 
-    Vector3 Choice_pos;
+    private Vector3 Choice_pos;
 
-
-
-    void Start()
+    private void Start()
     {
         refController = GameObject.Find("Player1"); // 1Pコントローラーを使う
         m_Con = refController.GetComponent<Controller.Controller>();
-        Choice_Image = GameObject.Find("Choice_Image").gameObject;//選択用画像の取得
+        //Choice_Image = GameObject.Find("Choice_Image").gameObject;//選択用画像の取得
         OnUnPause();
 
         Choice_pos = Vector3.zero;
         Choice_count = 0;
-
     }
 
     public void Update()
@@ -132,20 +128,17 @@ public class PauseManager : MonoBehaviour
         OnUnPause();
     }
 
-
     //半透明画像での選択をアップデートする関数(主に表示)
     public void Menu_UI_update()
     {
         //↑が押されたら   キーボードはI
         if (m_Con.GetButtonHold(Button.Y) || Input.GetKeyDown(KeyCode.I))
         {
-
             MenuID--;       //↑にずらす
             if (MenuID < 1) //１より小さくはならない
             {
                 MenuID = 1;
             }
-
         }
         //↓が押されたら   キーボードはK
 
@@ -156,13 +149,11 @@ public class PauseManager : MonoBehaviour
             {
                 MenuID = MenuID_MAX;
             }
-
         }
         //決定が押されたら  キーボードは右シフト
         if (m_Con.GetButtonHold(Button.A) || Input.GetKeyDown(KeyCode.RightShift))
         {
             //選択している場所によって違う結果を返す(フラグで管理する予定)
-
 
             //現在は3項目
             switch (MenuID)
@@ -220,8 +211,5 @@ public class PauseManager : MonoBehaviour
 
             default: break;
         }
-
     }
 }
-
-

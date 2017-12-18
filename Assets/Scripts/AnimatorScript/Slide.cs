@@ -24,11 +24,11 @@ public class Slide : AnimatorBase {
 		//通常の速度に加えて加速させる
 		m_Slide = animator.GetFloat("Velocity") + m_SlideSpeed;
 		// ②DelayをかけてSEを再生するための遅延時間をセット
-		setPlaySEDelay(0.1f);	// 0.1f後に再生
-    }
+		setPlaySEDelay(0.1f);   // 0.1f後に再生
+	}
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 		PlaySEDelay(PlaySE);// ③Delayをかけてサウンド再生
 		SEDelay();			// ③重複再生を防止するためのDelay機構(使ってないけど)

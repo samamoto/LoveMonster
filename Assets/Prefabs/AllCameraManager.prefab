@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 222955879913932538}
   - component: {fileID: 114125458296493120}
   m_Layer: 9
-  m_Name: Gauge_2
+  m_Name: Gauge_2_4P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 222898966467119782}
   - component: {fileID: 114882508647330748}
   m_Layer: 9
-  m_Name: Gauge_2
+  m_Name: Gauge_2_3P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1110858587516860
 GameObject:
   m_ObjectHideFlags: 1
@@ -202,7 +202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1134617461268130
 GameObject:
   m_ObjectHideFlags: 1
@@ -219,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1146028869763900
 GameObject:
   m_ObjectHideFlags: 1
@@ -269,7 +269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1203427287078970
 GameObject:
   m_ObjectHideFlags: 1
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 222634470540414758}
   - component: {fileID: 114951365880913278}
   m_Layer: 9
-  m_Name: Gauge_2
+  m_Name: Gauge_2_2P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -318,7 +318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1224712629471284
 GameObject:
   m_ObjectHideFlags: 1
@@ -429,7 +429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1334200416782814
 GameObject:
   m_ObjectHideFlags: 1
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 222422351598998752}
   - component: {fileID: 114603993809851050}
   m_Layer: 9
-  m_Name: Gauge_2
+  m_Name: Gauge_2_1P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -752,7 +752,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1637300248384868
 GameObject:
   m_ObjectHideFlags: 1
@@ -769,7 +769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1637989321944432
 GameObject:
   m_ObjectHideFlags: 1
@@ -919,7 +919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1796157228999790
 GameObject:
   m_ObjectHideFlags: 1
@@ -1003,7 +1003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1920195025394626
 GameObject:
   m_ObjectHideFlags: 1
@@ -1037,7 +1037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1924701807504860
 GameObject:
   m_ObjectHideFlags: 1
@@ -1069,7 +1069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1960505690913780
 GameObject:
   m_ObjectHideFlags: 1
@@ -1084,7 +1084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1961387662873452
 GameObject:
   m_ObjectHideFlags: 1
@@ -1944,7 +1944,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056846427251252}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f95d327f8d123d42bd03b108acb69dd, type: 3}
   m_Name: 
@@ -2876,9 +2876,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7374149cb529fc44ea2bb58428177338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0, z: 0}
-  rayNum: 1
-  targetOffset: {x: 0, y: 0, z: 0}
+  rayNum: 3
+  targetOffset:
+  - {x: 0, y: 0.5, z: 0}
+  - {x: 0, y: 1.2, z: 0}
+  - {x: 0, y: 2, z: 0}
   PlayerLayerMask: 63487
   CameraNum: 0
 --- !u!114 &114541870164674200
@@ -3247,7 +3249,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962363953847996}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f95d327f8d123d42bd03b108acb69dd, type: 3}
   m_Name: 
@@ -3938,7 +3940,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520389779348514}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f95d327f8d123d42bd03b108acb69dd, type: 3}
   m_Name: 
@@ -4153,7 +4155,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135648264095963462
 SphereCollider:
@@ -4163,9 +4165,9 @@ SphereCollider:
   m_GameObject: {fileID: 1520389779348514}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135744803186398996
 SphereCollider:
@@ -4175,9 +4177,9 @@ SphereCollider:
   m_GameObject: {fileID: 1056846427251252}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135808287737440192
 SphereCollider:
@@ -4187,9 +4189,9 @@ SphereCollider:
   m_GameObject: {fileID: 1962363953847996}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!222 &222007074509907578
 CanvasRenderer:

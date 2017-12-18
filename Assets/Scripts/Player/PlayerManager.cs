@@ -100,11 +100,13 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		// 状態管理
 		bool Roll = m_animator.GetBool("is_Rolling");
 
+		/*
 		//david add
 		if (wallRunTimeUp && character.onGround) // reset wall run if the player lands on the ground
 		{
 			wallRunTimeUp = false;
 		}
+		*/
 
 		float v = m_Controller.GetAxisRaw(Axis.L_y);
 		v = GetComponent<Rigidbody>().velocity.magnitude;
@@ -118,12 +120,12 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		// 2017年12月17日 oyama change
 		// 壁蹴りがあるのでWallRunをなくした
 		// if the player can wallrun then wall run
-		if (CanWallRun(character.transform, v, adjustedDir, m_Controller.GetButtonHold(Button.LB)) && !wallRunTimeUp) {
+		//if (CanWallRun(character.transform, v, adjustedDir, m_Controller.GetButtonHold(Button.LB)) && !wallRunTimeUp) {
 			//wallRunActivated = true; // turn on wallRun so it can be ran in fixedUpdate(better for rigibody manipulations)
-		} else {
+		//} else {
 			character.wallRunning = false; // can't wallRun so turn the flags off
 			wallRunActivated = false;
-		}
+		//}
 
 		// MoveStateの状態確認
 		if (!jump && !Roll) {
@@ -155,16 +157,16 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 				m_seDelay = 0.4f;
 			}
 		}
-		/*
+		
 		//スライド 音声が遅いのでStateMacineBehavior側でやってる
-		if (m_animator.GetBool("is_Slide")) {
+		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide")) {
 			if (m_seDelay == 0) {
-				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
-				m_seDelay = 0.82f;
+				//m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
+				//m_seDelay = 0.82f;
 				GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
 			}
 		}
-		*/
+		
 		//ロングスライド
 		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("LongSlider")) {
 			if (m_seDelay == 0) {
@@ -256,6 +258,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 
 		//david add
 		// wallRun action
+		/*
 		if (wallRunActivated) // wallRun is called and the rigidbody processing is done here
 		{
 			Vector3 playerPosition = character.transform.position;
@@ -278,7 +281,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 				StartCoroutine(afterWallRun());
 			}
 		}
-
+		*/
 		// calculate the head look target position
 		lookPos = lookInCameraDirection && cam != null
 						? transform.position + cam.forward * 100
