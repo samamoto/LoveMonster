@@ -458,7 +458,8 @@ public class ThirdPersonCharacter : MonoBehaviour {
 	/// <summary>
 	/// 壁蹴りの処理
 	/// コライダーが壁に当たっている時に壁蹴りができる
-	/// /// </summary>
+	/// </summary>
+	
 	void OnCollisionStay(Collision collision) {
 		
 		if (!onGround && collision.contacts[0].normal.y < 0.1f) // 空中にいる、かつ壁が傾いていないことが成立していないと壁蹴りはできない
