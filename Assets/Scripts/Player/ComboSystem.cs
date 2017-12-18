@@ -10,116 +10,131 @@ using UnityEngine.EventSystems;
 /// ・Multiplyの引数は移動速度が入ってくるのでそこにコンボ数に応じて積算し返す。
 /// </summary>
 
-public class ComboSystem : MonoBehaviour {
+public class ComboSystem : MonoBehaviour
+{
+    public const float MAX_TIME = 5.0f;
+    public const int MAX_POWER = 11;
+    public const float SPD_UP_RATE = 0.03f;
+    private float[] multiList;
 
-	public const float MAX_TIME = 5.0f;
-	public const int MAX_POWER = 11;
-	public const float SPD_UP_RATE = 0.03f;
-	private float[] multiList;
+    private float downTime; //５秒経過用タイム
+    private float cntTime;  //１秒経過用タイム
 
-	private float downTime; //５秒経過用タイム
-	private float cntTime;  //１秒経過用タイム
+    public int power;
+    public int cntCombo { get; private set; }
+    [SerializeField] private float mulMove; //移動速度に掛ける量を表示するだけ
+    [SerializeField] private float mulAnim; //アニメーションに掛ける量を表示するだけ
+    private int m_id;
+    private float m_MoveSpeed;
+    private float m_AnimSpeed;
 
-	public int power;
-	public int cntCombo { get; private set; }
-	private int m_id;
-	private float m_MoveSpeed;
-	private float m_AnimSpeed;
+    // 参照
+    private PrintScore m_Score;
 
-	// 参照
-	private PrintScore m_Score;
-	private ThirdPersonCharacter m_TPerson;
-	private Gauge[] m_Gauge = new Gauge[4];
+    private ThirdPersonCharacter m_TPerson;
+    private Gauge[] m_Gauge = new Gauge[4];
 
     // Use this for initialization
-    void Start () {
+    private void Start()
+    {
         multiList = new float[MAX_POWER];
-		for(int i=0; i<MAX_POWER; i++) {
-			multiList[i] = 1.0f + (i * SPD_UP_RATE);
-		}
+        for (int i = 0; i < MAX_POWER; i++)
+        {
+            multiList[i] = 1.0f + (i * SPD_UP_RATE);
+        }
 
-		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
-		m_id = GetComponent<PlayerManager>().getPlayerID();
-		m_TPerson = GetComponent<ThirdPersonCharacter>();
-		m_MoveSpeed = m_TPerson.getMoveSpeed();
-		m_AnimSpeed = m_TPerson.getAnimSpeed();
-		// GanbaruGauge_1P~4P
-		for (int i = 0; i < 4; i++) {
-			m_Gauge[i] = GameObject.Find("GanbaruGauge_" + m_id.ToString() + "P").GetComponent<Gauge>();
-		}
-		Init();
+        m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
+        m_id = GetComponent<PlayerManager>().getPlayerID();
+        m_TPerson = GetComponent<ThirdPersonCharacter>();
+        m_MoveSpeed = m_TPerson.getMoveSpeed();
+        m_AnimSpeed = m_TPerson.getAnimSpeed();
+        // GanbaruGauge_1P~4P
+        for (int i = 0; i < 4; i++)
+        {
+            m_Gauge[i] = GameObject.Find("GanbaruGauge_" + m_id.ToString() + "P").GetComponent<Gauge>();
+        }
+        Init();
     }
 
     //初期化
-    void Init() {
+    private void Init()
+    {
         power = 0;
         cntCombo = 0;
         cntTime = 0;
         downTime = MAX_TIME;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        //コンボが０の時処理しねえ
-        if (cntCombo == 0){ return; }
 
+    // Update is called once per frame
+    private void Update()
+    {
+        //コンボが０の時処理しねえ
+        if (cntCombo == 0) { return; }
 
         if (downTime <= 0)
         {
             //0以下になったら
             DownPower();
         }
-        else {
+        else
+        {
             //タイムを進める
             CountTime();
         }
 
-		// PrintScore(ScoreManager代わり)の更新
-		m_Score.setScoreRate(m_id, power);    // PrintScoreに現在のプレイヤーのスコアレートを設定
-		// スピードアップ処理
-		if (power <= MAX_POWER) {
-			m_TPerson.setMoveSpeed(m_MoveSpeed * multiList[power]);
-			m_TPerson.setAnimSpeed(m_AnimSpeed * ((multiList[power] - 1) * 0.5f + 1.0f));// ちょっとだけモーションも速くする
-		}
-		// ゲージに現在のコンボ比率を送る(テンション的なの)
-		for (int i = 0; i < 4; i++) {
-			ExecuteEvents.Execute<GaugeReciever>(
-				target: m_Gauge[i].gameObject,
-				eventData: null,
-				functor: (reciever, y) => reciever.ReceivePlayerGauge((1.0f/MAX_POWER)*power+1)
-			);
-		}
+        // PrintScore(ScoreManager代わり)の更新
+        m_Score.setScoreRate(m_id, power);    // PrintScoreに現在のプレイヤーのスコアレートを設定
+                                              // スピードアップ処理
+        if (power < MAX_POWER)
+        {
+            m_TPerson.setMoveSpeed(m_MoveSpeed * multiList[power]);
+            mulMove = m_MoveSpeed * multiList[power];
+            m_TPerson.setAnimSpeed(m_AnimSpeed * ((multiList[power] - 1) * 0.5f + 1.0f));// ちょっとだけモーションも速くする
+            mulAnim = m_AnimSpeed * ((multiList[power] - 1) * 0.5f + 1.0f);
+        }
+        // ゲージに現在のコンボ比率を送る(テンション的なの)
+        for (int i = 0; i < 4; i++)
+        {
+            ExecuteEvents.Execute<GaugeReciever>(
+                target: m_Gauge[i].gameObject,
+                eventData: null,
+                functor: (reciever, y) => reciever.ReceivePlayerGauge((1.0f / MAX_POWER) * power + 1)
+            );
+        }
+    }
 
-	}
-
-	//タイムの初期化
-	void TimeReset() { downTime = 0; }
+    //タイムの初期化
+    private void TimeReset()
+    { downTime = 0; }
 
     //時間を進める
-    void CountTime() { downTime -= Time.deltaTime; }
+    private void CountTime()
+    { downTime -= Time.deltaTime; }
 
     //時間がたつと倍率が減る
-    void DownPower()
+    private void DownPower()
     {
         //１秒づつパワーを下げる
         cntTime += Time.deltaTime;
         if (cntTime >= 1)
         {
             cntTime = 0;
-            
+
             //上限用
             if (power <= 0)
             {
                 power = 0;
             }
-            else{
+            else
+            {
                 power--;
             }
         }
     }
 
     //コンボするごとに１回呼ぶ
-    public void _AddCombo() {
+    public void _AddCombo()
+    {
         //タイムの初期化
         downTime = MAX_TIME;
         cntTime = 0;
@@ -130,24 +145,26 @@ public class ComboSystem : MonoBehaviour {
         {
             power = MAX_POWER;
         }
-        else {
+        else
+        {
             power++;
         }
+    }
 
-	}
-
-	//コンボのカウント初期化
-	public void _ClearCombo() { Init(); }
+    //コンボのカウント初期化
+    public void _ClearCombo() { Init(); }
 
     //入力にList[0~5] を積算して返す
-    public float _Multiply(float speed) { 
+    public float _Multiply(float speed)
+    {
         return speed * multiList[power];
     }
-	/// <summary>
-	///	現在のコンボ数(パワー)を返す
-	/// </summary>
-	public int getComboNum() {
-		return power;
-	}
 
+    /// <summary>
+    ///	現在のコンボ数(パワー)を返す
+    /// </summary>
+    public int getComboNum()
+    {
+        return power;
+    }
 }
