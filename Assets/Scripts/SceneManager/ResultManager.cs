@@ -51,8 +51,9 @@ public class ResultManager : MonoBehaviour {
         //m_ScreenChange._DebugInput();
         if (Input.GetKeyUp(KeyCode.Space))//スペースキーで
         {
-            //移動したいシーンへ移動(タイトルシーン)
-            SceneManager.LoadScene("TitleScene");
+			//移動したいシーンへ移動(タイトルシーン)
+			//SceneManager.LoadScene("TitleScene_");
+			SceneChange.Instance._SceneLoadTitle();
         }
 
         //ここにフェード終了処理設置？

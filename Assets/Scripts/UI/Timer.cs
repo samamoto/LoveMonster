@@ -17,55 +17,53 @@ using System;
 /// </summary>
 
 public class Timer : MonoBehaviour {
-    private int minute; //分
-    private float second;   //秒
-    private float second_2;   //秒　下2桁
-    private int oldSecond;
-    private bool timerFlag= false;
-    private char textField;
-    float countTime = 0;
+	private int minute; //分
+	private float second;   //秒
+	private float second_2;   //秒　下2桁
+	private int oldSecond;
+	private bool timerFlag = false;
+	private char textField;
+	float countTime = 0;
 
-    // Use this for initialization
-    void Start () {
-        minute = 0;
-        second = 0;
-        oldSecond = 0;
-    }
-	
+	// Use this for initialization
+	void Start() {
+		minute = 0;
+		second = 0;
+		oldSecond = 0;
+	}
+
 	// Update is called once per frame
-	void Update () {
-        //countTime += Time.deltaTime; //スタートしてからの秒数を格納
-        //minute = Convert.ToInt32(countTime) % 60;  //分の割り出し
-        //countTime = countTime - 60 * minute;   //秒の割り出し
-        //second = Convert.ToInt32(countTime);        //秒を格納
+	void Update() {
+		//countTime += Time.deltaTime; //スタートしてからの秒数を格納
+		//minute = Convert.ToInt32(countTime) % 60;  //分の割り出し
+		//countTime = countTime - 60 * minute;   //秒の割り出し
+		//second = Convert.ToInt32(countTime);        //秒を格納
 
 
 
-        //GetComponent<Text>().text = countTime.ToString("F2"); //小数2桁にして表示
-        if (Time.timeScale > 0)
-        {
+		//GetComponent<Text>().text = countTime.ToString("F2"); //小数2桁にして表示
+		if (Time.timeScale > 0) {
 			// カウントダウンが開始されていなければ止める
 			if (!timerFlag)
 				return;
 
 			second += Time.deltaTime;
-            if (second >= 60.0f)
-            {
-                minute++;   //分追加
-                second = second - 60.0f;   //秒を0に戻す
-                //second_2 = second_2 - second;
-            }
-           
-            //   GetComponent<Text>().text = minute.ToString("00") + ":" + Convert.ToInt32(second).ToString("F2") + ":" + second.ToString("00");
-            //}
-            GetComponent<Text>().text = minute.ToString("00") + "." + second.ToString("F2");
-        
-        //oldSecond = Convert.ToInt32(second);
+			if (second >= 60.0f) {
+				minute++;   //分追加
+				second = second - 60.0f;   //秒を0に戻す
+										   //second_2 = second_2 - second;
+			}
 
-    }
+			//   GetComponent<Text>().text = minute.ToString("00") + ":" + Convert.ToInt32(second).ToString("F2") + ":" + second.ToString("00");
+			//}
+			GetComponent<Text>().text = minute.ToString("00") + "." + second.ToString("F2");
+
+			//oldSecond = Convert.ToInt32(second);
+
+		}
 
 
-    }
+	}
 
 	/// <summary>
 	/// カウントを開始する
@@ -98,7 +96,7 @@ public class Timer : MonoBehaviour {
 	public string getTimeString() {
 		string s = minute.ToString("00") + ":" + Convert.ToInt32(second).ToString("00");
 #if DEBUG
-		DebugPrint.print(s);
+		//DebugPrint.print(s);
 #endif
 		return s;
 	}

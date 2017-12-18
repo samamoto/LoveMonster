@@ -21,6 +21,7 @@ public class MainGameManager : MonoBehaviour {
 		CountDown,
 		CountEnd,
 		Game,
+		Game_Bonus,
 		Pause,
 		Goal,
 		Result,
@@ -87,6 +88,18 @@ public class MainGameManager : MonoBehaviour {
 		//================================================================================
 		// メインのゲーム処理
 		case PhaseLevel.Game:
+			// ゲーム中にポーズ掛かったらPhase移行
+			if (m_PauseMgr.getPauseState()) {
+				setPhaseState(PhaseLevel.Pause);
+			}
+			// Pauseメニュー表示 //
+			break;
+
+		//================================================================================
+		// Game-Bonus-Phase
+		//================================================================================
+		// メインのゲームボーナスステージ処理
+		case PhaseLevel.Game_Bonus:
 			// ゲーム中にポーズ掛かったらPhase移行
 			if (m_PauseMgr.getPauseState()) {
 				setPhaseState(PhaseLevel.Pause);
