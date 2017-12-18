@@ -54032,6 +54032,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114512351336279878, guid: 007b9587f73d9e149bf4cb31e24107f3,
+        type: 2}
+      propertyPath: targetOffset.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4365267326488160, guid: 007b9587f73d9e149bf4cb31e24107f3, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -54128,6 +54133,26 @@ Prefab:
         type: 2}
       propertyPath: offset.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114512351336279878, guid: 007b9587f73d9e149bf4cb31e24107f3,
+        type: 2}
+      propertyPath: rayNum
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114512351336279878, guid: 007b9587f73d9e149bf4cb31e24107f3,
+        type: 2}
+      propertyPath: targetOffset.Array.data[0].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114512351336279878, guid: 007b9587f73d9e149bf4cb31e24107f3,
+        type: 2}
+      propertyPath: targetOffset.Array.data[1].y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114512351336279878, guid: 007b9587f73d9e149bf4cb31e24107f3,
+        type: 2}
+      propertyPath: targetOffset.Array.data[2].y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 007b9587f73d9e149bf4cb31e24107f3, type: 2}
