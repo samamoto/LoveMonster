@@ -8,6 +8,9 @@ using UnityEngine.EventSystems;
 /// ・コンボ数は上がり続けるがスピードアップ倍率は1.0f ~ 1.5の6段階
 /// ・コンボが上がらないまま5秒間経過するとそこから1秒づつ倍率は下がっていく
 /// ・Multiplyの引数は移動速度が入ってくるのでそこにコンボ数に応じて積算し返す。
+/// ・テンションとコンボ数は別枠で扱う
+/// ・コンボ数が上がっていくとエフェクト再生でスピードアップ感を演出する
+/// ・テンションゲージは別枠で管理する
 /// </summary>
 
 public class ComboSystem : MonoBehaviour
@@ -98,7 +101,7 @@ public class ComboSystem : MonoBehaviour
             ExecuteEvents.Execute<GaugeReciever>(
                 target: m_Gauge[i].gameObject,
                 eventData: null,
-                functor: (reciever, y) => reciever.ReceivePlayerGauge(m_id,(1.0f / MAX_POWER-1) * power)
+                functor: (reciever, y) => reciever.ReceivePlayerGauge(m_id,(1.0f / (MAX_POWER-1)) * power)
             );
         }
     }

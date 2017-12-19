@@ -72,7 +72,6 @@ public class AllPlayerManager : MonoBehaviour {
 		for (int i = 0; i < game.Length; i++) {
 			// プレイヤーのポジションをセット
 			int id = m_StartList[i].StartPlayerID-1;
-			Debug.Log(id);
 			m_PlayerManager[id].startPlayerPostion(m_StartList[i].transform.position, m_StartList[i].transform.rotation);
 		}
 	}
@@ -119,15 +118,8 @@ public class AllPlayerManager : MonoBehaviour {
 		}
 
 		// 落下リスタート処理
-		for (int i = 0; i < m_PlayerNum; i++) {
-			// デバッグリスタート
-			if (m_PlayerManager[i].transform.position.y < -20.0f) {
-				m_GameManager.isPlayerDead(i, transform.position);		// GameManagerに落ちたプレイヤーのIDを投げる
-				m_PlayerManager[i].restartPlayer(); // 2017/12/01 oyama add
-													//SceneChange.Instance._SceneLoadString("GameSceneProto");  //2017年11月22日 oyama add
-			}
-			//m_PlayerActionNames[i] = m_PlayerManager[i].getPlayerAction();
-		}
+		PlayerFall();
+
 		// スコアが更新
 		ScoreCheck();
 
@@ -158,6 +150,21 @@ public class AllPlayerManager : MonoBehaviour {
 	/// </summary>
 	private void RankCheck() {
 		// ToDo:ScoreManagerと連携？
+	}
+
+	/// <summary>
+	/// 落下処理
+	/// </summary>
+	private void PlayerFall() {
+		for (int i = 0; i < m_PlayerNum; i++) {
+			if (m_PlayerManager[i].transform.position.y < -20.0f) {
+				m_GameManager.isPlayerDead(i, transform.position);      // GameManagerに落ちたプレイヤーのIDを投げる
+				// 落下したプレイヤーの下降処理
+				m_PlayerManager[i].gameObject.GetComponent<ComboSystem>()._ClearCombo();
+
+				m_PlayerManager[i].restartPlayer(); // 2017/12/01 oyama add
+			}
+		}
 	}
 
 

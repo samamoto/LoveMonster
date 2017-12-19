@@ -69,9 +69,10 @@ public class MoveState : MonoBehaviour {
 	public bool is_Move = false;   // MoveStateが動きを受け持っているかの判定
 
 	private float startTime;		// 開始時間
-	private float deltaCount;		// 開始時間からどれだけ経過したか
+	private float deltaCount;       // 開始時間からどれだけ経過したか
 
-	private Quaternion m_PrevRot;	// 移動前の角度を保持	
+	//private Quaternion m_PrevRot;	// 移動前の角度を保持	
+	private float m_PrevRot;
 	private bool is_LookRot;        // LookRotationを使って回すか決める
 	public bool is_Arrival;		// 目的地に到着したか
 	//--------------------------------------------------------------------------------
@@ -328,8 +329,8 @@ public class MoveState : MonoBehaviour {
 		} else {
 			// 回さない場合は移動前のY座標を上にして余計な回転をさせないようにする
 			//m_PrevRot = transform.rotation;
-			m_PrevRot = new Quaternion(0, m_PrevRot.y, 0, m_PrevRot.w);
-			transform.rotation = m_PrevRot;
+			//m_PrevRot = new Quaternion(1, 0, 0, m_PrevRot.w);
+			gameObject.transform.localEulerAngles = new Vector3(0, m_PrevRot, 0);
 		}
 
 		// ObjectManagerに実行状態を記録
@@ -404,18 +405,20 @@ public class MoveState : MonoBehaviour {
 		// Todo:AllPlayerManagerをシングルトンから外す
 		// 指定したアクションがあるかを調べる
 		//if (AllPlayerManager.TagCheck(other.tag)) {
-			// 指定のタグなら
-			// このときオブジェクトはプレイヤー（正面）に対して背面に作られている必要がある
-			// 同じ向きでもともと作られている場合反転処理が個別に必要になるため気をつける
-			if (other.tag == ConstAnimationStateTags.PlayerStateClimb 
+		// このときオブジェクトはプレイヤー（正面）に対して背面に作られている必要がある
+		// 同じ向きでもともと作られている場合反転処理が個別に必要になるため気をつける
+
+		// 制御移動時にも反応するためその際はスキップ
+		if (!is_Move && other.tag == "ActionArea") {
+			if (other.tag == ConstAnimationStateTags.PlayerStateClimb
 			|| other.tag == ConstAnimationStateTags.PlayerStateClimbOver) {
 				is_LookRot = false;
-				m_PrevRot = transform.rotation;
+				m_PrevRot = transform.rotation.eulerAngles.y;
 			} else {
 				// それ以外はオブジェクトの向き見て
 				is_LookRot = true;
 			}
-		//}
+		}
 
 	}
 
