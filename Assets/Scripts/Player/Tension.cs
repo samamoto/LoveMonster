@@ -56,6 +56,7 @@ public class Tension : MonoBehaviour {
 			eventData: null,
 			functor: (reciever, y) => reciever.ReceivePlayerGauge(m_id, (1.0f / (MAX_STEP)) * m_TensionCount)
 		);
+		Debug.Log(getTensionRatio());
 
 	}
 
@@ -121,6 +122,13 @@ public class Tension : MonoBehaviour {
 	public void downTension() {
 		m_TensionPhase = 0;
 		timeCount = 0;
+	}
+
+	/// <summary>
+	/// 現在のテンションの割合を返す
+	/// </summary>
+	public float getTensionRatio() {
+		return ((float)m_TensionCount / MAX_STEP);
 	}
 
 }
