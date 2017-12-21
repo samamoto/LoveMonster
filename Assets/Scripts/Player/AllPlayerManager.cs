@@ -34,7 +34,7 @@ public class AllPlayerManager : MonoBehaviour {
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
 
 	// テンションが何％でボーナスに遷移するか
-	public const float m_PlayerTension = 0.8f;
+	public const float ENTRY_BONUS_TENSION = 0.8f;
 
 	// コンポーネント
 	//--------------------------------------------------------------------------------
@@ -96,9 +96,8 @@ public class AllPlayerManager : MonoBehaviour {
 		// なんか起こす
 
 		// テンションが規定値を上回れば移動させる
-		for (int i = 0; i < m_PlayerNum; i++) {
+		// getEntryBonusStage()から判定を返し、上位システムから
 
-		}
 		// ゴールしているか
 		for (int i=0; i < m_GoalList.Capacity; i++) {
 			if (m_GoalList[i].getGoal()) {
@@ -265,6 +264,24 @@ public class AllPlayerManager : MonoBehaviour {
 			return m_PlayerManager[id-1].getPlayerPos();
 		}
 		return Vector3.zero;
+	}
+
+	// 2017年12月22日 oyama add
+	/// <summary>
+	/// プレイヤーがボーナスステージに入れるかどうかを検出
+	/// 全員のテンションが一定値以上になれば
+	/// </summary>
+	public bool getisEntryBonusStage() {
+		int count = 0;
+		for (int i = 0; i < m_PlayerNum; i++) {
+			if (ENTRY_BONUS_TENSION <= m_PlayerManager[i].gameObject.GetComponent<Tension>().getTensionRatio()) {
+				count++;
+			}
+		}
+		if (count >= m_PlayerNum) {
+			return true;
+		}
+		return false;
 	}
 
 	// Singleton
