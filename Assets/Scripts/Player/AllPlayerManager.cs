@@ -161,6 +161,7 @@ public class AllPlayerManager : MonoBehaviour {
 				m_GameManager.isPlayerDead(i, transform.position);      // GameManagerに落ちたプレイヤーのIDを投げる
 				// 落下したプレイヤーの下降処理
 				m_PlayerManager[i].gameObject.GetComponent<ComboSystem>()._ClearCombo();
+				m_PlayerManager[i].gameObject.GetComponent<Tension>().downTension();
 
 				m_PlayerManager[i].restartPlayer(); // 2017/12/01 oyama add
 			}

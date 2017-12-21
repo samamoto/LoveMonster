@@ -11,6 +11,7 @@ using UnityEngine.EventSystems;
 /// ・テンションとコンボ数は別枠で扱う
 /// ・コンボ数が上がっていくとエフェクト再生でスピードアップ感を演出する
 /// ・テンションゲージは別枠で管理する
+/// ・
 /// </summary>
 
 public class ComboSystem : MonoBehaviour
@@ -33,9 +34,10 @@ public class ComboSystem : MonoBehaviour
 
     // 参照
     private PrintScore m_Score;
-
     private ThirdPersonCharacter m_TPerson;
-    private Gauge[] m_Gauge = new Gauge[4];
+    private Gauge m_Gauge;
+	private Tension m_Tension;
+
 
     // Use this for initialization
     private void Start()
@@ -52,11 +54,9 @@ public class ComboSystem : MonoBehaviour
         m_MoveSpeed = m_TPerson.getMoveSpeed();
         m_AnimSpeed = m_TPerson.getAnimSpeed();
         // GanbaruGauge_1P~4P
-        for (int i = 0; i < 4; i++)
-        {
-            m_Gauge[i] = GameObject.Find("GanbaruGauge_" + m_id.ToString() + "P").GetComponent<Gauge>();
-        }
-        Init();
+        m_Gauge = GameObject.Find("GanbaruGauge_" + m_id.ToString() + "P").GetComponent<Gauge>();
+		m_Tension = GetComponent<Tension>();    // 2017年12月20日 oyama add
+		Init();
     }
 
     //初期化
@@ -95,19 +95,23 @@ public class ComboSystem : MonoBehaviour
             m_TPerson.setAnimSpeed(m_AnimSpeed * ((multiList[power] - 1) * 0.5f + 1.0f));// ちょっとだけモーションも速くする
             mulAnim = m_AnimSpeed * ((multiList[power] - 1) * 0.5f + 1.0f);
         }
-        // ゲージに現在のコンボ比率を送る(テンション的なの)
-        for (int i = 0; i < 4; i++)
-        {
-            ExecuteEvents.Execute<GaugeReciever>(
-                target: m_Gauge[i].gameObject,
-                eventData: null,
-                functor: (reciever, y) => reciever.ReceivePlayerGauge(m_id,(1.0f / (MAX_POWER-1)) * power)
-            );
-        }
-    }
 
-    //タイムの初期化
-    private void TimeReset()
+		// テンションに現在のコンボ数を送る
+		// 向こう側でコンボが多いほど溜まる
+		m_Tension.updateTensionPhase(power);
+		//	Tensionから送るようにした　2017年12月21日 oyama add
+		/*
+        // ゲージに現在のコンボ比率を送る(テンション的なの)
+        ExecuteEvents.Execute<GaugeReciever>(
+            target: m_Gauge.gameObject,
+            eventData: null,
+            functor: (reciever, y) => reciever.ReceivePlayerGauge(m_id,(1.0f / (MAX_POWER-1)) * power)
+        );
+		*/
+	}
+
+	//タイムの初期化
+	private void TimeReset()
     { downTime = 0; }
 
     //時間を進める
@@ -155,10 +159,12 @@ public class ComboSystem : MonoBehaviour
     }
 
     //コンボのカウント初期化
-    public void _ClearCombo() { Init(); }
+    public void _ClearCombo() {
+		Init();
+	}
 
-    //入力にList[0~5] を積算して返す
-    public float _Multiply(float speed)
+	//入力にList[0~5] を積算して返す
+	public float _Multiply(float speed)
     {
         return speed * multiList[power];
     }

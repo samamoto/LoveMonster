@@ -2916,6 +2916,7 @@ GameObject:
   - component: {fileID: 114374244545579152}
   - component: {fileID: 114522035471650482}
   - component: {fileID: 114347436097123450}
+  - component: {fileID: 114526724796672446}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -5268,6 +5269,7 @@ GameObject:
   - component: {fileID: 95163874986020402}
   - component: {fileID: 114723387138651364}
   - component: {fileID: 114563499074805320}
+  - component: {fileID: 114783889443820576}
   m_Layer: 0
   m_Name: Player4
   m_TagString: Player
@@ -5338,6 +5340,7 @@ GameObject:
   - component: {fileID: 95823489196604144}
   - component: {fileID: 114968783220667916}
   - component: {fileID: 114077490069527300}
+  - component: {fileID: 114149276612662330}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -5393,6 +5396,7 @@ GameObject:
   - component: {fileID: 95977853725716170}
   - component: {fileID: 114874638491143276}
   - component: {fileID: 114934385223814180}
+  - component: {fileID: 114273568427035130}
   m_Layer: 0
   m_Name: Player3
   m_TagString: Player
@@ -10861,7 +10865,7 @@ MonoBehaviour:
   smoothTimeMessage: "Vault,Slide,Climb,WallRun,\nKongVault,LongSlider,ClimbOver\nNone\u306E\u518D\u751F\u901F\u5EA6"
   smoothTime:
   - 0.5
-  - 0.5
+  - 0.35
   - 0.58
   - 1.2
   - 0.56
@@ -10957,7 +10961,7 @@ MonoBehaviour:
   smoothTimeMessage: "Vault,Slide,Climb,WallRun,\nKongVault,LongSlider,ClimbOver\nNone\u306E\u518D\u751F\u901F\u5EA6"
   smoothTime:
   - 0.5
-  - 0.5
+  - 0.35
   - 0.58
   - 1.2
   - 0.56
@@ -10968,6 +10972,26 @@ MonoBehaviour:
   m_AnimName: 
   is_Move: 0
   is_Arrival: 0
+--- !u!114 &114149276612662330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1980811123830054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0c8346e06c02c4cb0be660b13244f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TensionRateMinus:
+  - 0
+  - 0
+  TensionRatePlus:
+  - 0
+  - 0
+  - 0
+  m_TensionPhase: 0
+  m_TensionCount: 0
 --- !u!114 &114176702089933798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11049,6 +11073,26 @@ MonoBehaviour:
     m_Bits: 4294967295
   groundDist: 0
   groundDistMax: 10
+--- !u!114 &114273568427035130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1982987221680138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0c8346e06c02c4cb0be660b13244f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TensionRateMinus:
+  - 0
+  - 0
+  TensionRatePlus:
+  - 0
+  - 0
+  - 0
+  m_TensionPhase: 0
+  m_TensionCount: 0
 --- !u!114 &114323596460631674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11153,7 +11197,7 @@ MonoBehaviour:
   smoothTimeMessage: "Vault,Slide,Climb,WallRun,\nKongVault,LongSlider,ClimbOver\nNone\u306E\u518D\u751F\u901F\u5EA6"
   smoothTime:
   - 0.5
-  - 0.5
+  - 0.35
   - 0.58
   - 1.2
   - 0.56
@@ -11200,6 +11244,28 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &114526724796672446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523780808760516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0c8346e06c02c4cb0be660b13244f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TensionRateMinus:
+  - 0
+  - 0
+  TensionRatePlus:
+  - 0
+  - 0
+  - 0
+  m_TensionPhase: 0
+  m_TensionCount: 0
 --- !u!114 &114540629442175934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11371,6 +11437,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db583400c9a2fdc46b5a9f5626773cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114783889443820576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1963364995564462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0c8346e06c02c4cb0be660b13244f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TensionRateMinus:
+  - 0
+  - 0
+  TensionRatePlus:
+  - 0
+  - 0
+  - 0
+  m_TensionPhase: 0
+  m_TensionCount: 0
 --- !u!114 &114868882025789842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11473,7 +11559,7 @@ MonoBehaviour:
   smoothTimeMessage: "Vault,Slide,Climb,WallRun,\nKongVault,LongSlider,ClimbOver\nNone\u306E\u518D\u751F\u901F\u5EA6"
   smoothTime:
   - 0.5
-  - 0.5
+  - 0.35
   - 0.58
   - 1.2
   - 0.56

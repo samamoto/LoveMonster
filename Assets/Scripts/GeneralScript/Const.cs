@@ -38,6 +38,7 @@ public static class ConstSceneNames {
 	public const string Title = "TitleScene";
 	public const string Tutorial = "TutorialScene";
 	public const string GameScene = "GameScene";
+	public const string GameSceneBonus = "GameSceneStageBonus";
 	public const string StageSelect = "StageSelectScene";
 	public const string Result = "ResultScene";
 
