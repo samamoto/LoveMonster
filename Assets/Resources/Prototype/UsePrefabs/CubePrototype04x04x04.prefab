@@ -42,7 +42,7 @@ MeshRenderer:
   m_ReceiveShadows: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 3
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: c92c5a248fe022040b1729fed6aefcb6, type: 2}
   m_StaticBatchInfo:
