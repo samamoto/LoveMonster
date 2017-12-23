@@ -174,25 +174,16 @@ public class MoveState : MonoBehaviour {
 			switch (m_NowState) {
 			case MoveStatement.KongVault:	// 処理一緒
 			case MoveStatement.Vault:
-				ActionLerp(rate);
-				break;
 			case MoveStatement.LongSlider:
 			case MoveStatement.Slider:
+			case MoveStatement.ClimbOver:
+			case MoveStatement.WallRun:
 				ActionLerp(rate);
 				break;
 
 			case MoveStatement.Climb:
 				ActionSlerp(rate);
 				break;
-
-			case MoveStatement.ClimbOver:
-				ActionLerp(rate);
-				break;
-
-			case MoveStatement.WallRun:
-				ActionLerp(rate);
-				break;
-
 
 			default:
 				ActionLerp(rate);   // Default動作
@@ -315,7 +306,9 @@ public class MoveState : MonoBehaviour {
 
 		// 個別で回転させたい場合 2017/11/26 oyama add
 		switch (m_NowState) {
-		case MoveStatement.LongSlider: transform.Rotate(new Vector3(0, 90, 0)); break;
+		case MoveStatement.LongSlider:
+			//transform.rotation.eulerAngles += transform.rotation.eulerAngles + (new Vector3(0, 90, 0));
+			break;
 		default:
 			break;
 		}
@@ -402,14 +395,11 @@ public class MoveState : MonoBehaviour {
 	///--------------------------------------------------------------------------------
 	public void OnTriggerEnter(Collider other) {
 
-		// Todo:AllPlayerManagerをシングルトンから外す
-		// 指定したアクションがあるかを調べる
-		//if (AllPlayerManager.TagCheck(other.tag)) {
 		// このときオブジェクトはプレイヤー（正面）に対して背面に作られている必要がある
 		// 同じ向きでもともと作られている場合反転処理が個別に必要になるため気をつける
 
 		// 制御移動時にも反応するためその際はスキップ
-		if (!is_Move && other.tag == "ActionArea") {
+		if (!is_Move && other.name.IndexOf("ActionArea") != -1) {	// "ActionArea"が名前にある
 			if (other.tag == ConstAnimationStateTags.PlayerStateClimb
 			|| other.tag == ConstAnimationStateTags.PlayerStateClimbOver) {
 				is_LookRot = false;

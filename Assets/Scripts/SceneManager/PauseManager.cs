@@ -48,7 +48,7 @@ public class PauseManager : MonoBehaviour
             }
 #if DEBUG
             // デバッグ処理　ポーズしながらRBでシーンをリセットする
-            if (m_Con.GetButtonDown(Button.RB))
+            if (m_Con.GetButtonDown(Button.RB) && pauseGame)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 再読み込み
             }
