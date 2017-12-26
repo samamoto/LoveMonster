@@ -31,7 +31,7 @@ public class PauseManager : MonoBehaviour
     {
         refController = GameObject.Find("Player1"); // 1Pコントローラーを使う
         m_Con = refController.GetComponent<Controller.Controller>();
-        //Choice_Image = GameObject.Find("Choice_Image").gameObject;//選択用画像の取得
+        Choice_Image = GameObject.Find("Choice_Image");//選択用画像の取得
         OnUnPause();
 
         Choice_pos = Vector3.zero;
@@ -40,12 +40,17 @@ public class PauseManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonUp(Button.Menu) || m_Con.GetButtonDown(Button.RB))
+        if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonUp(Button.Menu))
+            if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))
             {
                 pauseGame = !pauseGame;
             }
+			// キャンセル
+			if (m_Con.GetButtonDown(Button.A) && pauseGame) {
+				pauseGame = false;
+			}
+
 #if DEBUG
             // デバッグ処理　ポーズしながらRBでシーンをリセットする
             if (m_Con.GetButtonDown(Button.RB) && pauseGame)
@@ -132,7 +137,7 @@ public class PauseManager : MonoBehaviour
     public void Menu_UI_update()
     {
         //↑が押されたら   キーボードはI
-        if (m_Con.GetButtonHold(Button.Y) || Input.GetKeyDown(KeyCode.I))
+        if (m_Con.GetAxisDown(Axis.L_y) == 1 || Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             MenuID--;       //↑にずらす
             if (MenuID < 1) //１より小さくはならない
@@ -142,7 +147,7 @@ public class PauseManager : MonoBehaviour
         }
         //↓が押されたら   キーボードはK
 
-        if (m_Con.GetButtonHold(Button.X) || Input.GetKeyDown(KeyCode.K))
+        if (m_Con.GetAxisDown(Axis.L_y) == -1 || Input.GetKeyDown(KeyCode.K)|| Input.GetKeyDown(KeyCode.DownArrow))
         {
             MenuID++;
             if (MenuID > MenuID_MAX) //項目の最大数より大きくはならない
@@ -150,8 +155,9 @@ public class PauseManager : MonoBehaviour
                 MenuID = MenuID_MAX;
             }
         }
-        //決定が押されたら  キーボードは右シフト
-        if (m_Con.GetButtonHold(Button.A) || Input.GetKeyDown(KeyCode.RightShift))
+		// 決定が押されたら  キーボードは右シフト
+		// 決定キーが普通はAだけど、クセで○ボタンの位置を押してしまうのでBにしよう　2017年12月26日 oyama add 
+		if (m_Con.GetButtonDown(Button.B) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
             //選択している場所によって違う結果を返す(フラグで管理する予定)
 
@@ -161,15 +167,17 @@ public class PauseManager : MonoBehaviour
                 //タイトルが選択されているなら
 
                 case 1:
-                    //タイトルに戻る
-                    SceneManager.LoadScene("TitleScene");
+					//タイトルに戻る
+					//SceneManager.LoadScene("TitleScene");
+					SceneChange.Instance._SceneLoadTitle();
                     break;
 
                 //リスタートが選択されているなら
 
                 case 2:
-                    //リスタートする
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 再読み込み
+					//リスタートする
+					//SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 再読み込み
+					SceneChange.Instance._SceneReload();
                     break;
 
                 //戻るが選択されているなら
@@ -189,27 +197,24 @@ public class PauseManager : MonoBehaviour
             //タイトルが選択されているなら
             case 1:
                 //選択用画像の位置変更
-                Choice_pos.y = 120;
-                Choice_Image.GetComponent<RectTransform>().anchoredPosition = Choice_pos;
+                Choice_pos.y = 82.8f;
                 break;
 
             //リスタートが選択されているなら
             case 2:
                 //選択用画像の位置変更
-                Choice_pos.y = 0;
-                Choice_Image.GetComponent<RectTransform>().anchoredPosition = Choice_pos;
+                Choice_pos.y = -20;
 
                 break;
 
             //戻るが選択されているなら
             case 3:
                 //選択用画像の位置変更
-                Choice_pos.y = -120;
-                Choice_Image.GetComponent<RectTransform>().anchoredPosition = Choice_pos;
-
+                Choice_pos.y = -125;
                 break;
 
             default: break;
         }
-    }
+		Choice_Image.GetComponent<RectTransform>().localPosition = Choice_pos;
+	}
 }
