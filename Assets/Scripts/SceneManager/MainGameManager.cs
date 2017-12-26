@@ -21,7 +21,9 @@ public class MainGameManager : MonoBehaviour {
 		CountDown,
 		CountEnd,
 		Game,
+		Game_Bonus_Start,
 		Game_Bonus,
+		Game_Bonus_End,
 		Pause,
 		Goal,
 		Result,
@@ -30,7 +32,7 @@ public class MainGameManager : MonoBehaviour {
 
 	[SerializeField] private PhaseLevel m_Phase = PhaseLevel.None;
 	private PhaseLevel m_oldPhase = PhaseLevel.None;
-
+	private PhaseLevel m_PrevPausePhase = PhaseLevel.Game;	// ポーズが掛かる前のフェイズ
 	// Use this for initialization
 	private void Start() {
 		// シーンが生成されたらStart
@@ -56,6 +58,7 @@ public class MainGameManager : MonoBehaviour {
 			m_CountSys.startCountDown();
 			m_AllPlayerMgr.stopPlayerControl();     // プレイヤーのコントロールをOFF
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionCountDown );
+			m_PauseMgr.PauseRestriction(true);	// PAUSE禁止
 			break;
 
 		//================================================================================
@@ -81,6 +84,7 @@ public class MainGameManager : MonoBehaviour {
 			m_AllPlayerMgr.returnPlayerControl();     // プレイヤーのコントロールをON
 			setPhaseState(PhaseLevel.Game);
 			m_Audio.Play((int)gameBGM);
+			m_PauseMgr.PauseRestriction(false);
 			break;
 
 		//================================================================================
@@ -91,10 +95,17 @@ public class MainGameManager : MonoBehaviour {
 			// ゲーム中にポーズ掛かったらPhase移行
 			if (m_PauseMgr.getPauseState()) {
 				setPhaseState(PhaseLevel.Pause);
+				m_PrevPausePhase = m_Phase;	// Pause前の状態を記録
 			}
 			// Pauseメニュー表示 //
 			break;
 
+		//================================================================================
+		// Game-Bonus-Phase
+		//================================================================================
+		case PhaseLevel.Game_Bonus_Start:
+			m_PauseMgr.PauseRestriction(false);
+			break;
 		//================================================================================
 		// Game-Bonus-Phase
 		//================================================================================
@@ -103,10 +114,23 @@ public class MainGameManager : MonoBehaviour {
 			// ゲーム中にポーズ掛かったらPhase移行
 			if (m_PauseMgr.getPauseState()) {
 				setPhaseState(PhaseLevel.Pause);
+				m_PrevPausePhase = m_Phase; // Pause前の状態を記録
 			}
 			// Pauseメニュー表示 //
-			break;
 
+
+			// 
+			/* Todo:ボーナスステージに遷移したら
+			 ・ボーナスステージが生えてくる
+				・UI非表示
+				・Pause禁止
+				・キャラクターの動きを停止
+				・カメラ切り替え
+			　を行う
+
+			 */
+			break;
+		
 		//================================================================================
 		// Pause-Phase
 		//================================================================================
@@ -116,7 +140,7 @@ public class MainGameManager : MonoBehaviour {
 				m_TimeMgr.stopTimer();  // タイマー停止
 			} else {
 				// 解除されたらPhaseを戻す
-				setPhaseState(PhaseLevel.Game);
+				setPhaseState(m_PrevPausePhase);
 				m_TimeMgr.startTimer(); // タイマー戻す
 			}
 
@@ -141,6 +165,7 @@ public class MainGameManager : MonoBehaviour {
 			m_TimeMgr.resetTimer(); // タイマーリセットしておく
 									// Resultで使うならGlobalParamに投げておくべき
 			SceneChange.Instance._SceneLoadResult();
+			m_PauseMgr.PauseRestriction(true);
 			break;
 
 		// なにもない

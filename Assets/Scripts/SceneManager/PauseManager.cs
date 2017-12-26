@@ -27,7 +27,9 @@ public class PauseManager : MonoBehaviour
 
     private Vector3 Choice_pos;
 
-    private void Start()
+	private bool is_PauseRestriction;   // Pause禁止　2017年12月26日 oyama add
+
+	private void Start()
     {
         refController = GameObject.Find("Player1"); // 1Pコントローラーを使う
         m_Con = refController.GetComponent<Controller.Controller>();
@@ -40,24 +42,24 @@ public class PauseManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))
+		// Pause禁止ならアップデートしない
+		if (is_PauseRestriction)
+			return;
+
+		if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))
         {
             if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))
             {
                 pauseGame = !pauseGame;
             }
-			// キャンセル
+			// キャンセルボタンで解除
+			// なんか音がすごく連鎖してできないから諦める
+			/*
 			if (m_Con.GetButtonDown(Button.A) && pauseGame) {
-				pauseGame = false;
+				pauseGame = !pauseGame;
 			}
+			*/
 
-#if DEBUG
-            // デバッグ処理　ポーズしながらRBでシーンをリセットする
-            if (m_Con.GetButtonDown(Button.RB) && pauseGame)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 再読み込み
-            }
-#endif
             if (pauseGame == true)
             {
                 OnPause();
@@ -217,4 +219,14 @@ public class PauseManager : MonoBehaviour
         }
 		Choice_Image.GetComponent<RectTransform>().localPosition = Choice_pos;
 	}
+
+	/// <summary>
+	/// Pauseの禁止/解除処理
+	/// </summary>
+	/// <param name="flag">禁止/解除</param>
+	public void PauseRestriction(bool flag) {
+		is_PauseRestriction = flag;
+	}
+
+
 }

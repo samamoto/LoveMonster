@@ -25,6 +25,7 @@ public class ComboSystem : MonoBehaviour
     private float cntTime;  //１秒経過用タイム
 
     public int power;
+	private int power_old;
     public int cntCombo { get; private set; }
     [SerializeField] private float mulMove; //移動速度に掛ける量を表示するだけ
     [SerializeField] private float mulAnim; //アニメーションに掛ける量を表示するだけ
@@ -37,10 +38,11 @@ public class ComboSystem : MonoBehaviour
     private ThirdPersonCharacter m_TPerson;
     private Gauge m_Gauge;
 	private Tension m_Tension;
+	private ActionTrailManager m_EffTrail;
+	private EffectSpeedUp m_EffSpeed;
 
-
-    // Use this for initialization
-    private void Start()
+	// Use this for initialization
+	private void Start()
     {
         multiList = new float[MAX_POWER];
         for (int i = 0; i < MAX_POWER; i++)
@@ -56,6 +58,8 @@ public class ComboSystem : MonoBehaviour
         // GanbaruGauge_1P~4P
         m_Gauge = GameObject.Find("GanbaruGauge_" + m_id.ToString() + "P").GetComponent<Gauge>();
 		m_Tension = GetComponent<Tension>();    // 2017年12月20日 oyama add
+		m_EffSpeed = GetComponentInChildren<EffectSpeedUp>();		// スピードアップ系の
+		m_EffTrail = GetComponentInChildren<ActionTrailManager>();	// コンポーネント
 		Init();
     }
 
@@ -73,6 +77,7 @@ public class ComboSystem : MonoBehaviour
     {
         //コンボが０の時処理しねえ
         if (cntCombo == 0) { return; }
+
 
         if (downTime <= 0)
         {
@@ -96,9 +101,28 @@ public class ComboSystem : MonoBehaviour
             mulAnim = m_AnimSpeed * ((multiList[power] - 1) * 0.5f + 1.0f);
         }
 
+		// コンボが上がってきているほど演出を派手にする
+		// 1:スピードアップエフェクト
+		// 2:軌跡を出す
+		// powerの状態が変わったら
+		if (power_old != power) {
+			if (power >= MAX_POWER - 1) {
+				// MAX
+				m_EffTrail.setActive(true, gameObject);
+				m_EffSpeed.setActive(true, gameObject);
+			} else if (power > 5) {
+				m_EffTrail.setActive(false, gameObject);
+				m_EffSpeed.setActive(true, gameObject);
+			} else {
+				//　戻す
+				m_EffTrail.setActive(false, gameObject);
+				m_EffSpeed.setActive(false, gameObject);
+			}
+		}
 		// テンションに現在のコンボ数を送る
 		// 向こう側でコンボが多いほど溜まる
 		m_Tension.updateTensionPhase(power);
+
 		//	Tensionから送るようにした　2017年12月21日 oyama add
 		/*
         // ゲージに現在のコンボ比率を送る(テンション的なの)
@@ -108,6 +132,8 @@ public class ComboSystem : MonoBehaviour
             functor: (reciever, y) => reciever.ReceivePlayerGauge(m_id,(1.0f / (MAX_POWER-1)) * power)
         );
 		*/
+		// 以前のpowerを記録
+		power_old = power;
 	}
 
 	//タイムの初期化
