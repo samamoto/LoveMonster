@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WorldHeritageSpawner : MonoBehaviour
 {
-    private Camera worldHeritageCamera = null;
+    private GameObject worldHeritageCamera = null;
     private AllPlayerManager allPlayerManager = null;
     private GameObject instanceWorldHeritage = null;
     private Animator HeritageAnimator = null;
@@ -20,8 +20,8 @@ public class WorldHeritageSpawner : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        worldHeritageCamera = GameObject.Find("WorldHeritageCamera").GetComponent<Camera>();
-        worldHeritageCamera.enabled = false;    //カメラ無効化
+        worldHeritageCamera = GameObject.Find("WorldHeritageCamera");
+        worldHeritageCamera.GetComponent<WorldHeritageCamera>().enabled = false;    //カメラ無効化
         this.allPlayerManager = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
     }
 
@@ -35,10 +35,10 @@ public class WorldHeritageSpawner : MonoBehaviour
             this.Spawn();
         }
 
-        if (this.HeritageAnimator && this.HeritageAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (this.HeritageAnimator && this.HeritageAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f && this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().endFlg)
         {
             this.allPlayerManager.returnPlayerControl();
-            this.worldHeritageCamera.enabled = false;
+            this.worldHeritageCamera.GetComponent<Camera>().enabled = false;
         }
 
         //デバッグよう解放処理
@@ -52,7 +52,8 @@ public class WorldHeritageSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        this.worldHeritageCamera.enabled = true;
+        this.worldHeritageCamera.GetComponent<Camera>().enabled = true;
+        this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().CameraStart();
         this.instanceWorldHeritage = Instantiate(this.WorldHeritageList[Random.Range(0, this.WorldHeritageList.Length)]);
         this.HeritageAnimator = instanceWorldHeritage.GetComponent<Animator>();
     }
@@ -63,7 +64,7 @@ public class WorldHeritageSpawner : MonoBehaviour
         {
             HeritageAnimator = null;
             Destroy(this.instanceWorldHeritage);
-            this.worldHeritageCamera.enabled = false;
+            this.worldHeritageCamera.GetComponent<Camera>().enabled = false;
             this.instanceWorldHeritage = null;
         }
     }
