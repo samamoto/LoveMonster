@@ -4274,7 +4274,7 @@ Prefab:
     - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
         type: 2}
       propertyPath: randomSeed
-      value: 2043647377
+      value: -1703971608
       objectReference: {fileID: 0}
     - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
         type: 2}
@@ -4295,6 +4295,16 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startSize.scalar
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+        type: 2}
+      propertyPath: TrailModule.lifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+        type: 2}
+      propertyPath: TrailModule.minVertexDistance
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ceae4480d1e7f54c93eeedba19c4c57, type: 2}
@@ -7391,7 +7401,7 @@ Prefab:
     - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
         type: 2}
       propertyPath: randomSeed
-      value: -645293017
+      value: -1320211427
       objectReference: {fileID: 0}
     - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
         type: 2}
@@ -7407,6 +7417,16 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startSize.scalar
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+        type: 2}
+      propertyPath: TrailModule.lifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+        type: 2}
+      propertyPath: TrailModule.minVertexDistance
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ceae4480d1e7f54c93eeedba19c4c57, type: 2}
@@ -8717,7 +8737,7 @@ Prefab:
     - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
         type: 2}
       propertyPath: randomSeed
-      value: 916327764
+      value: 1235241506
       objectReference: {fileID: 0}
     - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
         type: 2}
@@ -8738,6 +8758,16 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startSize.scalar
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+        type: 2}
+      propertyPath: TrailModule.lifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+        type: 2}
+      propertyPath: TrailModule.minVertexDistance
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ceae4480d1e7f54c93eeedba19c4c57, type: 2}
@@ -12509,12 +12539,6 @@ MonoBehaviour:
     - gameObjects: []
   m_RecentGameObjects:
   - gameObject: {fileID: 1664695462}
-    timestamp: 636499754131757620
-  - gameObject: {fileID: 145132391}
-    timestamp: 636499754156948332
-  - gameObject: {fileID: 814265513}
-    timestamp: 636499754165652088
-  - gameObject: {fileID: 1664695462}
     timestamp: 636499754210328872
   - gameObject: {fileID: 814265513}
     timestamp: 636499754216961266
@@ -12528,6 +12552,12 @@ MonoBehaviour:
     timestamp: 636499754372646350
   - gameObject: {fileID: 1664695462}
     timestamp: 636499754380027445
+  - gameObject: {fileID: 1886662910}
+    timestamp: 636499756229260848
+  - gameObject: {fileID: 1434775173}
+    timestamp: 636499756664766649
+  - gameObject: {fileID: 1886662910}
+    timestamp: 636499756736631102
 --- !u!4 &1155975421
 Transform:
   m_ObjectHideFlags: 16
@@ -13074,7 +13104,7 @@ Prefab:
     - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
         type: 2}
       propertyPath: randomSeed
-      value: 954125714
+      value: -1721508
       objectReference: {fileID: 0}
     - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
         type: 2}
@@ -13095,6 +13125,16 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startSize.scalar
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+        type: 2}
+      propertyPath: TrailModule.lifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198940217329937416, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+        type: 2}
+      propertyPath: TrailModule.minVertexDistance
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ceae4480d1e7f54c93eeedba19c4c57, type: 2}
@@ -15447,6 +15487,11 @@ Transform:
   m_Father: {fileID: 364734389}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1434775173 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1167829014183474, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+    type: 2}
+  m_PrefabInternal: {fileID: 1990272661}
 --- !u!1 &1435134714
 GameObject:
   m_ObjectHideFlags: 0
@@ -19664,6 +19709,11 @@ Skybox:
   m_GameObject: {fileID: 1884271208}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: 246d4b1ad4a63004d8fcf3949494e5b3, type: 2}
+--- !u!1 &1886662910 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1167829014183474, guid: 6ceae4480d1e7f54c93eeedba19c4c57,
+    type: 2}
+  m_PrefabInternal: {fileID: 868039663}
 --- !u!1001 &1888285090
 Prefab:
   m_ObjectHideFlags: 0

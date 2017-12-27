@@ -30,6 +30,7 @@ public class ResultManager : MonoBehaviour {
 	public ResultPhase m_Phase = ResultPhase.Start;
 	Camera m_cam;
 	AudioList m_Audio;
+	Animator[] m_Animator = new Animator[4];
 
     // Use this for initialization
     private void Start()
@@ -42,7 +43,10 @@ public class ResultManager : MonoBehaviour {
 		m_cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 		m_cam.transform.position = Vector3.zero;
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
-    }
+		for(int i=0; i<4; i++) {
+			m_Animator[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<Animator>();
+		}
+	}
 
     // Update is called once per frame
     private void Update()
@@ -77,6 +81,22 @@ public class ResultManager : MonoBehaviour {
 			//iTween.MoveTo(m_cam.gameObject, CameraLocation[1].position, 2.5f);
 			iTween.RotateTo(m_cam.gameObject, CameraLocation[1].rotation.eulerAngles, 2.5f);
 			if (m_cam.transform.position == CameraLocation[1].position) {
+				for (int i = 0; i < 4; i++) {
+					// ランキングによってアニメーションを変更
+					switch (i) {
+					case 0:
+						m_Animator[i].SetTrigger("CW_Fulltwist");
+						break;
+					case 1:
+						m_Animator[i].SetTrigger("CW_FlashKick");
+						break;
+					case 2:
+						m_Animator[i].SetTrigger("BHS_FlashKick");
+						break;
+					case 3:
+						break;
+					}
+				}
 				m_Phase++;
 			}
 			break;
@@ -85,6 +105,8 @@ public class ResultManager : MonoBehaviour {
 			break;
 		case ResultPhase.Result:
 			// アニメーションさせたり
+
+
 			// 結果表示したり
 			// エフェクト再生したり
 			m_Phase++;
