@@ -6,12 +6,12 @@ using UnityStandardAssets.ImageEffects;
 
 public class XFade : MonoBehaviour {
 
-
-
     private ScreenOverlay SCO;  //オーバーレイ
 
     private bool ScreenChange_flg=false;    //カメラ切り替え用のフラグ
-    
+
+	private float brendTime = 2.0f;			// 移行時間
+	   
     // Use this for initialization
 	void Start () {
 
@@ -30,7 +30,8 @@ public class XFade : MonoBehaviour {
         }
         if (ScreenChange_flg == true)   //カメラ切り替え中
         {
-            SCO.intensity += 0.01f;      //徐々にブレンドする
+			//SCO.intensity += 0.01f;      //徐々にブレンドする
+			SCO.intensity += 1.0f / brendTime;
         }
 
         if (SCO.intensity >= 1.0f)         //画面が完全にブレンドされたら
