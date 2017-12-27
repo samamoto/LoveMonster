@@ -147,7 +147,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		if (m_animator.GetBool("is_Jump") && m_animator.GetBool("is_Grounded")　&& !m_animator.GetCurrentAnimatorStateInfo(0).IsName("Crouching")) {
 			if(m_seDelay == 0) {
 				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionJump);
-				//m_seDelay = 0.4f;
+				m_seDelay = 0.4f;
 			}
 		}
 		//着地
@@ -211,6 +211,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		}
 		/////////////////////////////////////////////////////////////////////////
 	}
+
 	/// <summary>
 	/// ThirdPersonFixedUpdate
 	/// </summary>

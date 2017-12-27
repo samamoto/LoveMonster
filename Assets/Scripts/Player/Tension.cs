@@ -56,7 +56,7 @@ public class Tension : MonoBehaviour {
 			eventData: null,
 			functor: (reciever, y) => reciever.ReceivePlayerGauge(m_id, (1.0f / (MAX_STEP)) * m_TensionCount)
 		);
-		Debug.Log(getTensionRatio());
+		//Debug.Log(getTensionRatio());
 
 	}
 
