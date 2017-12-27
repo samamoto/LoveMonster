@@ -15,17 +15,21 @@ using UnityEngine.SceneManagement;
 
 public class ResultManager : MonoBehaviour {
     //スクリプト群
-    //private SceneChange m_ScreenChange;
+	enum ResultPhase {
+		Start,
+		LookDown,
+		Stop,
+		Result,
+		Info,
+		None,
+	}
 
-    private InputManagerGenerator inputmanage;
+	ResultPhase m_Phase = ResultPhase.Start;
 
     // Use this for initialization
     private void Start()
     {
         //m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
-
-
-        
         //フェード       仕様書によって場所変更アリ(現在は一番最初)
         //読み込みは一度でおｋ？ 現在はタイトルに設置
         //追加シーン     ここでフェードを読み込むのもアリ
@@ -37,9 +41,29 @@ public class ResultManager : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
-        //フェードが終了したフラグを受け取ってから判定開始
-        //ここにif文を追加
-        SceneToNext();//次のシーンへ移動(タイトルへ)   
+		//フェードが終了したフラグを受け取ってから判定開始
+		//ここにif文を追加
+
+		switch (m_Phase) {
+		case ResultPhase.Start:
+			
+			break;
+		case ResultPhase.LookDown:
+
+			break;
+		case ResultPhase.Stop:
+			m_Phase++;
+			break;
+		case ResultPhase.Result:
+			m_Phase++;
+			break;
+		case ResultPhase.Info:
+			SceneToNext();//次のシーンへ移動(タイトルへ)   
+			break;
+
+		default:
+			break;
+		}
 
 
 

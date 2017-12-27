@@ -108,6 +108,11 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44179346 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1319684938802550, guid: 1a922ab12c3fc12478a806b0eb006bdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 440350070}
 --- !u!1001 &53973102
 Prefab:
   m_ObjectHideFlags: 0
@@ -370,6 +375,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 284a98191f12f82489535b9ae9479ef7, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &390502702 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1327768469153408, guid: 1a922ab12c3fc12478a806b0eb006bdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 440350070}
 --- !u!1001 &400079315
 Prefab:
   m_ObjectHideFlags: 0
@@ -451,18 +461,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 1144680335986020, guid: 1a922ab12c3fc12478a806b0eb006bdd, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224254514298484428, guid: 1a922ab12c3fc12478a806b0eb006bdd,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -125
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1a922ab12c3fc12478a806b0eb006bdd, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &528842382 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1144680335986020, guid: 1a922ab12c3fc12478a806b0eb006bdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 440350070}
 --- !u!1001 &593094544
 Prefab:
   m_ObjectHideFlags: 0
@@ -567,11 +573,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 02ce6ee910a06d44594621b2abc27460, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &625744323 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1365709203890862, guid: 4be0571ae305a134ca2db78cf4481d26,
-    type: 2}
-  m_PrefabInternal: {fileID: 1259624822}
 --- !u!1 &656206882
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,11 +635,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &689753310 stripped
+--- !u!1 &665384691 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1314777919069592, guid: 4be0571ae305a134ca2db78cf4481d26,
+  m_PrefabParentObject: {fileID: 1905356922707744, guid: 1a922ab12c3fc12478a806b0eb006bdd,
     type: 2}
-  m_PrefabInternal: {fileID: 1259624822}
+  m_PrefabInternal: {fileID: 440350070}
 --- !u!1001 &712812658
 Prefab:
   m_ObjectHideFlags: 0
@@ -971,6 +972,10 @@ Prefab:
         type: 2}
       propertyPath: transitionTimer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659770661894220, guid: 51e7e9b605db7eb488fc8d3579cb229c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51e7e9b605db7eb488fc8d3579cb229c, type: 2}
@@ -1773,6 +1778,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 007b9587f73d9e149bf4cb31e24107f3, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1525724991 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1943034917170930, guid: 1a922ab12c3fc12478a806b0eb006bdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 440350070}
 --- !u!1001 &1556614836
 Prefab:
   m_ObjectHideFlags: 0
@@ -2050,26 +2060,26 @@ MonoBehaviour:
     - gameObjects: []
     - gameObjects: []
   m_RecentGameObjects:
-  - gameObject: {fileID: 1763965357}
-    timestamp: 636499237349858734
-  - gameObject: {fileID: 1811300577}
-    timestamp: 636499237471050141
-  - gameObject: {fileID: 625744323}
-    timestamp: 636499237536217161
-  - gameObject: {fileID: 291437735}
-    timestamp: 636499238045255222
-  - gameObject: {fileID: 689753310}
-    timestamp: 636499238277175216
-  - gameObject: {fileID: 2116498182}
-    timestamp: 636499238683067226
-  - gameObject: {fileID: 689753310}
-    timestamp: 636499238848852177
   - gameObject: {fileID: 2116498182}
     timestamp: 636499238982313152
   - gameObject: {fileID: 291437735}
     timestamp: 636499239041650986
   - gameObject: {fileID: 1650360546}
     timestamp: 636499239219555667
+  - gameObject: {fileID: 44179346}
+    timestamp: 636499658410545003
+  - gameObject: {fileID: 665384691}
+    timestamp: 636499658433803177
+  - gameObject: {fileID: 44179346}
+    timestamp: 636499658447511587
+  - gameObject: {fileID: 390502702}
+    timestamp: 636499658457185215
+  - gameObject: {fileID: 44179346}
+    timestamp: 636499658485495889
+  - gameObject: {fileID: 528842382}
+    timestamp: 636499658570753559
+  - gameObject: {fileID: 1525724991}
+    timestamp: 636499658799552039
 --- !u!4 &1716890379
 Transform:
   m_ObjectHideFlags: 16
@@ -2129,16 +2139,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81154777d5417884981849c5243f6c01, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1763965357 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1163709234833652, guid: 4be0571ae305a134ca2db78cf4481d26,
-    type: 2}
-  m_PrefabInternal: {fileID: 1259624822}
---- !u!1 &1811300577 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1493438242824412, guid: 4be0571ae305a134ca2db78cf4481d26,
-    type: 2}
-  m_PrefabInternal: {fileID: 1259624822}
 --- !u!1001 &1835905035
 Prefab:
   m_ObjectHideFlags: 0
