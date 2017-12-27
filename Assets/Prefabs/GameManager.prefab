@@ -810,6 +810,11 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  ScoreRate_old:
+  - 0
+  - 0
+  - 0
+  - 0
   ScoreRateList:
   - 1
   - 1.1
@@ -819,6 +824,10 @@ MonoBehaviour:
   - 1.5
   graduallyFlamerate: 2
   graduallyScoreStandard: 5
+  PrintTime: 60
+  Nice: {fileID: 21300000, guid: b13d17d72ac6b3849be89c3f149e879b, type: 3}
+  Great: {fileID: 21300000, guid: 709fa6273d21f5b49bfcc9c58530a663, type: 3}
+  Excellent: {fileID: 21300000, guid: ae34685d176c99b44909d52c48f54b5d, type: 3}
   text_field: 
 --- !u!114 &114457265905227956
 MonoBehaviour:
