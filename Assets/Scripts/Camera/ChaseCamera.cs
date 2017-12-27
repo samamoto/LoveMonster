@@ -13,7 +13,7 @@ using Controller;
 
 public class ChaseCamera : MonoBehaviour
 {
-	public int PlayerID;
+    public int PlayerID;
     private GameObject m_ChaseObject;	// privateにした prefab更新のたびに毎回設定するのがめんどい
     public Vector3 Offset;
 
@@ -52,8 +52,8 @@ public class ChaseCamera : MonoBehaviour
             PlayerID = 1;
         string strPlayer = "Player" + PlayerID.ToString();
         m_ChaseObject = GameObject.Find(strPlayer);    // Player1~4を探す
-		transform.rotation = m_ChaseObject.transform.rotation;
-                                                       ///コントローラ取得
+        transform.rotation = m_ChaseObject.transform.rotation;
+        ///コントローラ取得
         //ターゲットのこんとろーらーをげっと
         this.controller = m_ChaseObject.GetComponent<Controller.Controller>();
         //仰角、方位角の初期値保存
@@ -70,14 +70,14 @@ public class ChaseCamera : MonoBehaviour
     private void LateUpdate()
     {
         //カメラリセット
-        //if (lerpTime == 1.0f && controller.GetButtonDown(Controller.Button.RStick))
-        //{
-        //    this.lerpTime = 0.0f;
-        //    this.resetBeginPos = this.transform.position;
-        //    //カメラの仰角、方位角をリセット後に上書き
-        //    this.m_PolarAngle = initPolar;
-        //    this.m_AzimuthalAngle = resetAzimuthal;
-        //}
+        if (lerpTime == 1.0f && controller.GetButtonDown(Controller.Button.RStick))
+        {
+            this.lerpTime = 0.0f;
+            this.resetBeginPos = this.transform.position;
+            //カメラの仰角、方位角をリセット後に上書き
+            this.m_PolarAngle = initPolar;
+            this.m_AzimuthalAngle = resetAzimuthal;
+        }
 
         //通常動作
         if (lerpTime == 1.0f)
@@ -138,10 +138,12 @@ public class ChaseCamera : MonoBehaviour
             lerpTime = Mathf.Clamp01(lerpTime + Time.deltaTime * m_LerpTimeMultiply);
         }
     }
-	/// <summary>
-	/// カメラのID取得
-	/// </summary>
-	public int getCameraID() {
-		return PlayerID;
-	}
+
+    /// <summary>
+    /// カメラのID取得
+    /// </summary>
+    public int getCameraID()
+    {
+        return PlayerID;
+    }
 }
