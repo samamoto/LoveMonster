@@ -15,31 +15,109 @@ using UnityEngine.SceneManagement;
 
 public class ResultManager : MonoBehaviour {
     //スクリプト群
-    //private SceneChange m_ScreenChange;
+	public enum ResultPhase {
+		Start,
+		Move,
+		LookDown,
+		Stop,
+		Result,
+		Info,
+		None,
+	}
 
-    private InputManagerGenerator inputmanage;
+	public Transform[] CameraLocation = new Transform[2];
+
+	public ResultPhase m_Phase = ResultPhase.Start;
+	Camera m_cam;
+	AudioList m_Audio;
+	Animator[] m_Animator = new Animator[4];
 
     // Use this for initialization
     private void Start()
     {
-        //m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
-
-
-        
-        //フェード       仕様書によって場所変更アリ(現在は一番最初)
-        //読み込みは一度でおｋ？ 現在はタイトルに設置
-        //追加シーン     ここでフェードを読み込むのもアリ
-        //SceneManager.LoadScene("TitleScene", LoadSceneMode.Additive);
-
-
-    }
+		//m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
+		//フェード       仕様書によって場所変更アリ(現在は一番最初)
+		//読み込みは一度でおｋ？ 現在はタイトルに設置
+		//追加シーン     ここでフェードを読み込むのもアリ
+		//SceneManager.LoadScene("TitleScene", LoadSceneMode.Additive);
+		m_cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+		m_cam.transform.position = Vector3.zero;
+		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+		for(int i=0; i<4; i++) {
+			m_Animator[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<Animator>();
+		}
+	}
 
     // Update is called once per frame
     private void Update()
     {
-        //フェードが終了したフラグを受け取ってから判定開始
-        //ここにif文を追加
-        SceneToNext();//次のシーンへ移動(タイトルへ)   
+		//フェードが終了したフラグを受け取ってから判定開始
+		//ここにif文を追加
+
+		switch (m_Phase) {
+		case ResultPhase.Start:
+			m_Audio.Play((int)AudioList.SoundList_BGM.BGM_Game_Stage3);
+			m_Phase++;
+			break;
+		case ResultPhase.Move:
+			iTween.MoveTo(m_cam.gameObject, iTween.Hash(
+				"position", CameraLocation[0].position,
+				"time", 5f,
+				"easetype", "easeInCubic"
+				)
+			);
+			//iTween.MoveTo(m_cam.gameObject, CameraLocation[0].position, 5f);
+			if (m_cam.transform.position == CameraLocation[0].position) {
+				m_Phase++;
+			}
+			break;
+		case ResultPhase.LookDown:
+			iTween.MoveTo(m_cam.gameObject, iTween.Hash(
+				"position", CameraLocation[1].position,
+				"time", 2.5f,
+				"easetype", "easeOutCirc"
+				)
+			);
+			//iTween.MoveTo(m_cam.gameObject, CameraLocation[1].position, 2.5f);
+			iTween.RotateTo(m_cam.gameObject, CameraLocation[1].rotation.eulerAngles, 2.5f);
+			if (m_cam.transform.position == CameraLocation[1].position) {
+				for (int i = 0; i < 4; i++) {
+					// ランキングによってアニメーションを変更
+					switch (i) {
+					case 0:
+						m_Animator[i].SetTrigger("CW_Fulltwist");
+						break;
+					case 1:
+						m_Animator[i].SetTrigger("CW_FlashKick");
+						break;
+					case 2:
+						m_Animator[i].SetTrigger("BHS_FlashKick");
+						break;
+					case 3:
+						break;
+					}
+				}
+				m_Phase++;
+			}
+			break;
+		case ResultPhase.Stop:
+			m_Phase++;
+			break;
+		case ResultPhase.Result:
+			// アニメーションさせたり
+
+
+			// 結果表示したり
+			// エフェクト再生したり
+			m_Phase++;
+			break;
+		case ResultPhase.Info:
+			SceneToNext();//次のシーンへ移動(タイトルへ)   
+			break;
+
+		default:
+			break;
+		}
 
 
 

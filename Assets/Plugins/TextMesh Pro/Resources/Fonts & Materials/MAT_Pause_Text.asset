@@ -2738,7 +2738,7 @@ MonoBehaviour:
     AscII_Right: 0
     XadvanceOffset: 0
   fallbackFontAssets:
-  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 7298da70d5c2bdb4a995fb8db0e5cfe2, type: 2}
   fontCreationSettings:
     fontSourcePath: 
     fontSizingMode: 0

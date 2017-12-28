@@ -23,7 +23,7 @@ public class ObjectActionArea : MonoBehaviour {
 	public Dictionary<int ,MoveState> m_MoveTask = new Dictionary<int, MoveState>();
 	public List<int> m_MoveID = new List<int>();
 
-	public int ScoreStandard = 100;	// スコアの基準値
+	public int ScoreStandard = 300;	// スコアの基準値
 
 	PlayerManager m_PlayerMgr;
 	bool is_FoundActTag;

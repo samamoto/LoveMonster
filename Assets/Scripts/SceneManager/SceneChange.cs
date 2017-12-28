@@ -37,7 +37,7 @@ public class SceneChange : Singleton<SceneChange>
     //Scene変更
     public void _SceneLoadTitle()
     {
-        SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene(0,LoadSceneMode.Single);
     }
     public void _SceneLoadGame()
     {
