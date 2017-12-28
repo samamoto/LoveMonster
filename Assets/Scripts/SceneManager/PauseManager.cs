@@ -29,6 +29,8 @@ public class PauseManager : MonoBehaviour
 
 	private bool is_PauseRestriction;   // Pause禁止　2017年12月26日 oyama add
 
+	private AudioList m_Audio;
+
 	private void Start()
     {
         refController = GameObject.Find("Player1"); // 1Pコントローラーを使う
@@ -38,6 +40,7 @@ public class PauseManager : MonoBehaviour
 
         Choice_pos = Vector3.zero;
         Choice_count = 0;
+		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
     }
 
     public void Update()
@@ -55,21 +58,24 @@ public class PauseManager : MonoBehaviour
 		}
 #endif
 
-		if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))
+        if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))
-            {
-                pauseGame = !pauseGame;
-            }
+            pauseGame = !pauseGame;
+			// Menu開く音
+			if (pauseGame) {
+				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Menu_Decision);
+			} else {
+				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Menu_Cancel);
+			}
+		}
 
-			if (pauseGame == true)
-            {
-                OnPause();
-            }
-            else
-            {
-                OnUnPause();
-            }
+		if (pauseGame == true)
+        {
+            OnPause();
+        }
+		else
+		{
+            OnUnPause();
         }
         if (pauseGame == true)
         {
@@ -147,34 +153,44 @@ public class PauseManager : MonoBehaviour
             if (MenuID < 1) //１より小さくはならない
             {
                 MenuID = 1;
-            }
-        }
-        //↓が押されたら   キーボードはK
+            } else {
+				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Menu_Cursor);
+			}
 
-        if (m_Con.GetAxisDown(Axis.L_y) == -1 || Input.GetKeyDown(KeyCode.K)|| Input.GetKeyDown(KeyCode.DownArrow))
+		}
+		//↓が押されたら   キーボードはK
+
+		if (m_Con.GetAxisDown(Axis.L_y) == -1 || Input.GetKeyDown(KeyCode.K)|| Input.GetKeyDown(KeyCode.DownArrow))
         {
             MenuID++;
             if (MenuID > MenuID_MAX) //項目の最大数より大きくはならない
             {
                 MenuID = MenuID_MAX;
-            }
-        }
+            } else {
+				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Menu_Cursor);
+			}
+		}
 		// 決定が押されたら  キーボードは右シフト
 		// 決定キーが普通はAだけど、クセで○ボタンの位置を押してしまうのでBにしよう　2017年12月26日 oyama add 
 		if (m_Con.GetButtonDown(Button.B) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
-            //選択している場所によって違う結果を返す(フラグで管理する予定)
 
-            //現在は3項目
-            switch (MenuID)
+
+			//選択している場所によって違う結果を返す(フラグで管理する予定)
+
+			//現在は3項目
+			switch (MenuID)
             {
                 //タイトルが選択されているなら
 
                 case 1:
 					//タイトルに戻る
 					//SceneManager.LoadScene("TitleScene");
+					OnUnPause();        //ポーズ解除んご
 					SceneChange.Instance._SceneLoadTitle();
-                    break;
+					// 決定音
+					m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Menu_Decision);
+					break;
 
                 //リスタートが選択されているなら
 
@@ -182,14 +198,18 @@ public class PauseManager : MonoBehaviour
 					//リスタートする
 					//SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 再読み込み
 					SceneChange.Instance._SceneReload();
-                    break;
+					// 決定音
+					m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Menu_Decision);
+					break;
 
                 //戻るが選択されているなら
 
                 case 3:
                     //ゲームに戻る
                     OnUnPause();        //ポーズ解除んご
-                    break;
+					// キャンセル音
+					m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Menu_Cancel);
+					break;
 
                 default: break;
             }
