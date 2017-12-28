@@ -12,6 +12,11 @@ using UnityEngine.UI;
 //					また、スコアを通常の加算と速度維持による徐々に増加式に
 
 // ExecuteEvent(SendMessageの改良版)で受け取るためにInterface実装
+
+// 2017年12月29日 oyama add
+// 音声機能付加
+
+
 public class PrintScore : MonoBehaviour, ScoreReciever {
 	public float[] PlayerScore = new float[4];      //プレイヤーのスコアの格納用の配列 プレイヤー1～4
 	private float[] ScoreRate = new float[4];     // スコアにかける倍率　コンボシステムと連動
@@ -26,9 +31,10 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 	private float graduallyFlamerateCount = 0;
 	private int graduallyScoreStandard = 5;
 	private int count = 0;
-    private bool is_Stop = true;	// 初期はストップ
+    private bool is_Stop = true;    // 初期はストップ
+	private AudioList m_Audio;      // Sound 2017年12月29日 oyama add
 
-    public int PrintTime;   //成功UIの表示時間
+	public int PrintTime;   //成功UIの表示時間
 
     private GameObject score_p1;
     private GameObject score_p2;
@@ -43,7 +49,10 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
     public Sprite Great;
     public Sprite Excellent;
 
-    private int Delete_count=0;
+	// 複数人数に対応してなさそうだから配列にする　2017年12月29日 oyama add
+	private int[] Delete_count = new int[4] {
+		0,0,0,0
+	};
 
     private bool Player_success_ui_1p;
     private bool Player_success_ui_2p;
@@ -84,8 +93,11 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         Player_success_ui_3p = false;
         Player_success_ui_4p = false;
 
-        Delete_count = 0;
-    }
+        //Delete_count = 0;
+
+		// 確保 2017年12月29日 oyama add
+		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+	}
 
 	// Update is called once per frame
 	private void Update() {
@@ -191,6 +203,7 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 		CompareRate[2] = ScoreRateList[4];  // Great
 		CompareRate[3] = ScoreRateList[5];  // Excellent
 
+		int PlyProcess = 0;		// めんどくさいからプロセスごとにこれをインクリメントする
 
 
 		//スコアが1.0に達した時、
@@ -256,23 +269,25 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         //表示中ならカウントする
         if (Player_success_ui_1p == true)
         {
-            Delete_count++;
+            Delete_count[PlyProcess]++;
         }
         //表示時間の制限が来たら削除
-        if (Delete_count >= PrintTime)
+        if (Delete_count[PlyProcess] >= PrintTime)
         {
             Judge_Success_1p.SetActive(false);
             Player_success_ui_1p = false;    //描画してない
-            Delete_count = 0;
+            Delete_count[PlyProcess] = 0;
         }
 
+		// つぎのプレイヤープロセス
+		PlyProcess++;	// 1
 
-        /// <summary>
-        /// プレイヤー2
-        /// </summary>
+		/// <summary>
+		/// プレイヤー2
+		/// </summary>
 
-        //スコアがCompareRate[1]に達した時、(Nice)
-        if (ScoreRate[1] == CompareRate[1] && Player_success_ui_2p == false && ScoreRate_old[1] != CompareRate[1]
+		//スコアがCompareRate[1]に達した時、(Nice)
+		if (ScoreRate[1] == CompareRate[1] && Player_success_ui_2p == false && ScoreRate_old[1] != CompareRate[1]
             && ScoreRate_old[1] == ScoreRateList[1])
         {
             ScoreRate_old[1] = CompareRate[1];    //oldに保存
@@ -302,22 +317,25 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         //表示中ならカウントする
         if (Player_success_ui_2p == true)
         {
-            Delete_count++;
+            Delete_count[PlyProcess]++;
         }
         //表示時間の制限が来たら削除
-        if (Delete_count >= PrintTime)
+        if (Delete_count[PlyProcess] >= PrintTime)
         {
             Judge_Success_2p.SetActive(false);
             Player_success_ui_2p = false;    //描画してない
-            Delete_count = 0;
+            Delete_count[PlyProcess] = 0;
         }
 
-        /// <summary>
-        /// プレイヤー3
-        /// </summary>
+		// つぎのプロセス
+		PlyProcess++;
 
-        //スコアがCompareRate[1]に達した時、(Nice)
-        if (ScoreRate[2] == CompareRate[1] && Player_success_ui_3p == false && ScoreRate_old[2] != CompareRate[1]
+		/// <summary>
+		/// プレイヤー3
+		/// </summary>
+
+		//スコアがCompareRate[1]に達した時、(Nice)
+		if (ScoreRate[2] == CompareRate[1] && Player_success_ui_3p == false && ScoreRate_old[2] != CompareRate[1]
             && ScoreRate_old[2] == ScoreRateList[1])
         {
             ScoreRate_old[2] = CompareRate[1];    //oldに保存
@@ -347,22 +365,25 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         //表示中ならカウントする
         if (Player_success_ui_3p == true)
         {
-            Delete_count++;
+            Delete_count[PlyProcess]++;
         }
         //表示時間の制限が来たら削除
-        if (Delete_count >= PrintTime)
+        if (Delete_count[PlyProcess] >= PrintTime)
         {
             Judge_Success_3p.SetActive(false);
             Player_success_ui_3p = false;    //描画してない
-            Delete_count = 0;
+            Delete_count[PlyProcess] = 0;
         }
 
-        /// <summary>
-        /// プレイヤー4
-        /// </summary>
+		// つぎのプロセス
+		PlyProcess++;
 
-        //スコアがCompareRate[1]に達した時、(Nice)
-        if (ScoreRate[3] == CompareRate[1] && Player_success_ui_4p == false && ScoreRate_old[3] != CompareRate[1]
+		/// <summary>
+		/// プレイヤー4
+		/// </summary>
+
+		//スコアがCompareRate[1]に達した時、(Nice)
+		if (ScoreRate[3] == CompareRate[1] && Player_success_ui_4p == false && ScoreRate_old[3] != CompareRate[1]
             && ScoreRate_old[3] == ScoreRateList[1])
         {
             ScoreRate_old[3] = CompareRate[1];    //oldに保存
@@ -392,26 +413,35 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         //表示中ならカウントする
         if (Player_success_ui_4p == true)
         {
-            Delete_count++;
+            Delete_count[PlyProcess]++;
         }
         //表示時間の制限が来たら削除
-        if (Delete_count >= PrintTime)
+        if (Delete_count[PlyProcess] >= PrintTime)
         {
             Judge_Success_4p.SetActive(false);
             Player_success_ui_4p = false;    //描画してない
-            Delete_count = 0;
+            Delete_count[PlyProcess] = 0;
         }
 
 
+		// 2017年12月29日 oyama add
+		// 表示されたら音を鳴らす
+		// めんどくさいのでDeleteCountが1(表示し始めてから次のフレーム)のとき
+		// ところでこのカウンタ配列じゃないから複数人でできない気がする
+		// ...ので直した　PlyProcessとか面倒くさくて使ってます
+		for(int i=0; i<4; i++) {
+			if(Delete_count[i] == 1) {
+				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionComboGood);
+			}
+		}
 
 
+	}
 
-    }
-
-    /// <summary>
-    /// システムをストップ
-    /// </summary>
-    public void stopControll(bool flag){
+	/// <summary>
+	/// システムをストップ
+	/// </summary>
+	public void stopControll(bool flag){
         is_Stop = flag;
     }
 }

@@ -32,6 +32,9 @@ public class Tension : MonoBehaviour
 
     private Gauge m_Gauge;
 
+	private AudioList m_Audio;
+	private bool is_EntryBonusTension_Sound;	// ボーナス移行時の時のサウンドフラグ
+
     // Use this for initialization
     private void Start()
     {
@@ -47,6 +50,7 @@ public class Tension : MonoBehaviour
         {
             TensionRatePlus[i] = (TENSION_RATE * (MAX_PHASE / 2 + 1)) - (i * TENSION_RATE);    // 0.5*(5/2+1) - 0~2*0.5 = 1.5~0.5
         }
+		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
     }
 
     // Update is called once per frame
@@ -77,8 +81,8 @@ public class Tension : MonoBehaviour
                 if (m_TensionCount > 0)
                 {
                     m_TensionCount--;
-                }
-            }
+				}
+			}
         }
         else
         {
@@ -89,6 +93,11 @@ public class Tension : MonoBehaviour
                 if (m_TensionCount < MAX_STEP)
                 {
                     m_TensionCount++;
+					// テンションのカウンタがAllPlayerManagerで指定されているパーセンテージを超えたら一度だけ鳴らす
+					if (getTensionRatio() > AllPlayerManager.ENTRY_BONUS_TENSION && !is_EntryBonusTension_Sound) {
+						is_EntryBonusTension_Sound = true;
+						m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_TensionCharge);
+					}
                 }
             }
         }
