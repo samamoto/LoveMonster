@@ -119,17 +119,30 @@ public class ComboSystem : MonoBehaviour
 		// 2:軌跡を出す
 		// powerの状態が変わったら
 		if (power_old != power) {
-			if (power >= MAX_POWER - 1) {
+			if (power >= MAX_POWER) {
 				// MAX
 				m_EffTrail.setActive(true, gameObject);
 				m_EffSpeed.setActive(true, gameObject);
+				// 音声
+				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionPowup);
+
 			} else if (power > 5) {
 				m_EffTrail.setActive(false, gameObject);
 				m_EffSpeed.setActive(true, gameObject);
+				// 段階が切り替わるときだけ音を入れる
+				if(power_old < power && power == 6) {
+					// 音声
+					m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionComboGood);
+				} else if (power_old > power && power == MAX_POWER -1) {
+					m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionComboBad);
+				}
 			} else {
 				//　戻す
 				m_EffTrail.setActive(false, gameObject);
 				m_EffSpeed.setActive(false, gameObject);
+				if ((power_old > power && power == 5) || power == 0) {
+					m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionComboBad);
+				}
 			}
 		}
 		// テンションに現在のコンボ数を送る
@@ -174,8 +187,6 @@ public class ComboSystem : MonoBehaviour
             else
             {
                 power--;
-				// 音声
-				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionComboBad);
 			}
 		}
     }
@@ -196,8 +207,6 @@ public class ComboSystem : MonoBehaviour
         else
         {
             power++;
-			// 音声
-			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionComboGood);
 		}
 	}
 
