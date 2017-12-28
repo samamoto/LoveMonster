@@ -108,11 +108,6 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &3085756 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1963691229557796, guid: e5a94cdc260b52f4b9933bd5a63b5bdc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1662193217}
 --- !u!1001 &5342821
 Prefab:
   m_ObjectHideFlags: 0
@@ -15453,6 +15448,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.size
+      value: 26
+      objectReference: {fileID: 0}
     - target: {fileID: 4441832653978742, guid: 02ce6ee910a06d44594621b2abc27460, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15524,6 +15524,111 @@ Prefab:
         type: 2}
       propertyPath: m_CostomAudioSouce.Array.data[5].m_Volume
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[21].m_Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b9949b04f8178a74eaf229ed597c0bd7, type: 3}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[21].m_OutputMixer
+      value: 
+      objectReference: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+        type: 2}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[21].m_UnableEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[21].m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[22].m_Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: dfd5ca2ed5ae37148b0cae604e79c65b, type: 3}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[22].m_OutputMixer
+      value: 
+      objectReference: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+        type: 2}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[22].m_UnableEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[22].m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[23].m_Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ad30e544124f0904fb435793d92b7a21, type: 3}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[23].m_OutputMixer
+      value: 
+      objectReference: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+        type: 2}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[23].m_UnableEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[23].m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[24].m_Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e3e81833fd8dea9448a1587979851fed, type: 3}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[24].m_OutputMixer
+      value: 
+      objectReference: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+        type: 2}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[24].m_UnableEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[24].m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[25].m_Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 319e15470b103d941b744d9bdc06ab4e, type: 3}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[25].m_OutputMixer
+      value: 
+      objectReference: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+        type: 2}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[25].m_UnableEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748036841873592, guid: 02ce6ee910a06d44594621b2abc27460,
+        type: 2}
+      propertyPath: m_CostomAudioSouce.Array.data[25].m_Volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 02ce6ee910a06d44594621b2abc27460, type: 2}
@@ -22721,10 +22826,6 @@ Transform:
   m_Father: {fileID: 1362738247}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &912752066 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: 61fc27a5772baad4c9a071654e0daec4, type: 2}
-  m_PrefabInternal: {fileID: 2018013695}
 --- !u!4 &912752070 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 61fc27a5772baad4c9a071654e0daec4, type: 2}
@@ -26647,11 +26748,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1070719488}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1072938349 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1316718567633146, guid: 0cf18b22f65e8a043af7ac0f414e05c7,
-    type: 2}
-  m_PrefabInternal: {fileID: 80249024}
 --- !u!1001 &1076808722
 Prefab:
   m_ObjectHideFlags: 0
@@ -33759,41 +33855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5d224f289300644b60d5a11a9cfe92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Items: []
-  m_SelectionList:
-    m_List:
-    - gameObjects:
-      - {fileID: 3085756}
-    - gameObjects: []
-    - gameObjects: []
-    - gameObjects: []
-    - gameObjects: []
-    - gameObjects: []
-    - gameObjects: []
-    - gameObjects: []
-    - gameObjects: []
-    - gameObjects: []
-  m_RecentGameObjects:
-  - gameObject: {fileID: 1104839957}
-    timestamp: 636488941512300470
-  - gameObject: {fileID: 1392653647}
-    timestamp: 636488941581783192
-  - gameObject: {fileID: 1447528003}
-    timestamp: 636488941601545961
-  - gameObject: {fileID: 565877568}
-    timestamp: 636488941613091877
-  - gameObject: {fileID: 1447528003}
-    timestamp: 636488941630774145
-  - gameObject: {fileID: 912752066}
-    timestamp: 636488941689392698
-  - gameObject: {fileID: 1834306184}
-    timestamp: 636488941715485401
-  - gameObject: {fileID: 912752066}
-    timestamp: 636488941745712356
-  - gameObject: {fileID: 1072938349}
-    timestamp: 636488941819440477
-  - gameObject: {fileID: 1792065590}
-    timestamp: 636488942085844283
 --- !u!4 &1321080659
 Transform:
   m_ObjectHideFlags: 16
@@ -46868,6 +46929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc8ecf9b5934a843b2656433cd37faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextStagePoint: {fileID: 0}
   transitionTimer: 2
 --- !u!65 &1792065593
 BoxCollider:

@@ -31,7 +31,12 @@ public class AudioList : MonoBehaviour
 		SE_UI_Menu_Cancel,
 		SE_UI_Menu_Cursor,
 		SE_UI_Title_Decision,
-		SE_None,
+        SE_ActionRolling,
+        SE_ActionHandrail,
+        SE_Clear,
+        SE_StageWarp,
+        SE_BonusStage,
+        SE_None,
 	}
 
 

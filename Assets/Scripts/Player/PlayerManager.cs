@@ -46,11 +46,11 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	public float maxWallRunTime = 0.1f; // how long a player can wall run
 	private bool wallRunActivated = false; // set in Update() and used to activate wallRun in FixedUpdate()
 	private bool wallRunTimeUp = false; // controlling flag for handling when wall run time times up
-	private float m_seDelay = 0.0f;
+    private float m_seDelay = 0.0f;
 
-	//david add
-	// walljump variables
-	public bool isWallJumping = false;
+    //david add
+    // walljump variables
+    public bool isWallJumping = false;
 
 	// Use this for initialization
 	void Start() {
@@ -143,79 +143,93 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	/// アクションが再生される時にSEを鳴らす
 	/// </summary>
 	void ActionSE() {
-		// Jump
-		if (m_animator.GetBool("is_Jump") && m_animator.GetBool("is_Grounded")　&& !m_animator.GetCurrentAnimatorStateInfo(0).IsName("Crouching")) {
-			if(m_seDelay == 0) {
-				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionJump);
-				m_seDelay = 0.4f;
-			}
-		}
-		//着地
-		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Crouching")) {
-			if (m_seDelay == 0) {
-				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionLanding);
-				m_seDelay = 0.4f;
-			}
-		}
-		
-		//スライド 音声が遅いのでStateMacineBehavior側でやってる
-		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide")) {
-			if (m_seDelay == 0) {
-				//m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
-				//m_seDelay = 0.82f;
-				GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
-			}
-		}
-		
-		//ロングスライド
-		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("LongSlider")) {
-			if (m_seDelay == 0) {
-				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
-				m_seDelay = 1;
-			}
-		}
-		//ヴォルト
-		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Vault")) {
-			if (m_seDelay == 0) {
-				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionVault);
-				m_seDelay = 0.45f;
-			}
-		}
-		//キングヴォルト
-		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("KongVault")) {
-			if (m_seDelay == 0) {
-				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionVault);
-				m_seDelay = 0.6f;
-			}
-		}
-		//クライム
-		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Climb")) {
-			if (m_seDelay == 0) {
-				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionGrab);
-				m_seDelay = 0.8f;
-			}
-		}
-		//クライムオーバー
-		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClimbOver")) {
-			if (m_seDelay == 0) {
-				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionGrab);
-				m_seDelay = 0.5f;
-			}
-		}
+        // Jump
+        if (m_animator.GetBool("se_Jump")){
+            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionJump);
+        }
+        //着地
+        if (m_animator.GetBool("se_Crouching")){
+            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionLanding);
+        }
+        //ローリング
+        if (m_animator.GetBool("se_Rolling")){
+            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionRolling);
+        }
 
-		//多重再生防止のディレイ処理
-		if (m_seDelay > 0) {
-			m_seDelay -= Time.deltaTime;
-		} else {
-			m_seDelay = 0;
-		}
-		/////////////////////////////////////////////////////////////////////////
-	}
+        //スライド 音声が遅いのでStateMacineBehavior側でやってる
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
+        {
+            if (m_seDelay == 0)
+            {
+                //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
+                //m_seDelay = 0.82f;
+                GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
+            }
+        }
 
-	/// <summary>
-	/// ThirdPersonFixedUpdate
-	/// </summary>
-	void FixedUpdate() {
+        //ロングスライド
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("LongSlider"))
+        {
+            if (m_seDelay == 0)
+            {
+                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
+                m_seDelay = 1;
+            }
+        }
+        //ヴォルト
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Vault"))
+        {
+            if (m_seDelay == 0)
+            {
+                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionVault);
+                m_seDelay = 0.45f;
+            }
+        }
+        //キングヴォルト
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("KongVault"))
+        {
+            if (m_seDelay == 0)
+            {
+                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionVault);
+                m_seDelay = 0.6f;
+            }
+        }
+        //クライム
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Climb"))
+        {
+            if (m_seDelay == 0)
+            {
+                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionGrab);
+                m_seDelay = 0.8f;
+            }
+        }
+        //クライムオーバー
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClimbOver"))
+        {
+            if (m_seDelay == 0)
+            {
+                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionGrab);
+                m_seDelay = 0.5f;
+            }
+        }
+
+        /////////////////////////////////////////////////////////////////////////
+        //多重再生防止のディレイ処理
+        if (m_seDelay > 0)
+        {
+            m_seDelay -= Time.deltaTime;
+        }
+        else
+        {
+            m_seDelay = 0;
+        }
+        /////////////////////////////////////////////////////////////////////////
+    }
+
+    /// <summary>
+    /// ThirdPersonFixedUpdate
+    /// </summary>
+    void FixedUpdate() {
 
 		// MoveStateの移動制御が走っている場合、または、外部から止められている
 		if (m_MoveState.isMove() || is_StopControl) {
