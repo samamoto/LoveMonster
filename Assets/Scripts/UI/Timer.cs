@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-
+using TMPro;
 /// <summary>
 /// 現在は数字を加算していくだけなので、これをまずは分,秒に直す
 /// 制限時間とタイムアタック両方に対応させる。
@@ -56,7 +56,7 @@ public class Timer : MonoBehaviour {
 
 			//   GetComponent<Text>().text = minute.ToString("00") + ":" + Convert.ToInt32(second).ToString("F2") + ":" + second.ToString("00");
 			//}
-			GetComponent<Text>().text = minute.ToString("00") + "." + second.ToString("F2");
+			GetComponent<TextMeshProUGUI>().text = minute.ToString("00") + "." + second.ToString("F2");
 
 			//oldSecond = Convert.ToInt32(second);
 

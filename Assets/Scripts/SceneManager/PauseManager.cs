@@ -46,21 +46,23 @@ public class PauseManager : MonoBehaviour
 		if (is_PauseRestriction)
 			return;
 
+#if DEBUG
+		// デバッグ
+		if (m_Con.GetButtonHold(Button.LB) && pauseGame) {
+			//pauseGame = !pauseGame;
+			SceneChange.Instance._SceneLoadResult();    // リザルトに
+			Time.timeScale = 1;	// iTweenが動かないから直す
+		}
+#endif
+
 		if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))
         {
             if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))
             {
                 pauseGame = !pauseGame;
             }
-			// キャンセルボタンで解除
-			// なんか音がすごく連鎖してできないから諦める
-			/*
-			if (m_Con.GetButtonDown(Button.A) && pauseGame) {
-				pauseGame = !pauseGame;
-			}
-			*/
 
-            if (pauseGame == true)
+			if (pauseGame == true)
             {
                 OnPause();
             }

@@ -14,19 +14,19 @@ using UnityEngine.UI;
 // ExecuteEvent(SendMessageの改良版)で受け取るためにInterface実装
 public class PrintScore : MonoBehaviour, ScoreReciever {
 	public float[] PlayerScore = new float[4];      //プレイヤーのスコアの格納用の配列 プレイヤー1～4
-	public float[] ScoreRate = new float[4];     // スコアにかける倍率　コンボシステムと連動
+	private float[] ScoreRate = new float[4];     // スコアにかける倍率　コンボシステムと連動
+    private float[] ScoreRate_old = new float[4];     // スコアにかける倍率　成功UI用
 
-    public float[] ScoreRate_old = new float[4];     // スコアにかける倍率　成功UI用
-
-    // スコアの段階によって倍率が変わる	ScoreRateと倍率乗算してスコアを決める
-    public float[] ScoreRateList = new float[6] {
-		1f, 1.1f, 1.2f, 1.3f, 1.4f, 1.5f,
+	// スコアの段階によって倍率が変わる	ScoreRateと倍率乗算してスコアを決める
+	private float[] ScoreRateList = new float[6] {
+		1.0f,1.1f,1.2f,1.5f,2f,3f
 	};
 
-	public int graduallyFlamerate = 2;
+	private float graduallyFlamerate = 0.5f;
 	private float graduallyFlamerateCount = 0;
-	public int graduallyScoreStandard = 5;
+	private int graduallyScoreStandard = 5;
 	private int count = 0;
+    private bool is_Stop = true;	// 初期はストップ
 
     public int PrintTime;   //成功UIの表示時間
 
@@ -89,6 +89,9 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 
 	// Update is called once per frame
 	private void Update() {
+		// 外部から止められていたらアップデートしない
+		if (is_Stop)
+			return;
 		ScoreUpdate();  //スコア更新
 	}
 
@@ -124,17 +127,17 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         //	str += (i + 1).ToString() + ":" + ScoreRate[i].ToString() + " " + PlayerScore[i].ToString() + "\n";
         //}
         //GetComponent<Text>().text = str;    // textフィールドに表示 Todo:UI表示必要
-
-        str1 += ScoreRate[0].ToString() + " " + PlayerScore[0].ToString();
+		// ScoreRateの表示はデバッグ用なので消した
+        str1 += ((int)PlayerScore[0]).ToString();
         score_p1.GetComponent<TMPro.TextMeshProUGUI>().text = str1;
         str1 =null;
-        str2 += ScoreRate[1].ToString() + " " + PlayerScore[1].ToString();
+        str2 += ((int)PlayerScore[1]).ToString();
         score_p2.GetComponent<TMPro.TextMeshProUGUI>().text = str2;
         str2 = null;
-        str3 += ScoreRate[2].ToString() + " " + PlayerScore[2].ToString();
+        str3 += ((int)PlayerScore[2]).ToString();
         score_p3.GetComponent<TMPro.TextMeshProUGUI>().text = str3;
         str3 = null;
-        str4 += ScoreRate[3].ToString() + " " + PlayerScore[3].ToString();
+        str4 += ((int)PlayerScore[3]).ToString();
         score_p4.GetComponent<TMPro.TextMeshProUGUI>().text = str4;
         str4 = null;
 
@@ -180,29 +183,39 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 
     public void Player_Success_UI()
     {
-        //スコアが1.0に達した時、
-        for (int count = 0; count < 4; count++)
+
+		float[] CompareRate = new float[4];
+
+		CompareRate[0] = ScoreRateList[0];  // Default
+		CompareRate[1] = ScoreRateList[2];  // Nice
+		CompareRate[2] = ScoreRateList[4];  // Great
+		CompareRate[3] = ScoreRateList[5];  // Excellent
+
+
+
+		//スコアが1.0に達した時、
+		for (int count = 0; count < 4; count++)
         {
-            if (ScoreRate[count] == 1.0f)
+            if (ScoreRate[count] == CompareRate[0])
             {
-                ScoreRate_old[count] = 1.0f;
+                ScoreRate_old[count] = CompareRate[0];
             }
         }
 
         //スコアが1.1に達した時、
         for (int count = 0; count < 4; count++)
         {
-            if (ScoreRate[count] == 1.1f)
+            if (ScoreRate[count] == ScoreRateList[1])
             {
-                ScoreRate_old[count] = 1.1f;
+                ScoreRate_old[count] = ScoreRateList[1];
             }
         }
         //スコアが1.3に達した時、
         for (int count = 0; count < 4; count++)
         {
-            if (ScoreRate[count] == 1.3f)
+            if (ScoreRate[count] == ScoreRateList[3])
             {
-                ScoreRate_old[count] = 1.3f;
+                ScoreRate_old[count] = ScoreRateList[3];
             }
         }
 
@@ -212,29 +225,29 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         /// プレイヤー1
         /// </summary>
 
-        //スコアが1.2に達した時、(Nice)
-        if (ScoreRate[0] == 1.2f && Player_success_ui_1p == false&& ScoreRate_old[0] != 1.2f
-            && ScoreRate_old[0] == 1.1f)
+        //スコアがCompareRate[1]に達した時、(Nice)
+        if (ScoreRate[0] == CompareRate[1] && Player_success_ui_1p == false&& ScoreRate_old[0] != CompareRate[1]
+            && ScoreRate_old[0] == ScoreRateList[1])
         {
-            ScoreRate_old[0] = 1.2f;    //oldに保存
+            ScoreRate_old[0] = CompareRate[1];    //oldに保存
             Judge_Success_1p.SetActive(true);
             Judge_Success_1p.GetComponent<Image>().sprite = Nice;
             Player_success_ui_1p = true;    //描画中       
         }
-        //スコアが1.4に達した時、(Great)
-        if (ScoreRate[0] == 1.4f && Player_success_ui_1p == false && ScoreRate_old[0] != 1.4f
-             && ScoreRate_old[0] == 1.3f)
+        //スコアがCompareRate[2]に達した時、(Great)
+        if (ScoreRate[0] == CompareRate[2] && Player_success_ui_1p == false && ScoreRate_old[0] != CompareRate[2]
+             && ScoreRate_old[0] == ScoreRateList[3])
         {
-            ScoreRate_old[0] = 1.4f;    //oldに保存
+            ScoreRate_old[0] = CompareRate[2];    //oldに保存
             Judge_Success_1p.SetActive(true);
             Judge_Success_1p.GetComponent<Image>().sprite = Great;
             Player_success_ui_1p = true;    //描画中
         }
-        //スコアが1.5に達した時、(Excellent)
-        if (ScoreRate[0] == 1.5f && Player_success_ui_1p == false && ScoreRate_old[0] != 1.5f
-             && ScoreRate_old[0] == 1.4f)
+        //スコアがCompareRate[3]に達した時、(Excellent)
+        if (ScoreRate[0] == CompareRate[3] && Player_success_ui_1p == false && ScoreRate_old[0] != CompareRate[3]
+             && ScoreRate_old[0] == CompareRate[2])
         {
-            ScoreRate_old[0] = 1.5f;    //oldに保存
+            ScoreRate_old[0] = CompareRate[3];    //oldに保存
             Judge_Success_1p.SetActive(true);
             Judge_Success_1p.GetComponent<Image>().sprite = Excellent;
             Player_success_ui_1p = true;    //描画中
@@ -258,29 +271,29 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         /// プレイヤー2
         /// </summary>
 
-        //スコアが1.2に達した時、(Nice)
-        if (ScoreRate[1] == 1.2f && Player_success_ui_2p == false && ScoreRate_old[1] != 1.2f
-            && ScoreRate_old[1] == 1.1f)
+        //スコアがCompareRate[1]に達した時、(Nice)
+        if (ScoreRate[1] == CompareRate[1] && Player_success_ui_2p == false && ScoreRate_old[1] != CompareRate[1]
+            && ScoreRate_old[1] == ScoreRateList[1])
         {
-            ScoreRate_old[1] = 1.2f;    //oldに保存
+            ScoreRate_old[1] = CompareRate[1];    //oldに保存
             Judge_Success_2p.SetActive(true);
             Judge_Success_2p.GetComponent<Image>().sprite = Nice;
             Player_success_ui_2p = true;    //描画中       
         }
-        //スコアが1.4に達した時、(Great)
-        if (ScoreRate[1] == 1.4f && Player_success_ui_2p == false && ScoreRate_old[1] != 1.4f
-             && ScoreRate_old[1] == 1.3f)
+        //スコアがCompareRate[2]に達した時、(Great)
+        if (ScoreRate[1] == CompareRate[2] && Player_success_ui_2p == false && ScoreRate_old[1] != CompareRate[2]
+             && ScoreRate_old[1] == ScoreRateList[3])
         {
-            ScoreRate_old[1] = 1.4f;    //oldに保存
+            ScoreRate_old[1] = CompareRate[2];    //oldに保存
             Judge_Success_2p.SetActive(true);
             Judge_Success_2p.GetComponent<Image>().sprite = Great;
             Player_success_ui_2p = true;    //描画中
         }
-        //スコアが1.5に達した時、(Excellent)
-        if (ScoreRate[1] == 1.5f && Player_success_ui_2p == false && ScoreRate_old[1] != 1.5f
-             && ScoreRate_old[1] == 1.4f)
+        //スコアがCompareRate[3]に達した時、(Excellent)
+        if (ScoreRate[1] == CompareRate[3] && Player_success_ui_2p == false && ScoreRate_old[1] != CompareRate[3]
+             && ScoreRate_old[1] == CompareRate[2])
         {
-            ScoreRate_old[1] = 1.5f;    //oldに保存
+            ScoreRate_old[1] = CompareRate[3];    //oldに保存
             Judge_Success_2p.SetActive(true);
             Judge_Success_2p.GetComponent<Image>().sprite = Excellent;
             Player_success_ui_2p = true;    //描画中
@@ -303,29 +316,29 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         /// プレイヤー3
         /// </summary>
 
-        //スコアが1.2に達した時、(Nice)
-        if (ScoreRate[2] == 1.2f && Player_success_ui_3p == false && ScoreRate_old[2] != 1.2f
-            && ScoreRate_old[2] == 1.1f)
+        //スコアがCompareRate[1]に達した時、(Nice)
+        if (ScoreRate[2] == CompareRate[1] && Player_success_ui_3p == false && ScoreRate_old[2] != CompareRate[1]
+            && ScoreRate_old[2] == ScoreRateList[1])
         {
-            ScoreRate_old[2] = 1.2f;    //oldに保存
+            ScoreRate_old[2] = CompareRate[1];    //oldに保存
             Judge_Success_3p.SetActive(true);
             Judge_Success_3p.GetComponent<Image>().sprite = Nice;
             Player_success_ui_3p = true;    //描画中       
         }
-        //スコアが1.4に達した時、(Great)
-        if (ScoreRate[2] == 1.4f && Player_success_ui_3p == false && ScoreRate_old[2] != 1.4f
-             && ScoreRate_old[2] == 1.3f)
+        //スコアがCompareRate[2]に達した時、(Great)
+        if (ScoreRate[2] == CompareRate[2] && Player_success_ui_3p == false && ScoreRate_old[2] != CompareRate[2]
+             && ScoreRate_old[2] == ScoreRateList[3])
         {
-            ScoreRate_old[2] = 1.4f;    //oldに保存
+            ScoreRate_old[2] = CompareRate[2];    //oldに保存
             Judge_Success_3p.SetActive(true);
             Judge_Success_3p.GetComponent<Image>().sprite = Great;
             Player_success_ui_3p = true;    //描画中
         }
-        //スコアが1.5に達した時、(Excellent)
-        if (ScoreRate[2] == 1.5f && Player_success_ui_3p == false && ScoreRate_old[2] != 1.5f
-             && ScoreRate_old[2] == 1.4f)
+        //スコアがCompareRate[3]に達した時、(Excellent)
+        if (ScoreRate[2] == CompareRate[3] && Player_success_ui_3p == false && ScoreRate_old[2] != CompareRate[3]
+             && ScoreRate_old[2] == CompareRate[2])
         {
-            ScoreRate_old[2] = 1.5f;    //oldに保存
+            ScoreRate_old[2] = CompareRate[3];    //oldに保存
             Judge_Success_3p.SetActive(true);
             Judge_Success_3p.GetComponent<Image>().sprite = Excellent;
             Player_success_ui_3p = true;    //描画中
@@ -348,29 +361,29 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         /// プレイヤー4
         /// </summary>
 
-        //スコアが1.2に達した時、(Nice)
-        if (ScoreRate[3] == 1.2f && Player_success_ui_4p == false && ScoreRate_old[3] != 1.2f
-            && ScoreRate_old[3] == 1.1f)
+        //スコアがCompareRate[1]に達した時、(Nice)
+        if (ScoreRate[3] == CompareRate[1] && Player_success_ui_4p == false && ScoreRate_old[3] != CompareRate[1]
+            && ScoreRate_old[3] == ScoreRateList[1])
         {
-            ScoreRate_old[3] = 1.2f;    //oldに保存
+            ScoreRate_old[3] = CompareRate[1];    //oldに保存
             Judge_Success_4p.SetActive(true);
             Judge_Success_4p.GetComponent<Image>().sprite = Nice;
             Player_success_ui_4p = true;    //描画中       
         }
-        //スコアが1.4に達した時、(Great)
-        if (ScoreRate[3] == 1.4f && Player_success_ui_4p == false && ScoreRate_old[3] != 1.4f
-             && ScoreRate_old[3] == 1.3f)
+        //スコアがCompareRate[2]に達した時、(Great)
+        if (ScoreRate[3] == CompareRate[2] && Player_success_ui_4p == false && ScoreRate_old[3] != CompareRate[2]
+             && ScoreRate_old[3] == ScoreRateList[3])
         {
-            ScoreRate_old[3] = 1.4f;    //oldに保存
+            ScoreRate_old[3] = CompareRate[2];    //oldに保存
             Judge_Success_4p.SetActive(true);
             Judge_Success_4p.GetComponent<Image>().sprite = Great;
             Player_success_ui_4p = true;    //描画中
         }
-        //スコアが1.5に達した時、(Excellent)
-        if (ScoreRate[3] == 1.5f && Player_success_ui_4p == false && ScoreRate_old[3] != 1.5f
-             && ScoreRate_old[3] == 1.4f)
+        //スコアがCompareRate[3]に達した時、(Excellent)
+        if (ScoreRate[3] == CompareRate[3] && Player_success_ui_4p == false && ScoreRate_old[3] != CompareRate[3]
+             && ScoreRate_old[3] == CompareRate[2])
         {
-            ScoreRate_old[3] = 1.5f;    //oldに保存
+            ScoreRate_old[3] = CompareRate[3];    //oldに保存
             Judge_Success_4p.SetActive(true);
             Judge_Success_4p.GetComponent<Image>().sprite = Excellent;
             Player_success_ui_4p = true;    //描画中
@@ -393,5 +406,12 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 
 
 
+    }
+
+    /// <summary>
+    /// システムをストップ
+    /// </summary>
+    public void stopControll(bool flag){
+        is_Stop = flag;
     }
 }

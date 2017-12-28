@@ -14,6 +14,7 @@ public class MainGameManager : MonoBehaviour {
 	private PauseManager m_PauseMgr;
 	private CountDownSystem m_CountSys;
 	private AudioList m_Audio;
+	private PrintScore m_Score;
 	public AudioList.SoundList_BGM gameBGM = AudioList.SoundList_BGM.BGM_Game_Stage0;
 
 	public enum PhaseLevel {
@@ -43,6 +44,7 @@ public class MainGameManager : MonoBehaviour {
 		m_PauseMgr = GameObject.Find("PauseManager").GetComponent<PauseManager>();
 		m_CountSys = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
 	}
 
 	// Update is called once per frame
@@ -58,8 +60,10 @@ public class MainGameManager : MonoBehaviour {
 			m_CountSys.startCountDown();
 			m_AllPlayerMgr.stopPlayerControl();     // プレイヤーのコントロールをOFF
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionCountDown );
-			m_PauseMgr.PauseRestriction(true);	// PAUSE禁止
-			break;
+			m_PauseMgr.PauseRestriction(true);  // PAUSE禁止
+            m_TimeMgr.stopTimer();
+			m_Score.stopControll(true);
+            break;
 
 		//================================================================================
 		// CountDown-Phase
@@ -85,6 +89,7 @@ public class MainGameManager : MonoBehaviour {
 			setPhaseState(PhaseLevel.Game);
 			m_Audio.Play((int)gameBGM);
 			m_PauseMgr.PauseRestriction(false);
+			m_Score.stopControll(false);
 			break;
 
 		//================================================================================
@@ -95,8 +100,9 @@ public class MainGameManager : MonoBehaviour {
 			// ゲーム中にポーズ掛かったらPhase移行
 			if (m_PauseMgr.getPauseState()) {
 				setPhaseState(PhaseLevel.Pause);
-				m_PrevPausePhase = m_Phase;	// Pause前の状態を記録
+				m_PrevPausePhase = m_Phase; // Pause前の状態を記録
 			}
+
 			// Pauseメニュー表示 //
 			break;
 
@@ -138,10 +144,12 @@ public class MainGameManager : MonoBehaviour {
 		case PhaseLevel.Pause:
 			if (m_PauseMgr.getPauseState()) {
 				m_TimeMgr.stopTimer();  // タイマー停止
+				m_Score.stopControll(true);
 			} else {
 				// 解除されたらPhaseを戻す
 				setPhaseState(m_PrevPausePhase);
 				m_TimeMgr.startTimer(); // タイマー戻す
+				m_Score.stopControll(false);
 			}
 
 			break;

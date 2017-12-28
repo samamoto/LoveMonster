@@ -76,7 +76,17 @@ public class ComboSystem : MonoBehaviour
     private void Update()
     {
         //コンボが０の時処理しねえ
-        if (cntCombo == 0) { return; }
+        if (cntCombo == 0) {
+			m_Score.setScoreRate(m_id, power);    // PrintScoreに現在のプレイヤーのスコアレートを設定
+			m_TPerson.setMoveSpeed(m_MoveSpeed * multiList[power]);
+			mulMove = m_MoveSpeed * multiList[power];
+			m_TPerson.setAnimSpeed(m_AnimSpeed * ((multiList[power] - 1) * 0.5f + 1.0f));// ちょっとだけモーションも速くする
+			mulAnim = m_AnimSpeed * ((multiList[power] - 1) * 0.5f + 1.0f);
+			m_Tension.updateTensionPhase(power);
+			m_EffTrail.setActive(false, gameObject);
+			m_EffSpeed.setActive(false, gameObject);
+			return;
+		}
 
 
         if (downTime <= 0)
