@@ -17,7 +17,7 @@ public class AudioList : MonoBehaviour
 	}
 	public enum SoundList_SE {
 		SE_ActionComboBad = SoundList_BGM.BGM_None,	// 繋がってる
-		SE_ActionComboGodd,
+		SE_ActionComboGood,
 		SE_ActionGrab,
 		SE_ActionHit,
 		SE_ActionJump,

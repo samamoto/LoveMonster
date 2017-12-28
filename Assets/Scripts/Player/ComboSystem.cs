@@ -41,6 +41,8 @@ public class ComboSystem : MonoBehaviour
 	private ActionTrailManager m_EffTrail;
 	private EffectSpeedUp m_EffSpeed;
 
+	private AudioList m_Audio;
+
 	// Use this for initialization
 	private void Start()
     {
@@ -59,7 +61,8 @@ public class ComboSystem : MonoBehaviour
         m_Gauge = GameObject.Find("GanbaruGauge_" + m_id.ToString() + "P").GetComponent<Gauge>();
 		m_Tension = GetComponent<Tension>();    // 2017年12月20日 oyama add
 		m_EffSpeed = GetComponentInChildren<EffectSpeedUp>();		// スピードアップ系の
-		m_EffTrail = GetComponentInChildren<ActionTrailManager>();	// コンポーネント
+		m_EffTrail = GetComponentInChildren<ActionTrailManager>();  // コンポーネント
+		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 		Init();
     }
 
@@ -171,8 +174,10 @@ public class ComboSystem : MonoBehaviour
             else
             {
                 power--;
-            }
-        }
+				// 音声
+				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionComboBad);
+			}
+		}
     }
 
     //コンボするごとに１回呼ぶ
@@ -191,8 +196,10 @@ public class ComboSystem : MonoBehaviour
         else
         {
             power++;
-        }
-    }
+			// 音声
+			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionComboGood);
+		}
+	}
 
     //コンボのカウント初期化
     public void _ClearCombo() {
