@@ -179,7 +179,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2a69e4db45d8b32409ce8c2cf07af253, type: 2}
+  - {fileID: 2100000, guid: 4b5411fb0f3365e4399fbd7b7ad08c94, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -361,4 +361,4 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  MaxActionNum: 4
+  ScoreStandard: 300
