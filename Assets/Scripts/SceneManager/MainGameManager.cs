@@ -17,6 +17,7 @@ public class MainGameManager : MonoBehaviour {
 	private CountDownSystem m_CountSys;
 	private AudioList m_Audio;
 	private PrintScore m_Score;
+	private WorldHeritageSpawner m_WorldSpw;
 	public AudioList.SoundList_BGM gameBGM = AudioList.SoundList_BGM.BGM_Game_Stage0;
 
 	public enum PhaseLevel {
@@ -25,6 +26,7 @@ public class MainGameManager : MonoBehaviour {
 		CountEnd,
 		Game,
 		Game_Bonus_Start,
+		Game_Bonus_CameraMove,
 		Game_Bonus,
 		Game_Bonus_End,
 		Pause,
@@ -47,6 +49,7 @@ public class MainGameManager : MonoBehaviour {
 		m_CountSys = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
+		m_WorldSpw = GameObject.Find("WorldHeritageSpawner").GetComponent<WorldHeritageSpawner>();
 		// ステージ全体の長さを記録
 		for (int i = 0; i < 4; i++) {
 			AllStageLength += getStageLength(i);
@@ -121,7 +124,26 @@ public class MainGameManager : MonoBehaviour {
 		case PhaseLevel.Game_Bonus_Start:
 			m_PauseMgr.PauseRestriction(false);
 			// カメラが移動中
+			// 指定座標までプレイヤー移動させる
+			setPhaseState(PhaseLevel.Game_Bonus_CameraMove);			
 			break;
+
+		//================================================================================
+		// Game-Bonus-Phase-CameraMove
+		//================================================================================
+		case PhaseLevel.Game_Bonus_CameraMove:
+			// カメラの動作待ち
+			if (m_WorldSpw.isControll) {
+				setPhaseState(PhaseLevel.Game_Bonus);
+				Transform trs = GameObject.Find("BonusStart1").transform;
+				for (int i = 0; i < 4; i++) {
+					trs.position = new Vector3(trs.position.x + 5.0f, trs.position.y, trs.position.z);  // 横にずらす
+					m_AllPlayerMgr.startPlayerPosition(i + 1, trs.position, trs.rotation);
+					m_PauseMgr.PauseRestriction(false);
+				}
+			}
+			break;
+
 		//================================================================================
 		// Game-Bonus-Phase
 		//================================================================================
@@ -148,7 +170,7 @@ public class MainGameManager : MonoBehaviour {
 			・各ポイントにプレイヤーを配置
 			・テンションゲージが下降していく？
 			　・もう落ちたら終了で良いんじゃないかな…
-
+			  ・落ちたらすぐ近くのリスタートポイントに戻す
 			・ボーナスが終わったら
 			 */
 			break;

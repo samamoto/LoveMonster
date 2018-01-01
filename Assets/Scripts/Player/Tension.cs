@@ -27,6 +27,7 @@ public class Tension : MonoBehaviour
     public int m_TensionCount = 0;
     private float timeCount = 0f;
     private int m_id;
+	private bool is_StopControll = false;	// 外部からの停止
 
     [SerializeField] private float TensionRatio = 0.0f;
 
@@ -56,6 +57,7 @@ public class Tension : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+		if (is_StopControll) return;
         countTIme();
 
         // ゲージに現在のコンボ比率を送る(テンション的なの)
@@ -155,4 +157,12 @@ public class Tension : MonoBehaviour
     {
         return ((float)m_TensionCount / MAX_STEP);
     }
+
+	/// <summary>
+	/// 外部から動作を停止させる
+	/// </summary>
+	/// <param name="flag">解除/停止</param>
+	public void stopControll(bool flag) {
+		is_StopControll = flag;
+	}
 }

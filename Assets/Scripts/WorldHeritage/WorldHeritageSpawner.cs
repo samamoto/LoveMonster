@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WorldHeritageSpawner : MonoBehaviour
 {
-    private GameObject worldHeritageCamera = null;
+	public bool isControll { get; private set; }
+
+	private GameObject worldHeritageCamera = null;
     private AllPlayerManager allPlayerManager = null;
     private GameObject instanceWorldHeritage = null;
     private Animator HeritageAnimator = null;
@@ -35,10 +37,12 @@ public class WorldHeritageSpawner : MonoBehaviour
             this.Spawn();
         }
 
+		// カメラを移動終了させ、プレイヤーのコントロールを戻す
         if (this.HeritageAnimator && this.HeritageAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f && this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().endFlg)
         {
             this.allPlayerManager.returnPlayerControl();
             this.worldHeritageCamera.GetComponent<Camera>().enabled = false;
+			isControll = true;
         }
 
         //デバッグよう解放処理
@@ -68,4 +72,5 @@ public class WorldHeritageSpawner : MonoBehaviour
             this.instanceWorldHeritage = null;
         }
     }
+
 }

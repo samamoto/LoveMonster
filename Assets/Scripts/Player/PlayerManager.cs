@@ -22,9 +22,11 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	private ComboSystem m_Combo;    // コンボシステム
 
 	private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
+	private Vector3 m_StopControllPoint = Vector3.zero;			// 完全に移動を止める場合の保持
 	private bool is_StopControl = false;            // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add 
 	private int m_GoalCount = 0;					// ゴールした回数　これが3回ほどするとゴール判定
 	public int m_ThereStageID = 0;
+
 	// Third parson character ------
 	public bool walkByDefault = false; // toggle for walking state
 
@@ -93,8 +95,13 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	// Update is called once per frame
 	void Update() {
 		// MoveStateの移動制御が走っている場合、または、外部から止められている
-		if (m_MoveState.isMove() || is_StopControl) {
+		if (m_MoveState.isMove()) {
 			return;
+		}
+
+		// 停止中の場合は位置も止める
+		if (is_StopControl) {
+			transform.position = m_StopControllPoint;
 		}
 
 		// 状態管理
@@ -128,7 +135,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		//}
 
 		// MoveStateの状態確認
-		if (!jump && !Roll) {
+		if (!jump && !Roll && !is_StopControl) {
 			// キーボードのほうは全員でジャンプする（キーボードはID管理してない）
 			if (m_Controller.GetButtonDown(Button.A) || Input.GetKeyDown(KeyCode.Space)) {
 				jump = true;
@@ -173,7 +180,8 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
             if (m_seDelay == 0)
             {
                 m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
-                m_seDelay = 1;
+				GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
+				m_seDelay = 1;
             }
         }
         //ヴォルト
@@ -232,7 +240,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
     void FixedUpdate() {
 
 		// MoveStateの移動制御が走っている場合、または、外部から止められている
-		if (m_MoveState.isMove() || is_StopControl) {
+		if (m_MoveState.isMove()) {
 			return;
 		}
 		// read inputs
@@ -245,7 +253,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		float h, v;
 		// if player is wall jumping then lock up the stick inputs;
 		// by setting them to 0, it will effectively seem like they were locked up
-		if (isWallJumping) {
+		if (isWallJumping || is_StopControl) {
 			h = 0;
 			v = 0;
 		} else {
@@ -405,6 +413,9 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	/// <param name="name">タグ名</param>
 	/// <param name="button">実行するときに使うボタン</param>
 	public void PlayAction(string name, Controller.Button button, Vector3[] move, int score) {
+
+		if (is_StopControl) return;	// Stop中はダメ
+
 		// 指定されたボタンが押され、現在の再生アニメーションがアクション予定と違う
 		if ((m_Controller.GetButtonDown(button) || Input.GetKey(KeyCode.Z)) &&
 			!m_animator.GetCurrentAnimatorStateInfo(0).IsName(name)) {
@@ -445,6 +456,23 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	/// </summary>
 	/// <param name="flag">false:通常|true:停止</param>
 	public void stopControl(bool flag) {
+		
+		// 最初の一回
+		if(flag != is_StopControl　&& !is_StopControl) {
+			m_StopControllPoint = transform.position;
+			// ほかのコンポーネントに停止メッセージ
+			GetComponent<Tension>().stopControll(true);
+			GetComponent<ComboSystem>().stopControll(true);
+		}
+		// 切り替え時
+		if (flag != is_StopControl && is_StopControl) {
+			m_StopControllPoint = Vector3.zero;
+			// ほかのコンポーネントに復旧メッセージ
+			GetComponent<Tension>().stopControll(false);
+			GetComponent<ComboSystem>().stopControll(false);
+		}
+
+
 		is_StopControl = flag;
 	}
 

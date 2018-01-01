@@ -32,6 +32,7 @@ public class ComboSystem : MonoBehaviour
     private int m_id;
     private float m_MoveSpeed;
     private float m_AnimSpeed;
+	private bool is_StopControll = false;
 
     // 参照
     private PrintScore m_Score;
@@ -78,6 +79,8 @@ public class ComboSystem : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+		if (is_StopControll) return;
+
         //コンボが０の時処理しねえ
         if (cntCombo == 0) {
 			m_Score.setScoreRate(m_id, power);    // PrintScoreに現在のプレイヤーのスコアレートを設定
@@ -228,4 +231,13 @@ public class ComboSystem : MonoBehaviour
     {
         return power;
     }
+
+	/// <summary>
+	/// 外部から動作を停止させる
+	/// </summary>
+	/// <param name="flag">解除/停止</param>
+	public void stopControll(bool flag) {
+		is_StopControll = flag;
+	}
+
 }

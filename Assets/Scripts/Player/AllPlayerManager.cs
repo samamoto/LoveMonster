@@ -34,7 +34,7 @@ public class AllPlayerManager : MonoBehaviour {
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
 
 	// テンションが何％でボーナスに遷移するか
-	public const float ENTRY_BONUS_TENSION = 0.7f;
+	public const float ENTRY_BONUS_TENSION = 0.01f;
 	public const int ENTRY_BONUS_PLAYER = 1;
 
 	// コンポーネント
@@ -195,9 +195,7 @@ public class AllPlayerManager : MonoBehaviour {
 	public void startPlayerPosition(int id, Vector3 pos, Quaternion rot) {
 		m_PlayerManager[id - 1].gameObject.transform.position = pos;
 		m_PlayerManager[id - 1].gameObject.transform.rotation = rot;
-
 	}
-
 
 	/// <summary>
 	/// 指定したタグがAllPlayerManagerの特別アクションに指定されているかを見る
