@@ -11,6 +11,8 @@ public class RollingSystem : MonoBehaviour {
 	private MoveState m_MoveState;
 
     private bool rollingFlag;       //  ローリングのフラグ
+	private bool StopControll = false;	// 外部から停止
+
 	[SerializeField, Range(0.01f, 1.0f)]public float normalizedTime = 0.76f;
 
     bool flag;
@@ -26,7 +28,7 @@ public class RollingSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (m_MoveState.isMove()) { return; }
+		if (m_MoveState.isMove() || StopControll) { return; }
 
         flag = animator.GetBool("is_Grounded");
 
@@ -65,4 +67,11 @@ public class RollingSystem : MonoBehaviour {
 		animator.SetBool("is_Rolling", false);
 	}
 
+	/// <summary>
+	/// 外部から停止
+	/// </summary>
+	/// <param name="flag">解除/停止</param>
+	public void stopControll(bool flag) {
+		StopControll = flag;
+	}
 }

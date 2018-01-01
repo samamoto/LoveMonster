@@ -6,7 +6,8 @@
 public class MainGameManager : MonoBehaviour {
 
 	private float AllStageLength = 0f;
-
+	private float BonusAliveCount = 0f;				// ボーナスステージのカウント
+	private const float BONUS_ALIVE_TIME = 5.0f;	// ボーナスステージの生存時間
 	//スクリプト群
 	private SceneChange m_ScreenChange;
 	private AllPlayerManager m_AllPlayerMgr;
@@ -154,6 +155,12 @@ public class MainGameManager : MonoBehaviour {
 				setPhaseState(PhaseLevel.Pause);
 				m_PrevPausePhase = m_Phase; // Pause前の状態を記録
 			}
+
+			BonusAliveCount += Time.deltaTime;
+			// 時間で終了
+			if(BonusAliveCount >= BONUS_ALIVE_TIME) {
+				setPhaseState(PhaseLevel.Game_Bonus_End);
+			}
 			// Pauseメニュー表示 //
 
 
@@ -178,6 +185,8 @@ public class MainGameManager : MonoBehaviour {
 		// Game-Bonus-Phase-End
 		//================================================================================
 		case PhaseLevel.Game_Bonus_End:
+			// ボーナスステージを削除
+			m_WorldSpw.stageRelease = true;
 			break;
 
 		

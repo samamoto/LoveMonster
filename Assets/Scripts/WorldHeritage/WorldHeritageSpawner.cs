@@ -5,7 +5,7 @@ using UnityEngine;
 public class WorldHeritageSpawner : MonoBehaviour
 {
 	public bool isControll { get; private set; }
-
+	public bool stageRelease { get; set; }
 	private GameObject worldHeritageCamera = null;
     private AllPlayerManager allPlayerManager = null;
     private GameObject instanceWorldHeritage = null;
@@ -18,7 +18,6 @@ public class WorldHeritageSpawner : MonoBehaviour
 
     //デバッグ解放用
     [SerializeField] private bool debug_Release = false;
-
     // Use this for initialization
     private void Start()
     {
@@ -46,7 +45,7 @@ public class WorldHeritageSpawner : MonoBehaviour
         }
 
         //デバッグよう解放処理
-        if (this.instanceWorldHeritage && this.debug_Release)
+        if (this.instanceWorldHeritage && (this.debug_Release || this.stageRelease))
         {
             this.debug_Release = false;
             allPlayerManager.returnPlayerControl();

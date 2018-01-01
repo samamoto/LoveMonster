@@ -463,6 +463,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 			// ほかのコンポーネントに停止メッセージ
 			GetComponent<Tension>().stopControll(true);
 			GetComponent<ComboSystem>().stopControll(true);
+			GetComponent<RollingSystem>().stopControll(true);
 		}
 		// 切り替え時
 		if (flag != is_StopControl && is_StopControl) {
@@ -470,8 +471,8 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 			// ほかのコンポーネントに復旧メッセージ
 			GetComponent<Tension>().stopControll(false);
 			GetComponent<ComboSystem>().stopControll(false);
+			GetComponent<RollingSystem>().stopControll(false);
 		}
-
 
 		is_StopControl = flag;
 	}
