@@ -21,7 +21,7 @@ public class Map : MonoBehaviour
 
     public Vector3[] GetPlayerPosition = new Vector3[4];  //プレイヤーの現在地を受け取るための値
 
-    public float MapLength = 0.0f;       //マップの長さ(距離)
+    public float[] MapLength = new float[4];       //マップの長さ(距離)
     public float[] PlayerGoingLength = new float[4];      //プレイヤーの進んでいる距離の格納用の配列 プレイヤー1～4
 
 
@@ -55,8 +55,8 @@ public class Map : MonoBehaviour
         {
             GetPlayerPosition[count] = Vector3.zero;       //0で初期化
         }
-
-        MapLength = mgm.getStageLength();     //マップの長さを取得
+		for (count = 0; count <= 3; count++)
+			MapLength[count] = mgm.getStageLength(count);     //マップの長さを取得
         
         //Debug.Log(MapLength);
         //Debug.Log("マップの長さ:" + MapLength);

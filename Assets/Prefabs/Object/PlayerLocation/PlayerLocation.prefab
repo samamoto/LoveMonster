@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65770050349821216}
   - component: {fileID: 114973817321702284}
   m_Layer: 0
-  m_Name: GoalPoint (2)
+  m_Name: GoalPoint3
   m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 65420575485712442}
   - component: {fileID: 114904593547901078}
   m_Layer: 0
-  m_Name: GoalPoint
+  m_Name: GoalPoint1
   m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4050845599332120}
   - component: {fileID: 114250567918040744}
   m_Layer: 0
-  m_Name: StartPoint (3)
+  m_Name: StartPoint4
   m_TagString: Start
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 4767564232743704}
   - component: {fileID: 114641177440220464}
   m_Layer: 0
-  m_Name: StartPoint (1)
+  m_Name: StartPoint2
   m_TagString: Start
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 4650602695556944}
   - component: {fileID: 114278583373782916}
   m_Layer: 0
-  m_Name: StartPoint
+  m_Name: StartPoint1
   m_TagString: Start
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 65207949926855756}
   - component: {fileID: 114097659986682090}
   m_Layer: 0
-  m_Name: GoalPoint (3)
+  m_Name: GoalPoint4
   m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 65908677237933100}
   - component: {fileID: 114995213435734400}
   m_Layer: 0
-  m_Name: GoalPoint (1)
+  m_Name: GoalPoint2
   m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 4621314565069166}
   - component: {fileID: 114412630421051692}
   m_Layer: 0
-  m_Name: StartPoint (2)
+  m_Name: StartPoint3
   m_TagString: Start
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

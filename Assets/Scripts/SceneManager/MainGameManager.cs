@@ -5,6 +5,8 @@
 [RequireComponent(typeof(TimeManager))]
 public class MainGameManager : MonoBehaviour {
 
+	private float AllStageLength = 0f;
+
 	//スクリプト群
 	private SceneChange m_ScreenChange;
 	private AllPlayerManager m_AllPlayerMgr;
@@ -45,6 +47,10 @@ public class MainGameManager : MonoBehaviour {
 		m_CountSys = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
+		// ステージ全体の長さを記録
+		for (int i = 0; i < 4; i++) {
+			AllStageLength += getStageLength(i);
+		}
 	}
 
 	// Update is called once per frame
@@ -247,14 +253,69 @@ public class MainGameManager : MonoBehaviour {
 	// Function
 	//--------------------------------------------------------------------------------
 	/// <summary>
+	/// ステージ全体の距離を取得
+	/// </summary>
+	/// <returns>ステージ全体距離</returns>
+	public float getAllStageLength() {
+		return AllStageLength;
+	}
+
+	/// <summary>
 	/// StartとGoalまでのステージの長さを返す
 	/// </summary>
+	/// <param name="n">ID</param>
 	/// <returns>ステージの直線距離の長さ</returns>
-	public float getStageLength() {
+	public float getStageLength(int n) {
 		Vector3 start, goal;
-		start = GameObject.Find("StartPoint").GetComponent<Transform>().position;
-		goal = GameObject.Find("GoalPoint").GetComponent<Transform>().position;
+		start = GameObject.Find("StartPoint" + (n + 1).ToString()).GetComponent<Transform>().position;
+		goal = GameObject.Find("GoalPoint" + (n + 1).ToString()).GetComponent<Transform>().position;
+		// エラーの場合は0
+		if (start == null || goal == null) {
+			return 0.0f;
+		}
 		//Debug.Log(Vector3.Distance(start, goal));
-		return Vector3.Distance(start, goal);
+		return System.Math.Abs(Vector3.Distance(start, goal));
+	}
+
+	/// <summary>
+	/// プレイヤーがスタートからどのくらい距離を離れているか
+	/// </summary>
+	/// <param name="n">ID</param>
+	/// <param name="vec">プレイヤーの位置</param>
+	public float getPlayerStartRange(int n, Vector3 vec) {
+		Vector3 start;
+		start = GameObject.Find("StartPoint" + (n + 1).ToString()).GetComponent<Transform>().position;
+		return System.Math.Abs(Vector3.Distance(start, vec));
+	}
+	/// <summary>
+	/// PlayerとGoalまでのステージの長さを返す
+	/// </summary>
+	/// <param name="n">ID</param>
+	/// <param name="vec">プレイヤーの位置</param>
+	/// <returns>直線距離の長さ</returns>
+	public float getStageLengthToProcessRate(int n, Vector3 vec) {
+		Vector3 start, goal;
+		start = vec;
+		try {
+			goal = GameObject.Find("GoalPoint" + (n).ToString()).GetComponent<Transform>().position;
+		}
+		catch (System.NullReferenceException) {
+			goal = Vector3.zero;
+		}
+		// エラーの場合は0
+		if (start == null || goal == Vector3.zero) {
+			return 0.0f;
+		}
+		Debug.Log(Vector3.Distance(start, goal));
+		return System.Math.Abs(Vector3.Distance(start, goal));
+	}
+
+	/// <summary>
+	/// PlayerとGoalまでのすべてのステージの長さとの進捗率に対する比率を返す
+	/// </summary>
+	/// <param name="range">現在進んだ距離 0~ステージ全体距離</param>
+	/// <returns>直線距離の長さ</returns>
+	public float getAllStageLengthToProcessRate(float range) {
+		return range / AllStageLength;
 	}
 }

@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
 	private bool is_StopControl = false;            // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add 
 	private int m_GoalCount = 0;					// ゴールした回数　これが3回ほどするとゴール判定
-
+	public int m_ThereStageID = 0;
 	// Third parson character ------
 	public bool walkByDefault = false; // toggle for walking state
 
@@ -448,6 +448,24 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		is_StopControl = flag;
 	}
 
+	/// <summary>
+	/// 現在プレイヤーがいるStageのIDを返す
+	/// </summary>
+	/// <returns></returns>
+	public int getPlayerStageID() {
+		int n = 0;
+		if (m_GoalCount <= 0) {
+			n =  m_PlayerID;//Stage1~4
+		} else {
+			n = ((m_PlayerID + m_GoalCount) % 4);	// Stage2~(5%4)
+			if(n <= 0) {
+				n += 1;	// 0のときは1にする
+			}
+		}
+		m_ThereStageID = n;
+		return n;
+	}
+
 	//============================================================
 	/// <summary>
 	/// プレイヤー同士が接触したときの処理
@@ -459,6 +477,8 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 			// 上になんか送る
 		}
 	}
+
+	
 
 	// david add
 	/// <summary>

@@ -212,6 +212,14 @@ public class AllPlayerManager : MonoBehaviour {
 		}
 		return false;
 	}
+	/// <summary>
+	/// プレイヤーが現在いるステージのIDを返す
+	/// </summary>
+	/// <param name="n">PlayerのID 1~4</param>
+	/// <returns>StageID 1~4</returns>
+	public int getPlayerThereStageID(int n) {
+		return m_PlayerManager[n - 1].getPlayerStageID();
+	}
 
 	//============================================================
 	// getter/setter
