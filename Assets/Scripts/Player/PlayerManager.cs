@@ -149,7 +149,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
         }
         //着地
         if (m_animator.GetBool("se_Crouching")){
-            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionLanding);
+            //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionLanding);
         }
         //ローリング
         if (m_animator.GetBool("se_Rolling")){

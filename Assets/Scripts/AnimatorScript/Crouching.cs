@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Crouching : AnimatorBase
 {
+	// ①再生するAudioListを指定する
+	AudioList.SoundList_SE PlaySE = AudioList.SoundList_SE.SE_ActionLanding;
 
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+
+	// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("se_Crouching", true);
+		PlaySE(PlaySE);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
