@@ -73,7 +73,7 @@ public class Rank : MonoBehaviour {
 
 		PlayerGoingLength_rank.Clear(); //リスト初期化
 
-		MapLength = mgm.getStageLength();     //マップの長さを取得
+		MapLength = mgm.getAllStageLength();     //マップの長さを取得
 	}
 
 	// Update is called once per frame
