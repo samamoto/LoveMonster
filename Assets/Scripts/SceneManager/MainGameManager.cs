@@ -102,15 +102,19 @@ public class MainGameManager : MonoBehaviour {
 				setPhaseState(PhaseLevel.Pause);
 				m_PrevPausePhase = m_Phase; // Pause前の状態を記録
 			}
+			// ボーナスにいけるようになったら
+			if (m_AllPlayerMgr.getisEntryBonusStage()) {
+				setPhaseState(PhaseLevel.Game_Bonus_Start);
+			}
 
-			// Pauseメニュー表示 //
 			break;
 
 		//================================================================================
-		// Game-Bonus-Phase
+		// Game-Bonus-Phase-Start
 		//================================================================================
 		case PhaseLevel.Game_Bonus_Start:
 			m_PauseMgr.PauseRestriction(false);
+			// カメラが移動中
 			break;
 		//================================================================================
 		// Game-Bonus-Phase
@@ -134,8 +138,20 @@ public class MainGameManager : MonoBehaviour {
 				・カメラ切り替え
 			　を行う
 
+			・移動前の座標を保持
+			・各ポイントにプレイヤーを配置
+			・テンションゲージが下降していく？
+			　・もう落ちたら終了で良いんじゃないかな…
+
+			・ボーナスが終わったら
 			 */
 			break;
+		//================================================================================
+		// Game-Bonus-Phase-End
+		//================================================================================
+		case PhaseLevel.Game_Bonus_End:
+			break;
+
 		
 		//================================================================================
 		// Pause-Phase
