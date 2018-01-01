@@ -2711,10 +2711,10 @@ MonoBehaviour:
   m_Distance: 2.78
   m_PolarAngle: 85
   m_AzimuthalAngle: 270
-  m_MinPolar: 30
+  m_MinPolar: 45
   m_MaxPolar: 115
-  m_Cont_x_Secsitivity: 5
-  m_Cont_y_Secsitivity: 5
+  m_Cont_x_Secsitivity: 1.4
+  m_Cont_y_Secsitivity: 0.8
   m_Cont_x_Threshold: 0.05
   m_Cont_y_Threshold: 0.05
   m_LerpTimeMultiply: 5
@@ -3760,10 +3760,10 @@ MonoBehaviour:
   m_Distance: 2.78
   m_PolarAngle: 85
   m_AzimuthalAngle: 180
-  m_MinPolar: 30
+  m_MinPolar: 45
   m_MaxPolar: 115
-  m_Cont_x_Secsitivity: 5
-  m_Cont_y_Secsitivity: 5
+  m_Cont_x_Secsitivity: 1.4
+  m_Cont_y_Secsitivity: 0.8
   m_Cont_x_Threshold: 0.05
   m_Cont_y_Threshold: 0.05
   m_LerpTimeMultiply: 5
@@ -5261,10 +5261,10 @@ MonoBehaviour:
   m_Distance: 2.78
   m_PolarAngle: 85
   m_AzimuthalAngle: 360
-  m_MinPolar: 30
+  m_MinPolar: 45
   m_MaxPolar: 115
-  m_Cont_x_Secsitivity: 5
-  m_Cont_y_Secsitivity: 5
+  m_Cont_x_Secsitivity: 1.4
+  m_Cont_y_Secsitivity: 0.8
   m_Cont_x_Threshold: 0.05
   m_Cont_y_Threshold: 0.05
   m_LerpTimeMultiply: 5
@@ -5325,10 +5325,10 @@ MonoBehaviour:
   m_Distance: 2.78
   m_PolarAngle: 85
   m_AzimuthalAngle: 90
-  m_MinPolar: 30
+  m_MinPolar: 45
   m_MaxPolar: 115
-  m_Cont_x_Secsitivity: 5
-  m_Cont_y_Secsitivity: 5
+  m_Cont_x_Secsitivity: 1.4
+  m_Cont_y_Secsitivity: 0.8
   m_Cont_x_Threshold: 0.05
   m_Cont_y_Threshold: 0.05
   m_LerpTimeMultiply: 5

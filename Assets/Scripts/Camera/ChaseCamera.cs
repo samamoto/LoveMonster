@@ -66,8 +66,9 @@ public class ChaseCamera : MonoBehaviour
         StartCoroutine(LateFixedUpdate());
     }
 
-    // 各フレームで、Update の後に LateUpdate が呼び出されます。
-    private void LateUpdate()
+	// 2018年01月01日 oyama add
+	// 通常のLateUpdateだと速度が変化するのでFixedに変える
+	private void FixedUpdate()
     {
         //カメラリセット
         if (lerpTime == 1.0f && controller.GetButtonDown(Controller.Button.RStick))
