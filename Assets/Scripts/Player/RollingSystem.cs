@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Controller;
 
 public class RollingSystem : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class RollingSystem : MonoBehaviour {
     private Animator animator;      //　アニメーター
 	private SearchCollider m_SearchCollider;
 	private MoveState m_MoveState;
+	private Controller.Controller m_Con;
 
     private bool rollingFlag;       //  ローリングのフラグ
 	private bool StopControll = false;	// 外部から停止
@@ -23,6 +25,7 @@ public class RollingSystem : MonoBehaviour {
 		m_SearchCollider = GetComponentInChildren<SearchCollider>();
         rollingFlag = false;
 		m_MoveState = GetComponent<MoveState>();
+		m_Con = GetComponent<Controller.Controller>();
     }
 	
 	// Update is called once per frame
@@ -35,7 +38,7 @@ public class RollingSystem : MonoBehaviour {
 		// 地上から指定の距離以内なら受け身をON Jump上昇中は検知させない
 		if (m_SearchCollider.GetGroundDistance() <= possibleDistance &&
 			m_SearchCollider.GetPlayerJump() == -1) {
-			if (Input.GetButton("Fire2")) {
+			if (m_Con.GetButtonDown(Button.B)) {
 				rollingFlag = true;
 			}
 

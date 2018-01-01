@@ -17,7 +17,7 @@ public class ItemBase : MonoBehaviour {
 	public enum ItemCategory {
 		SpeedUp,	
 		JumpUp,
-		Gravity,
+		Flag,
 		None,
 	};
 	protected ItemCategory m_ItemEfficacy;  //! アイテムの効果 

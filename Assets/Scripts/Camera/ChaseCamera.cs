@@ -140,10 +140,21 @@ public class ChaseCamera : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// カメラのID取得
-    /// </summary>
-    public int getCameraID()
+	/// <summary>
+	/// カメラをリセットする(外部から)
+	/// </summary>
+	public void resetCamera() {
+		this.lerpTime = 0.0f;
+		this.resetBeginPos = this.transform.position;
+		//カメラの仰角、方位角をリセット後に上書き
+		this.m_PolarAngle = initPolar;
+		this.m_AzimuthalAngle = resetAzimuthal;
+	}
+
+	/// <summary>
+	/// カメラのID取得
+	/// </summary>
+	public int getCameraID()
     {
         return PlayerID;
     }

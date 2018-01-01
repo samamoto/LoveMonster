@@ -27,6 +27,8 @@ public class AllCameraManager : MonoBehaviour {
 #endif
 	public int CameraNum;//カメラの数
 
+	private ChaseCamera[] m_Cam = new ChaseCamera[4];
+
 	private void Awake() {
 		CameraNum = GetComponentsInChildren<Camera>().Length;
 		oldHit = new List<RaycastHit>[CameraNum, rayNum];
@@ -43,6 +45,18 @@ public class AllCameraManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-
+		for (int i = 0; i < 4; i++) {
+			m_Cam[i] = GameObject.Find("MainCamera" + (i + 1).ToString()).GetComponent<ChaseCamera>();
+		}
 	}
+
+	/// <summary>
+	/// カメラをリセットする
+	/// </summary>
+	public void resetCamera() {
+		for (int i = 0; i < 4; i++) {
+			m_Cam[i].resetCamera();
+		}
+	}
+
 }

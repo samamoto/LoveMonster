@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// 触れたらゴール
 /// </summary>
 public class GoalObject : MonoBehaviour {
+
+	private const int GetScorePoint = 5000;
 
 	public Transform nextStagePoint;		// 次の移動場所
 	public float transitionTimer = 2.0f;    // 移行時間
@@ -42,6 +45,13 @@ public class GoalObject : MonoBehaviour {
 			eff.createClearShine(other.transform.position);
 			GoalID = other.GetComponent<PlayerManager>().getPlayerID();	// ゴールしたプレイヤーのIDを格納
 			isTimerStart = true;
+			// ゴールしたらスコア加算
+			PrintScore score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
+			ExecuteEvents.Execute<ScoreReciever>(
+				target: score.gameObject,
+				eventData: null,
+				functor: (reciever, y) => reciever.ReceivePlayerScore(other.gameObject.GetComponent<PlayerManager>().getPlayerID(), GetScorePoint)
+			);
 		}
 	}
 

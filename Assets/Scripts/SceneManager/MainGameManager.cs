@@ -7,11 +7,11 @@ public class MainGameManager : MonoBehaviour {
 
 	private float AllStageLength = 0f;
 	private float BonusAliveCount = 0f;				// ボーナスステージのカウント
-	private const float BONUS_ALIVE_TIME = 5.0f;	// ボーナスステージの生存時間
+	private const float BONUS_ALIVE_TIME = 10.0f;	// ボーナスステージの生存時間
 	//スクリプト群
 	private SceneChange m_ScreenChange;
 	private AllPlayerManager m_AllPlayerMgr;
-
+	private AllCameraManager m_AllCameraMgr;
 	// 2017年12月07日 oyama add　
 	private TimeManager m_TimeMgr;
 	private PauseManager m_PauseMgr;
@@ -19,6 +19,7 @@ public class MainGameManager : MonoBehaviour {
 	private AudioList m_Audio;
 	private PrintScore m_Score;
 	private WorldHeritageSpawner m_WorldSpw;
+	private ItemFlag m_BonusFlag;
 	public AudioList.SoundList_BGM gameBGM = AudioList.SoundList_BGM.BGM_Game_Stage0;
 
 	public enum PhaseLevel {
@@ -45,12 +46,14 @@ public class MainGameManager : MonoBehaviour {
 		m_Phase = PhaseLevel.Start;
 		m_ScreenChange = GetComponent<SceneChange>();
 		m_AllPlayerMgr = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
+		m_AllCameraMgr = GameObject.Find("AllCameraManager").GetComponent<AllCameraManager>();
 		m_TimeMgr = GameObject.Find("TimeManager").GetComponent<TimeManager>();
 		m_PauseMgr = GameObject.Find("PauseManager").GetComponent<PauseManager>();
 		m_CountSys = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
 		m_WorldSpw = GameObject.Find("WorldHeritageSpawner").GetComponent<WorldHeritageSpawner>();
+
 		// ステージ全体の長さを記録
 		for (int i = 0; i < 4; i++) {
 			AllStageLength += getStageLength(i);
@@ -123,10 +126,12 @@ public class MainGameManager : MonoBehaviour {
 		// Game-Bonus-Phase-Start
 		//================================================================================
 		case PhaseLevel.Game_Bonus_Start:
-			m_PauseMgr.PauseRestriction(false);
-			// カメラが移動中
+			m_PauseMgr.PauseRestriction(true);
 			// 指定座標までプレイヤー移動させる
-			setPhaseState(PhaseLevel.Game_Bonus_CameraMove);			
+			setPhaseState(PhaseLevel.Game_Bonus_CameraMove);
+			m_AllPlayerMgr.stopControll(true);
+			// 出てきた旗を探す(常に一個しか出ないようにして参照切り替える)
+			m_BonusFlag = GameObject.Find("ItemFlag").GetComponent<ItemFlag>();
 			break;
 
 		//================================================================================
@@ -140,8 +145,10 @@ public class MainGameManager : MonoBehaviour {
 				for (int i = 0; i < 4; i++) {
 					trs.position = new Vector3(trs.position.x + 5.0f, trs.position.y, trs.position.z);  // 横にずらす
 					m_AllPlayerMgr.startPlayerPosition(i + 1, trs.position, trs.rotation);
-					m_PauseMgr.PauseRestriction(false);
 				}
+				// 移動完了したらカメラの位置をリセットして背面に回す
+				m_AllCameraMgr.resetCamera();
+				m_PauseMgr.PauseRestriction(false);
 			}
 			break;
 
@@ -157,8 +164,8 @@ public class MainGameManager : MonoBehaviour {
 			}
 
 			BonusAliveCount += Time.deltaTime;
-			// 時間で終了
-			if(BonusAliveCount >= BONUS_ALIVE_TIME) {
+			// 時間で終了 または取られたら終了
+			if(BonusAliveCount >= BONUS_ALIVE_TIME　|| m_BonusFlag.is_Get) {
 				setPhaseState(PhaseLevel.Game_Bonus_End);
 			}
 			// Pauseメニュー表示 //
@@ -187,6 +194,7 @@ public class MainGameManager : MonoBehaviour {
 		case PhaseLevel.Game_Bonus_End:
 			// ボーナスステージを削除
 			m_WorldSpw.stageRelease = true;
+			m_AllPlayerMgr.stopControll(false);
 			break;
 
 		

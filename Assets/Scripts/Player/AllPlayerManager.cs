@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 
 public class AllPlayerManager : MonoBehaviour {
-	private static AllPlayerManager _instance;
-
-	// 使われてない
 
 	// プレイヤーの通常動作
 	public readonly string[] NormalAction = {
@@ -36,6 +33,8 @@ public class AllPlayerManager : MonoBehaviour {
 	// テンションが何％でボーナスに遷移するか
 	public const float ENTRY_BONUS_TENSION = 0.01f;
 	public const int ENTRY_BONUS_PLAYER = 1;
+
+	private bool StopControll = false;
 
 	// コンポーネント
 	//--------------------------------------------------------------------------------
@@ -79,6 +78,9 @@ public class AllPlayerManager : MonoBehaviour {
 
 	// Update is called once per frame
 	private void Update() {
+
+		if (StopControll) return;
+
 		// 各プレイヤーの状態を確認するよ！ //
 		for(int i=0; i< m_PlayerNum; i++) {
 			// アクションの更新(全員分)
@@ -113,6 +115,8 @@ public class AllPlayerManager : MonoBehaviour {
 					m_PlayerManager[(id - 1)].startPlayerPostion(
 						m_GoalList[i].getNextStagePoint(), 
 						m_GoalList[i].transform.rotation);
+					// カメラ
+					GameObject.Find("MainCamera" + id.ToString()).GetComponent<ChaseCamera>().resetCamera();
 				}
 			}
 		}
@@ -290,6 +294,14 @@ public class AllPlayerManager : MonoBehaviour {
 			return true;
 		}
 		return false;
+	}
+
+	/// <summary>
+	/// 外部から停止
+	/// </summary>
+	/// <param name="flag"></param>
+	public void stopControll(bool flag) {
+		StopControll = flag;
 	}
 
 	// Singleton
