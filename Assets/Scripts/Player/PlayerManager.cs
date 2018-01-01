@@ -153,7 +153,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
         }
         //ローリング
         if (m_animator.GetBool("se_Rolling")){
-            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionRolling);
+            //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionRolling);
         }
 
         //スライド 音声が遅いのでStateMacineBehavior側でやってる

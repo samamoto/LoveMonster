@@ -19,10 +19,6 @@ public class Slide : AnimatorBase {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-		// m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();	// 基底クラス内で取得
-
-		//通常の速度に加えて加速させる
-		m_Slide = animator.GetFloat("Velocity") + m_SlideSpeed;
 		// ②DelayをかけてSEを再生するための遅延時間をセット
 		setPlaySEDelay(0.1f);   // 0.1f後に再生
 	}

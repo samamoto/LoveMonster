@@ -11592,6 +11592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TensionPhase: 0
   m_TensionCount: 0
+  TensionRatio: 0
 --- !u!114 &114157083122583828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11710,6 +11711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TensionPhase: 0
   m_TensionCount: 0
+  TensionRatio: 0
 --- !u!114 &114323596460631674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11722,6 +11724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerID: 2
+  m_ThereStageID: 2
   walkByDefault: 0
   lookInCameraDirection: 0
   wallRunSpeedFactor: 10
@@ -11876,6 +11879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TensionPhase: 0
   m_TensionCount: 0
+  TensionRatio: 0
 --- !u!114 &114529247877634080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11936,6 +11940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerID: 1
+  m_ThereStageID: 1
   walkByDefault: 0
   lookInCameraDirection: 0
   wallRunSpeedFactor: 10
@@ -12084,6 +12089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TensionPhase: 0
   m_TensionCount: 0
+  TensionRatio: 0
 --- !u!114 &114806986854962718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12107,6 +12113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerID: 4
+  m_ThereStageID: 4
   walkByDefault: 0
   lookInCameraDirection: 0
   wallRunSpeedFactor: 10
@@ -12234,6 +12241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerID: 3
+  m_ThereStageID: 3
   walkByDefault: 0
   lookInCameraDirection: 0
   wallRunSpeedFactor: 10

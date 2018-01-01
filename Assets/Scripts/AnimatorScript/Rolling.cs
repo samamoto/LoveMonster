@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class Rolling : AnimatorBase
 {
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	// ①再生するAudioListを指定する
+	AudioList.SoundList_SE PlaySE = AudioList.SoundList_SE.SE_ActionRolling;
+
+	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("se_Rolling", true);
+		PlaySE(PlaySE);
+        //animator.SetBool("se_Rolling", true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //ジャンプの値をアニメーターにセット
-        animator.SetBool("se_Rolling", false);
+        //animator.SetBool("se_Rolling", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -24,6 +28,7 @@ public class Rolling : AnimatorBase
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		//animator.SetBool("is_Rolling", false);
+
 	}
 
 	// OnStateIK is called right after Animator.OnAnimatorIK(). Code that sets up animation IK (inverse kinematics) should be implemented here.
