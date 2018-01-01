@@ -452,6 +452,13 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	}
 
 	/// <summary>
+	/// ボーナスから戻ったときのパラメータ関係のリセット
+	/// </summary>
+	public void resetBonusParameter() {
+		GetComponent<Tension>().resetTension();
+	}
+
+	/// <summary>
 	/// プレイヤーのコントロールを停止させる
 	/// </summary>
 	/// <param name="flag">false:通常|true:停止</param>

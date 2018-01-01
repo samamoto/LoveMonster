@@ -31,7 +31,7 @@ public class AllPlayerManager : MonoBehaviour {
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
 
 	// テンションが何％でボーナスに遷移するか
-	public const float ENTRY_BONUS_TENSION = 0.01f;
+	public const float ENTRY_BONUS_TENSION = 0.7f;
 	public const int ENTRY_BONUS_PLAYER = 1;
 
 	private bool StopControll = false;
@@ -171,7 +171,23 @@ public class AllPlayerManager : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// プレイヤーをリスタートさせる
+	/// </summary>
+	public void restartPlayer() {
+		for (int i = 0; i < m_PlayerNum; i++) {
+			m_PlayerManager[i].restartPlayer();
+		}
+	}
 
+	/// <summary>
+	/// ボーナスから戻ったときのパラメータ関係をリセットする
+	/// </summary>
+	public void resetBonusParameter() {
+		for (int i = 0; i < m_PlayerNum; i++) {
+			m_PlayerManager[i].resetBonusParameter();
+		}
+	}
 
 	/// <summary>
 	/// プレイヤーの操作を不可にする

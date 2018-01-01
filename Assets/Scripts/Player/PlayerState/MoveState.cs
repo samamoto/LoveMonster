@@ -80,7 +80,7 @@ public class MoveState : MonoBehaviour {
 	//--------------------------------------------------------------------------------
 	private Animator m_Animator;
 	private AllPlayerManager m_AllPlayerMgr;
-	private ObjectManager m_ObjMgr;
+	//private ObjectManager m_ObjMgr;
 	private RollingSystem m_Roll;
 	//================================================================================
 	// 関数
@@ -91,7 +91,7 @@ public class MoveState : MonoBehaviour {
 		m_NowState = MoveStatement.None;
 		m_Animator = GetComponent<Animator>();
 		m_AllPlayerMgr = GetComponentInParent<AllPlayerManager>();
-		m_ObjMgr = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
+		//m_ObjMgr = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
 		m_Roll = GetComponent<RollingSystem>();
 		// --Dictionaryの更新 --//
 		StateDictionary.Add(MoveStatement.Vault, ConstAnimationStateTags.PlayerStateVault);
@@ -348,7 +348,7 @@ public class MoveState : MonoBehaviour {
 		is_Arrival = false;
 		m_Roll.resetRolling();	// ローリングの処理もリセットする
 		// ObjectManagerに実行状態を記録
-		m_ObjMgr.setAction(getPlayerID());	// クリア
+		//m_ObjMgr.setAction(getPlayerID());	// クリア
 	}
 
 	///--------------------------------------------------------------------------------

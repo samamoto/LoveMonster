@@ -130,8 +130,13 @@ public class MainGameManager : MonoBehaviour {
 			// 指定座標までプレイヤー移動させる
 			setPhaseState(PhaseLevel.Game_Bonus_CameraMove);
 			m_AllPlayerMgr.stopControll(true);
-			// 出てきた旗を探す(常に一個しか出ないようにして参照切り替える)
-			m_BonusFlag = GameObject.Find("ItemFlag").GetComponent<ItemFlag>();
+			try {
+				// 出てきた旗を探す(常に一個しか出ないようにして参照切り替える)
+				m_BonusFlag = GameObject.Find("ItemFlag").GetComponent<ItemFlag>();
+			}
+			catch (System.NullReferenceException) {
+				Debug.Log("まだ一回だけしか対応してない");
+			}
 			break;
 
 		//================================================================================
@@ -195,6 +200,14 @@ public class MainGameManager : MonoBehaviour {
 			// ボーナスステージを削除
 			m_WorldSpw.stageRelease = true;
 			m_AllPlayerMgr.stopControll(false);
+			// ボーナスステージのカウンタをリセット
+			BonusAliveCount = 0f;
+
+			// プレイヤーの位置をリセット場所まで戻す
+			m_AllPlayerMgr.restartPlayer();
+			m_AllPlayerMgr.resetBonusParameter();
+			// ゲームに戻る
+			setPhaseState(PhaseLevel.Game);
 			break;
 
 		

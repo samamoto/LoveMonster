@@ -31,15 +31,10 @@ public class ObjectManager : MonoBehaviour {
 	[SerializeField, Range(0.0f, 1.0f)]
 	private float[] JudgeZone = new float[(int)ActionJudge.MAX-1] { 0.2f, 0.65f};
 
-	// 一度しか使えないオブジェクト
-	public readonly string[] OnceObject = {
-		"CollapseBridge",		// 崩れる橋
-	};
-
 	// 移動処理を任せるアニメーションはAllPlayerManagerにいる
 	//
 
-	private Dictionary<int, string> PlayerActionDic = new Dictionary<int, string>();
+	//private Dictionary<int, string> PlayerActionDic = new Dictionary<int, string>();
 
 
 	//Collider[] m_Col = new Collider[4];
@@ -55,10 +50,11 @@ public class ObjectManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_AllPlayerManager = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();  // Singletonをやめる
-
+		/*
 		for (int i=0; i<ConstPlayerParameter.PlayerMax; i++) {
 			PlayerActionDic.Add(i, ConstAnimationStateTags.PlayerStateIdle);
 		}
+		*/
 
 	}
 	
@@ -92,14 +88,14 @@ public class ObjectManager : MonoBehaviour {
 	/// 状態の登録
 	/// </summary>
 	public void setAction(int n, string action) {
-		PlayerActionDic[n] = action;
+		//PlayerActionDic[n] = action;
 	}
 
 	/// <summary>
 	/// 状態の登録 第二引数無しでクリア
 	/// </summary>
 	public void setAction(int n) {
-		PlayerActionDic[n] = ConstAnimationStateTags.PlayerStateIdle;	// 戻す
+		//PlayerActionDic[n] = ConstAnimationStateTags.PlayerStateIdle;	// 戻す
 	}
 
 	// Singleton

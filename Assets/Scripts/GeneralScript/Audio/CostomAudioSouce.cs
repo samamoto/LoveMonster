@@ -74,7 +74,7 @@ public class CostomAudioSouce
         if (this.m_Clip && this.m_Enable)
         {
             this.m_AudioSource.Play();
-            Debug.Log("Playing " + this.m_Clip.name);
+            //Debug.Log("Playing " + this.m_Clip.name);
         }
     }
 
@@ -83,7 +83,7 @@ public class CostomAudioSouce
         if (this.m_Clip && this.m_Enable)
         {
             this.m_AudioSource.PlayOneShot(this.m_Clip, this.m_Volume);
-            Debug.Log("Play one shot " + this.m_Clip.name);
+            //Debug.Log("Play one shot " + this.m_Clip.name);
         }
     }
 
@@ -92,7 +92,7 @@ public class CostomAudioSouce
         if (this.m_Clip && this.m_AudioSource.isPlaying && this.m_Enable)
         {
             this.m_AudioSource.Stop();
-            Debug.Log("Stop " + this.m_Clip.name);
+            //Debug.Log("Stop " + this.m_Clip.name);
         }
     }
 
@@ -101,7 +101,7 @@ public class CostomAudioSouce
         if (this.m_Clip && this.m_AudioSource.isPlaying && this.m_Enable)
         {
             this.m_AudioSource.Pause();
-            Debug.Log("Pause " + this.m_Clip.name);
+            //Debug.Log("Pause " + this.m_Clip.name);
         }
     }
 
@@ -110,7 +110,7 @@ public class CostomAudioSouce
         if (this.m_Clip && this.m_AudioSource.isPlaying && this.m_Enable)
         {
             this.m_AudioSource.UnPause();
-            Debug.Log("Resume " + this.m_Clip.name);
+            //Debug.Log("Resume " + this.m_Clip.name);
         }
     }
 }
