@@ -1,0 +1,468 @@
+fileFormatVersion: 2
+guid: 3839ccecbdff3d942a3cba9f10ae14bb
+timeCreated: 1514955771
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000900000009100000092000000930000009400000095000000960000009700000098000000990000009a0000009b0000009c0000009d0000009e0000009f000000a0000000a1000000a2000000a3000000a4000000a5000000a6000000a7000000a8000000a9000000aa000000ab000000ac000000ad000000ae000000af000000b0000000b1000000b2000000b3000000b4000000b5000000b6000000b7000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 4cc3b1471d2d577b5524987e66f6941e
+  longitude: 12.49243722044673
+  latitude: 41.89028999978479
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -208.9557, y: 119.88255, z: -9.55317}
+      lookAt: {x: 50.033978, y: -34.56833, z: -11.124141}
+      up: {x: 0.5121783, y: 0.85887355, z: -0.0031067536}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Muro-01
+    100004: Muro-01 1
+    100006: Muro-01 10
+    100008: Muro-01 11
+    100010: Muro-01 12
+    100012: Muro-01 13
+    100014: Muro-01 14
+    100016: Muro-01 15
+    100018: Muro-01 16
+    100020: Muro-01 17
+    100022: Muro-01 18
+    100024: Muro-01 19
+    100026: Muro-01 2
+    100028: Muro-01 20
+    100030: Muro-01 21
+    100032: Muro-01 22
+    100034: Muro-01 23
+    100036: Muro-01 24
+    100038: Muro-01 25
+    100040: Muro-01 26
+    100042: Muro-01 27
+    100044: Muro-01 28
+    100046: Muro-01 29
+    100048: Muro-01 3
+    100050: Muro-01 30
+    100052: Muro-01 31
+    100054: Muro-01 32
+    100056: Muro-01 33
+    100058: Muro-01 34
+    100060: Muro-01 35
+    100062: Muro-01 36
+    100064: Muro-01 37
+    100066: Muro-01 38
+    100068: Muro-01 39
+    100070: Muro-01 4
+    100072: Muro-01 40
+    100074: Muro-01 41
+    100076: Muro-01 42
+    100078: Muro-01 43
+    100080: Muro-01 44
+    100082: Muro-01 45
+    100084: Muro-01 46
+    100086: Muro-01 47
+    100088: Muro-01 5
+    100090: Muro-01 6
+    100092: Muro-01 7
+    100094: Muro-01 8
+    100096: Muro-01 9
+    100098: Muro-01#1
+    100100: Muro-01#2
+    100102: Muro-02
+    100104: Muro-02 1
+    100106: Muro-03
+    100108: Muro-03 1
+    100110: Muro-03 10
+    100112: Muro-03 11
+    100114: Muro-03 12
+    100116: Muro-03 13
+    100118: Muro-03 14
+    100120: Muro-03 15
+    100122: Muro-03 16
+    100124: Muro-03 17
+    100126: Muro-03 18
+    100128: Muro-03 19
+    100130: Muro-03 2
+    100132: Muro-03 20
+    100134: Muro-03 21
+    100136: Muro-03 22
+    100138: Muro-03 23
+    100140: Muro-03 24
+    100142: Muro-03 25
+    100144: Muro-03 26
+    100146: Muro-03 27
+    100148: Muro-03 28
+    100150: Muro-03 29
+    100152: Muro-03 3
+    100154: Muro-03 30
+    100156: Muro-03 31
+    100158: Muro-03 32
+    100160: Muro-03 33
+    100162: Muro-03 34
+    100164: Muro-03 35
+    100166: Muro-03 36
+    100168: Muro-03 37
+    100170: Muro-03 4
+    100172: Muro-03 5
+    100174: Muro-03 6
+    100176: Muro-03 7
+    100178: Muro-03 8
+    100180: Muro-03 9
+    400000: //RootNode
+    400002: Muro-01
+    400004: Muro-01 1
+    400006: Muro-01 10
+    400008: Muro-01 11
+    400010: Muro-01 12
+    400012: Muro-01 13
+    400014: Muro-01 14
+    400016: Muro-01 15
+    400018: Muro-01 16
+    400020: Muro-01 17
+    400022: Muro-01 18
+    400024: Muro-01 19
+    400026: Muro-01 2
+    400028: Muro-01 20
+    400030: Muro-01 21
+    400032: Muro-01 22
+    400034: Muro-01 23
+    400036: Muro-01 24
+    400038: Muro-01 25
+    400040: Muro-01 26
+    400042: Muro-01 27
+    400044: Muro-01 28
+    400046: Muro-01 29
+    400048: Muro-01 3
+    400050: Muro-01 30
+    400052: Muro-01 31
+    400054: Muro-01 32
+    400056: Muro-01 33
+    400058: Muro-01 34
+    400060: Muro-01 35
+    400062: Muro-01 36
+    400064: Muro-01 37
+    400066: Muro-01 38
+    400068: Muro-01 39
+    400070: Muro-01 4
+    400072: Muro-01 40
+    400074: Muro-01 41
+    400076: Muro-01 42
+    400078: Muro-01 43
+    400080: Muro-01 44
+    400082: Muro-01 45
+    400084: Muro-01 46
+    400086: Muro-01 47
+    400088: Muro-01 5
+    400090: Muro-01 6
+    400092: Muro-01 7
+    400094: Muro-01 8
+    400096: Muro-01 9
+    400098: Muro-01#1
+    400100: Muro-01#2
+    400102: Muro-02
+    400104: Muro-02 1
+    400106: Muro-03
+    400108: Muro-03 1
+    400110: Muro-03 10
+    400112: Muro-03 11
+    400114: Muro-03 12
+    400116: Muro-03 13
+    400118: Muro-03 14
+    400120: Muro-03 15
+    400122: Muro-03 16
+    400124: Muro-03 17
+    400126: Muro-03 18
+    400128: Muro-03 19
+    400130: Muro-03 2
+    400132: Muro-03 20
+    400134: Muro-03 21
+    400136: Muro-03 22
+    400138: Muro-03 23
+    400140: Muro-03 24
+    400142: Muro-03 25
+    400144: Muro-03 26
+    400146: Muro-03 27
+    400148: Muro-03 28
+    400150: Muro-03 29
+    400152: Muro-03 3
+    400154: Muro-03 30
+    400156: Muro-03 31
+    400158: Muro-03 32
+    400160: Muro-03 33
+    400162: Muro-03 34
+    400164: Muro-03 35
+    400166: Muro-03 36
+    400168: Muro-03 37
+    400170: Muro-03 4
+    400172: Muro-03 5
+    400174: Muro-03 6
+    400176: Muro-03 7
+    400178: Muro-03 8
+    400180: Muro-03 9
+    2300000: //RootNode
+    2300002: Muro-01
+    2300004: Muro-01 1
+    2300006: Muro-01 10
+    2300008: Muro-01 11
+    2300010: Muro-01 12
+    2300012: Muro-01 13
+    2300014: Muro-01 14
+    2300016: Muro-01 15
+    2300018: Muro-01 16
+    2300020: Muro-01 17
+    2300022: Muro-01 18
+    2300024: Muro-01 19
+    2300026: Muro-01 2
+    2300028: Muro-01 20
+    2300030: Muro-01 21
+    2300032: Muro-01 22
+    2300034: Muro-01 23
+    2300036: Muro-01 24
+    2300038: Muro-01 25
+    2300040: Muro-01 26
+    2300042: Muro-01 27
+    2300044: Muro-01 28
+    2300046: Muro-01 29
+    2300048: Muro-01 3
+    2300050: Muro-01 30
+    2300052: Muro-01 31
+    2300054: Muro-01 32
+    2300056: Muro-01 33
+    2300058: Muro-01 34
+    2300060: Muro-01 35
+    2300062: Muro-01 36
+    2300064: Muro-01 37
+    2300066: Muro-01 38
+    2300068: Muro-01 39
+    2300070: Muro-01 4
+    2300072: Muro-01 40
+    2300074: Muro-01 41
+    2300076: Muro-01 42
+    2300078: Muro-01 43
+    2300080: Muro-01 44
+    2300082: Muro-01 45
+    2300084: Muro-01 46
+    2300086: Muro-01 47
+    2300088: Muro-01 5
+    2300090: Muro-01 6
+    2300092: Muro-01 7
+    2300094: Muro-01 8
+    2300096: Muro-01 9
+    2300098: Muro-01#1
+    2300100: Muro-01#2
+    2300102: Muro-02
+    2300104: Muro-02 1
+    2300106: Muro-03
+    2300108: Muro-03 1
+    2300110: Muro-03 10
+    2300112: Muro-03 11
+    2300114: Muro-03 12
+    2300116: Muro-03 13
+    2300118: Muro-03 14
+    2300120: Muro-03 15
+    2300122: Muro-03 16
+    2300124: Muro-03 17
+    2300126: Muro-03 18
+    2300128: Muro-03 19
+    2300130: Muro-03 2
+    2300132: Muro-03 20
+    2300134: Muro-03 21
+    2300136: Muro-03 22
+    2300138: Muro-03 23
+    2300140: Muro-03 24
+    2300142: Muro-03 25
+    2300144: Muro-03 26
+    2300146: Muro-03 27
+    2300148: Muro-03 28
+    2300150: Muro-03 29
+    2300152: Muro-03 3
+    2300154: Muro-03 30
+    2300156: Muro-03 31
+    2300158: Muro-03 32
+    2300160: Muro-03 33
+    2300162: Muro-03 34
+    2300164: Muro-03 35
+    2300166: Muro-03 36
+    2300168: Muro-03 37
+    2300170: Muro-03 4
+    2300172: Muro-03 5
+    2300174: Muro-03 6
+    2300176: Muro-03 7
+    2300178: Muro-03 8
+    2300180: Muro-03 9
+    3300000: //RootNode
+    3300002: Muro-01
+    3300004: Muro-01 1
+    3300006: Muro-01 10
+    3300008: Muro-01 11
+    3300010: Muro-01 12
+    3300012: Muro-01 13
+    3300014: Muro-01 14
+    3300016: Muro-01 15
+    3300018: Muro-01 16
+    3300020: Muro-01 17
+    3300022: Muro-01 18
+    3300024: Muro-01 19
+    3300026: Muro-01 2
+    3300028: Muro-01 20
+    3300030: Muro-01 21
+    3300032: Muro-01 22
+    3300034: Muro-01 23
+    3300036: Muro-01 24
+    3300038: Muro-01 25
+    3300040: Muro-01 26
+    3300042: Muro-01 27
+    3300044: Muro-01 28
+    3300046: Muro-01 29
+    3300048: Muro-01 3
+    3300050: Muro-01 30
+    3300052: Muro-01 31
+    3300054: Muro-01 32
+    3300056: Muro-01 33
+    3300058: Muro-01 34
+    3300060: Muro-01 35
+    3300062: Muro-01 36
+    3300064: Muro-01 37
+    3300066: Muro-01 38
+    3300068: Muro-01 39
+    3300070: Muro-01 4
+    3300072: Muro-01 40
+    3300074: Muro-01 41
+    3300076: Muro-01 42
+    3300078: Muro-01 43
+    3300080: Muro-01 44
+    3300082: Muro-01 45
+    3300084: Muro-01 46
+    3300086: Muro-01 47
+    3300088: Muro-01 5
+    3300090: Muro-01 6
+    3300092: Muro-01 7
+    3300094: Muro-01 8
+    3300096: Muro-01 9
+    3300098: Muro-01#1
+    3300100: Muro-01#2
+    3300102: Muro-02
+    3300104: Muro-02 1
+    3300106: Muro-03
+    3300108: Muro-03 1
+    3300110: Muro-03 10
+    3300112: Muro-03 11
+    3300114: Muro-03 12
+    3300116: Muro-03 13
+    3300118: Muro-03 14
+    3300120: Muro-03 15
+    3300122: Muro-03 16
+    3300124: Muro-03 17
+    3300126: Muro-03 18
+    3300128: Muro-03 19
+    3300130: Muro-03 2
+    3300132: Muro-03 20
+    3300134: Muro-03 21
+    3300136: Muro-03 22
+    3300138: Muro-03 23
+    3300140: Muro-03 24
+    3300142: Muro-03 25
+    3300144: Muro-03 26
+    3300146: Muro-03 27
+    3300148: Muro-03 28
+    3300150: Muro-03 29
+    3300152: Muro-03 3
+    3300154: Muro-03 30
+    3300156: Muro-03 31
+    3300158: Muro-03 32
+    3300160: Muro-03 33
+    3300162: Muro-03 34
+    3300164: Muro-03 35
+    3300166: Muro-03 36
+    3300168: Muro-03 37
+    3300170: Muro-03 4
+    3300172: Muro-03 5
+    3300174: Muro-03 6
+    3300176: Muro-03 7
+    3300178: Muro-03 8
+    3300180: Muro-03 9
+    4300000: Mesh Anfiteatro+Flavio,+Roma
+    4300002: Mesh Muro-01
+    4300004: Mesh Muro-02
+    4300006: Mesh Muro-01
+    4300008: Mesh Muro-01#2
+    4300010: Mesh Muro-01#1
+    4300012: Mesh Muro-03
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

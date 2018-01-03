@@ -11517,7 +11517,7 @@ MonoBehaviour:
     movingTurnSpeed: 1080
     headLookResponseSpeed: 2
     crouchHeightFactor: 0.6
-    crouchChangeSpeed: 4
+    crouchChangeSpeed: 1
     autoTurnThresholdAngle: 100
     autoTurnSpeed: 6
     zeroFrictionMaterial: {fileID: 13400000, guid: cf63880488ec29f43a759ecd9c6c5123,
@@ -11646,7 +11646,7 @@ MonoBehaviour:
     movingTurnSpeed: 1080
     headLookResponseSpeed: 2
     crouchHeightFactor: 0.6
-    crouchChangeSpeed: 4
+    crouchChangeSpeed: 1
     autoTurnThresholdAngle: 100
     autoTurnSpeed: 6
     zeroFrictionMaterial: {fileID: 13400000, guid: cf63880488ec29f43a759ecd9c6c5123,
@@ -11964,7 +11964,7 @@ MonoBehaviour:
     movingTurnSpeed: 1080
     headLookResponseSpeed: 2
     crouchHeightFactor: 0.6
-    crouchChangeSpeed: 4
+    crouchChangeSpeed: 1
     autoTurnThresholdAngle: 100
     autoTurnSpeed: 6
     zeroFrictionMaterial: {fileID: 13400000, guid: cf63880488ec29f43a759ecd9c6c5123,
@@ -12140,7 +12140,7 @@ MonoBehaviour:
     movingTurnSpeed: 1080
     headLookResponseSpeed: 2
     crouchHeightFactor: 0.6
-    crouchChangeSpeed: 4
+    crouchChangeSpeed: 1
     autoTurnThresholdAngle: 100
     autoTurnSpeed: 6
     zeroFrictionMaterial: {fileID: 13400000, guid: cf63880488ec29f43a759ecd9c6c5123,

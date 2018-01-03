@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: d8b6ab919bfb42d4391530f582d7a350
+timeCreated: 1514956016
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004600000047000000
+  assetHash:
+    serializedVersion: 2
+    Hash: c14754e181b073237c06e6273eb45e96
+  longitude: 2.348915
+  latitude: 48.858033
+  northCorrection: 359.50960829908564
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 41.709408, y: 76.9157, z: -85.21784}
+      lookAt: {x: -25.31561, y: -4.177967, z: 56.96422}
+      up: {x: -0.19549753, y: 0.88870287, z: 0.41471443}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Google Earth Snapshot
+    100002: Group 1
+    100004: Group 10
+    100006: Group 12
+    100008: Group 14
+    100010: Group 16
+    100012: Group 17
+    100014: Group 19
+    100016: Group 2
+    100018: Group 21
+    100020: Group 23
+    100022: Group 24
+    100024: Group 26
+    100026: Group 28
+    100028: Group 3
+    100030: Group 30
+    100032: Group 31
+    100034: Group 33
+    100036: Group 35
+    100038: Group 36
+    100040: Group 38
+    100042: Group 40
+    100044: Group 41
+    100046: Group 43
+    100048: Group 45
+    100050: Group 46
+    100052: Group 48
+    100054: Group 5
+    100056: Group 50
+    100058: Group 51
+    100060: Group 52
+    100062: Group 54
+    100064: Group 56
+    100066: Group 57
+    100068: Group 59
+    100070: Group 61
+    100072: Group 62
+    100074: Group 64
+    100076: Group 66
+    100078: Group 7
+    100080: Group 9
+    100082: //RootNode
+    400000: Google Earth Snapshot
+    400002: Group 1
+    400004: Group 10
+    400006: Group 12
+    400008: Group 14
+    400010: Group 16
+    400012: Group 17
+    400014: Group 19
+    400016: Group 2
+    400018: Group 21
+    400020: Group 23
+    400022: Group 24
+    400024: Group 26
+    400026: Group 28
+    400028: Group 3
+    400030: Group 30
+    400032: Group 31
+    400034: Group 33
+    400036: Group 35
+    400038: Group 36
+    400040: Group 38
+    400042: Group 40
+    400044: Group 41
+    400046: Group 43
+    400048: Group 45
+    400050: Group 46
+    400052: Group 48
+    400054: Group 5
+    400056: Group 50
+    400058: Group 51
+    400060: Group 52
+    400062: Group 54
+    400064: Group 56
+    400066: Group 57
+    400068: Group 59
+    400070: Group 61
+    400072: Group 62
+    400074: Group 64
+    400076: Group 66
+    400078: Group 7
+    400080: Group 9
+    400082: //RootNode
+    2300000: Google Earth Snapshot
+    2300002: Group 10
+    2300004: Group 12
+    2300006: Group 14
+    2300008: Group 17
+    2300010: Group 19
+    2300012: Group 21
+    2300014: Group 24
+    2300016: Group 26
+    2300018: Group 28
+    2300020: Group 3
+    2300022: Group 31
+    2300024: Group 33
+    2300026: Group 36
+    2300028: Group 38
+    2300030: Group 41
+    2300032: Group 43
+    2300034: Group 46
+    2300036: Group 48
+    2300038: Group 5
+    2300040: Group 52
+    2300042: Group 54
+    2300044: Group 57
+    2300046: Group 59
+    2300048: Group 62
+    2300050: Group 64
+    2300052: Group 66
+    2300054: Group 7
+    3300000: Google Earth Snapshot
+    3300002: Group 10
+    3300004: Group 12
+    3300006: Group 14
+    3300008: Group 17
+    3300010: Group 19
+    3300012: Group 21
+    3300014: Group 24
+    3300016: Group 26
+    3300018: Group 28
+    3300020: Group 3
+    3300022: Group 31
+    3300024: Group 33
+    3300026: Group 36
+    3300028: Group 38
+    3300030: Group 41
+    3300032: Group 43
+    3300034: Group 46
+    3300036: Group 48
+    3300038: Group 5
+    3300040: Group 52
+    3300042: Group 54
+    3300044: Group 57
+    3300046: Group 59
+    3300048: Group 62
+    3300050: Group 64
+    3300052: Group 66
+    3300054: Group 7
+    4300000: Mesh Group 3
+    4300002: Mesh Group 7
+    4300004: Mesh Group 31
+    4300006: Mesh Group 52
+    4300008: Mesh Group 54
+    4300010: Mesh Group 66
+    4300012: Mesh Google Earth Snapshot
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

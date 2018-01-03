@@ -1,0 +1,505 @@
+fileFormatVersion: 2
+guid: 32ce42dc3f3b64c418383413208767d0
+timeCreated: 1514955978
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000200000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 7e3ee5893f94bd1a756183a05b35f9d1
+  longitude: 11.256038826718452
+  latitude: 43.7731765447396
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -17.143208, y: 89.24512, z: -70.03876}
+      lookAt: {x: -23.338266, y: 80.71101, z: -55.03681}
+      up: {x: -0.17763235, y: 0.8851068, z: 0.4301543}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes:
+    - camera:
+        position: {x: -10.6571455, y: 92.72444, z: -58.17532}
+        lookAt: {x: -19.004707, y: 78.24171, z: -50.636295}
+        up: {x: -0.26747736, y: 0.5617111, z: 0.7829027}
+        fov: 55
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Home
+    - camera:
+        position: {x: 29.225477, y: 166.26407, z: -82.02548}
+        lookAt: {x: -0.92992413, y: -40.727222, z: -7.1784167}
+        up: {x: -0.3481812, y: 0.3632157, z: 0.8642015}
+        fov: 55
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Scene 1
+    - camera:
+        position: {x: -37.302677, y: 104.30682, z: -75.89428}
+        lookAt: {x: -22.632227, y: 72.619545, z: -52.50743}
+        up: {x: 0.40066114, y: 0.6568994, z: 0.63871264}
+        fov: 55
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Scene 2
+    - camera:
+        position: {x: -29.118803, y: 81.30826, z: -47.459267}
+        lookAt: {x: -29.481539, y: 71.724915, z: -45.19187}
+        up: {x: -0.04962933, y: 0.23173577, z: 0.97151196}
+        fov: 55
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Scene 3
+    - camera:
+        position: {x: -32.315514, y: 67.76808, z: -48.216373}
+        lookAt: {x: -19.070843, y: 57.223595, z: -41.169342}
+        up: {x: 0.507637, y: 0.8181398, z: 0.27009618}
+        fov: 55
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Scene 4
+    - camera:
+        position: {x: -25.255901, y: 66.90059, z: -65.35536}
+        lookAt: {x: -28.737858, y: 64.262054, z: -47.545753}
+        up: {x: -0.027608495, y: 0.9895942, z: 0.14121276}
+        fov: 55
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Scene 5
+    - camera:
+        position: {x: -40.80737, y: 72.831245, z: -63.63925}
+        lookAt: {x: -28.997602, y: 60.47828, z: -56.990795}
+        up: {x: 0.5870127, y: 0.7390592, z: 0.3304659}
+        fov: 55
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Scene 6
+    - camera:
+        position: {x: -32.074276, y: 53.70126, z: -45.326664}
+        lookAt: {x: -24.383394, y: 37.403877, z: -41.933468}
+        up: {x: 0.8131184, y: 0.4584104, z: 0.3587455}
+        fov: 65
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Scene 7
+    - camera:
+        position: {x: -46.015236, y: 0, z: -78.588615}
+        lookAt: {x: -38.36914, y: 9.144232, z: -64.653465}
+        up: {x: -0.2398741, y: 0.8667978, z: -0.4371751}
+        fov: 55
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Scene 8
+    - camera:
+        position: {x: -42.876225, y: -20.244759, z: -65.59321}
+        lookAt: {x: -36.588272, y: -5.0173454, z: -57.539906}
+        up: {x: -0.5110395, y: 0.55717933, z: -0.65451497}
+        fov: 55
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Scene 9
+    - camera:
+        position: {x: -30.437202, y: -23.123026, z: -44.330734}
+        lookAt: {x: -30.437202, y: 48.300785, z: -44.330734}
+        up: {x: -0.9534248, y: 0, z: 0.30163085}
+        fov: 55
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Scene 10
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Camminatoio e Tetto
+    100002: F_01
+    100004: F_01_A
+    100006: F_01_B
+    100008: F_01_Collare_1
+    100010: F_01_Collare_2
+    100012: F_01_Ingresso
+    100014: F_02
+    100016: F_02_Collare
+    100018: F_03
+    100020: F_03_Collare_1
+    100022: F_03_Collare_2
+    100024: F_04
+    100026: F_04_Collare_1
+    100028: F_05
+    100030: F_05_Collare
+    100032: F_05_Copertura
+    100034: F_05_Parafulmine
+    100036: //RootNode
+    100038: Google Earth Terrain
+    100040: Group 10
+    100042: Group 101
+    100044: Group 103
+    100046: Group 105
+    100048: Group 107
+    100050: Group 110
+    100052: Group 12
+    100054: Group 121
+    100056: Group 123
+    100058: Group 125
+    100060: Group 127
+    100062: Group 130
+    100064: Group 132
+    100066: Group 134
+    100068: Group 136
+    100070: Group 14
+    100072: Group 17
+    100074: Group 19
+    100076: Group 21
+    100078: Group 23
+    100080: Group 5
+    100082: Group 68
+    100084: Group 70
+    100086: Group 72
+    100088: Group 74
+    100090: Group 8
+    100092: Group 80
+    100094: Group 82
+    100096: Group 84
+    100098: Group 86
+    100100: Group 90
+    100102: Group 92
+    100104: Group 94
+    100106: Group 96
+    100108: Group 99
+    100110: Q1b
+    100112: Q1b 1
+    100114: Q1b 2
+    100116: Q1b 3
+    100118: Q2#1
+    100120: Q2#1 1
+    100122: Q2#1 2
+    100124: Q2#1 3
+    100126: Q3#1
+    100128: Q3#1 1
+    100130: Q3#1 2
+    100132: Q3#1 3
+    100134: Q4
+    100136: Q4 1
+    100138: Q4 2
+    100140: Q4 3
+    100142: qQ5
+    100144: qQ5 1
+    100146: qQ5 2
+    100148: qQ5 3
+    400000: Camminatoio e Tetto
+    400002: F_01
+    400004: F_01_A
+    400006: F_01_B
+    400008: F_01_Collare_1
+    400010: F_01_Collare_2
+    400012: F_01_Ingresso
+    400014: F_02
+    400016: F_02_Collare
+    400018: F_03
+    400020: F_03_Collare_1
+    400022: F_03_Collare_2
+    400024: F_04
+    400026: F_04_Collare_1
+    400028: F_05
+    400030: F_05_Collare
+    400032: F_05_Copertura
+    400034: F_05_Parafulmine
+    400036: //RootNode
+    400038: Google Earth Terrain
+    400040: Group 10
+    400042: Group 101
+    400044: Group 103
+    400046: Group 105
+    400048: Group 107
+    400050: Group 110
+    400052: Group 12
+    400054: Group 121
+    400056: Group 123
+    400058: Group 125
+    400060: Group 127
+    400062: Group 130
+    400064: Group 132
+    400066: Group 134
+    400068: Group 136
+    400070: Group 14
+    400072: Group 17
+    400074: Group 19
+    400076: Group 21
+    400078: Group 23
+    400080: Group 5
+    400082: Group 68
+    400084: Group 70
+    400086: Group 72
+    400088: Group 74
+    400090: Group 8
+    400092: Group 80
+    400094: Group 82
+    400096: Group 84
+    400098: Group 86
+    400100: Group 90
+    400102: Group 92
+    400104: Group 94
+    400106: Group 96
+    400108: Group 99
+    400110: Q1b
+    400112: Q1b 1
+    400114: Q1b 2
+    400116: Q1b 3
+    400118: Q2#1
+    400120: Q2#1 1
+    400122: Q2#1 2
+    400124: Q2#1 3
+    400126: Q3#1
+    400128: Q3#1 1
+    400130: Q3#1 2
+    400132: Q3#1 3
+    400134: Q4
+    400136: Q4 1
+    400138: Q4 2
+    400140: Q4 3
+    400142: qQ5
+    400144: qQ5 1
+    400146: qQ5 2
+    400148: qQ5 3
+    2300000: Camminatoio e Tetto
+    2300002: F_01_A
+    2300004: F_01_Ingresso
+    2300006: F_03_Collare_2
+    2300008: F_04_Collare_1
+    2300010: F_05_Copertura
+    2300012: F_05_Parafulmine
+    2300014: Google Earth Terrain
+    2300016: Group 10
+    2300018: Group 101
+    2300020: Group 103
+    2300022: Group 105
+    2300024: Group 107
+    2300026: Group 110
+    2300028: Group 12
+    2300030: Group 121
+    2300032: Group 123
+    2300034: Group 125
+    2300036: Group 127
+    2300038: Group 130
+    2300040: Group 132
+    2300042: Group 134
+    2300044: Group 136
+    2300046: Group 14
+    2300048: Group 17
+    2300050: Group 19
+    2300052: Group 21
+    2300054: Group 23
+    2300056: Group 5
+    2300058: Group 68
+    2300060: Group 70
+    2300062: Group 72
+    2300064: Group 74
+    2300066: Group 8
+    2300068: Group 80
+    2300070: Group 82
+    2300072: Group 84
+    2300074: Group 86
+    2300076: Group 90
+    2300078: Group 92
+    2300080: Group 94
+    2300082: Group 96
+    2300084: Group 99
+    2300086: Q1b
+    2300088: Q1b 1
+    2300090: Q1b 2
+    2300092: Q1b 3
+    2300094: Q2#1
+    2300096: Q2#1 1
+    2300098: Q2#1 2
+    2300100: Q2#1 3
+    2300102: Q3#1
+    2300104: Q3#1 1
+    2300106: Q3#1 2
+    2300108: Q3#1 3
+    2300110: Q4
+    2300112: Q4 1
+    2300114: Q4 2
+    2300116: Q4 3
+    2300118: qQ5
+    2300120: qQ5 1
+    2300122: qQ5 2
+    2300124: qQ5 3
+    3300000: Camminatoio e Tetto
+    3300002: F_01_A
+    3300004: F_01_Ingresso
+    3300006: F_03_Collare_2
+    3300008: F_04_Collare_1
+    3300010: F_05_Copertura
+    3300012: F_05_Parafulmine
+    3300014: Google Earth Terrain
+    3300016: Group 10
+    3300018: Group 101
+    3300020: Group 103
+    3300022: Group 105
+    3300024: Group 107
+    3300026: Group 110
+    3300028: Group 12
+    3300030: Group 121
+    3300032: Group 123
+    3300034: Group 125
+    3300036: Group 127
+    3300038: Group 130
+    3300040: Group 132
+    3300042: Group 134
+    3300044: Group 136
+    3300046: Group 14
+    3300048: Group 17
+    3300050: Group 19
+    3300052: Group 21
+    3300054: Group 23
+    3300056: Group 5
+    3300058: Group 68
+    3300060: Group 70
+    3300062: Group 72
+    3300064: Group 74
+    3300066: Group 8
+    3300068: Group 80
+    3300070: Group 82
+    3300072: Group 84
+    3300074: Group 86
+    3300076: Group 90
+    3300078: Group 92
+    3300080: Group 94
+    3300082: Group 96
+    3300084: Group 99
+    3300086: Q1b
+    3300088: Q1b 1
+    3300090: Q1b 2
+    3300092: Q1b 3
+    3300094: Q2#1
+    3300096: Q2#1 1
+    3300098: Q2#1 2
+    3300100: Q2#1 3
+    3300102: Q3#1
+    3300104: Q3#1 1
+    3300106: Q3#1 2
+    3300108: Q3#1 3
+    3300110: Q4
+    3300112: Q4 1
+    3300114: Q4 2
+    3300116: Q4 3
+    3300118: qQ5
+    3300120: qQ5 1
+    3300122: qQ5 2
+    3300124: qQ5 3
+    4300000: Mesh Google Earth Terrain
+    4300002: Mesh Group 5
+    4300004: Mesh Group 8
+    4300006: Mesh Group 17
+    4300008: Mesh Group 19
+    4300010: Mesh F_05_Parafulmine
+    4300012: Mesh Camminatoio e Tetto
+    4300014: Mesh qQ5
+    4300016: Mesh Q4
+    4300018: Mesh Q2#1
+    4300020: Mesh Q1b
+    4300022: Mesh F_01_A
+    4300024: Mesh Group 68
+    4300026: Mesh Group 72
+    4300028: Mesh F_05_Copertura
+    4300030: Mesh F_04_Collare_1
+    4300032: Mesh Group 80
+    4300034: Mesh Group 82
+    4300036: Mesh Group 84
+    4300038: Mesh Group 86
+    4300040: Mesh F_03_Collare_2
+    4300042: Mesh Group 90
+    4300044: Mesh Group 99
+    4300046: Mesh Group 101
+    4300048: Mesh Group 103
+    4300050: Mesh Group 107
+    4300052: Mesh Group 110
+    4300054: Mesh Q3#1
+    4300056: Mesh Group 121
+    4300058: Mesh Group 123
+    4300060: Mesh Group 125
+    4300062: Mesh Group 130
+    4300064: Mesh F_01_Ingresso
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

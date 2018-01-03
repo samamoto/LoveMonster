@@ -1,0 +1,1709 @@
+fileFormatVersion: 2
+guid: b20d4569a381bc449a42dd5f7d9de5c4
+timeCreated: 1514955910
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000900000009100000092000000930000009400000095000000960000009700000098000000990000009a0000009b0000009c0000009d0000009e0000009f000000a0000000a1000000a2000000a3000000a4000000a5000000a6000000a7000000a8000000a9000000aa000000ab000000ac000000ad000000ae000000af000000b0000000b1000000b2000000b3000000b4000000b5000000b6000000b7000000b8000000b9000000ba000000bb000000bc000000bd000000be000000bf000000c0000000c1000000c2000000c3000000c4000000c5000000c6000000c7000000c8000000c9000000ca000000cb000000cc000000cd000000ce000000cf000000d0000000d1000000d2000000d3000000d4000000d5000000d6000000d7000000d8000000d9000000da000000db000000dc000000dd000000de000000df000000e0000000e1000000e2000000e3000000e4000000e5000000e6000000e7000000e8000000e9000000ea000000eb000000ec000000ed000000ee000000ef000000f0000000f1000000f2000000f3000000f4000000f5000000f6000000f7000000f8000000f9000000fa000000fb000000fc000000fd000000fe000000ff000000000100000101000002010000030100000401000005010000060100000701000008010000090100000a0100000b0100000c0100000d0100000e0100000f010000100100001101000012010000130100001401000015010000160100001701000018010000190100001a0100001b0100001c0100001d0100001e0100001f010000200100002101000022010000230100002401000025010000260100002701000028010000290100002a0100002b0100002c0100002d0100002e0100002f010000300100003101000032010000330100003401000035010000360100003701000038010000390100003a0100003b0100003c0100003d0100003e0100003f010000400100004101000042010000430100004401000045010000460100004701000048010000490100004a0100004b0100004c0100004d0100004e0100004f010000500100005101000052010000530100005401000055010000560100005701000058010000590100005a0100005b0100005c0100005d0100005e0100005f010000600100006101000062010000630100006401000065010000660100006701000068010000690100006a0100006b0100006c0100006d0100006e0100006f010000700100007101000072010000730100007401000075010000760100007701000078010000790100007a0100007b0100007c0100007d0100007e0100007f010000800100008101000082010000830100008401000085010000860100008701000088010000890100008a0100008b0100008c0100008d0100008e0100008f010000900100009101000092010000930100009401000095010000960100009701000098010000990100009a0100009b0100009c0100009d0100009e0100009f010000a0010000a1010000a2010000a3010000a4010000a5010000a6010000a7010000a8010000a9010000aa010000ab010000ac010000ad010000ae010000af010000b0010000b1010000b2010000b3010000b4010000b5010000b6010000b7010000b8010000b9010000ba010000bb010000bc010000bd010000be010000bf010000c0010000c1010000c2010000c3010000c4010000c5010000c6010000c7010000c8010000c9010000ca010000cb010000cc010000cd010000ce010000cf010000d0010000d1010000d2010000d3010000d4010000d5010000d6010000d7010000d8010000d9010000da010000db010000dc010000dd010000de010000df010000e0010000e1010000e2010000e3010000e4010000e5010000e6010000e7010000e8010000e9010000ea010000eb010000ec010000ed010000ee010000ef010000f0010000f1010000f2010000f3010000f4010000f5010000f6010000f7010000f8010000f9010000fa010000fb010000fc010000fd010000fe010000ff010000000200000102000002020000030200000402000005020000060200000702000008020000090200000a0200000b0200000c0200000d0200000e0200000f020000100200001102000012020000130200001402000015020000160200001702000018020000190200001a0200001b0200001c0200001d0200001e0200001f020000200200002102000022020000230200002402000025020000260200002702000028020000290200002a0200002b0200002c0200002d0200002e0200002f020000300200003102000032020000330200003402000035020000360200003702000038020000390200003a0200003b0200003c0200003d0200003e0200003f020000400200004102000042020000430200004402000045020000460200004702000048020000490200004a0200004b0200004c0200004d0200004e0200004f020000500200005102000052020000530200005402000055020000560200005702000058020000590200005a0200005b0200005c0200005d0200005e0200005f020000600200006102000062020000630200006402000065020000660200006702000068020000690200006a0200006b0200006c0200006d0200006e0200006f020000700200007102000072020000730200007402000075020000760200007702000078020000790200007a0200007b0200007c0200007d0200007e0200007f020000800200008102000082020000830200008402000085020000860200008702000088020000890200008a0200008b0200008c0200008d0200008e0200008f020000900200009102000092020000930200009402000095020000960200009702000098020000990200009a0200009b0200009c0200009d0200009e0200009f020000a0020000a1020000a2020000a3020000a4020000a5020000a6020000a7020000a8020000a9020000aa020000ab020000ac020000ad020000ae020000af020000b0020000b1020000b2020000b3020000b4020000b5020000b6020000b7020000b8020000b9020000ba020000bb020000bc020000bd020000be020000bf020000c0020000c1020000c2020000
+  assetHash:
+    serializedVersion: 2
+    Hash: 3d20da735548aa4329db139765ec2267
+  longitude: 0.6945312420201244
+  latitude: 47.395504084950566
+  northCorrection: 358.30242311868625
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -12.174761, y: -12.411293, z: 56.40198}
+      lookAt: {x: -16.726414, y: 116.72689, z: -47.090202}
+      up: {x: 0.034273442, y: 0.62573195, z: 0.77928483}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes:
+    - camera:
+        position: {x: -107.71656, y: 109.22298, z: 36.436523}
+        lookAt: {x: -17.404427, y: 16.760452, z: -19.069344}
+        up: {x: 0.56001365, y: 0.7536058, z: -0.34418458}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: North Tower
+    - camera:
+        position: {x: -92.321144, y: 90.91647, z: -85.64547}
+        lookAt: {x: -8.042023, y: 22.885294, z: 4.1057906}
+        up: {x: 0.33106926, y: 0.87526625, z: 0.3525652}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: West Face
+    - camera:
+        position: {x: 21.146412, y: 35.293213, z: -120.948135}
+        lookAt: {x: -6.43039, y: 31.326456, z: 42.244408}
+        up: {x: -0.00399233, y: 0.99971294, z: 0.0236256}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: South
+    - camera:
+        position: {x: 39.11458, y: -15.69431, z: -42.43454}
+        lookAt: {x: -44.42577, y: 93.67202, z: 49.587402}
+        up: {x: 0.44403642, y: 0.75072974, z: -0.4891181}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: South Transept
+    - camera:
+        position: {x: 134.12045, y: 79.23341, z: -59.820396}
+        lookAt: {x: -0.8964197, y: 26.157312, z: 19.937939}
+        up: {x: -0.27603275, y: 0.9472155, z: 0.16306046}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: South Aerial
+    - camera:
+        position: {x: -12.174761, y: -12.411293, z: 56.40198}
+        lookAt: {x: -16.726414, y: 116.72689, z: -47.090202}
+        up: {x: 0.034273442, y: 0.62573195, z: 0.77928483}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: North Transept
+    - camera:
+        position: {x: -37.860138, y: -0.8925824, z: 42.282215}
+        lookAt: {x: 27.076872, y: 63.603687, z: -101.49429}
+        up: {x: -0.15576412, y: 0.92563385, z: 0.34487608}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Buttress Detail
+    - camera:
+        position: {x: -86.275925, y: 98.92241, z: 22.568928}
+        lookAt: {x: 24.410578, y: -17.296934, z: -18.046146}
+        up: {x: 0.6590371, y: 0.71217304, z: -0.2418257}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Out of the fog
+    - camera:
+        position: {x: -18.101948, y: 52.514736, z: 36.407284}
+        lookAt: {x: -32.01753, y: -84.249084, z: -55.842567}
+        up: {x: -0.123220295, y: 0.56352425, z: -0.8168581}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Top Buttress Detail
+    - camera:
+        position: {x: -8.853049, y: -11.520492, z: 62.788284}
+        lookAt: {x: -29.535625, y: 62.80532, z: -11.7924795}
+        up: {x: 0.18510084, y: 0.72126555, z: 0.66746813}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: North Transept fog
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: buttress finial
+    100002: buttress finial 1
+    100004: buttress finial 10
+    100006: buttress finial 11
+    100008: buttress finial 12
+    100010: buttress finial 13
+    100012: buttress finial 14
+    100014: buttress finial 15
+    100016: buttress finial 16
+    100018: buttress finial 17
+    100020: buttress finial 18
+    100022: buttress finial 19
+    100024: buttress finial 2
+    100026: buttress finial 20
+    100028: buttress finial 21
+    100030: buttress finial 22
+    100032: buttress finial 23
+    100034: buttress finial 24
+    100036: buttress finial 25
+    100038: buttress finial 26
+    100040: buttress finial 27
+    100042: buttress finial 28
+    100044: buttress finial 29
+    100046: buttress finial 3
+    100048: buttress finial 30
+    100050: buttress finial 31
+    100052: buttress finial 32
+    100054: buttress finial 33
+    100056: buttress finial 34
+    100058: buttress finial 35
+    100060: buttress finial 4
+    100062: buttress finial 5
+    100064: buttress finial 6
+    100066: buttress finial 7
+    100068: buttress finial 8
+    100070: buttress finial 9
+    100072: buttress finial#1
+    100074: buttress finial#1 1
+    100076: buttress finial#1 10
+    100078: buttress finial#1 11
+    100080: buttress finial#1 12
+    100082: buttress finial#1 13
+    100084: buttress finial#1 14
+    100086: buttress finial#1 15
+    100088: buttress finial#1 2
+    100090: buttress finial#1 3
+    100092: buttress finial#1 4
+    100094: buttress finial#1 5
+    100096: buttress finial#1 6
+    100098: buttress finial#1 7
+    100100: buttress finial#1 8
+    100102: buttress finial#1 9
+    100104: //RootNode
+    100106: choir short pier
+    100108: choir short pier 1
+    100110: choir short pier 2
+    100112: choir short pier 3
+    100114: choir short pier 4
+    100116: choir short pier 5
+    100118: choir short pier 6
+    100120: choir short pier 7
+    100122: choir short pier 8
+    100124: choir short pier 9
+    100126: EAST STAIRS
+    100128: EAST STAIRS 1
+    100130: Group 1
+    100132: Group 102
+    100134: Group 105
+    100136: Group 110
+    100138: Group 112
+    100140: Group 114
+    100142: Group 116
+    100144: Group 119
+    100146: Group 121
+    100148: Group 123
+    100150: Group 127
+    100152: Group 131
+    100154: Group 135
+    100156: Group 137
+    100158: Group 139
+    100160: Group 141
+    100162: Group 143
+    100164: Group 145
+    100166: Group 147
+    100168: Group 149
+    100170: Group 15
+    100172: Group 151
+    100174: Group 153
+    100176: Group 155
+    100178: Group 157
+    100180: Group 159
+    100182: Group 161
+    100184: Group 163
+    100186: Group 165
+    100188: Group 167
+    100190: Group 169
+    100192: Group 171
+    100194: Group 173
+    100196: Group 175
+    100198: Group 177
+    100200: Group 193
+    100202: Group 2
+    100204: Group 203
+    100206: Group 211
+    100208: Group 219
+    100210: Group 229
+    100212: Group 23
+    100214: Group 239
+    100216: Group 269
+    100218: Group 279
+    100220: Group 28
+    100222: Group 287
+    100224: Group 295
+    100226: Group 30
+    100228: Group 303
+    100230: Group 313
+    100232: Group 32
+    100234: Group 323
+    100236: Group 333
+    100238: Group 34
+    100240: Group 35
+    100242: Group 352
+    100244: Group 366
+    100246: Group 368
+    100248: Group 370
+    100250: Group 372
+    100252: Group 374
+    100254: Group 376
+    100256: Group 378
+    100258: Group 380
+    100260: Group 4
+    100262: Group 41
+    100264: Group 410
+    100266: Group 416
+    100268: Group 422
+    100270: Group 426
+    100272: Group 428
+    100274: Group 43
+    100276: Group 430
+    100278: Group 432
+    100280: Group 434
+    100282: Group 436
+    100284: Group 438
+    100286: Group 44
+    100288: Group 440
+    100290: Group 46
+    100292: Group 47
+    100294: Group 484
+    100296: Group 49
+    100298: Group 503
+    100300: Group 505
+    100302: Group 507
+    100304: Group 509
+    100306: Group 510
+    100308: Group 511
+    100310: Group 513
+    100312: Group 515
+    100314: Group 517
+    100316: Group 519
+    100318: Group 521
+    100320: Group 523
+    100322: Group 525
+    100324: Group 526
+    100326: Group 527
+    100328: Group 528
+    100330: Group 532
+    100332: Group 534
+    100334: Group 538
+    100336: Group 542
+    100338: Group 546
+    100340: Group 550
+    100342: Group 554
+    100344: Group 556
+    100346: Group 56
+    100348: Group 560
+    100350: Group 564
+    100352: Group 568
+    100354: Group 57
+    100356: Group 572
+    100358: Group 576
+    100360: Group 578
+    100362: Group 582
+    100364: Group 586
+    100366: Group 590
+    100368: Group 594
+    100370: Group 598
+    100372: Group 6
+    100374: Group 600
+    100376: Group 604
+    100378: Group 608
+    100380: Group 612
+    100382: Group 616
+    100384: Group 636
+    100386: Group 638
+    100388: Group 640
+    100390: Group 642
+    100392: Group 644
+    100394: Group 645
+    100396: Group 647
+    100398: Group 65
+    100400: Group 650
+    100402: Group 654
+    100404: Group 658
+    100406: Group 662
+    100408: Group 666
+    100410: Group 670
+    100412: Group 674
+    100414: Group 678
+    100416: Group 680
+    100418: Group 681
+    100420: Group 683
+    100422: Group 685
+    100424: Group 687
+    100426: Group 689
+    100428: Group 7
+    100430: Group 70
+    100432: Group 72
+    100434: Group 74
+    100436: Group 76
+    100438: Group 77
+    100440: Group 78
+    100442: Group 84
+    100444: Group 86
+    100446: Group 88
+    100448: Group 90
+    100450: Group 92
+    100452: Group 94
+    100454: Group 97
+    100456: Group#15
+    100458: Group#15 1
+    100460: Group#15 2
+    100462: Group#15 3
+    100464: Group#15 4
+    100466: Group#15 5
+    100468: Group#15 6
+    100470: Group#15 7
+    100472: Group#18
+    100474: Group#18 1
+    100476: Group#18 2
+    100478: Group#18 3
+    100480: Group#18 4
+    100482: Group#18 5
+    100484: Group#3
+    100486: Group#3 1
+    100488: Group#6
+    100490: Group#6 1
+    100492: Group#6 2
+    100494: Group#6 3
+    100496: Group#9
+    100498: Group#9 1
+    100500: little house
+    100502: little house 1
+    100504: little house 2
+    100506: little house 3
+    100508: little spear
+    100510: Mega Buttress
+    100512: Mega Buttress 1
+    100514: moss wallbasw
+    100516: moss wallbasw 1
+    100518: moss wallbasw 2
+    100520: moss wallbasw 3
+    100522: moss wallbasw 4
+    100524: moss wallbasw 5
+    100526: Nave pier#1
+    100528: Nave pier#1 1
+    100530: Nave pier#1 2
+    100532: Nave pier#1 3
+    100534: Nave pier#1 4
+    100536: Nave pier#1 5
+    100538: Nave pier#1 6
+    100540: Nave pier#1 7
+    100542: Nave pier#10
+    100544: Nave pier#10 1
+    100546: Nave pier#10 2
+    100548: Nave pier#10 3
+    100550: Nave pier#2
+    100552: Nave pier#2 1
+    100554: Nave pier#2 2
+    100556: Nave pier#2 3
+    100558: Nave pier#3
+    100560: Nave pier#3 1
+    100562: Nave pier#3 2
+    100564: Nave pier#3 3
+    100566: Nave pier#3 4
+    100568: Nave pier#3 5
+    100570: Nave pier#4
+    100572: Nave pier#4 1
+    100574: Nave pier#4 2
+    100576: Nave pier#4 3
+    100578: Nave pier#4 4
+    100580: Nave pier#4 5
+    100582: Nave pier#4 6
+    100584: Nave pier#4 7
+    100586: north trans piers
+    100588: north trans piers 1
+    100590: North trans steeps
+    100592: North trans steeps 1
+    100594: rockets#1
+    100596: rockets#1 1
+    100598: rockets#1 2
+    100600: rockets#1 3
+    100602: south tower thangs
+    100604: south tower thangs 1
+    100606: south tower thangs 10
+    100608: south tower thangs 11
+    100610: south tower thangs 12
+    100612: south tower thangs 13
+    100614: south tower thangs 14
+    100616: south tower thangs 15
+    100618: south tower thangs 2
+    100620: south tower thangs 3
+    100622: south tower thangs 4
+    100624: south tower thangs 5
+    100626: south tower thangs 6
+    100628: south tower thangs 7
+    100630: south tower thangs 8
+    100632: south tower thangs 9
+    100634: SPEAR THING
+    100636: SPEAR THING 1
+    100638: SPEAR THING 2
+    100640: tower piers#1
+    100642: tower piers#1 1
+    100644: tower piers#1 2
+    100646: tower piers#1 3
+    100648: tower piers#1 4
+    100650: tower piers#1 5
+    100652: tower piers#1 6
+    100654: tower piers#1 7
+    100656: tower piers#4
+    100658: tower piers#4 1
+    100660: tower piers#4 2
+    100662: tower piers#4 3
+    100664: tower piers#4 4
+    100666: tower piers#4 5
+    100668: tower piers#4 6
+    100670: tower piers#4 7
+    100672: tower thang
+    100674: tower thang 1
+    100676: tower thang 2
+    100678: tower thang 3
+    100680: tower thang 4
+    100682: tower thang 5
+    100684: tower thang 6
+    100686: tower thang 7
+    100688: tower thang#1
+    100690: tower thang#1 1
+    100692: tower thang#1 2
+    100694: tower thang#1 3
+    100696: tower thang#1 4
+    100698: tower thang#1 5
+    100700: tower thang#1 6
+    100702: tower thang#1 7
+    100704: tower thang#1 8
+    100706: transept spire
+    100708: transept spire 1
+    100710: transept spire 2
+    100712: transept spire 3
+    100714: west trans buttress plain
+    100716: west trans buttress plain 1
+    100718: WF NT pier
+    100720: WF NT pier 1
+    100722: WF NT pier 2
+    100724: WF NT pier 3
+    100726: WF ST dome buttress
+    100728: WF ST dome buttress 1
+    100730: WF ST dome buttress 2
+    100732: WF ST dome buttress 3
+    400000: buttress finial
+    400002: buttress finial 1
+    400004: buttress finial 10
+    400006: buttress finial 11
+    400008: buttress finial 12
+    400010: buttress finial 13
+    400012: buttress finial 14
+    400014: buttress finial 15
+    400016: buttress finial 16
+    400018: buttress finial 17
+    400020: buttress finial 18
+    400022: buttress finial 19
+    400024: buttress finial 2
+    400026: buttress finial 20
+    400028: buttress finial 21
+    400030: buttress finial 22
+    400032: buttress finial 23
+    400034: buttress finial 24
+    400036: buttress finial 25
+    400038: buttress finial 26
+    400040: buttress finial 27
+    400042: buttress finial 28
+    400044: buttress finial 29
+    400046: buttress finial 3
+    400048: buttress finial 30
+    400050: buttress finial 31
+    400052: buttress finial 32
+    400054: buttress finial 33
+    400056: buttress finial 34
+    400058: buttress finial 35
+    400060: buttress finial 4
+    400062: buttress finial 5
+    400064: buttress finial 6
+    400066: buttress finial 7
+    400068: buttress finial 8
+    400070: buttress finial 9
+    400072: buttress finial#1
+    400074: buttress finial#1 1
+    400076: buttress finial#1 10
+    400078: buttress finial#1 11
+    400080: buttress finial#1 12
+    400082: buttress finial#1 13
+    400084: buttress finial#1 14
+    400086: buttress finial#1 15
+    400088: buttress finial#1 2
+    400090: buttress finial#1 3
+    400092: buttress finial#1 4
+    400094: buttress finial#1 5
+    400096: buttress finial#1 6
+    400098: buttress finial#1 7
+    400100: buttress finial#1 8
+    400102: buttress finial#1 9
+    400104: //RootNode
+    400106: choir short pier
+    400108: choir short pier 1
+    400110: choir short pier 2
+    400112: choir short pier 3
+    400114: choir short pier 4
+    400116: choir short pier 5
+    400118: choir short pier 6
+    400120: choir short pier 7
+    400122: choir short pier 8
+    400124: choir short pier 9
+    400126: EAST STAIRS
+    400128: EAST STAIRS 1
+    400130: Group 1
+    400132: Group 102
+    400134: Group 105
+    400136: Group 110
+    400138: Group 112
+    400140: Group 114
+    400142: Group 116
+    400144: Group 119
+    400146: Group 121
+    400148: Group 123
+    400150: Group 127
+    400152: Group 131
+    400154: Group 135
+    400156: Group 137
+    400158: Group 139
+    400160: Group 141
+    400162: Group 143
+    400164: Group 145
+    400166: Group 147
+    400168: Group 149
+    400170: Group 15
+    400172: Group 151
+    400174: Group 153
+    400176: Group 155
+    400178: Group 157
+    400180: Group 159
+    400182: Group 161
+    400184: Group 163
+    400186: Group 165
+    400188: Group 167
+    400190: Group 169
+    400192: Group 171
+    400194: Group 173
+    400196: Group 175
+    400198: Group 177
+    400200: Group 193
+    400202: Group 2
+    400204: Group 203
+    400206: Group 211
+    400208: Group 219
+    400210: Group 229
+    400212: Group 23
+    400214: Group 239
+    400216: Group 269
+    400218: Group 279
+    400220: Group 28
+    400222: Group 287
+    400224: Group 295
+    400226: Group 30
+    400228: Group 303
+    400230: Group 313
+    400232: Group 32
+    400234: Group 323
+    400236: Group 333
+    400238: Group 34
+    400240: Group 35
+    400242: Group 352
+    400244: Group 366
+    400246: Group 368
+    400248: Group 370
+    400250: Group 372
+    400252: Group 374
+    400254: Group 376
+    400256: Group 378
+    400258: Group 380
+    400260: Group 4
+    400262: Group 41
+    400264: Group 410
+    400266: Group 416
+    400268: Group 422
+    400270: Group 426
+    400272: Group 428
+    400274: Group 43
+    400276: Group 430
+    400278: Group 432
+    400280: Group 434
+    400282: Group 436
+    400284: Group 438
+    400286: Group 44
+    400288: Group 440
+    400290: Group 46
+    400292: Group 47
+    400294: Group 484
+    400296: Group 49
+    400298: Group 503
+    400300: Group 505
+    400302: Group 507
+    400304: Group 509
+    400306: Group 510
+    400308: Group 511
+    400310: Group 513
+    400312: Group 515
+    400314: Group 517
+    400316: Group 519
+    400318: Group 521
+    400320: Group 523
+    400322: Group 525
+    400324: Group 526
+    400326: Group 527
+    400328: Group 528
+    400330: Group 532
+    400332: Group 534
+    400334: Group 538
+    400336: Group 542
+    400338: Group 546
+    400340: Group 550
+    400342: Group 554
+    400344: Group 556
+    400346: Group 56
+    400348: Group 560
+    400350: Group 564
+    400352: Group 568
+    400354: Group 57
+    400356: Group 572
+    400358: Group 576
+    400360: Group 578
+    400362: Group 582
+    400364: Group 586
+    400366: Group 590
+    400368: Group 594
+    400370: Group 598
+    400372: Group 6
+    400374: Group 600
+    400376: Group 604
+    400378: Group 608
+    400380: Group 612
+    400382: Group 616
+    400384: Group 636
+    400386: Group 638
+    400388: Group 640
+    400390: Group 642
+    400392: Group 644
+    400394: Group 645
+    400396: Group 647
+    400398: Group 65
+    400400: Group 650
+    400402: Group 654
+    400404: Group 658
+    400406: Group 662
+    400408: Group 666
+    400410: Group 670
+    400412: Group 674
+    400414: Group 678
+    400416: Group 680
+    400418: Group 681
+    400420: Group 683
+    400422: Group 685
+    400424: Group 687
+    400426: Group 689
+    400428: Group 7
+    400430: Group 70
+    400432: Group 72
+    400434: Group 74
+    400436: Group 76
+    400438: Group 77
+    400440: Group 78
+    400442: Group 84
+    400444: Group 86
+    400446: Group 88
+    400448: Group 90
+    400450: Group 92
+    400452: Group 94
+    400454: Group 97
+    400456: Group#15
+    400458: Group#15 1
+    400460: Group#15 2
+    400462: Group#15 3
+    400464: Group#15 4
+    400466: Group#15 5
+    400468: Group#15 6
+    400470: Group#15 7
+    400472: Group#18
+    400474: Group#18 1
+    400476: Group#18 2
+    400478: Group#18 3
+    400480: Group#18 4
+    400482: Group#18 5
+    400484: Group#3
+    400486: Group#3 1
+    400488: Group#6
+    400490: Group#6 1
+    400492: Group#6 2
+    400494: Group#6 3
+    400496: Group#9
+    400498: Group#9 1
+    400500: little house
+    400502: little house 1
+    400504: little house 2
+    400506: little house 3
+    400508: little spear
+    400510: Mega Buttress
+    400512: Mega Buttress 1
+    400514: moss wallbasw
+    400516: moss wallbasw 1
+    400518: moss wallbasw 2
+    400520: moss wallbasw 3
+    400522: moss wallbasw 4
+    400524: moss wallbasw 5
+    400526: Nave pier#1
+    400528: Nave pier#1 1
+    400530: Nave pier#1 2
+    400532: Nave pier#1 3
+    400534: Nave pier#1 4
+    400536: Nave pier#1 5
+    400538: Nave pier#1 6
+    400540: Nave pier#1 7
+    400542: Nave pier#10
+    400544: Nave pier#10 1
+    400546: Nave pier#10 2
+    400548: Nave pier#10 3
+    400550: Nave pier#2
+    400552: Nave pier#2 1
+    400554: Nave pier#2 2
+    400556: Nave pier#2 3
+    400558: Nave pier#3
+    400560: Nave pier#3 1
+    400562: Nave pier#3 2
+    400564: Nave pier#3 3
+    400566: Nave pier#3 4
+    400568: Nave pier#3 5
+    400570: Nave pier#4
+    400572: Nave pier#4 1
+    400574: Nave pier#4 2
+    400576: Nave pier#4 3
+    400578: Nave pier#4 4
+    400580: Nave pier#4 5
+    400582: Nave pier#4 6
+    400584: Nave pier#4 7
+    400586: north trans piers
+    400588: north trans piers 1
+    400590: North trans steeps
+    400592: North trans steeps 1
+    400594: rockets#1
+    400596: rockets#1 1
+    400598: rockets#1 2
+    400600: rockets#1 3
+    400602: south tower thangs
+    400604: south tower thangs 1
+    400606: south tower thangs 10
+    400608: south tower thangs 11
+    400610: south tower thangs 12
+    400612: south tower thangs 13
+    400614: south tower thangs 14
+    400616: south tower thangs 15
+    400618: south tower thangs 2
+    400620: south tower thangs 3
+    400622: south tower thangs 4
+    400624: south tower thangs 5
+    400626: south tower thangs 6
+    400628: south tower thangs 7
+    400630: south tower thangs 8
+    400632: south tower thangs 9
+    400634: SPEAR THING
+    400636: SPEAR THING 1
+    400638: SPEAR THING 2
+    400640: tower piers#1
+    400642: tower piers#1 1
+    400644: tower piers#1 2
+    400646: tower piers#1 3
+    400648: tower piers#1 4
+    400650: tower piers#1 5
+    400652: tower piers#1 6
+    400654: tower piers#1 7
+    400656: tower piers#4
+    400658: tower piers#4 1
+    400660: tower piers#4 2
+    400662: tower piers#4 3
+    400664: tower piers#4 4
+    400666: tower piers#4 5
+    400668: tower piers#4 6
+    400670: tower piers#4 7
+    400672: tower thang
+    400674: tower thang 1
+    400676: tower thang 2
+    400678: tower thang 3
+    400680: tower thang 4
+    400682: tower thang 5
+    400684: tower thang 6
+    400686: tower thang 7
+    400688: tower thang#1
+    400690: tower thang#1 1
+    400692: tower thang#1 2
+    400694: tower thang#1 3
+    400696: tower thang#1 4
+    400698: tower thang#1 5
+    400700: tower thang#1 6
+    400702: tower thang#1 7
+    400704: tower thang#1 8
+    400706: transept spire
+    400708: transept spire 1
+    400710: transept spire 2
+    400712: transept spire 3
+    400714: west trans buttress plain
+    400716: west trans buttress plain 1
+    400718: WF NT pier
+    400720: WF NT pier 1
+    400722: WF NT pier 2
+    400724: WF NT pier 3
+    400726: WF ST dome buttress
+    400728: WF ST dome buttress 1
+    400730: WF ST dome buttress 2
+    400732: WF ST dome buttress 3
+    2300000: buttress finial
+    2300002: buttress finial 1
+    2300004: buttress finial 10
+    2300006: buttress finial 11
+    2300008: buttress finial 12
+    2300010: buttress finial 13
+    2300012: buttress finial 14
+    2300014: buttress finial 15
+    2300016: buttress finial 16
+    2300018: buttress finial 17
+    2300020: buttress finial 18
+    2300022: buttress finial 19
+    2300024: buttress finial 2
+    2300026: buttress finial 20
+    2300028: buttress finial 21
+    2300030: buttress finial 22
+    2300032: buttress finial 23
+    2300034: buttress finial 24
+    2300036: buttress finial 25
+    2300038: buttress finial 26
+    2300040: buttress finial 27
+    2300042: buttress finial 28
+    2300044: buttress finial 29
+    2300046: buttress finial 3
+    2300048: buttress finial 30
+    2300050: buttress finial 31
+    2300052: buttress finial 32
+    2300054: buttress finial 33
+    2300056: buttress finial 34
+    2300058: buttress finial 35
+    2300060: buttress finial 4
+    2300062: buttress finial 5
+    2300064: buttress finial 6
+    2300066: buttress finial 7
+    2300068: buttress finial 8
+    2300070: buttress finial 9
+    2300072: buttress finial#1
+    2300074: buttress finial#1 1
+    2300076: buttress finial#1 10
+    2300078: buttress finial#1 11
+    2300080: buttress finial#1 12
+    2300082: buttress finial#1 13
+    2300084: buttress finial#1 14
+    2300086: buttress finial#1 15
+    2300088: buttress finial#1 2
+    2300090: buttress finial#1 3
+    2300092: buttress finial#1 4
+    2300094: buttress finial#1 5
+    2300096: buttress finial#1 6
+    2300098: buttress finial#1 7
+    2300100: buttress finial#1 8
+    2300102: buttress finial#1 9
+    2300104: choir short pier
+    2300106: choir short pier 1
+    2300108: choir short pier 2
+    2300110: choir short pier 3
+    2300112: choir short pier 4
+    2300114: choir short pier 5
+    2300116: choir short pier 6
+    2300118: choir short pier 7
+    2300120: choir short pier 8
+    2300122: choir short pier 9
+    2300124: EAST STAIRS
+    2300126: EAST STAIRS 1
+    2300128: Group 110
+    2300130: Group 112
+    2300132: Group 114
+    2300134: Group 119
+    2300136: Group 121
+    2300138: Group 123
+    2300140: Group 127
+    2300142: Group 131
+    2300144: Group 135
+    2300146: Group 137
+    2300148: Group 139
+    2300150: Group 141
+    2300152: Group 143
+    2300154: Group 145
+    2300156: Group 147
+    2300158: Group 149
+    2300160: Group 15
+    2300162: Group 151
+    2300164: Group 153
+    2300166: Group 155
+    2300168: Group 157
+    2300170: Group 159
+    2300172: Group 161
+    2300174: Group 163
+    2300176: Group 165
+    2300178: Group 167
+    2300180: Group 169
+    2300182: Group 171
+    2300184: Group 173
+    2300186: Group 175
+    2300188: Group 177
+    2300190: Group 193
+    2300192: Group 2
+    2300194: Group 203
+    2300196: Group 211
+    2300198: Group 219
+    2300200: Group 229
+    2300202: Group 239
+    2300204: Group 269
+    2300206: Group 279
+    2300208: Group 28
+    2300210: Group 287
+    2300212: Group 295
+    2300214: Group 30
+    2300216: Group 303
+    2300218: Group 313
+    2300220: Group 32
+    2300222: Group 323
+    2300224: Group 35
+    2300226: Group 352
+    2300228: Group 366
+    2300230: Group 368
+    2300232: Group 370
+    2300234: Group 372
+    2300236: Group 374
+    2300238: Group 376
+    2300240: Group 378
+    2300242: Group 380
+    2300244: Group 4
+    2300246: Group 41
+    2300248: Group 410
+    2300250: Group 416
+    2300252: Group 422
+    2300254: Group 426
+    2300256: Group 428
+    2300258: Group 430
+    2300260: Group 432
+    2300262: Group 434
+    2300264: Group 436
+    2300266: Group 438
+    2300268: Group 44
+    2300270: Group 440
+    2300272: Group 47
+    2300274: Group 503
+    2300276: Group 505
+    2300278: Group 507
+    2300280: Group 511
+    2300282: Group 513
+    2300284: Group 515
+    2300286: Group 517
+    2300288: Group 519
+    2300290: Group 521
+    2300292: Group 523
+    2300294: Group 528
+    2300296: Group 532
+    2300298: Group 534
+    2300300: Group 538
+    2300302: Group 542
+    2300304: Group 546
+    2300306: Group 550
+    2300308: Group 554
+    2300310: Group 556
+    2300312: Group 560
+    2300314: Group 564
+    2300316: Group 568
+    2300318: Group 57
+    2300320: Group 572
+    2300322: Group 576
+    2300324: Group 578
+    2300326: Group 582
+    2300328: Group 586
+    2300330: Group 590
+    2300332: Group 594
+    2300334: Group 598
+    2300336: Group 600
+    2300338: Group 604
+    2300340: Group 608
+    2300342: Group 612
+    2300344: Group 616
+    2300346: Group 636
+    2300348: Group 638
+    2300350: Group 640
+    2300352: Group 642
+    2300354: Group 645
+    2300356: Group 650
+    2300358: Group 654
+    2300360: Group 658
+    2300362: Group 662
+    2300364: Group 666
+    2300366: Group 670
+    2300368: Group 674
+    2300370: Group 678
+    2300372: Group 681
+    2300374: Group 683
+    2300376: Group 685
+    2300378: Group 687
+    2300380: Group 689
+    2300382: Group 7
+    2300384: Group 70
+    2300386: Group 72
+    2300388: Group 74
+    2300390: Group 78
+    2300392: Group 84
+    2300394: Group 86
+    2300396: Group 88
+    2300398: Group 90
+    2300400: Group 92
+    2300402: Group#15
+    2300404: Group#15 1
+    2300406: Group#15 2
+    2300408: Group#15 3
+    2300410: Group#15 4
+    2300412: Group#15 5
+    2300414: Group#15 6
+    2300416: Group#15 7
+    2300418: Group#18
+    2300420: Group#18 1
+    2300422: Group#18 2
+    2300424: Group#18 3
+    2300426: Group#18 4
+    2300428: Group#18 5
+    2300430: Group#3
+    2300432: Group#3 1
+    2300434: Group#6
+    2300436: Group#6 1
+    2300438: Group#6 2
+    2300440: Group#6 3
+    2300442: Group#9
+    2300444: Group#9 1
+    2300446: little house
+    2300448: little house 1
+    2300450: little house 2
+    2300452: little house 3
+    2300454: little spear
+    2300456: Mega Buttress
+    2300458: Mega Buttress 1
+    2300460: moss wallbasw
+    2300462: moss wallbasw 1
+    2300464: moss wallbasw 2
+    2300466: moss wallbasw 3
+    2300468: moss wallbasw 4
+    2300470: moss wallbasw 5
+    2300472: Nave pier#1
+    2300474: Nave pier#1 1
+    2300476: Nave pier#1 2
+    2300478: Nave pier#1 3
+    2300480: Nave pier#1 4
+    2300482: Nave pier#1 5
+    2300484: Nave pier#1 6
+    2300486: Nave pier#1 7
+    2300488: Nave pier#10
+    2300490: Nave pier#10 1
+    2300492: Nave pier#10 2
+    2300494: Nave pier#10 3
+    2300496: Nave pier#2
+    2300498: Nave pier#2 1
+    2300500: Nave pier#2 2
+    2300502: Nave pier#2 3
+    2300504: Nave pier#3
+    2300506: Nave pier#3 1
+    2300508: Nave pier#3 2
+    2300510: Nave pier#3 3
+    2300512: Nave pier#3 4
+    2300514: Nave pier#3 5
+    2300516: Nave pier#4
+    2300518: Nave pier#4 1
+    2300520: Nave pier#4 2
+    2300522: Nave pier#4 3
+    2300524: Nave pier#4 4
+    2300526: Nave pier#4 5
+    2300528: Nave pier#4 6
+    2300530: Nave pier#4 7
+    2300532: north trans piers
+    2300534: north trans piers 1
+    2300536: North trans steeps
+    2300538: North trans steeps 1
+    2300540: rockets#1
+    2300542: rockets#1 1
+    2300544: rockets#1 2
+    2300546: rockets#1 3
+    2300548: south tower thangs
+    2300550: south tower thangs 1
+    2300552: south tower thangs 10
+    2300554: south tower thangs 11
+    2300556: south tower thangs 12
+    2300558: south tower thangs 13
+    2300560: south tower thangs 14
+    2300562: south tower thangs 15
+    2300564: south tower thangs 2
+    2300566: south tower thangs 3
+    2300568: south tower thangs 4
+    2300570: south tower thangs 5
+    2300572: south tower thangs 6
+    2300574: south tower thangs 7
+    2300576: south tower thangs 8
+    2300578: south tower thangs 9
+    2300580: SPEAR THING
+    2300582: SPEAR THING 1
+    2300584: SPEAR THING 2
+    2300586: tower piers#1
+    2300588: tower piers#1 1
+    2300590: tower piers#1 2
+    2300592: tower piers#1 3
+    2300594: tower piers#1 4
+    2300596: tower piers#1 5
+    2300598: tower piers#1 6
+    2300600: tower piers#1 7
+    2300602: tower piers#4
+    2300604: tower piers#4 1
+    2300606: tower piers#4 2
+    2300608: tower piers#4 3
+    2300610: tower piers#4 4
+    2300612: tower piers#4 5
+    2300614: tower piers#4 6
+    2300616: tower piers#4 7
+    2300618: tower thang
+    2300620: tower thang 1
+    2300622: tower thang 2
+    2300624: tower thang 3
+    2300626: tower thang 4
+    2300628: tower thang 5
+    2300630: tower thang 6
+    2300632: tower thang 7
+    2300634: tower thang#1
+    2300636: tower thang#1 1
+    2300638: tower thang#1 2
+    2300640: tower thang#1 3
+    2300642: tower thang#1 4
+    2300644: tower thang#1 5
+    2300646: tower thang#1 6
+    2300648: tower thang#1 7
+    2300650: tower thang#1 8
+    2300652: transept spire
+    2300654: transept spire 1
+    2300656: transept spire 2
+    2300658: transept spire 3
+    2300660: west trans buttress plain
+    2300662: west trans buttress plain 1
+    2300664: WF NT pier
+    2300666: WF NT pier 1
+    2300668: WF NT pier 2
+    2300670: WF NT pier 3
+    2300672: WF ST dome buttress
+    2300674: WF ST dome buttress 1
+    2300676: WF ST dome buttress 2
+    2300678: WF ST dome buttress 3
+    3300000: buttress finial
+    3300002: buttress finial 1
+    3300004: buttress finial 10
+    3300006: buttress finial 11
+    3300008: buttress finial 12
+    3300010: buttress finial 13
+    3300012: buttress finial 14
+    3300014: buttress finial 15
+    3300016: buttress finial 16
+    3300018: buttress finial 17
+    3300020: buttress finial 18
+    3300022: buttress finial 19
+    3300024: buttress finial 2
+    3300026: buttress finial 20
+    3300028: buttress finial 21
+    3300030: buttress finial 22
+    3300032: buttress finial 23
+    3300034: buttress finial 24
+    3300036: buttress finial 25
+    3300038: buttress finial 26
+    3300040: buttress finial 27
+    3300042: buttress finial 28
+    3300044: buttress finial 29
+    3300046: buttress finial 3
+    3300048: buttress finial 30
+    3300050: buttress finial 31
+    3300052: buttress finial 32
+    3300054: buttress finial 33
+    3300056: buttress finial 34
+    3300058: buttress finial 35
+    3300060: buttress finial 4
+    3300062: buttress finial 5
+    3300064: buttress finial 6
+    3300066: buttress finial 7
+    3300068: buttress finial 8
+    3300070: buttress finial 9
+    3300072: buttress finial#1
+    3300074: buttress finial#1 1
+    3300076: buttress finial#1 10
+    3300078: buttress finial#1 11
+    3300080: buttress finial#1 12
+    3300082: buttress finial#1 13
+    3300084: buttress finial#1 14
+    3300086: buttress finial#1 15
+    3300088: buttress finial#1 2
+    3300090: buttress finial#1 3
+    3300092: buttress finial#1 4
+    3300094: buttress finial#1 5
+    3300096: buttress finial#1 6
+    3300098: buttress finial#1 7
+    3300100: buttress finial#1 8
+    3300102: buttress finial#1 9
+    3300104: choir short pier
+    3300106: choir short pier 1
+    3300108: choir short pier 2
+    3300110: choir short pier 3
+    3300112: choir short pier 4
+    3300114: choir short pier 5
+    3300116: choir short pier 6
+    3300118: choir short pier 7
+    3300120: choir short pier 8
+    3300122: choir short pier 9
+    3300124: EAST STAIRS
+    3300126: EAST STAIRS 1
+    3300128: Group 110
+    3300130: Group 112
+    3300132: Group 114
+    3300134: Group 119
+    3300136: Group 121
+    3300138: Group 123
+    3300140: Group 127
+    3300142: Group 131
+    3300144: Group 135
+    3300146: Group 137
+    3300148: Group 139
+    3300150: Group 141
+    3300152: Group 143
+    3300154: Group 145
+    3300156: Group 147
+    3300158: Group 149
+    3300160: Group 15
+    3300162: Group 151
+    3300164: Group 153
+    3300166: Group 155
+    3300168: Group 157
+    3300170: Group 159
+    3300172: Group 161
+    3300174: Group 163
+    3300176: Group 165
+    3300178: Group 167
+    3300180: Group 169
+    3300182: Group 171
+    3300184: Group 173
+    3300186: Group 175
+    3300188: Group 177
+    3300190: Group 193
+    3300192: Group 2
+    3300194: Group 203
+    3300196: Group 211
+    3300198: Group 219
+    3300200: Group 229
+    3300202: Group 239
+    3300204: Group 269
+    3300206: Group 279
+    3300208: Group 28
+    3300210: Group 287
+    3300212: Group 295
+    3300214: Group 30
+    3300216: Group 303
+    3300218: Group 313
+    3300220: Group 32
+    3300222: Group 323
+    3300224: Group 35
+    3300226: Group 352
+    3300228: Group 366
+    3300230: Group 368
+    3300232: Group 370
+    3300234: Group 372
+    3300236: Group 374
+    3300238: Group 376
+    3300240: Group 378
+    3300242: Group 380
+    3300244: Group 4
+    3300246: Group 41
+    3300248: Group 410
+    3300250: Group 416
+    3300252: Group 422
+    3300254: Group 426
+    3300256: Group 428
+    3300258: Group 430
+    3300260: Group 432
+    3300262: Group 434
+    3300264: Group 436
+    3300266: Group 438
+    3300268: Group 44
+    3300270: Group 440
+    3300272: Group 47
+    3300274: Group 503
+    3300276: Group 505
+    3300278: Group 507
+    3300280: Group 511
+    3300282: Group 513
+    3300284: Group 515
+    3300286: Group 517
+    3300288: Group 519
+    3300290: Group 521
+    3300292: Group 523
+    3300294: Group 528
+    3300296: Group 532
+    3300298: Group 534
+    3300300: Group 538
+    3300302: Group 542
+    3300304: Group 546
+    3300306: Group 550
+    3300308: Group 554
+    3300310: Group 556
+    3300312: Group 560
+    3300314: Group 564
+    3300316: Group 568
+    3300318: Group 57
+    3300320: Group 572
+    3300322: Group 576
+    3300324: Group 578
+    3300326: Group 582
+    3300328: Group 586
+    3300330: Group 590
+    3300332: Group 594
+    3300334: Group 598
+    3300336: Group 600
+    3300338: Group 604
+    3300340: Group 608
+    3300342: Group 612
+    3300344: Group 616
+    3300346: Group 636
+    3300348: Group 638
+    3300350: Group 640
+    3300352: Group 642
+    3300354: Group 645
+    3300356: Group 650
+    3300358: Group 654
+    3300360: Group 658
+    3300362: Group 662
+    3300364: Group 666
+    3300366: Group 670
+    3300368: Group 674
+    3300370: Group 678
+    3300372: Group 681
+    3300374: Group 683
+    3300376: Group 685
+    3300378: Group 687
+    3300380: Group 689
+    3300382: Group 7
+    3300384: Group 70
+    3300386: Group 72
+    3300388: Group 74
+    3300390: Group 78
+    3300392: Group 84
+    3300394: Group 86
+    3300396: Group 88
+    3300398: Group 90
+    3300400: Group 92
+    3300402: Group#15
+    3300404: Group#15 1
+    3300406: Group#15 2
+    3300408: Group#15 3
+    3300410: Group#15 4
+    3300412: Group#15 5
+    3300414: Group#15 6
+    3300416: Group#15 7
+    3300418: Group#18
+    3300420: Group#18 1
+    3300422: Group#18 2
+    3300424: Group#18 3
+    3300426: Group#18 4
+    3300428: Group#18 5
+    3300430: Group#3
+    3300432: Group#3 1
+    3300434: Group#6
+    3300436: Group#6 1
+    3300438: Group#6 2
+    3300440: Group#6 3
+    3300442: Group#9
+    3300444: Group#9 1
+    3300446: little house
+    3300448: little house 1
+    3300450: little house 2
+    3300452: little house 3
+    3300454: little spear
+    3300456: Mega Buttress
+    3300458: Mega Buttress 1
+    3300460: moss wallbasw
+    3300462: moss wallbasw 1
+    3300464: moss wallbasw 2
+    3300466: moss wallbasw 3
+    3300468: moss wallbasw 4
+    3300470: moss wallbasw 5
+    3300472: Nave pier#1
+    3300474: Nave pier#1 1
+    3300476: Nave pier#1 2
+    3300478: Nave pier#1 3
+    3300480: Nave pier#1 4
+    3300482: Nave pier#1 5
+    3300484: Nave pier#1 6
+    3300486: Nave pier#1 7
+    3300488: Nave pier#10
+    3300490: Nave pier#10 1
+    3300492: Nave pier#10 2
+    3300494: Nave pier#10 3
+    3300496: Nave pier#2
+    3300498: Nave pier#2 1
+    3300500: Nave pier#2 2
+    3300502: Nave pier#2 3
+    3300504: Nave pier#3
+    3300506: Nave pier#3 1
+    3300508: Nave pier#3 2
+    3300510: Nave pier#3 3
+    3300512: Nave pier#3 4
+    3300514: Nave pier#3 5
+    3300516: Nave pier#4
+    3300518: Nave pier#4 1
+    3300520: Nave pier#4 2
+    3300522: Nave pier#4 3
+    3300524: Nave pier#4 4
+    3300526: Nave pier#4 5
+    3300528: Nave pier#4 6
+    3300530: Nave pier#4 7
+    3300532: north trans piers
+    3300534: north trans piers 1
+    3300536: North trans steeps
+    3300538: North trans steeps 1
+    3300540: rockets#1
+    3300542: rockets#1 1
+    3300544: rockets#1 2
+    3300546: rockets#1 3
+    3300548: south tower thangs
+    3300550: south tower thangs 1
+    3300552: south tower thangs 10
+    3300554: south tower thangs 11
+    3300556: south tower thangs 12
+    3300558: south tower thangs 13
+    3300560: south tower thangs 14
+    3300562: south tower thangs 15
+    3300564: south tower thangs 2
+    3300566: south tower thangs 3
+    3300568: south tower thangs 4
+    3300570: south tower thangs 5
+    3300572: south tower thangs 6
+    3300574: south tower thangs 7
+    3300576: south tower thangs 8
+    3300578: south tower thangs 9
+    3300580: SPEAR THING
+    3300582: SPEAR THING 1
+    3300584: SPEAR THING 2
+    3300586: tower piers#1
+    3300588: tower piers#1 1
+    3300590: tower piers#1 2
+    3300592: tower piers#1 3
+    3300594: tower piers#1 4
+    3300596: tower piers#1 5
+    3300598: tower piers#1 6
+    3300600: tower piers#1 7
+    3300602: tower piers#4
+    3300604: tower piers#4 1
+    3300606: tower piers#4 2
+    3300608: tower piers#4 3
+    3300610: tower piers#4 4
+    3300612: tower piers#4 5
+    3300614: tower piers#4 6
+    3300616: tower piers#4 7
+    3300618: tower thang
+    3300620: tower thang 1
+    3300622: tower thang 2
+    3300624: tower thang 3
+    3300626: tower thang 4
+    3300628: tower thang 5
+    3300630: tower thang 6
+    3300632: tower thang 7
+    3300634: tower thang#1
+    3300636: tower thang#1 1
+    3300638: tower thang#1 2
+    3300640: tower thang#1 3
+    3300642: tower thang#1 4
+    3300644: tower thang#1 5
+    3300646: tower thang#1 6
+    3300648: tower thang#1 7
+    3300650: tower thang#1 8
+    3300652: transept spire
+    3300654: transept spire 1
+    3300656: transept spire 2
+    3300658: transept spire 3
+    3300660: west trans buttress plain
+    3300662: west trans buttress plain 1
+    3300664: WF NT pier
+    3300666: WF NT pier 1
+    3300668: WF NT pier 2
+    3300670: WF NT pier 3
+    3300672: WF ST dome buttress
+    3300674: WF ST dome buttress 1
+    3300676: WF ST dome buttress 2
+    3300678: WF ST dome buttress 3
+    4300000: Mesh Group 2
+    4300002: Mesh Group 4
+    4300004: Mesh Group 7
+    4300006: Mesh rockets#1
+    4300008: Mesh tower piers#4
+    4300010: Mesh Group 15
+    4300012: Mesh Group 28
+    4300014: Mesh Group 30
+    4300016: Mesh Group 32
+    4300018: Mesh Group 35
+    4300020: Mesh Group 41
+    4300022: Mesh Group 44
+    4300024: Mesh Group 47
+    4300026: Mesh tower piers#1
+    4300028: Mesh rockets#1
+    4300030: Mesh Group 57
+    4300032: Mesh tower piers#1
+    4300034: Mesh Group 70
+    4300036: Mesh Group 72
+    4300038: Mesh Group 74
+    4300040: Mesh Group 78
+    4300042: Mesh Group 84
+    4300044: Mesh Group 86
+    4300046: Mesh Group 88
+    4300048: Mesh Group 90
+    4300050: Mesh Group 92
+    4300052: Mesh Mega Buttress
+    4300054: Mesh Group#6
+    4300056: Mesh Group 110
+    4300058: Mesh Group 112
+    4300060: Mesh Group 114
+    4300062: Mesh little spear
+    4300064: Mesh Group 119
+    4300066: Mesh Group 121
+    4300068: Mesh Group 123
+    4300070: Mesh SPEAR THING
+    4300072: Mesh Group 137
+    4300074: Mesh Group 139
+    4300076: Mesh Group 141
+    4300078: Mesh Group 145
+    4300080: Mesh Group 147
+    4300082: Mesh Group 149
+    4300084: Mesh Group 151
+    4300086: Mesh Group 153
+    4300088: Mesh Group 155
+    4300090: Mesh Group 157
+    4300092: Mesh Group 167
+    4300094: Mesh Group 171
+    4300096: Mesh Group 177
+    4300098: Mesh Nave pier#4
+    4300100: Mesh buttress finial#1
+    4300102: Mesh Nave pier#1
+    4300104: Mesh Group 193
+    4300106: Mesh buttress finial
+    4300108: Mesh Nave pier#3
+    4300110: Mesh Group 203
+    4300112: Mesh buttress finial
+    4300114: Mesh Nave pier#1
+    4300116: Mesh Group 219
+    4300118: Mesh Group#3
+    4300120: Mesh Group#15
+    4300122: Mesh Nave pier#2
+    4300124: Mesh Nave pier#10
+    4300126: Mesh buttress finial#1
+    4300128: Mesh little house
+    4300130: Mesh Group#9
+    4300132: Mesh Group 366
+    4300134: Mesh Group 368
+    4300136: Mesh Group 370
+    4300138: Mesh Group 372
+    4300140: Mesh Group 374
+    4300142: Mesh choir short pier
+    4300144: Mesh north trans piers
+    4300146: Mesh EAST STAIRS
+    4300148: Mesh west trans buttress plain
+    4300150: Mesh west trans buttress plain
+    4300152: Mesh transept spire
+    4300154: Mesh Group 410
+    4300156: Mesh North trans steeps
+    4300158: Mesh Group#18
+    4300160: Mesh moss wallbasw
+    4300162: Mesh Group 505
+    4300164: Mesh Group 507
+    4300166: Mesh Group 511
+    4300168: Mesh Group 513
+    4300170: Mesh Group 515
+    4300172: Mesh Group 517
+    4300174: Mesh Group 519
+    4300176: Mesh Group 521
+    4300178: Mesh Group 523
+    4300180: Mesh Group 528
+    4300182: Mesh WF ST dome buttress
+    4300184: Mesh Group 532
+    4300186: Mesh Group 534
+    4300188: Mesh south tower thangs
+    4300190: Mesh Group 538
+    4300192: Mesh south tower thangs
+    4300194: Mesh Group 542
+    4300196: Mesh tower thang#1
+    4300198: Mesh Group 636
+    4300200: Mesh Group 638
+    4300202: Mesh Group 642
+    4300204: Mesh Group 645
+    4300206: Mesh tower thang
+    4300208: Mesh Group 650
+    4300210: Mesh Group 681
+    4300212: Mesh Group 683
+    4300214: Mesh WF NT pier
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
