@@ -41,6 +41,9 @@ public class SearchCollider : MonoBehaviour {
 		// Rayが衝突したかを検知する
 		if (Physics.Raycast(m_DwRay, out hit, groundDistMax)) {
 			groundDist = hit.distance;
+		} else {
+			// Rayが衝突しなければ
+			groundDist = Mathf.Infinity;	// 無限大を入れる
 		}
 	}
 

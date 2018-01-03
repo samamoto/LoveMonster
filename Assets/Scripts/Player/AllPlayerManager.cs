@@ -113,7 +113,7 @@ public class AllPlayerManager : MonoBehaviour {
 				} else {
 					// 0 ~ 3をぐるぐる
 					m_PlayerManager[(id - 1)].startPlayerPostion(
-						m_GoalList[i].getNextStagePoint(), 
+						m_GoalList[i].getNextStagePoint() + new Vector3(1.0f, 0f, 0f), // ちょっとだけずらす
 						m_GoalList[i].transform.rotation);
 					// カメラ
 					GameObject.Find("MainCamera" + id.ToString()).GetComponent<ChaseCamera>().resetCamera();

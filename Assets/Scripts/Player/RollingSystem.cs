@@ -37,7 +37,7 @@ public class RollingSystem : MonoBehaviour {
 
 		// 地上から指定の距離以内なら受け身をON Jump上昇中は検知させない
 		if (m_SearchCollider.GetGroundDistance() <= possibleDistance &&
-			m_SearchCollider.GetPlayerJump() == -1) {
+			m_SearchCollider.GetPlayerJump() == -1 && m_SearchCollider.GetGroundDistance() != Mathf.Infinity) {
 			if (m_Con.GetButtonDown(Button.B)) {
 				rollingFlag = true;
 			}
