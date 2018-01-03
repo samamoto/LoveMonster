@@ -154,6 +154,7 @@ public class MainGameManager : MonoBehaviour {
 				// 移動完了したらカメラの位置をリセットして背面に回す
 				m_AllCameraMgr.resetCamera();
 				m_PauseMgr.PauseRestriction(false);
+				m_AllPlayerMgr.stopControll(false);
 			}
 			break;
 
