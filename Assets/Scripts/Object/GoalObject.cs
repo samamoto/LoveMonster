@@ -29,7 +29,7 @@ public class GoalObject : MonoBehaviour {
 		if (isTimerStart) {
 			timer += Time.deltaTime;
 #if DEBUG
-			DebugPrint.print((transitionTimer - timer).ToString());
+			//DebugPrint.print((transitionTimer - timer).ToString());
 #endif
 			if(timer >= transitionTimer) {
 				isGoal = true;

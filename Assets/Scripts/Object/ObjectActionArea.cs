@@ -49,8 +49,8 @@ public class ObjectActionArea : MonoBehaviour {
 			m_PlayerMgr = other.GetComponent<PlayerManager>();
 #if DEBUG
 			// 見つからなかったらLog
-			if (!is_FoundActTag)
-				Debug.Log(name + ":" + tag + " NotFound! 設定されたアクションはリストにありません");
+			//if (!is_FoundActTag)
+			//	Debug.Log(name + ":" + tag + " NotFound! 設定されたアクションはリストにありません");
 #endif
 		}
 

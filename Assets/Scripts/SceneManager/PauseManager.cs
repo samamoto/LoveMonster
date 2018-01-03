@@ -50,12 +50,14 @@ public class PauseManager : MonoBehaviour
 			return;
 
 #if DEBUG
+		/*
 		// デバッグ
 		if (m_Con.GetButtonHold(Button.LB) && pauseGame) {
 			//pauseGame = !pauseGame;
 			SceneChange.Instance._SceneLoadResult();    // リザルトに
 			Time.timeScale = 1;	// iTweenが動かないから直す
 		}
+		*/
 #endif
 
         if (Input.GetKeyDown(KeyCode.Escape) || m_Con.GetButtonDown(Button.Menu))

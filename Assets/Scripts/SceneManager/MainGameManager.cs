@@ -7,7 +7,7 @@ public class MainGameManager : MonoBehaviour {
 
 	private float AllStageLength = 0f;
 	private float BonusAliveCount = 0f;				// ボーナスステージのカウント
-	private const float BONUS_ALIVE_TIME = 10.0f;	// ボーナスステージの生存時間
+	private const float BONUS_ALIVE_TIME = 40.0f;	// ボーナスステージの生存時間
 	//スクリプト群
 	private SceneChange m_ScreenChange;
 	private AllPlayerManager m_AllPlayerMgr;
@@ -148,7 +148,7 @@ public class MainGameManager : MonoBehaviour {
 				setPhaseState(PhaseLevel.Game_Bonus);
 				Transform trs = GameObject.Find("BonusStart1").transform;
 				for (int i = 0; i < 4; i++) {
-					trs.position = new Vector3(trs.position.x + 5.0f, trs.position.y, trs.position.z);  // 横にずらす
+					trs.position = new Vector3(trs.position.x, trs.position.y, trs.position.z - 2.0f);  // 横にずらす
 					m_AllPlayerMgr.startPlayerPosition(i + 1, trs.position, trs.rotation);
 				}
 				// 移動完了したらカメラの位置をリセットして背面に回す
