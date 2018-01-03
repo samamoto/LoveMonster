@@ -18,7 +18,7 @@ using UnityEngine.UI;
 
 
 public class PrintScore : MonoBehaviour, ScoreReciever {
-	public float[] PlayerScore = new float[4];      //プレイヤーのスコアの格納用の配列 プレイヤー1～4
+	static public float[] PlayerScore = new float[4];      //プレイヤーのスコアの格納用の配列 プレイヤー1～4
 	private float[] ScoreRate = new float[4];     // スコアにかける倍率　コンボシステムと連動
     private float[] ScoreRate_old = new float[4];     // スコアにかける倍率　成功UI用
 
