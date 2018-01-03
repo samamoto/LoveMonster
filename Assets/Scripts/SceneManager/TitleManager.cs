@@ -61,6 +61,7 @@ public class TitleManager : MonoBehaviour {
 		switch (m_Phase) {
 		case TitlePhase.Awake:
 			m_Audio.Play((int)AudioList.SoundList_BGM.BGM_Game_Stage1);
+            
 			m_Phase = TitlePhase.Start;
 			Debug.Log("next" + m_Phase.ToString());
 			break;

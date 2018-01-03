@@ -81,8 +81,10 @@ public class ThirdPersonCharacter : MonoBehaviour {
 	private bool climbInput;
 	private bool WallRunInput;
 
-	// david add
-	public bool wallRunning; // are we wall running
+    private AudioList m_Audio;      // 音声再生用
+
+    // david add
+    public bool wallRunning; // are we wall running
 	private float wallJumpLockTime = 0.2f;
 
 	//ToDo:ターゲットオブジェクト取得用パラメータ
@@ -112,7 +114,9 @@ public class ThirdPersonCharacter : MonoBehaviour {
 		// give the look position a default in case the character is not under control
 		currentLookPos = Camera.main.transform.position;
 
-	}
+
+        m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+    }
 
 	// Lookweight is probably used to determine how fast character turns etc.
 	IEnumerator BlendLookWeight() {
@@ -467,7 +471,11 @@ public class ThirdPersonCharacter : MonoBehaviour {
 			// Jump入力があり、かつ、地上からの距離が0.2f以上であれば成立 2017年12月17日 oyama add
 			float GroundDistance = GetComponentInChildren<SearchCollider>().GetGroundDistance();
 			if (jumpInput && GroundDistance > 0.2f) {
-				float dotDirection = Vector3.Dot(collision.contacts[0].normal, GetComponent<Rigidbody>().transform.forward);
+
+                //壁キックSE
+                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionJump);
+
+                float dotDirection = Vector3.Dot(collision.contacts[0].normal, GetComponent<Rigidbody>().transform.forward);
 
 				velocity = (collision.contacts[0].normal + GetComponent<Rigidbody>().transform.forward).normalized * airSpeed;
 

@@ -179,9 +179,9 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
         {
             if (m_seDelay == 0)
             {
-                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
-				GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
-				m_seDelay = 1;
+                //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
+                //m_seDelay = 1;
+                GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
             }
         }
         //ヴォルト
@@ -202,24 +202,25 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
                 m_seDelay = 0.6f;
             }
         }
-        //クライム
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Climb"))
-        {
-            if (m_seDelay == 0)
-            {
-                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionGrab);
-                m_seDelay = 0.8f;
-            }
-        }
-        //クライムオーバー
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClimbOver"))
-        {
-            if (m_seDelay == 0)
-            {
-                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionGrab);
-                m_seDelay = 0.5f;
-            }
-        }
+
+        ////クライム
+        //if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Climb"))
+        //{
+        //    if (m_seDelay == 0)
+        //    {
+        //        m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionGrab);
+        //        m_seDelay = 0.8f;
+        //    }
+        //}
+        ////クライムオーバー
+        //if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClimbOver"))
+        //{
+        //    if (m_seDelay == 0)
+        //    {
+        //        m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionGrab);
+        //        m_seDelay = 0.5f;
+        //    }
+        //}
 
         /////////////////////////////////////////////////////////////////////////
         //多重再生防止のディレイ処理

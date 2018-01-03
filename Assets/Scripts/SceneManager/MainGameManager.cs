@@ -126,7 +126,13 @@ public class MainGameManager : MonoBehaviour {
 		// Game-Bonus-Phase-Start
 		//================================================================================
 		case PhaseLevel.Game_Bonus_Start:
-			m_PauseMgr.PauseRestriction(true);
+
+            //BGMを変える　SE　ｽﾞｺﾞｺﾞｺﾞｺﾞ予定
+            m_Audio.Stop((int)gameBGM);
+            m_Audio.PlayOneShot((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
+            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Bonus);
+            m_PauseMgr.PauseRestriction(true);
+
 			// 指定座標までプレイヤー移動させる
 			setPhaseState(PhaseLevel.Game_Bonus_CameraMove);
 			m_AllPlayerMgr.stopControll(true);
@@ -154,6 +160,9 @@ public class MainGameManager : MonoBehaviour {
 				// 移動完了したらカメラの位置をリセットして背面に回す
 				m_AllCameraMgr.resetCamera();
 				m_PauseMgr.PauseRestriction(false);
+                
+                //ｺﾞｺﾞｺﾞｺﾞｺﾞｺﾞSEをSTOP
+                m_Audio.Stop((int)AudioList.SoundList_SE.SE_Bonus);
 			}
 			break;
 
@@ -206,8 +215,13 @@ public class MainGameManager : MonoBehaviour {
 			// プレイヤーの位置をリセット場所まで戻す
 			m_AllPlayerMgr.restartPlayer();
 			m_AllPlayerMgr.resetBonusParameter();
-			// ゲームに戻る
-			setPhaseState(PhaseLevel.Game);
+
+            //BGMを元に戻す
+            m_Audio.Stop((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
+            m_Audio.Play((int)gameBGM);
+                     
+            // ゲームに戻る
+            setPhaseState(PhaseLevel.Game);
 			break;
 
 		

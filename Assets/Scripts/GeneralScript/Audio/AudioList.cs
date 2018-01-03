@@ -35,7 +35,7 @@ public class AudioList : MonoBehaviour
         SE_ActionHandrail,
         SE_Clear,
         SE_StageWarp,
-        SE_BonusStage,
+        SE_Bonus,
 		SE_TensionCharge,
         SE_None,
 	}
