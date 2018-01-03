@@ -502,19 +502,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		return n;
 	}
 
-	//============================================================
-	/// <summary>
-	/// プレイヤー同士が接触したときの処理
-	/// </summary>
-	/// <param name="name">タグ名</param>
-	void OnTriggerStay(Collider other) {
-		if (other.tag == "Player") {
-			// 衝突したときの処理
-			// 上になんか送る
-		}
-	}
 
-	
 
 	// david add
 	/// <summary>

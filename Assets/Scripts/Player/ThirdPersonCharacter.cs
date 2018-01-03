@@ -156,7 +156,7 @@ public class ThirdPersonCharacter : MonoBehaviour {
 
 		//TurnTowardsCameraForward(); // makes the character face the way the camera is looking
 
-		PreventStandingInLowHeadroom(); // so the character's head doesn't penetrate a low ceiling
+		//PreventStandingInLowHeadroom(); // so the character's head doesn't penetrate a low ceiling
 
 		ScaleCapsuleForCrouching(); // so you can fit under low areas when crouching
 
@@ -461,7 +461,7 @@ public class ThirdPersonCharacter : MonoBehaviour {
 	/// </summary>
 	
 	void OnCollisionStay(Collision collision) {
-		
+
 		if (!onGround && collision.contacts[0].normal.y < 0.1f) // 空中にいる、かつ壁が傾いていないことが成立していないと壁蹴りはできない
 		{
 			// Jump入力があり、かつ、地上からの距離が0.2f以上であれば成立 2017年12月17日 oyama add

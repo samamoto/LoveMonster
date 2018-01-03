@@ -29,7 +29,7 @@ public class ObjectManager : MonoBehaviour {
 	// 判定する境目を決める オブジェクトのスケール値と連動させる
 	// オブジェクトごとに一つずつ設定すると混乱するのであくまで範囲は一個にする
 	[SerializeField, Range(0.0f, 1.0f)]
-	private float[] JudgeZone = new float[(int)ActionJudge.MAX-1] { 0.2f, 0.65f};
+	//private float[] JudgeZone = new float[(int)ActionJudge.MAX-1] { 0.2f, 0.65f};
 
 	// 移動処理を任せるアニメーションはAllPlayerManagerにいる
 	//
