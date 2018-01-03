@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorldHeritageList:
-  - {fileID: 1219972566878498, guid: 6c116f392a10cff4ea5a2144331d1795, type: 2}
-  - {fileID: 1136929805533464, guid: 58f50f48b32e2474eb826ddbfea15ffc, type: 2}
+  - {fileID: 1382090188619786, guid: 0066e56e31423464c893178281fffa93, type: 2}
+  - {fileID: 1382090188619786, guid: 0066e56e31423464c893178281fffa93, type: 2}
   debug_Spawn: 0
   debug_Release: 0
 --- !u!124 &124195553924110996
