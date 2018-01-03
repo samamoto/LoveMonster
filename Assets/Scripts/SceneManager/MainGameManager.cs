@@ -219,11 +219,13 @@ public class MainGameManager : MonoBehaviour {
 		case PhaseLevel.Pause:
 			if (m_PauseMgr.getPauseState()) {
 				m_TimeMgr.stopTimer();  // タイマー停止
+				m_AllPlayerMgr.stopPlayerControl();
 				m_Score.stopControll(true);
 			} else {
 				// 解除されたらPhaseを戻す
 				setPhaseState(m_PrevPausePhase);
 				m_TimeMgr.startTimer(); // タイマー戻す
+				m_AllPlayerMgr.returnPlayerControl();
 				m_Score.stopControll(false);
 			}
 

@@ -130,7 +130,7 @@ public class ResultManager : MonoBehaviour {
 				iTween.ScaleTo(m_imageRank[(int)countTimer].gameObject, new Vector3(1f, 1f), 1.5f);
 			}
 			// 秒数待機
-			if(countTimer >= 8f) {
+			if(countTimer >= 5f) {
 				m_Phase++;
 				countTimer = 0f;
 			}
@@ -146,8 +146,16 @@ public class ResultManager : MonoBehaviour {
 
 			// ま　だ　！　！
 
-			// ダイアログ表示
-			if (m_Controller.GetButtonDown(Controller.Button.B)) {
+			// ボタン反応があったらダイアログ表示
+			// 手当たり次第にいれる
+			if (m_Controller.GetButtonDown(Controller.Button.A) ||
+				m_Controller.GetButtonDown(Controller.Button.B) ||
+				m_Controller.GetButtonDown(Controller.Button.X) ||
+				m_Controller.GetButtonDown(Controller.Button.Y) ||
+				m_Controller.GetButtonDown(Controller.Button.Menu) ||
+				m_Controller.GetButtonDown(Controller.Button.RB) ||
+				m_Controller.GetButtonDown(Controller.Button.LB)
+				){
 				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Menu_Decision);
 				m_Phase++;
 			}
