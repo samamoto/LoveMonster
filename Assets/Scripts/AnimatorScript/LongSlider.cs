@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LongSlider : StateMachineBehaviour {
+public class LongSlider : AnimatorBase
+{
+    //AudioList.SoundList_SE PlaySE = AudioList.SoundList_SE.SE_ActionHandrail;
 
-	float progressTime = 0.0f;
+    float progressTime = 0.0f;
 
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		animator.SetFloat("Progress", 0.0f);
-	}
+        //PlaySE(PlaySE);
+
+    }
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

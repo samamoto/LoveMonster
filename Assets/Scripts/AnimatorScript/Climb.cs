@@ -10,12 +10,14 @@ public class Climb : AnimatorBase {
 
     //AllPlayerManager m_PM;        //プレイヤーの基礎データ取得用
 
-    
+    AudioList.SoundList_SE PlaySE = AudioList.SoundList_SE.SE_ActionGrab;
+
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       // m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();	// 基底クラス内で取得
-		
+        // m_PM = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();	// 基底クラス内で取得
+        PlaySE(PlaySE);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
