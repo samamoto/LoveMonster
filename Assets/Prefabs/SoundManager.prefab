@@ -276,3 +276,11 @@ MonoBehaviour:
     m_UnableEffect: 1
     m_Volume: 1
     m_ReverbPreset: 0
+  - m_Clip: {fileID: 8300000, guid: ae95215e603a57942b463338061680d1, type: 3}
+    m_OutputMixer: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+      type: 2}
+    m_PlayOnAwake: 0
+    m_Loop: 0
+    m_UnableEffect: 1
+    m_Volume: 1
+    m_ReverbPreset: 0

@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	private AudioList m_Audio;      // 音声再生用
 	private ComboSystem m_Combo;    // コンボシステム
 
-	[SerializeField]private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
+    [SerializeField]private Vector3 m_RestartPoint = Vector3.zero;  // リスタート用 2017年12月02日 oyama add
 	private Vector3 m_StopControllPoint = Vector3.zero;			// 完全に移動を止める場合の保持
 	private bool is_StopControl = false;            // コントロールの制御をするか(カウントダウン時など) 2017年12月07日 oyama add 
 	private int m_GoalCount = 0;					// ゴールした回数　これが3回ほどするとゴール判定

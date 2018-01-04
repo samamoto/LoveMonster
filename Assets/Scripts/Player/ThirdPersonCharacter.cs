@@ -473,7 +473,7 @@ public class ThirdPersonCharacter : MonoBehaviour {
 			if (jumpInput && GroundDistance > 0.2f) {
 
                 //ï«ÉLÉbÉNSE
-                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionJump);
+                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Kick);
 
                 float dotDirection = Vector3.Dot(collision.contacts[0].normal, GetComponent<Rigidbody>().transform.forward);
 

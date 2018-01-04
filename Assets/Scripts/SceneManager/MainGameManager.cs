@@ -129,7 +129,7 @@ public class MainGameManager : MonoBehaviour {
 
             //BGMを変える　SE　ｽﾞｺﾞｺﾞｺﾞｺﾞ予定
             m_Audio.Stop((int)gameBGM);
-            m_Audio.PlayOneShot((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
+            m_Audio.Play((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
             m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Bonus);
             m_PauseMgr.PauseRestriction(true);
 
@@ -163,6 +163,9 @@ public class MainGameManager : MonoBehaviour {
                 
                 //ｺﾞｺﾞｺﾞｺﾞｺﾞｺﾞSEをSTOP
                 m_Audio.Stop((int)AudioList.SoundList_SE.SE_Bonus);
+
+                //キャラのワープ音
+                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_StageWarp);
 			}
 			break;
 
@@ -219,7 +222,10 @@ public class MainGameManager : MonoBehaviour {
             //BGMを元に戻す
             m_Audio.Stop((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
             m_Audio.Play((int)gameBGM);
-                     
+
+            //キャラのワープ音
+            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_StageWarp);
+
             // ゲームに戻る
             setPhaseState(PhaseLevel.Game);
 			break;
@@ -250,8 +256,8 @@ public class MainGameManager : MonoBehaviour {
 			// 演出エフェクトとかUIとか発生させるのに使う
 			// 指定時間以上経過したらシーンを遷移させる
 			// とりあえず今はさっさと遷移する
-			setPhaseState(m_Phase + 1); // 次のPhase
-			break;
+			setPhaseState(m_Phase + 1); // 次のPhase           
+            break;
 
 		//================================================================================
 		// Result-Phase
@@ -303,8 +309,8 @@ public class MainGameManager : MonoBehaviour {
 		// 誰かがゴールしたら1以上
 		if (id > 0) {
 			// なにかの条件になったらつぎのステートに遷移させる
-			setPhaseState(PhaseLevel.Goal + 1); // ゴールの次
-		}
+			setPhaseState(PhaseLevel.Goal + 1); // ゴールの次            
+        }
 	}
 
 	/// <summary>

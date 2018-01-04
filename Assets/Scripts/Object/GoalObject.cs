@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class GoalObject : MonoBehaviour {
 
-	private const int GetScorePoint = 5000;
+    private AudioList m_Audio;      // 音声再生用
+    private const int GetScorePoint = 5000;
 
 	public Transform nextStagePoint;		// 次の移動場所
 	public float transitionTimer = 2.0f;    // 移行時間
@@ -17,10 +18,11 @@ public class GoalObject : MonoBehaviour {
 
 	// Use this for initialization
 	private void Start() {
-	}
+        m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+    }
 
-	// Update is called once per frame
-	private void Update() {
+    // Update is called once per frame
+    private void Update() {
 		// ゴールしていたらリセットする
 		if (isGoal) {
 			resetGoal();
@@ -43,7 +45,10 @@ public class GoalObject : MonoBehaviour {
 		if (other.tag == "Player") {
 			EffectControl eff = EffectControl.get();
 			eff.createClearShine(other.transform.position);
-			GoalID = other.GetComponent<PlayerManager>().getPlayerID();	// ゴールしたプレイヤーのIDを格納
+
+            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Clear);
+
+            GoalID = other.GetComponent<PlayerManager>().getPlayerID();	// ゴールしたプレイヤーのIDを格納
 			isTimerStart = true;
 			// ゴールしたらスコア加算
 			PrintScore score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
