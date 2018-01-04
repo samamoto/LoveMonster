@@ -10,10 +10,15 @@ using UnityEngine;
 public class GlobalParam : MonoBehaviour {
 
 	// 保持する変数 //
+	[SerializeField]
 	private float[] hiScore = new float[ConstPlayerParameter.PlayerMax];    // Sample
-	private int[] ranking = new int[ConstPlayerParameter.PlayerMax];	// ランキングを保持 0~3->1~4
-	private int[] tension = new int[ConstPlayerParameter.PlayerMax];		// がんば…テンションゲージ
-	private float[] mapProgress = new float[ConstPlayerParameter.PlayerMax];	// マップ進捗率
+	[SerializeField]
+	private int[] ranking = new int[ConstPlayerParameter.PlayerMax];    // ランキングを保持 0~3->1~4
+	[SerializeField]
+	private int[] tension = new int[ConstPlayerParameter.PlayerMax];        // がんば…テンションゲージ
+	[SerializeField]
+	private float[] mapProgress = new float[ConstPlayerParameter.PlayerMax];    // マップ進捗率
+	[SerializeField]
 	private int[] getFlagNum = new int[ConstPlayerParameter.PlayerMax];			// ボーナスステージでゲットしたフラグの数
 
 
