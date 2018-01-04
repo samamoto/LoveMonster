@@ -32,6 +32,7 @@ public class WorldHeritageSpawner : MonoBehaviour
         if (allPlayerManager.getisEntryBonusStage() && this.instanceWorldHeritage == null || this.debug_Spawn && this.instanceWorldHeritage == null)
         {
             this.debug_Spawn = false;
+			this.isControll = false;
             allPlayerManager.stopPlayerControl();
             this.Spawn();
         }

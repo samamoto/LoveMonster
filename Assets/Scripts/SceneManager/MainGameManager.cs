@@ -127,6 +127,9 @@ public class MainGameManager : MonoBehaviour {
 		//================================================================================
 		case PhaseLevel.Game_Bonus_Start:
 
+			// XFade
+			GameObject wldCamera = GameObject.Find("WorldHeritageCamera");
+			wldCamera.GetComponent<XFade>().CrossFade(wldCamera, 1.0f);
 
 			//BGMを変える　SE　ｽﾞｺﾞｺﾞｺﾞｺﾞ予定
 			m_Audio.Stop((int)gameBGM);
@@ -134,7 +137,6 @@ public class MainGameManager : MonoBehaviour {
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Bonus);
 			m_PauseMgr.PauseRestriction(true);
 			
-		    m_PauseMgr.PauseRestriction(true);
 			// 指定座標までプレイヤー移動させる
 			setPhaseState(PhaseLevel.Game_Bonus_CameraMove);
 			m_AllPlayerMgr.stopControll(true);
@@ -165,6 +167,8 @@ public class MainGameManager : MonoBehaviour {
 				m_AllPlayerMgr.stopControll(false);
 				//ｺﾞｺﾞｺﾞｺﾞｺﾞｺﾞSEをSTOP
 				m_Audio.Stop((int)AudioList.SoundList_SE.SE_Bonus);
+				// XFade
+				GameObject.Find("MainCamera").GetComponent<XFade>().CrossFade(1.0f);
 			}
 			break;
 
@@ -208,6 +212,9 @@ public class MainGameManager : MonoBehaviour {
 		// Game-Bonus-Phase-End
 		//================================================================================
 		case PhaseLevel.Game_Bonus_End:
+			// XFade
+			GameObject.Find("MainCamera").GetComponent<XFade>().CrossFade(1.0f);
+
 			// ボーナスステージを削除
 			m_WorldSpw.stageRelease = true;
 			m_AllPlayerMgr.stopControll(false);

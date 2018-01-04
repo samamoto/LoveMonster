@@ -641,11 +641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1947e268003cdd4c9a5602728593eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerScore:
-  - 0
-  - 0
-  - 0
-  - 0
   PrintTime: 60
   Nice: {fileID: 21300000, guid: b13d17d72ac6b3849be89c3f149e879b, type: 3}
   Great: {fileID: 21300000, guid: 709fa6273d21f5b49bfcc9c58530a663, type: 3}

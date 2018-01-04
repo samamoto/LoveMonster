@@ -70,6 +70,8 @@ GameObject:
   - component: {fileID: 20375733832545002}
   - component: {fileID: 124694741656256230}
   - component: {fileID: 92521056743003610}
+  - component: {fileID: 114470680857543104}
+  - component: {fileID: 114394275423759956}
   m_Layer: 9
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -3515,6 +3517,21 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &114394275423759956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1050178101078670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f19108706fdce9469603d07980eb8ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blendMode: 4
+  intensity: 0
+  texture: {fileID: 2800000, guid: 40d7f27f614cc1043a1f7e19074f461c, type: 3}
+  overlayShader: {fileID: 4800000, guid: 8c81db0e527d24acc9bcec04e87781bd, type: 3}
 --- !u!114 &114398031359752348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3613,14 +3630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69291e0006d46745bf183bd838fd176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetPlayerPosition:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  MapLength: 0
-  PlayerGoingLength: 00000000000000000000000000000000
-  PlayerGoingLength_rank: 
+  PlayerScore: 00000000000000000000000000000000
+  PlayerScore_Rank: 
   PlayerRank: 00000000000000000000000000000000
 --- !u!114 &114458273562880994
 MonoBehaviour:
@@ -3673,6 +3684,17 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &114470680857543104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1050178101078670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1fa5a2534bdbc4eb2baa9b04ba15e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114481647757570684
 MonoBehaviour:
   m_ObjectHideFlags: 1
