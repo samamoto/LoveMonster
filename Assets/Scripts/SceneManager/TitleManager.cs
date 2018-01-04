@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Controller;
 using UnityStandardAssets.ImageEffects;
+using TMPro;
+
 /// <summary>
 /// Scene開始後、ムービーを再生(再生中は操作不可?、スキップはアリ?)、
 /// 現在はスペースキーでSceneの移動を行う。
@@ -24,6 +26,9 @@ public class TitleManager : MonoBehaviour {
 	private AudioList m_Audio;
 	private Controller.Controller m_Controller;
 	private NoiseAndScratches m_Noise;
+	private Image m_TitleLogo;
+	private TextMeshProUGUI m_Press;
+
 	private float timeCount = 0f;
 	private bool buttonFlag;
 	public enum TitlePhase {
@@ -39,19 +44,14 @@ public class TitleManager : MonoBehaviour {
 	// Use this for initialization
 	private void Start()
     {
-		//m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
-
-		//フェード       仕様書によって場所変更アリ(現在は一番最初)
-		//追加シーン     ここでフェードを読み込むのもアリ
-		//SceneManager.LoadScene("TitleScene", LoadSceneMode.Additive);
-
-		//animator = GameObject.Find("Player1").GetComponent<Animator>();
-		//animator.SetTrigger("BHS_FlashKick");
-		//ここにムービー再生処理を追加?　→MovieTextureにフラグを追加するべき?
-		//MovieEndFlag = false;       //再生フラグ初期化
 		GameObject.Find("Camera").GetComponent<NoiseAndScratches>().enabled = true;
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 		m_Controller = GetComponent<Controller.Controller>();
+		m_TitleLogo = GameObject.Find("TitleLogo").GetComponent<Image>();
+		m_TitleLogo.enabled = false;
+		m_Press = GameObject.Find("Press").GetComponent<TextMeshProUGUI>();
+		m_Press.enabled = false;
+
 	}
 
 	// Update is called once per frame
@@ -62,8 +62,8 @@ public class TitleManager : MonoBehaviour {
 		case TitlePhase.Awake:
 			m_Audio.Play((int)AudioList.SoundList_BGM.BGM_Game_Stage1);
 			m_Phase = TitlePhase.Start;
-			Debug.Log("next" + m_Phase.ToString());
 			break;
+
 		case TitlePhase.Start:
 			timeCount += Time.deltaTime * 2;
 			if (timeCount >= 5f) {
@@ -71,11 +71,11 @@ public class TitleManager : MonoBehaviour {
 				GameObject.Find("Camera").GetComponent<SunShafts>().enabled = true;
 				m_Phase = TitlePhase.Wait;
 				timeCount = 0f;
-				Debug.Log("next" + m_Phase.ToString());
 			} else {
 				GameObject.Find("Camera").GetComponent<NoiseAndScratches>().grainIntensityMin -= Time.deltaTime * 2;
 			}
 			break;
+
 		case TitlePhase.Wait:
 			timeCount += Time.deltaTime;
 			iTween.ValueTo(gameObject, iTween.Hash(
@@ -85,19 +85,33 @@ public class TitleManager : MonoBehaviour {
 				"onupdate", "SetIntensity",  // 毎フレーム SetAlpha() を呼びます。
 				"easetype", "easeOutCubic"
 				));
+
+			m_TitleLogo.enabled = true;
+			if(timeCount >= 0 && timeCount < 1f) {
+				iTween.FadeTo(m_TitleLogo.gameObject, 1f, 1f);
+				iTween.ScaleTo(m_TitleLogo.gameObject, new Vector3(4f, 4f), 1f);
+			}
+
+			if (timeCount >= 2.5f) {
+				m_Press.enabled = true;
+				iTween.FadeTo(m_Press.gameObject, 1f, 1.0f);
+			}
+
 			if (timeCount >= 3f) {
-				timeCount = 0f;
-				m_Phase++;
-				Debug.Log("next" + m_Phase.ToString());
+			timeCount = 0f;
+			m_Phase++;
 			}
 			break;
+
 		case TitlePhase.End:
-			if (m_Controller.GetButtonDown(Button.B) || m_Controller.GetButtonDown(Button.A) || m_Controller.GetButtonDown(Button.Menu)) {
+			if (m_Controller.GetButtonDown(Controller.Button.B) ||
+				m_Controller.GetButtonDown(Controller.Button.A) || 
+				m_Controller.GetButtonDown(Controller.Button.Menu)) {
 				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Title_Decision);
 				m_Phase = TitlePhase.NextScene;
-				Debug.Log("next" + m_Phase.ToString());
 			}
 			break;
+
 		case TitlePhase.NextScene:
 			SceneToNext();
 			break;
@@ -110,7 +124,6 @@ public class TitleManager : MonoBehaviour {
     {
         //m_ScreenChange._DebugInput();
 		//移動したいシーンへ移動(チュートリアルシーン)
-		//SceneManager.LoadScene("TutorialScene");
 		timeCount += Time.deltaTime;
 		//iTween.FadeTo(GameObject.Find("Panel"), 1f, 2f);
 		SetFade(timeCount/3);
