@@ -4888,7 +4888,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4915005350720776}
-  - component: {fileID: 95559053381800448}
+  - component: {fileID: 114488566964883836}
   m_Layer: 0
   m_Name: BonusStage1
   m_TagString: Untagged
@@ -21535,7 +21535,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1393796791660546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -100, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4622598238852034}
@@ -54196,23 +54196,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 8, z: 8}
   m_Center: {x: 0, y: 4, z: 0}
---- !u!95 &95559053381800448
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1393796791660546}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fd0b0d553fac1db46860340d867bdf04, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114007205928534018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54228,7 +54211,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114066140542728380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54244,7 +54226,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114128119579358996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54260,7 +54241,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114259027979207712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54276,7 +54256,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114321311634328796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54292,7 +54271,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114335148304536332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54308,7 +54286,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114351864293327620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54324,7 +54301,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114352068029935478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54340,7 +54316,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114462920984381306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54356,7 +54331,17 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
+--- !u!114 &114488566964883836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1393796791660546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5a47f9454d2364dbeabbb605c017d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114513362161032136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54372,7 +54357,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114537416642679244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54388,7 +54372,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114558434129002382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54404,7 +54387,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114653705983096412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54420,7 +54402,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114740955648704964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54436,7 +54417,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114748298598841324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54452,7 +54432,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114881828642139172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54468,7 +54447,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114889820372959560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54484,7 +54462,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114892395276708262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54500,7 +54477,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114906822592069764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54527,7 +54503,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114932321442139140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54543,7 +54518,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114946260319662590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54559,7 +54533,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!114 &114969820618371228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54575,7 +54548,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 300
 --- !u!136 &136702552730046922
 CapsuleCollider:
   m_ObjectHideFlags: 1

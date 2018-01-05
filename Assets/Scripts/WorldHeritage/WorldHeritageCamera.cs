@@ -19,8 +19,9 @@ public struct HeritageCamTrans
 public class WorldHeritageCamera : MonoBehaviour
 {
     [SerializeField] public List<HeritageCamTrans> m_CamTrasList;
+    [SerializeField] private float endWaitTime = 1.0f;
     private float startTime, nowTime;
-    [SerializeField] private int index = 0;
+    public int index;
     public bool endFlg { get; private set; }
 
     private bool loop = false;
@@ -86,9 +87,8 @@ public class HeritageCamEx : Editor
         if (GUILayout.Button("Register"))
         {
             if (!cam)
-            {
                 cam = GameObject.Find("WorldHeritageCamera");
-            }
+
             //現在の座標情報を保存
             HeritageCamTrans trans = new HeritageCamTrans();
             trans.position = cam.GetComponent<Transform>().position;
@@ -99,10 +99,21 @@ public class HeritageCamEx : Editor
         if (GUILayout.Button("Reset"))
         {
             if (!cam)
-            {
                 cam = GameObject.Find("WorldHeritageCamera");
-            }
+
             cam.GetComponent<WorldHeritageCamera>().m_CamTrasList.Clear();
+        }
+        if (GUILayout.Button("MovetoIndex"))
+        {
+            if (!cam)
+                cam = GameObject.Find("WorldHeritageCamera");
+
+            WorldHeritageCamera camera = cam.GetComponent<WorldHeritageCamera>();
+            if (camera.index < camera.m_CamTrasList.Count)
+            {
+                camera.transform.position = camera.m_CamTrasList[camera.index].position;
+                camera.transform.rotation = camera.m_CamTrasList[camera.index].quaternion;
+            }
         }
     }
 }
