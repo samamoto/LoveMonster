@@ -299,6 +299,12 @@ public class AllPlayerManager : MonoBehaviour {
 	/// 全員のテンションが一定値以上になれば
 	/// </summary>
 	public bool getisEntryBonusStage() {
+
+		// MainGameManager側ですでに出したくなければ止める
+		if(m_GameManager.BonusEntryCount >= MainGameManager.BONUS_ENTRY_NUM) {
+			return false;
+		}
+
 		int count = 0;
 		for (int i = 0; i < m_PlayerNum; i++) {
 			if (ENTRY_BONUS_TENSION <= m_PlayerManager[i].gameObject.GetComponent<Tension>().getTensionRatio()) {
