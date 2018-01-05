@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114183660972321680}
   - component: {fileID: 114163152874573122}
   - component: {fileID: 114618542991561678}
-  - component: {fileID: 114186389916744148}
+  - component: {fileID: 114932622895474900}
   m_Layer: 9
   m_Name: WorldHeritageCamera
   m_TagString: Untagged
@@ -172,24 +172,6 @@ MonoBehaviour:
     quaternion: {x: 0.0033395088, y: 0.38266885, z: 0.008062288, w: 0.9238444}
     switchingTimePont: 3
   index: 0
---- !u!114 &114186389916744148
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1388480332079986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec92b071d2d424aecb3e46f28eb63174, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  adaptationSpeed: 0.02
-  limitMinimum: 0.2
-  limitMaximum: 0.6
-  shaderLum: {fileID: 4800000, guid: befbb4b9c320b4b18a08ef7afb93b6c9, type: 3}
-  shaderReduce: {fileID: 4800000, guid: 57b33a14b6d5347c5a85c36f6cb3b280, type: 3}
-  shaderAdapt: {fileID: 4800000, guid: 257bc83cbeb544540bd0e558aa9b1383, type: 3}
-  shaderApply: {fileID: 4800000, guid: f4901f25d4e1542589348bbb89563d8e, type: 3}
 --- !u!114 &114443396133653204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,6 +220,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1fa5a2534bdbc4eb2baa9b04ba15e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114932622895474900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1388480332079986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec92b071d2d424aecb3e46f28eb63174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adaptationSpeed: 0.02
+  limitMinimum: 0.2
+  limitMaximum: 0.6
+  shaderLum: {fileID: 4800000, guid: befbb4b9c320b4b18a08ef7afb93b6c9, type: 3}
+  shaderReduce: {fileID: 4800000, guid: 57b33a14b6d5347c5a85c36f6cb3b280, type: 3}
+  shaderAdapt: {fileID: 4800000, guid: 257bc83cbeb544540bd0e558aa9b1383, type: 3}
+  shaderApply: {fileID: 4800000, guid: f4901f25d4e1542589348bbb89563d8e, type: 3}
 --- !u!114 &114966836601292866
 MonoBehaviour:
   m_ObjectHideFlags: 1

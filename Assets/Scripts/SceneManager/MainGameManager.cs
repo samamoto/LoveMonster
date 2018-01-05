@@ -8,7 +8,9 @@ public class MainGameManager : MonoBehaviour {
 
 	private float AllStageLength = 0f;
 	private float BonusAliveCount = 0f;				// ボーナスステージのカウント
-	private const float BONUS_ALIVE_TIME = 40.0f;	// ボーナスステージの生存時間
+	private const float BONUS_ALIVE_TIME = 1.0f;    // ボーナスステージの生存時間
+	private int BonusEntryCount = 0;			// ボーナスの出現回数
+	private const float BONUS_ENTRY_NUM = 1;		// ボーナスステージが何回出現するか
 	//スクリプト群
 	private SceneChange m_ScreenChange;
 	private AllPlayerManager m_AllPlayerMgr;
@@ -127,7 +129,8 @@ public class MainGameManager : MonoBehaviour {
 				m_PrevPausePhase = m_Phase; // Pause前の状態を記録
 			}
 			// ボーナスにいけるようになったら
-			if (m_AllPlayerMgr.getisEntryBonusStage()) {
+			if (m_AllPlayerMgr.getisEntryBonusStage() && BonusEntryCount <= 0) {
+				BonusEntryCount++;	// カウンタをプラス
 				setPhaseState(PhaseLevel.Game_Bonus_Start);
 			}
 
@@ -201,8 +204,6 @@ public class MainGameManager : MonoBehaviour {
 				setPhaseState(PhaseLevel.Game_Bonus_End);
 			}
 			// Pauseメニュー表示 //
-
-
 			// 
 			/* Todo:ボーナスステージに遷移したら
 			 ・ボーナスステージが生えてくる
