@@ -7,9 +7,7 @@ public class MainGameManager : MonoBehaviour {
 
 	private float AllStageLength = 0f;
 	private float BonusAliveCount = 0f;				// ボーナスステージのカウント
-    private int BonusEntryNum = 0;
-	private const float BONUS_ALIVE_TIME = 45.0f;	// ボーナスステージの生存時間
-    private const int BONUS_ENTRY_COUNT = 1;        // ボーナスステージの回数
+	private const float BONUS_ALIVE_TIME = 40.0f;	// ボーナスステージの生存時間
 	//スクリプト群
 	private SceneChange m_ScreenChange;
 	private AllPlayerManager m_AllPlayerMgr;
@@ -118,9 +116,8 @@ public class MainGameManager : MonoBehaviour {
 				m_PrevPausePhase = m_Phase; // Pause前の状態を記録
 			}
 			// ボーナスにいけるようになったら
-			if (m_AllPlayerMgr.getisEntryBonusStage() && BonusEntryNum < BONUS_ENTRY_COUNT) {
+			if (m_AllPlayerMgr.getisEntryBonusStage()) {
                     Debug.Log("1");
-                    BonusEntryNum++;
 				setPhaseState(PhaseLevel.Game_Bonus_Start);
 			}
 
