@@ -139,8 +139,8 @@ public class TitleManager : MonoBehaviour {
 			));
 		*/
 		if (timeCount > 3.0f) {
-			//SceneChange.Instance._SceneLoadTutorial();
-			SceneChange.Instance._SceneLoadGame();
+			SceneChange.Instance._SceneLoadTutorial();
+			//SceneChange.Instance._SceneLoadGame();
 		}
 	}
 
