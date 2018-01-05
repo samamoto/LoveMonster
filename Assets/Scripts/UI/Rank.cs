@@ -140,6 +140,10 @@ public class Rank : MonoBehaviour {
 			}
 		}
 
+
+        //毎回渡しちゃってるけど許ちて(´・ω・｀)
+        GlobalParam.GetInstance().SetRankings(PlayerRank);  //リザルトにランキングを渡す
+
 	}
 
 	//順位表示関数
