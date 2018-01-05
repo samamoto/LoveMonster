@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 //RequireComponentで指定することでそのスクリプトが必須であることを示せる
 [RequireComponent(typeof(PauseManager))]
@@ -16,6 +17,7 @@ public class MainGameManager : MonoBehaviour {
 	private TimeManager m_TimeMgr;
 	private PauseManager m_PauseMgr;
 	private CountDownSystem m_CountSys;
+	private TextMeshProUGUI[] m_PlayUser = new TextMeshProUGUI[4];
 	private AudioList m_Audio;
 	private PrintScore m_Score;
 	private WorldHeritageSpawner m_WorldSpw;
@@ -57,6 +59,11 @@ public class MainGameManager : MonoBehaviour {
 		// ステージ全体の長さを記録
 		for (int i = 0; i < 4; i++) {
 			AllStageLength += getStageLength(i);
+		}
+
+		// PlayUser表示
+		for (int i = 0; i < 4; i++) {
+			m_PlayUser[i] = GameObject.Find("User-" + (i + 1).ToString()).GetComponent<TextMeshProUGUI>();
 		}
 	}
 
@@ -103,6 +110,10 @@ public class MainGameManager : MonoBehaviour {
 			m_Audio.Play((int)gameBGM);
 			m_PauseMgr.PauseRestriction(false);
 			m_Score.stopControll(false);
+			// PlayUserの表示を切る
+			for (int i = 0; i < 4; i++) {
+				m_PlayUser[i].enabled = false;
+			}
 			break;
 
 		//================================================================================
@@ -117,7 +128,6 @@ public class MainGameManager : MonoBehaviour {
 			}
 			// ボーナスにいけるようになったら
 			if (m_AllPlayerMgr.getisEntryBonusStage()) {
-                    Debug.Log("1");
 				setPhaseState(PhaseLevel.Game_Bonus_Start);
 			}
 
