@@ -5160,7 +5160,7 @@ MonoBehaviour:
   Offset: {x: 0, y: 1.53, z: 0}
   m_Distance: 2.78
   m_PolarAngle: 85
-  m_AzimuthalAngle: 360
+  m_AzimuthalAngle: 0
   m_MinPolar: 45
   m_MaxPolar: 115
   m_Cont_x_Secsitivity: 1.4
@@ -6328,7 +6328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -361.7, y: -181.90002}
+  m_AnchoredPosition: {x: -361.69995, y: -181.90002}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224192253887494274
@@ -7197,7 +7197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -361.7, y: 45.400024}
+  m_AnchoredPosition: {x: -361.69995, y: 45.400024}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224795863783155066
