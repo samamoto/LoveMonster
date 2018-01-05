@@ -58,7 +58,7 @@ public class ChaseCamera : MonoBehaviour
         this.controller = m_ChaseObject.GetComponent<Controller.Controller>();
         //仰角、方位角の初期値保存
         initPolar = m_PolarAngle;
-        initAzimuthal = m_AzimuthalAngle;
+        initAzimuthal = 270f;
 
         m_Pause = GameObject.Find("PauseManager").GetComponent<PauseManager>();
 
@@ -66,9 +66,9 @@ public class ChaseCamera : MonoBehaviour
         StartCoroutine(LateFixedUpdate());
     }
 
-	// 2018年01月01日 oyama add
-	// 通常のLateUpdateだと速度が変化するのでFixedに変える
-	private void FixedUpdate()
+    // 2018年01月01日 oyama add
+    // 通常のLateUpdateだと速度が変化するのでFixedに変える
+    private void FixedUpdate()
     {
         //カメラリセット
         if (lerpTime == 1.0f && controller.GetButtonDown(Controller.Button.RStick))
@@ -140,21 +140,22 @@ public class ChaseCamera : MonoBehaviour
         }
     }
 
-	/// <summary>
-	/// カメラをリセットする(外部から)
-	/// </summary>
-	public void resetCamera() {
-		this.lerpTime = 0.0f;
-		this.resetBeginPos = this.transform.position;
-		//カメラの仰角、方位角をリセット後に上書き
-		this.m_PolarAngle = initPolar;
-		this.m_AzimuthalAngle = resetAzimuthal;
-	}
+    /// <summary>
+    /// カメラをリセットする(外部から)
+    /// </summary>
+    public void resetCamera()
+    {
+        this.lerpTime = 0.0f;
+        this.resetBeginPos = this.transform.position;
+        //カメラの仰角、方位角をリセット後に上書き
+        this.m_PolarAngle = initPolar;
+        this.m_AzimuthalAngle = resetAzimuthal;
+    }
 
-	/// <summary>
-	/// カメラのID取得
-	/// </summary>
-	public int getCameraID()
+    /// <summary>
+    /// カメラのID取得
+    /// </summary>
+    public int getCameraID()
     {
         return PlayerID;
     }
