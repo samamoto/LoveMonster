@@ -117,6 +117,7 @@ public class MainGameManager : MonoBehaviour {
 			}
 			// ボーナスにいけるようになったら
 			if (m_AllPlayerMgr.getisEntryBonusStage()) {
+                    Debug.Log("1");
 				setPhaseState(PhaseLevel.Game_Bonus_Start);
 			}
 
@@ -131,7 +132,8 @@ public class MainGameManager : MonoBehaviour {
 			GameObject wldCamera = GameObject.Find("WorldHeritageCamera");
 			wldCamera.GetComponent<XFade>().CrossFade(wldCamera, 1.0f);
 
-			//BGMを変える　SE　ｽﾞｺﾞｺﾞｺﾞｺﾞ予定
+            //BGMを変える　SE　ｽﾞｺﾞｺﾞｺﾞｺﾞ予定
+            m_Audio.AllStop();
 			m_Audio.Stop((int)gameBGM);
 			m_Audio.PlayOneShot((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Bonus);
