@@ -43,15 +43,22 @@ public class ObjectActionArea : MonoBehaviour {
 		is_FoundActTag = true;  // ToDo: oyama AllPlayerManagerをシングルトンから外すので一度なしにする
 	}
 
+	private void Update() {
+
+	}
+
 	// コライダーに当たった
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
-			m_PlayerMgr = other.GetComponent<PlayerManager>();
-#if DEBUG
-			// 見つからなかったらLog
-			//if (!is_FoundActTag)
-			//	Debug.Log(name + ":" + tag + " NotFound! 設定されたアクションはリストにありません");
-#endif
+
+			// 世界遺産ステージ用に衝突したタイミングで更新し直す
+			Transform[] trs;
+			trs = MovePointObject.GetComponentsInChildren<Transform>();   // くっついてるポジションを全部
+
+			m_MovePos.Clear();
+			for (int i = 0; i < trs.Length; i++) {
+				m_MovePos.Add(trs[i].position);
+			}           //m_PlayerMgr = other.GetComponent<PlayerManager>();
 		}
 
 		// 新しく触れた物だけ状態を更新して上書きする
