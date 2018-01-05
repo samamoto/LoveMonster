@@ -78,8 +78,7 @@ public class AllPlayerManager : MonoBehaviour {
 
 	// Update is called once per frame
 	private void Update() {
-
-		if (StopControll) return;
+        if (StopControll) return;
 
 		// 各プレイヤーの状態を確認するよ！ //
 		for(int i=0; i< m_PlayerNum; i++) {
