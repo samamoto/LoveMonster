@@ -44,7 +44,7 @@ public class GlobalParam : MonoBehaviour {
 	//-- Sample --//
 	// --HISCORE-- //
 	// HISCOREを返す.
-	public float[] GetHiScore() {
+	public float[] GetHiScores() {
 		return hiScore;
 	}
 
@@ -52,6 +52,24 @@ public class GlobalParam : MonoBehaviour {
 	public void SetHiScore(float[] hiScore) {
 		this.hiScore = hiScore;
 	}
+
+	/// <summary>
+	/// 1PをID=1としてハイスコアを返す
+	/// </summary>
+	/// <param name="id">ID</param>
+	/// <returns></returns>
+	public float GetHiScore(int id) {
+		int n = id;
+		// エラーチェック
+		if (n > 4) {
+			n = 4;
+		}
+		if (1 > n) {
+			n = 1;
+		}
+		return hiScore[n - 1];
+	}
+
 	// --HISCORE-- //
 
 	// --RANKING-- //

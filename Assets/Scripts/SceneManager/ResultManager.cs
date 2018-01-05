@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using UnityEngine.UI;
 using Controller;
 using TMPro;
@@ -39,6 +40,12 @@ public class ResultManager : MonoBehaviour {
 	TextMeshProUGUI m_ResultLogo;
 	private float countTimer = 0f;
 
+	public int[] Ranking = new int[4];
+	private Vector3[] rankPosition = new Vector3[4];
+
+	private int[] m_Score = new int[4];
+	private TextMeshProUGUI[] m_ScoreText = new TextMeshProUGUI[4];
+
 	// Use this for initialization
 	private void Start() {
 		//m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
@@ -53,6 +60,8 @@ public class ResultManager : MonoBehaviour {
 			m_Animator[i] = GameObject.Find("Player" + (i + 1).ToString()).GetComponent<Animator>();
 			m_imageRank[3 - i] = GameObject.Find("Ranking-" + (i + 1).ToString()).GetComponent<Image>();
 			m_imageRank[3 - i].enabled = false;
+			// RankPosition
+			rankPosition[i] = GameObject.Find((i + 1).ToString() + "st").transform.position;
 		}
 		m_DialogBack = GameObject.Find("Dialog_Back").GetComponent<Image>();
 		m_DialogBack.enabled = false;
@@ -61,6 +70,48 @@ public class ResultManager : MonoBehaviour {
 		m_ResultLogo = GameObject.Find("ResultLogo").GetComponent<TextMeshProUGUI>();
 		m_ResultLogo.enabled = false;
 		m_Controller = GetComponent<Controller.Controller>();
+
+
+		// ランキング
+		Ranking = GlobalParam.GetInstance().GetRankings();
+		// 空だったら仮の値
+		if (Ranking[0] == 0) {
+			int[] ranks = new int[4] {
+				4,3,2,1,
+			};
+			GlobalParam.GetInstance().SetRankings(ranks);
+			Ranking = GlobalParam.GetInstance().GetRankings();
+		}
+
+		// ランキングによって位置を変える
+		for (int i = 0; i < 4; i++) {
+			GameObject.Find("Player" + (i + 1).ToString()).transform.position = rankPosition[Ranking[i]-1];
+		}
+
+		// スコア
+
+		// テスト値
+		if ((int)GlobalParam.GetInstance().GetHiScore(Ranking[0]) <= 0) {
+			float[] score = new float[4]
+			{
+				100000, 110000, 120000, 130000
+			};
+			GlobalParam.GetInstance().SetHiScore(score);
+		}
+
+		for (int i = 0; i < 4; i++) {
+			m_Score[i] = (int)GlobalParam.GetInstance().GetHiScore(Ranking[i]);
+		}
+		// ランキング順に並び替え
+		Array.Sort(m_Score);
+
+		for (int i = 0; i < 4; i++) {
+			m_ScoreText[i] = GameObject.Find("Score_" + ((3-i)+1).ToString()).GetComponent<TextMeshProUGUI>();
+			m_ScoreText[i].text = m_Score[i].ToString();
+			m_ScoreText[i].enabled = false;
+		}
+
+
 	}
 
 	// Update is called once per frame
@@ -73,6 +124,7 @@ public class ResultManager : MonoBehaviour {
 		case ResultPhase.Start:
 			m_Audio.Play((int)AudioList.SoundList_BGM.BGM_Game_Stage3);
 			m_Phase++;
+
 			break;
 
 		case ResultPhase.Move:
@@ -104,17 +156,17 @@ public class ResultManager : MonoBehaviour {
 			if (m_cam.transform.position == CameraLocation[1].position) {
 				for (int i = 0; i < 4; i++) {
 					// ランキングによってアニメーションを変更
-					switch (i) {
-					case 0:
+					switch (Ranking[i]) {
+					case 1:
 						m_Animator[i].SetTrigger("CW_Fulltwist");
 						break;
-					case 1:
+					case 2:
 						m_Animator[i].SetTrigger("CW_FlashKick");
 						break;
-					case 2:
+					case 3:
 						m_Animator[i].SetTrigger("BHS_FlashKick");
 						break;
-					case 3:
+					case 4:
 						break;
 					}
 				}
@@ -128,9 +180,14 @@ public class ResultManager : MonoBehaviour {
 				m_imageRank[(int)countTimer].enabled = true;
 				iTween.FadeTo(m_imageRank[(int)countTimer].gameObject, 1f, 1.5f);
 				iTween.ScaleTo(m_imageRank[(int)countTimer].gameObject, new Vector3(1f, 1f), 1.5f);
+
+				m_ScoreText[(int)countTimer].enabled = true;
+				iTween.FadeTo(m_ScoreText[(int)countTimer].gameObject, 1f, 1.5f);
+				iTween.ScaleTo(m_ScoreText[(int)countTimer].gameObject, new Vector3(1f, 1f), 1.5f);
+
 			}
 			// 秒数待機
-			if(countTimer >= 5f) {
+			if (countTimer >= 5f) {
 				m_Phase++;
 				countTimer = 0f;
 			}
