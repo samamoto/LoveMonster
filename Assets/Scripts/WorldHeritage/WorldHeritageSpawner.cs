@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class WorldHeritageSpawner : MonoBehaviour
 {
-	public bool isControll { get; private set; }
-	public bool stageRelease { get; set; }
-	private GameObject worldHeritageCamera = null;
+    public bool isControll { get; private set; }
+    public bool stageRelease { get; set; }
+    private GameObject worldHeritageCamera = null;
     private AllPlayerManager allPlayerManager = null;
     private GameObject instanceWorldHeritage = null;
-    private Animator HeritageAnimator = null;
 
     [SerializeField, Tooltip("ランダムで生成させる世界遺産リスト")] private GameObject[] WorldHeritageList;
+
+    [SerializeField, Tooltip("生成座標")] private Vector3 startPoint;
+    [SerializeField, Tooltip("移動後座標")] private Vector3 endPoint;
+    [SerializeField, Tooltip("移動時間")] private float MoveTime = 0.0f;
 
     //デバック起動用
     [SerializeField] private bool debug_Spawn = false;
 
     //デバッグ解放用
     [SerializeField] private bool debug_Release = false;
+
     // Use this for initialization
     private void Start()
     {
@@ -32,25 +36,28 @@ public class WorldHeritageSpawner : MonoBehaviour
         if (allPlayerManager.getisEntryBonusStage() && this.instanceWorldHeritage == null || this.debug_Spawn && this.instanceWorldHeritage == null)
         {
             this.debug_Spawn = false;
-			this.isControll = false;
+            this.isControll = false;
             allPlayerManager.stopPlayerControl();
             this.Spawn();
         }
 
-		// カメラを移動終了させ、プレイヤーのコントロールを戻す
-        if (this.HeritageAnimator && this.HeritageAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f && this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().endFlg)
+        if (this.instanceWorldHeritage != null)
         {
-            this.allPlayerManager.returnPlayerControl();
-            this.worldHeritageCamera.GetComponent<Camera>().enabled = false;
-			isControll = true;
-        }
+            // カメラを移動終了させ、プレイヤーのコントロールを戻す
+            if (this.instanceWorldHeritage.GetComponent<WorldHeritage>().normalizedTime >= 1.0f && this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().endFlg)
+            {
+                this.allPlayerManager.returnPlayerControl();
+                this.worldHeritageCamera.GetComponent<Camera>().enabled = false;
+                isControll = true;
+            }
 
-        //デバッグよう解放処理
-        if (this.instanceWorldHeritage && (this.debug_Release || this.stageRelease))
-        {
-            this.debug_Release = false;
-            allPlayerManager.returnPlayerControl();
-            this.Release();
+            //デバッグよう解放処理
+            if ((this.debug_Release || this.stageRelease))
+            {
+                this.debug_Release = false;
+                allPlayerManager.returnPlayerControl();
+                this.Release();
+            }
         }
     }
 
@@ -58,19 +65,17 @@ public class WorldHeritageSpawner : MonoBehaviour
     {
         this.worldHeritageCamera.GetComponent<Camera>().enabled = true;
         this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().CameraStart();
-        this.instanceWorldHeritage = Instantiate(this.WorldHeritageList[Random.Range(0, this.WorldHeritageList.Length)]);
-        this.HeritageAnimator = instanceWorldHeritage.GetComponent<Animator>();
+        this.instanceWorldHeritage = Instantiate(this.WorldHeritageList[Random.Range(0, this.WorldHeritageList.Length)], Vector3.zero, Quaternion.identity, this.transform);
+        this.instanceWorldHeritage.GetComponent<WorldHeritage>().Init(this.startPoint, this.endPoint, this.MoveTime);
     }
 
     private void Release()
     {
         if (this.instanceWorldHeritage)
         {
-            HeritageAnimator = null;
             Destroy(this.instanceWorldHeritage);
             this.worldHeritageCamera.GetComponent<Camera>().enabled = false;
             this.instanceWorldHeritage = null;
         }
     }
-
 }
