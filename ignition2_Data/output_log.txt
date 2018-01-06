@@ -21,18 +21,19 @@ Platform assembly: C:\Users\samam\Desktop\LoveMonster\ignition2_Data\Managed\Uni
 Loading C:\Users\samam\Desktop\LoveMonster\ignition2_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\samam\Desktop\LoveMonster\ignition2_Data\Managed\TextMeshPro-1.0.55.56.0b12.dll (this message is harmless)
 Loading C:\Users\samam\Desktop\LoveMonster\ignition2_Data\Managed\TextMeshPro-1.0.55.56.0b12.dll into Unity Child Domain
-- Completed reload, in  0.240 seconds
+- Completed reload, in  0.019 seconds
 Platform assembly: C:\Users\samam\Desktop\LoveMonster\ignition2_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\samam\Desktop\LoveMonster\ignition2_Data\Managed\System.dll (this message is harmless)
-desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+desktop: 1920x1080 60Hz; virtual: 1920x2160 at 0,-1080
 <RI> Initializing input.
 <RI> Input initialized.
+desktop: 1920x1080 59Hz; virtual: 1920x2160 at 0,-1080
 <RI> Initialized touch support.
 The referenced script on this Behaviour (Game Object 'Arrow') is missing!
  
 (Filename:  Line: 1743)
 
-UnloadTime: 1.079431 ms
+UnloadTime: 0.955442 ms
 Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
  
 (Filename:  Line: 623)
@@ -146,17 +147,21 @@ Create common controller
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 4 worker threads for Enlighten.
-  Thread -> id: 1ea8 -> priority: 1 
-  Thread -> id: 2c40 -> priority: 1 
-  Thread -> id: 1e88 -> priority: 1 
-  Thread -> id: 620 -> priority: 1 
+  Thread -> id: 1f58 -> priority: 1 
+  Thread -> id: 2498 -> priority: 1 
+  Thread -> id: 4840 -> priority: 1 
+  Thread -> id: 2b64 -> priority: 1 
+Joystick connected ("Controller (Gamepad F310)").
+ 
+(Filename:  Line: 1351)
+
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
 IndexOutOfRangeException: Array index is out of range.
   at Controller.Controller.OnDestroy () [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
 
-UnloadTime: 16.514568 ms
+UnloadTime: 21.029581 ms
 Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
  
 (Filename:  Line: 623)
@@ -267,7 +272,7 @@ Only custom filters can be played. Please add a custom filter or an audioclip to
 
 
 Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 37035.
-Total: 13.434543 ms (FindLiveObjects: 1.961939 ms CreateObjectMapping: 0.941949 ms MarkObjects: 4.778306 ms  DeleteObjects: 5.751253 ms)
+Total: 16.774942 ms (FindLiveObjects: 1.976890 ms CreateObjectMapping: 1.253744 ms MarkObjects: 6.022204 ms  DeleteObjects: 7.520645 ms)
 
 Create controller ID:2
  
@@ -284,4 +289,131 @@ Create controller ID:1
 Create controller ID:4
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+The referenced script on this Behaviour (Game Object 'Arrow') is missing!
+ 
+(Filename:  Line: 1743)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 48.823112 ms
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (SoundManager).
+ 
+(Filename:  Line: 623)
+
+
+Unloading 4573 unused Assets to reduce memory usage. Loaded Objects now: 1831.
+Total: 3.750294 ms (FindLiveObjects: 0.266575 ms CreateObjectMapping: 0.273504 ms MarkObjects: 0.532057 ms  DeleteObjects: 2.677791 ms)
+
+Create common controller
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+IndexOutOfRangeException: Array index is out of range.
+  at Controller.Controller.OnDestroy () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
 
