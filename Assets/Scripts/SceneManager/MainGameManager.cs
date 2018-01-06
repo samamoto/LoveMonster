@@ -7,7 +7,7 @@ using TMPro;
 public class MainGameManager : MonoBehaviour {
 	private float AllStageLength = 0f;
 	private float BonusAliveCount = 0f;				// ボーナスステージのカウント
-	private const float BONUS_ALIVE_TIME = 1.0f;    // ボーナスステージの生存時間
+	private const float BONUS_ALIVE_TIME = 45.0f;    // ボーナスステージの生存時間
 	public int BonusEntryCount { get; private set; }			// ボーナスの出現回数
 	public const float BONUS_ENTRY_NUM = 1;		// ボーナスステージが何回出現するか
 	//スクリプト群

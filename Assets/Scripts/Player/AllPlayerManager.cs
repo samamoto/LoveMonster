@@ -25,14 +25,14 @@ public class AllPlayerManager : MonoBehaviour {
 	// 現存するPlayerの数
 	private int m_PlayerNum = 0;
 	// プレイヤーがステージを周回する回数
-	private const int NEED_GOAL_NUM = 4;
+	private const int NEED_GOAL_NUM = 2;
 
 	// ToDo:増えてきたらローカルクラスで管理しよう
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
 
 	// テンションが何％でボーナスに遷移するか
-	public const float ENTRY_BONUS_TENSION = 0.7f;
-	public const int ENTRY_BONUS_PLAYER = 4;
+	public const float ENTRY_BONUS_TENSION = 0.5f;
+	public const int ENTRY_BONUS_PLAYER = 2;
 
 	private bool StopControll = false;
 
