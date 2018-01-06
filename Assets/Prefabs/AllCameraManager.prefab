@@ -2595,8 +2595,8 @@ MonoBehaviour:
   m_MaxPolar: 115
   m_Cont_x_Secsitivity: 1.4
   m_Cont_y_Secsitivity: 0.8
-  m_Cont_x_Threshold: 0.05
-  m_Cont_y_Threshold: 0.05
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
   m_LerpTimeMultiply: 5
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
@@ -3653,8 +3653,8 @@ MonoBehaviour:
   m_MaxPolar: 115
   m_Cont_x_Secsitivity: 1.4
   m_Cont_y_Secsitivity: 0.8
-  m_Cont_x_Threshold: 0.05
-  m_Cont_y_Threshold: 0.05
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
   m_LerpTimeMultiply: 5
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
@@ -5165,8 +5165,8 @@ MonoBehaviour:
   m_MaxPolar: 115
   m_Cont_x_Secsitivity: 1.4
   m_Cont_y_Secsitivity: 0.8
-  m_Cont_x_Threshold: 0.05
-  m_Cont_y_Threshold: 0.05
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
   m_LerpTimeMultiply: 5
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
@@ -5256,8 +5256,8 @@ MonoBehaviour:
   m_MaxPolar: 115
   m_Cont_x_Secsitivity: 1.4
   m_Cont_y_Secsitivity: 0.8
-  m_Cont_x_Threshold: 0.05
-  m_Cont_y_Threshold: 0.05
+  m_Cont_x_Threshold: 0.1
+  m_Cont_y_Threshold: 0.1
   m_LerpTimeMultiply: 5
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
