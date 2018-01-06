@@ -31,8 +31,8 @@ public class AllPlayerManager : MonoBehaviour {
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
 
 	// テンションが何％でボーナスに遷移するか
-	public const float ENTRY_BONUS_TENSION = 0.01f;
-	public const int ENTRY_BONUS_PLAYER = 1;
+	public const float ENTRY_BONUS_TENSION = 0.7f;
+	public const int ENTRY_BONUS_PLAYER = 4;
 
 	private bool StopControll = false;
 
@@ -78,8 +78,7 @@ public class AllPlayerManager : MonoBehaviour {
 
 	// Update is called once per frame
 	private void Update() {
-
-		if (StopControll) return;
+        if (StopControll) return;
 
 		// 各プレイヤーの状態を確認するよ！ //
 		for(int i=0; i< m_PlayerNum; i++) {
@@ -299,12 +298,6 @@ public class AllPlayerManager : MonoBehaviour {
 	/// 全員のテンションが一定値以上になれば
 	/// </summary>
 	public bool getisEntryBonusStage() {
-
-		// MainGameManager側ですでに出したくなければ止める
-		if(m_GameManager.BonusEntryCount >= MainGameManager.BONUS_ENTRY_NUM) {
-			return false;
-		}
-
 		int count = 0;
 		for (int i = 0; i < m_PlayerNum; i++) {
 			if (ENTRY_BONUS_TENSION <= m_PlayerManager[i].gameObject.GetComponent<Tension>().getTensionRatio()) {

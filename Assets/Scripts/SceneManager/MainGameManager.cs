@@ -5,7 +5,6 @@ using TMPro;
 [RequireComponent(typeof(PauseManager))]
 [RequireComponent(typeof(TimeManager))]
 public class MainGameManager : MonoBehaviour {
-
 	private float AllStageLength = 0f;
 	private float BonusAliveCount = 0f;				// ボーナスステージのカウント
 	private const float BONUS_ALIVE_TIME = 1.0f;    // ボーナスステージの生存時間
@@ -151,7 +150,7 @@ public class MainGameManager : MonoBehaviour {
 			m_Audio.PlayOneShot((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Bonus);
 			m_PauseMgr.PauseRestriction(true);
-			
+
 			// 指定座標までプレイヤー移動させる
 			setPhaseState(PhaseLevel.Game_Bonus_CameraMove);
 			m_AllPlayerMgr.stopControll(true);
@@ -204,7 +203,7 @@ public class MainGameManager : MonoBehaviour {
 				setPhaseState(PhaseLevel.Game_Bonus_End);
 			}
 			// Pauseメニュー表示 //
-			// 
+			//
 			/* Todo:ボーナスステージに遷移したら
 			 ・ボーナスステージが生えてくる
 				・UI非表示
@@ -244,7 +243,6 @@ public class MainGameManager : MonoBehaviour {
 			setPhaseState(PhaseLevel.Game);
 			break;
 
-		
 		//================================================================================
 		// Pause-Phase
 		//================================================================================
