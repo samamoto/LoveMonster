@@ -25,7 +25,7 @@ public class AllPlayerManager : MonoBehaviour {
 	// 現存するPlayerの数
 	private int m_PlayerNum = 0;
 	// プレイヤーがステージを周回する回数
-	private const int NEED_GOAL_NUM = 2;
+	private const int NEED_GOAL_NUM = 4;
 
 	// ToDo:増えてきたらローカルクラスで管理しよう
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
@@ -61,6 +61,7 @@ public class AllPlayerManager : MonoBehaviour {
 		for(int i=0; i<game.Length; i++) {
 			m_GoalList.Add(game[i].GetComponent<GoalObject>());
 		}
+
 		game.Initialize();
 		// Start
 		game = GameObject.FindGameObjectsWithTag("Start");
@@ -68,6 +69,7 @@ public class AllPlayerManager : MonoBehaviour {
 		for (int i = 0; i < game.Length; i++) {
 			m_StartList.Add(game[i].GetComponent<StartObject>());
 		}
+		m_StartList.Sort((a, b) => a.StartPlayerID - b.StartPlayerID);
 		// 順不同なのでもうループ
 		for (int i = 0; i < game.Length; i++) {
 			// プレイヤーのポジションをセット
@@ -165,8 +167,11 @@ public class AllPlayerManager : MonoBehaviour {
 				// 落下したプレイヤーの下降処理
 				m_PlayerManager[i].gameObject.GetComponent<ComboSystem>()._ClearCombo();
 				m_PlayerManager[i].gameObject.GetComponent<Tension>().downTension();
-
-				m_PlayerManager[i].restartPlayer(); // 2017/12/01 oyama add
+				m_PlayerManager[i].stopControlTimer(false, 0.5f);
+				Vector3 resetRot = m_StartList[m_PlayerManager[i].getPlayerStageID() - 1].transform.rotation.eulerAngles;
+				m_PlayerManager[i].restartPlayer(resetRot); // 2017/12/01 oyama add
+				// カメラを背面にリセット
+				GameObject.Find("MainCamera" + (i+1).ToString()).GetComponent<ChaseCamera>().resetCamera();
 			}
 		}
 	}

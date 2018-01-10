@@ -145,7 +145,7 @@ public class MainGameManager : MonoBehaviour {
 			wldCamera.GetComponent<XFade>().CrossFade(wldCamera, 1.0f);
 
             //BGMを変える　SE　ｽﾞｺﾞｺﾞｺﾞｺﾞ予定
-            m_Audio.AllStop();
+            //m_Audio.AllStop();
 			m_Audio.Stop((int)gameBGM);
 			m_Audio.PlayOneShot((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Bonus);

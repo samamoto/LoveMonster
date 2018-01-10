@@ -145,7 +145,8 @@ public class ChaseCamera : MonoBehaviour
     /// </summary>
     public void resetCamera()
     {
-        this.lerpTime = 0.0f;
+		resetAzimuthal = Mathf.Repeat(((360 - m_ChaseObject.transform.rotation.eulerAngles.y) + initAzimuthal), 360.0f);
+		this.lerpTime = 0.0f;
         this.resetBeginPos = this.transform.position;
         //カメラの仰角、方位角をリセット後に上書き
         this.m_PolarAngle = initPolar;

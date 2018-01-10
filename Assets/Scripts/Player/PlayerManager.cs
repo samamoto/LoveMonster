@@ -54,6 +54,8 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
     // walljump variables
     public bool isWallJumping = false;
 
+	private float stopTimer = 0f;   // プレイヤーがコントロールを停止する時間
+	private float stopTimerLimit = 0f; 
 	// Use this for initialization
 	void Start() {
 		m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
@@ -94,6 +96,12 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 
 	// Update is called once per frame
 	void Update() {
+
+		// stopTimerが動いている場合
+		if(stopTimerLimit > 0f) {
+			stopControlTimer(false, stopTimerLimit);
+		}
+
 		// MoveStateの移動制御が走っている場合、または、外部から止められている
 		if (m_MoveState.isMove()) {
 			return;
@@ -101,7 +109,10 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 
 		// 停止中の場合は位置も止める
 		if (is_StopControl) {
-			transform.position = m_StopControllPoint;
+			//transform.position = m_StopControllPoint;
+			GetComponent<Rigidbody>().useGravity = !is_StopControl;
+		} else {
+			GetComponent<Rigidbody>().useGravity = !is_StopControl;
 		}
 
 		// 状態管理
@@ -443,12 +454,19 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	// 2017年12月01日 oyama add
 	/// <summary>
 	/// プレイヤーがリスタートする時の処理
-	/// Todo:エフェクトとかもいる
 	/// </summary>
 	public void restartPlayer() {
 		EffectControl eff = EffectControl.get();
 		transform.position = m_RestartPoint;
 		eff.createItemHit(m_RestartPoint);  // 仮にエフェクト再生
+	}
+	/// <summary>
+	/// プレイヤーがリスタートする時の処理
+	/// </summary>
+	/// <param name="rot">リスタート時の回転角度</param>
+	public void restartPlayer(Vector3 rot) {
+		transform.eulerAngles = rot;
+		restartPlayer();
 	}
 
 	/// <summary>
@@ -456,6 +474,31 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	/// </summary>
 	public void resetBonusParameter() {
 		GetComponent<Tension>().resetTension();
+	}
+
+	/// <summary>
+	/// プレイヤーのコントロールを停止させる(復旧時間付き)
+	/// 呼び出し側は1Fにすること
+	/// </summary>
+	/// <param name="flag">false:通常|true:停止</param>
+	/// <param name="time">停止時間</param>
+	/// <returns>完了ならtrue</returns>
+	public bool stopControlTimer(bool flag, float time) {
+
+		// 初回時に停止
+		if(stopTimer <= 0) {
+			stopControl(true);
+		}
+
+		stopTimerLimit = time;
+		stopTimer += Time.deltaTime;
+		if(stopTimer >= time) {
+			stopTimer = 0f;
+			stopTimerLimit = 0f;
+			stopControl(flag);
+			return true;
+		}
+		return false;
 	}
 
 	/// <summary>
