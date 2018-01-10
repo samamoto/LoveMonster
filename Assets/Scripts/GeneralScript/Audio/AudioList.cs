@@ -98,16 +98,4 @@ public class AudioList : MonoBehaviour
             this.m_CostomAudioSouce[resume].Resume();
         }
     }
-
-    public void AllStop()
-    {
-        for(int i=0;i<sizeof(SoundList_SE);i++)
-        {
-            Stop(i);
-        }
-    }
-
-
-
-
 }
