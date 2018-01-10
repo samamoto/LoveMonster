@@ -82,4 +82,12 @@ public class GoalObject : MonoBehaviour {
 	public Vector3 getNextStagePoint() {
 		return nextStagePoint.position;
 	}
+
+	/// <summary>
+	/// 次のステージの回転角を返す
+	/// </summary>
+	/// <returns>回転角度</returns>
+	public Quaternion getNextStageRot() {
+		return nextStagePoint.rotation;
+	}
 }
