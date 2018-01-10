@@ -83,6 +83,8 @@ public class ThirdPersonCharacter : MonoBehaviour {
 
 	private AudioList m_Audio;      // âπê∫çƒê∂óp
 
+	private Vector3 m_GroundContactNormal;	//2018îN01åé10ì˙ oyama add
+
 	// david add
 	public bool wallRunning; // are we wall running
 	private float wallJumpLockTime = 0.2f;
@@ -115,6 +117,7 @@ public class ThirdPersonCharacter : MonoBehaviour {
 		currentLookPos = Camera.main.transform.position;
 
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+
 	}
 
 	// Lookweight is probably used to determine how fast character turns etc.
@@ -137,7 +140,7 @@ public class ThirdPersonCharacter : MonoBehaviour {
 
 	// The Move function is designed to be called from a separate component
 	// based on User input, or an AI control script
-	public void Move(Vector3 move, bool crouch, bool jump, bool vault, bool slide, bool climb, bool wallrun, Vector3 lookPos) {
+	public void Move(Vector3 move, bool crouch, bool jump, bool vault, bool slide, bool climb, bool wallrun, Vector3 lookPos, Transform cam) {
 
 		if (move.magnitude > 1) move.Normalize();
 
@@ -167,7 +170,7 @@ public class ThirdPersonCharacter : MonoBehaviour {
 
 		// if wallRunning we want to handle gravity with the wallrun code
 		if (!wallRunning) {
-			GroundCheck(); // detect and stick to ground
+			GroundCheck(move, cam); // detect and stick to ground
 
 			if (onGround) {
 				HandleGroundedVelocities();
@@ -255,11 +258,10 @@ public class ThirdPersonCharacter : MonoBehaviour {
 		transform.Rotate(0, turnAmount * turnSpeed * Time.deltaTime, 0);
 	}
 
-	private void GroundCheck() {
+	private void GroundCheck(Vector3 input, Transform cam) {
 		Ray ray = new Ray(transform.position + Vector3.up * .1f, -Vector3.up);
 		RaycastHit[] hits = Physics.RaycastAll(ray, .5f, groundCheckMask);
 		System.Array.Sort(hits, rayHitComparer);
-
 
 		if (velocity.y < jumpPower * .5f) {
 			onGround = false;
@@ -270,6 +272,7 @@ public class ThirdPersonCharacter : MonoBehaviour {
 					// this counts as being on ground.
 
 					// stick to surface - helps character stick to ground - specially when running down slopes
+
 					if (velocity.y <= 0) {
 						GetComponent<Rigidbody>().position = Vector3.MoveTowards(GetComponent<Rigidbody>().position, hit.point,
 																	Time.deltaTime * advancedSettings.groundStickyEffect);

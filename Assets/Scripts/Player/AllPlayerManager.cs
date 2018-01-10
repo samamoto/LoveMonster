@@ -31,8 +31,8 @@ public class AllPlayerManager : MonoBehaviour {
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
 
 	// テンションが何％でボーナスに遷移するか
-	public const float ENTRY_BONUS_TENSION = 0.5f;
-	public const int ENTRY_BONUS_PLAYER = 2;
+	public const float ENTRY_BONUS_TENSION = 0.65f;
+	public const int ENTRY_BONUS_PLAYER = 1;
 
 	private bool StopControll = false;
 

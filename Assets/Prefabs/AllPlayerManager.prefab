@@ -11510,8 +11510,8 @@ MonoBehaviour:
   airSpeed: 9
   airControl: 2
   gravityMultiplier: 2
-  moveSpeedMultiplier: 1.5
-  animSpeedMultiplier: 1.1
+  moveSpeedMultiplier: 1.65
+  animSpeedMultiplier: 1.2
   advancedSettings:
     stationaryTurnSpeed: 540
     movingTurnSpeed: 1080
@@ -11526,7 +11526,7 @@ MonoBehaviour:
       type: 2}
     jumpRepeatDelayTime: 0.1
     runCycleLegOffset: 0.2
-    groundStickyEffect: 5
+    groundStickyEffect: 9
   groundCheckMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -11639,8 +11639,8 @@ MonoBehaviour:
   airSpeed: 9
   airControl: 2
   gravityMultiplier: 2
-  moveSpeedMultiplier: 1.5
-  animSpeedMultiplier: 1.1
+  moveSpeedMultiplier: 1.65
+  animSpeedMultiplier: 1.2
   advancedSettings:
     stationaryTurnSpeed: 540
     movingTurnSpeed: 1080
@@ -11655,7 +11655,7 @@ MonoBehaviour:
       type: 2}
     jumpRepeatDelayTime: 0.1
     runCycleLegOffset: 0.2
-    groundStickyEffect: 5
+    groundStickyEffect: 9
   groundCheckMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -11957,8 +11957,8 @@ MonoBehaviour:
   airSpeed: 9
   airControl: 2
   gravityMultiplier: 2
-  moveSpeedMultiplier: 1.5
-  animSpeedMultiplier: 1.1
+  moveSpeedMultiplier: 1.65
+  animSpeedMultiplier: 1.2
   advancedSettings:
     stationaryTurnSpeed: 540
     movingTurnSpeed: 1080
@@ -11973,7 +11973,7 @@ MonoBehaviour:
       type: 2}
     jumpRepeatDelayTime: 0.1
     runCycleLegOffset: 0.2
-    groundStickyEffect: 5
+    groundStickyEffect: 9
   groundCheckMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -12133,8 +12133,8 @@ MonoBehaviour:
   airSpeed: 9
   airControl: 2
   gravityMultiplier: 2
-  moveSpeedMultiplier: 1.5
-  animSpeedMultiplier: 1.1
+  moveSpeedMultiplier: 1.65
+  animSpeedMultiplier: 1.2
   advancedSettings:
     stationaryTurnSpeed: 540
     movingTurnSpeed: 1080
@@ -12149,7 +12149,7 @@ MonoBehaviour:
       type: 2}
     jumpRepeatDelayTime: 0.1
     runCycleLegOffset: 0.2
-    groundStickyEffect: 5
+    groundStickyEffect: 9
   groundCheckMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -26004,7 +26004,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1764208496
+  randomSeed: 509089653
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -29046,7 +29046,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -125019931
+  randomSeed: 481744142
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -32088,7 +32088,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1023585492
+  randomSeed: -392750158
   InitialModule:
     serializedVersion: 3
     enabled: 1

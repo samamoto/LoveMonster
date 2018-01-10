@@ -1304,7 +1304,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &28097277
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1409,7 +1408,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &31090804
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1638,7 +1636,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &34981807
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1743,7 +1740,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &35431752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2002,7 +1998,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &41546064
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2142,7 +2137,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &41734455
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2332,7 +2326,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &44898952
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2613,7 +2606,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &46826593
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2748,7 +2740,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &49281437
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2853,7 +2844,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &49428967
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3281,7 +3271,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &53211724
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3659,7 +3648,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &66076675
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5801,7 +5789,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &92977193
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6154,6 +6141,11 @@ Transform:
   m_Father: {fileID: 1959645918}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &102174502 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1510832611856008, guid: 4be0571ae305a134ca2db78cf4481d26,
+    type: 2}
+  m_PrefabInternal: {fileID: 1877560065}
 --- !u!1 &105425462
 GameObject:
   m_ObjectHideFlags: 0
@@ -7184,7 +7176,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &121085677
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7376,7 +7367,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &122329753
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8212,7 +8202,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &137914341
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8388,6 +8377,11 @@ Transform:
   m_Father: {fileID: 1485027446}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &139578483 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1963364995564462, guid: 4be0571ae305a134ca2db78cf4481d26,
+    type: 2}
+  m_PrefabInternal: {fileID: 1877560065}
 --- !u!1 &143525971
 GameObject:
   m_ObjectHideFlags: 0
@@ -8511,7 +8505,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &145162056
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9100,7 +9093,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &154967760
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9466,7 +9458,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &158317213
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9944,7 +9935,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &169198931
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12408,7 +12398,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &211880380
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13009,11 +12998,6 @@ Transform:
   m_Father: {fileID: 1366996101}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1 &230968821 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1104194837573826, guid: 284a98191f12f82489535b9ae9479ef7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1930368108}
 --- !u!1 &231163472
 GameObject:
   m_ObjectHideFlags: 0
@@ -13064,7 +13048,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &231163475
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14154,7 +14137,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &261760997
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14376,7 +14358,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &265226043
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15867,7 +15848,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &281556103
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15972,7 +15952,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &282819009
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16077,7 +16056,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &282894585
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16525,7 +16503,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &296198057
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18662,7 +18639,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &324399361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20705,7 +20681,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &363557462
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20760,11 +20735,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 363557459}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &364390980 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1050178101078670, guid: 007b9587f73d9e149bf4cb31e24107f3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1939262809}
 --- !u!1 &365339689
 GameObject:
   m_ObjectHideFlags: 0
@@ -21726,6 +21696,11 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &381191368 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1982987221680138, guid: 4be0571ae305a134ca2db78cf4481d26,
+    type: 2}
+  m_PrefabInternal: {fileID: 1877560065}
 --- !u!1 &381354405
 GameObject:
   m_ObjectHideFlags: 0
@@ -22950,7 +22925,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &405741091
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23289,7 +23263,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &408864376
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25334,7 +25307,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &442237756
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25556,7 +25528,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &446096604
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26930,7 +26901,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &473564949
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27067,7 +27037,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &477449188
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27294,7 +27263,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &481376943
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29680,7 +29648,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &505196590
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30865,7 +30832,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &524201779
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31044,7 +31010,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &525459497
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33065,7 +33030,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &557545712
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33627,7 +33591,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &561518485
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34436,7 +34399,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &572681639
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34982,7 +34944,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &579508341
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35328,7 +35289,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &587634878
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36230,7 +36190,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &604506121
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36897,7 +36856,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &614888841
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38016,7 +37974,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &631220562
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38474,7 +38431,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &641670882
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38701,7 +38657,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &646293991
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38893,7 +38848,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &646897046
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39145,7 +39099,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &651030294
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39318,7 +39271,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &651838413
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39543,7 +39495,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &654678994
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41108,7 +41059,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &683396268
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41967,7 +41917,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &703421778
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42072,7 +42021,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &704419191
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42847,7 +42795,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &724088439
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43397,7 +43344,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &732650617
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43502,7 +43448,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &735949233
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43694,7 +43639,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &739929733
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43799,7 +43743,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &740708443
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43904,7 +43847,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &740927055
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44534,7 +44476,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &750676649
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45047,7 +44988,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &762732948
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45182,7 +45122,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &766459934
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45571,7 +45510,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &772081902
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46344,7 +46282,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &787571373
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47010,7 +46947,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &803600541
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47523,7 +47459,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &812198058
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47951,7 +47886,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &819504817
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48868,7 +48802,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &831441898
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50656,7 +50589,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &858461652
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51025,7 +50957,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &862387588
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51210,26 +51141,26 @@ MonoBehaviour:
     - gameObjects: []
     - gameObjects: []
   m_RecentGameObjects:
-  - gameObject: {fileID: 230968821}
-    timestamp: 636505693783039212
-  - gameObject: {fileID: 1397276022}
-    timestamp: 636505694303872329
-  - gameObject: {fileID: 364390980}
-    timestamp: 636505694316207004
-  - gameObject: {fileID: 187954674}
-    timestamp: 636505694385197246
-  - gameObject: {fileID: 1427233847}
-    timestamp: 636505694492819407
-  - gameObject: {fileID: 2053600764}
-    timestamp: 636505694538093592
-  - gameObject: {fileID: 1677187863}
-    timestamp: 636505694660353853
-  - gameObject: {fileID: 1856233056}
-    timestamp: 636505694909947631
   - gameObject: {fileID: 187954674}
     timestamp: 636505696378055855
   - gameObject: {fileID: 1856233056}
     timestamp: 636505696383607543
+  - gameObject: {fileID: 102174502}
+    timestamp: 636512052563146402
+  - gameObject: {fileID: 2007488866}
+    timestamp: 636512052587194495
+  - gameObject: {fileID: 1904098556}
+    timestamp: 636512073436032521
+  - gameObject: {fileID: 381191368}
+    timestamp: 636512073457645687
+  - gameObject: {fileID: 139578483}
+    timestamp: 636512073471582638
+  - gameObject: {fileID: 381191368}
+    timestamp: 636512073474972614
+  - gameObject: {fileID: 1904098556}
+    timestamp: 636512073476603855
+  - gameObject: {fileID: 2007488866}
+    timestamp: 636512073478248737
 --- !u!4 &866107556
 Transform:
   m_ObjectHideFlags: 16
@@ -52177,7 +52108,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &883291650
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52720,7 +52650,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &887749289
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54218,7 +54147,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &913475471
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -55404,7 +55332,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &929849453
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56331,7 +56258,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &948048907
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56887,7 +56813,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &960696572
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59498,7 +59423,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1012344564
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59990,7 +59914,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1018730877
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60257,7 +60180,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1022019338
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60653,7 +60575,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1028485481
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61400,7 +61321,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1032891962
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61592,7 +61512,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1033082573
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62081,7 +62000,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1039751583
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62999,7 +62917,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1052107709
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63192,7 +63109,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1054336471
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63297,7 +63213,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1054490490
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64164,7 +64079,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1067958993
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64269,7 +64183,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1070102996
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64976,7 +64889,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1079218425
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65114,7 +65026,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1082659993
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65286,7 +65197,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1085027345
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65552,7 +65462,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1088673222
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66163,7 +66072,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1098447355
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67084,7 +66992,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1117961527
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68413,7 +68320,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1137837202
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68518,7 +68424,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1140113161
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68784,7 +68689,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1143873148
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69213,7 +69117,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1149270425
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69318,7 +69221,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1152071762
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69929,7 +69831,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1159453522
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70708,7 +70609,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1168423487
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70813,7 +70713,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1168434663
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71244,7 +71143,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1172670759
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -72220,7 +72118,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1193220687
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -72412,7 +72309,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1195472674
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -72698,7 +72594,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1201549888
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -72977,7 +72872,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1206547667
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73170,7 +73064,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1208337289
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73525,7 +73418,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1214911751
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -75365,7 +75257,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1249579366
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -75696,7 +75587,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1251755099
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -75833,7 +75723,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1254272484
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77408,7 +77297,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1289293572
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77978,7 +77866,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1303611214
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79093,7 +78980,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1324341166
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80178,7 +80064,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1344417377
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80317,7 +80202,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1345716937
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -82092,7 +81976,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1375320134
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83226,7 +83109,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1394441221
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83401,11 +83283,6 @@ Transform:
   m_Father: {fileID: 1900284955}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -0.252, y: 0, z: 0}
---- !u!1 &1397276022 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1446727886100662, guid: 007b9587f73d9e149bf4cb31e24107f3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1939262809}
 --- !u!1 &1398321817
 GameObject:
   m_ObjectHideFlags: 0
@@ -83836,7 +83713,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1405033522
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -84322,7 +84198,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1412518963
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -84670,7 +84545,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1420308074
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85006,11 +84880,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1426651604}
   m_Mesh: {fileID: 4300002, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
---- !u!1 &1427233847 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1144680335986020, guid: 1a922ab12c3fc12478a806b0eb006bdd,
-    type: 2}
-  m_PrefabInternal: {fileID: 806984211}
 --- !u!1 &1427845610
 GameObject:
   m_ObjectHideFlags: 0
@@ -85094,7 +84963,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1428562155
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85347,7 +85215,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1429957760
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85951,7 +85818,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1443138575
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86479,7 +86345,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1454838728
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86793,7 +86658,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1459979340
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86898,7 +86762,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1462779549
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -87175,7 +87038,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1466680276
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -87280,7 +87142,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1466941050
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -87415,7 +87276,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1469614712
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90013,7 +89873,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1524617142
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90293,7 +90152,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1528628828
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90398,7 +90256,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1529486109
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90536,7 +90393,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1530325626
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -91098,7 +90954,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1534706127
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92915,7 +92770,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1584686212
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -93194,7 +93048,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1588155484
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -93331,7 +93184,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1589913276
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94670,7 +94522,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1616293120
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94949,7 +94800,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1622921895
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95315,7 +95165,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1625239368
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97139,7 +96988,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1650177724
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98207,7 +98055,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1664538045
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98707,7 +98554,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1674670241
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98876,9 +98722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360ce9081a4ee5347bb450dd15b55b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JudgeZone:
-  - 0.2
-  - 0.65
+  m_AllPlayerManager: {fileID: 0}
 --- !u!4 &1677187865
 Transform:
   m_ObjectHideFlags: 0
@@ -100874,7 +100718,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1706461559
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101153,7 +100996,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1707330885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101433,7 +101275,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1708932962
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101626,7 +101467,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1710766776
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101731,7 +101571,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1712078479
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -102835,7 +102674,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1722944001
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -105970,7 +105808,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1781361333
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -107566,7 +107403,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1808712629
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -107976,7 +107812,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1812764788
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -108320,7 +108155,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1817919481
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -108752,7 +108586,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1823079300
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109031,7 +108864,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1823987042
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109750,7 +109582,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1831005075
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -110059,7 +109890,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1836181398
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -110988,7 +110818,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1848734595
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -111574,7 +111403,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1860196088
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -111815,7 +111643,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1865159875
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112007,7 +111834,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1866842105
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112201,7 +112027,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1874085129
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112460,7 +112285,7 @@ Prefab:
     - target: {fileID: 114877801326631558, guid: 4be0571ae305a134ca2db78cf4481d26,
         type: 2}
       propertyPath: advancedSettings.groundStickyEffect
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4be0571ae305a134ca2db78cf4481d26, type: 2}
@@ -113441,7 +113266,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1898168364
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -113576,7 +113400,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1898414066
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -113987,6 +113810,11 @@ Transform:
   m_Father: {fileID: 2014969258}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1904098556 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1980811123830054, guid: 4be0571ae305a134ca2db78cf4481d26,
+    type: 2}
+  m_PrefabInternal: {fileID: 1877560065}
 --- !u!1 &1905017417
 GameObject:
   m_ObjectHideFlags: 0
@@ -114332,7 +114160,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1907118110
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115014,7 +114841,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1920706689
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -116084,7 +115910,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1934072276
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -117565,7 +117390,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1958383929
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118592,7 +118416,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1969020389
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -119976,7 +119799,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1992951823
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -120504,7 +120326,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &1999561776
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -120609,7 +120430,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2000456560
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -121891,7 +121711,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2021531320
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -121996,7 +121815,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2022150091
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -123112,11 +122930,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &2053600764 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1943034917170930, guid: 1a922ab12c3fc12478a806b0eb006bdd,
-    type: 2}
-  m_PrefabInternal: {fileID: 806984211}
 --- !u!1 &2054072540
 GameObject:
   m_ObjectHideFlags: 0
@@ -123840,7 +123653,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2065935380
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124080,7 +123892,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2070021707
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124359,7 +124170,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2072425232
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124464,7 +124274,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2074917825
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124569,7 +124378,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2076851051
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124674,7 +124482,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2077015705
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124971,7 +124778,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2079687017
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -125318,7 +125124,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2092340347
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -125423,7 +125228,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2093931232
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -125890,7 +125694,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2110052608
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -126084,7 +125887,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2110332831
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -127314,7 +127116,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2134680098
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -127941,7 +127742,6 @@ MonoBehaviour:
   actButton: 1
   m_MovePos: []
   m_MoveID: 
-  ScoreStandard: 100
 --- !u!23 &2144141120
 MeshRenderer:
   m_ObjectHideFlags: 0

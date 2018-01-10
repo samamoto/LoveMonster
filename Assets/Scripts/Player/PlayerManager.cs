@@ -311,7 +311,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 						: transform.position + transform.forward * 100;
 
 		// pass all parameters to the character control script
-		character.Move(move, crouch, jump, vault, slide, climb, wallrun, lookPos);
+		character.Move(move, crouch, jump, vault, slide, climb, wallrun, lookPos, cam);
 		jump = false;
 		m_animator.SetBool("is_Jump", jump);    // add oyama
 
