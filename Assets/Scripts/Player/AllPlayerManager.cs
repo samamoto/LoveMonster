@@ -33,7 +33,9 @@ public class AllPlayerManager : MonoBehaviour {
 	// テンションが何％でボーナスに遷移するか
 	public const float ENTRY_BONUS_TENSION = 0.65f;
 	public const int ENTRY_BONUS_PLAYER = 1;
-
+	public const float ENTRY_BONUS_UNTILLTIME = 3f;
+	private bool EntryBonusFlag = false;
+	private float timeCountUntillBonus = 0f;
 	private bool StopControll = false;
 
 	// コンポーネント
@@ -303,14 +305,50 @@ public class AllPlayerManager : MonoBehaviour {
 	/// 全員のテンションが一定値以上になれば
 	/// </summary>
 	public bool getisEntryBonusStage() {
-		int count = 0;
-		for (int i = 0; i < m_PlayerNum; i++) {
-			if (ENTRY_BONUS_TENSION <= m_PlayerManager[i].gameObject.GetComponent<Tension>().getTensionRatio()) {
-			//if (ENTRY_BONUS_TENSION <= m_PlayerManager[0].gameObject.GetComponent<Tension>().getTensionRatio()) {
-				count++;
+
+		if (timeCountUntillBonus > 0f) {
+			timeCountUntillBonus += Time.deltaTime;
+			if(timeCountUntillBonus >= ENTRY_BONUS_UNTILLTIME) {
+				timeCountUntillBonus = 0f;
+				return true;
 			}
 		}
-		if (count >= ENTRY_BONUS_PLAYER) {
+		/*
+		int count = 0;
+		if (timeCountUntillBonus <= 0f) {
+			for (int i = 0; i < m_PlayerNum; i++) {
+				if (ENTRY_BONUS_TENSION <= m_PlayerManager[i].gameObject.GetComponent<Tension>().getTensionRatio()) {
+					count++;
+				}
+			}
+			if (count >= ENTRY_BONUS_PLAYER || timeCountUntillBonus > 0f) {
+				timeCountUntillBonus += Time.deltaTime;
+			}
+		}
+		*/
+		return false;
+	}
+
+	/// <summary>
+	/// ボーナスに行けるかどうか(MainGameManager用)
+	/// </summary>
+	/// <returns></returns>
+	public bool getisEntryBonus() {
+
+		int count = 0;
+		if (timeCountUntillBonus <= 0f) {
+			for (int i = 0; i < m_PlayerNum; i++) {
+				if (ENTRY_BONUS_TENSION <= m_PlayerManager[i].gameObject.GetComponent<Tension>().getTensionRatio()) {
+					count++;
+				}
+			}
+			if (count >= ENTRY_BONUS_PLAYER || timeCountUntillBonus > 0f) {
+				timeCountUntillBonus += Time.deltaTime;
+			}
+		}
+
+		// 一度でも時間が経過していれば
+		if (timeCountUntillBonus > 0) {
 			return true;
 		}
 		return false;

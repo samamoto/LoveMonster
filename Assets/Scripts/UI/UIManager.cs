@@ -22,8 +22,8 @@ public class UIManager : MonoBehaviour
     public void Start()
     {
         m_Game = GameObject.FindWithTag("GameManager").GetComponent<MainGameManager>();
-        m_Time = GameObject.Find("TimeManager").GetComponent<TimeManager>();
-        m_Count = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
+        //m_Time = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        //m_Count = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
     }
 
     public void Update()

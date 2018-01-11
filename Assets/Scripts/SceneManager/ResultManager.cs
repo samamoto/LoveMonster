@@ -156,6 +156,7 @@ public class ResultManager : MonoBehaviour {
 			if (m_cam.transform.position == CameraLocation[1].position) {
 				for (int i = 0; i < 4; i++) {
 					// ランキングによってアニメーションを変更
+					// 優先順位をつける
 					switch (Ranking[i]) {
 					case 1:
 						m_Animator[i].SetTrigger("CW_Fulltwist");

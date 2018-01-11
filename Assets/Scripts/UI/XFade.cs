@@ -24,10 +24,11 @@ public class XFade : MonoBehaviour {
 	void Update () {
 
 
-        //if (Input.GetKeyDown(KeyCode.M)){
-        //    ScreenChange_flg = true;    //カメラ切り替え開始
+		//if (Input.GetKeyDown(KeyCode.M)){
+		//    ScreenChange_flg = true;    //カメラ切り替え開始
 
-        //}
+		//}
+		SCO.enabled = ScreenChange_flg;
         if (ScreenChange_flg == true)   //カメラ切り替え中
         {
 			timeCount += Time.deltaTime;

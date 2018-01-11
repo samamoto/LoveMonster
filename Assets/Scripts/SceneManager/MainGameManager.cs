@@ -26,9 +26,14 @@ public class MainGameManager : MonoBehaviour {
 	private TextMeshProUGUI[] m_PlayUser = new TextMeshProUGUI[4];
 	private AudioList m_Audio;
 	private PrintScore m_Score;
+	// 画像群
 	private Image m_FinishLogo;
+	private Image m_AlertBelt;
+	private Image m_AlertCenter;
+
 	private WorldHeritageSpawner m_WorldSpw;
 	private ItemFlag m_BonusFlag;
+
 	public AudioList.SoundList_BGM gameBGM = AudioList.SoundList_BGM.BGM_Game_Stage0;
 
 	public enum PhaseLevel {
@@ -64,10 +69,15 @@ public class MainGameManager : MonoBehaviour {
 		m_CountSys = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
 		m_TimeMgr = GameObject.Find("TimeManager").GetComponent<TimeManager>();
 		m_FinishLogo = GameObject.Find("FinishLogo").GetComponent<Image>();
+		m_AlertBelt = GameObject.Find("Alert_Belt").GetComponent<Image>();
+		m_AlertCenter = GameObject.Find("Alert_Center").GetComponent<Image>();
+
 		// 初期は非表示
 		m_CountSys.gameObject.SetActive(false);
 		m_TimeMgr.gameObject.SetActive(false);
 		m_FinishLogo.enabled = false;
+		m_AlertBelt.enabled = false;
+		m_AlertCenter.enabled = false;
 
 		// はじめは暗転から
 		GameObject.Find("Fade").GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 1f);
@@ -166,10 +176,30 @@ public class MainGameManager : MonoBehaviour {
 				setPhaseState(PhaseLevel.Pause);
 				m_PrevPausePhase = m_Phase; // Pause前の状態を記録
 			}
-			// ボーナスにいけるようになったら
-			if (m_AllPlayerMgr.getisEntryBonusStage() && BonusEntryCount <= 0) {
-				BonusEntryCount++;	// カウンタをプラス
+
+			// ボーナスにいけるようになったら(移行待機)
+			if (m_AllPlayerMgr.getisEntryBonus() && BonusEntryCount < BONUS_ENTRY_NUM) {
+				timeCount = 0f;
+				timeCount += Time.deltaTime;
+				m_AlertBelt.enabled = true;
+				m_AlertCenter.enabled = true;
+			}
+
+			if(timeCount > 0) {
+				iTween.FadeTo(m_AlertBelt.gameObject, 1f, 0.5f);
+				iTween.FadeTo(m_AlertCenter.gameObject, 1f, 0.5f);
+			}
+
+			// ここから実際の移行処理
+			if (m_AllPlayerMgr.getisEntryBonusStage() && BonusEntryCount < BONUS_ENTRY_NUM) {
+				timeCount = 0f;
+				BonusEntryCount++;  // カウンタをプラス
 				setPhaseState(PhaseLevel.Game_Bonus_Start);
+				m_AlertBelt.enabled = false;
+				m_AlertCenter.enabled = false;
+				// XFade
+				GameObject wldCamera = GameObject.Find("WorldHeritageCamera");
+				wldCamera.GetComponent<XFade>().CrossFade(wldCamera, 1.0f);
 			}
 
 			break;
@@ -179,14 +209,11 @@ public class MainGameManager : MonoBehaviour {
 		//================================================================================
 		case PhaseLevel.Game_Bonus_Start:
 
-			// XFade
-			GameObject wldCamera = GameObject.Find("WorldHeritageCamera");
-			wldCamera.GetComponent<XFade>().CrossFade(wldCamera, 1.0f);
 
             //BGMを変える　SE　ｽﾞｺﾞｺﾞｺﾞｺﾞ予定
             m_Audio.AllStop();
 			m_Audio.Stop((int)gameBGM);
-			m_Audio.PlayOneShot((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
+			m_Audio.Play((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Bonus);
 			m_PauseMgr.PauseRestriction(true);
 
