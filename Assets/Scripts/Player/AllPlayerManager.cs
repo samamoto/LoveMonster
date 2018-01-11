@@ -25,14 +25,14 @@ public class AllPlayerManager : MonoBehaviour {
 	// 現存するPlayerの数
 	private int m_PlayerNum = 0;
 	// プレイヤーがステージを周回する回数
-	private const int NEED_GOAL_NUM = 1;
+	private const int NEED_GOAL_NUM = 4;
 
 	// ToDo:増えてきたらローカルクラスで管理しよう
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
 
 	// テンションが何％でボーナスに遷移するか
-	public const float ENTRY_BONUS_TENSION = 0.65f;
-	public const int ENTRY_BONUS_PLAYER = 1;
+	//public const float ENTRY_BONUS_TENSION = 0.65f;
+	//public const int ENTRY_BONUS_PLAYER = 1;
 	public const float ENTRY_BONUS_UNTILLTIME = 5f;
 	private bool EntryBonusFlag = false;
 	private float timeCountUntillBonus = 0f;
@@ -343,11 +343,11 @@ public class AllPlayerManager : MonoBehaviour {
 		if (timeCountUntillBonus <= 0f) {
 			timeCountUntillBonus = 0f;
 			for (int i = 0; i < m_PlayerNum; i++) {
-				if (ENTRY_BONUS_TENSION <= m_PlayerManager[i].gameObject.GetComponent<Tension>().getTensionRatio()) {
+				if (m_GameManager.ENTRY_BONUS_TENSION <= m_PlayerManager[i].gameObject.GetComponent<Tension>().getTensionRatio()) {
 					count++;
 				}
 			}
-			if (count >= ENTRY_BONUS_PLAYER || timeCountUntillBonus > 0f) {
+			if (count >= m_GameManager.ENTRY_BONUS_PLAYER || timeCountUntillBonus > 0f) {
 				timeCountUntillBonus += Time.deltaTime;
 			}
 		}
