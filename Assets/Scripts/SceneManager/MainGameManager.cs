@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 //RequireComponentで指定することでそのスクリプトが必須であることを示せる
@@ -8,8 +9,12 @@ public class MainGameManager : MonoBehaviour {
 	private float AllStageLength = 0f;
 	private float BonusAliveCount = 0f;				// ボーナスステージのカウント
 	private const float BONUS_ALIVE_TIME = 45.0f;    // ボーナスステージの生存時間
+	private float timeCount = 0f;					// フェード処理などの汎用タイマー
+
 	public int BonusEntryCount { get; private set; }			// ボーナスの出現回数
 	public const float BONUS_ENTRY_NUM = 1;		// ボーナスステージが何回出現するか
+
+
 	//スクリプト群
 	private SceneChange m_ScreenChange;
 	private AllPlayerManager m_AllPlayerMgr;
@@ -21,11 +26,13 @@ public class MainGameManager : MonoBehaviour {
 	private TextMeshProUGUI[] m_PlayUser = new TextMeshProUGUI[4];
 	private AudioList m_Audio;
 	private PrintScore m_Score;
+	private Image m_FinishLogo;
 	private WorldHeritageSpawner m_WorldSpw;
 	private ItemFlag m_BonusFlag;
 	public AudioList.SoundList_BGM gameBGM = AudioList.SoundList_BGM.BGM_Game_Stage0;
 
 	public enum PhaseLevel {
+		Start_Fade,
 		Start,
 		CountDown,
 		CountEnd,
@@ -46,16 +53,25 @@ public class MainGameManager : MonoBehaviour {
 	// Use this for initialization
 	private void Start() {
 		// シーンが生成されたらStart
-		m_Phase = PhaseLevel.Start;
+		m_Phase = PhaseLevel.Start_Fade;
 		m_ScreenChange = GetComponent<SceneChange>();
 		m_AllPlayerMgr = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
 		m_AllCameraMgr = GameObject.Find("AllCameraManager").GetComponent<AllCameraManager>();
-		m_TimeMgr = GameObject.Find("TimeManager").GetComponent<TimeManager>();
 		m_PauseMgr = GameObject.Find("PauseManager").GetComponent<PauseManager>();
-		m_CountSys = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 		m_Score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
 		m_WorldSpw = GameObject.Find("WorldHeritageSpawner").GetComponent<WorldHeritageSpawner>();
+		m_CountSys = GameObject.Find("CountDownSystem").GetComponent<CountDownSystem>();
+		m_TimeMgr = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+		m_FinishLogo = GameObject.Find("FinishLogo").GetComponent<Image>();
+		// 初期は非表示
+		m_CountSys.gameObject.SetActive(false);
+		m_TimeMgr.gameObject.SetActive(false);
+		m_FinishLogo.enabled = false;
+
+		// はじめは暗転から
+		GameObject.Find("Fade").GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 1f);
+
 
 		// ステージ全体の長さを記録
 		for (int i = 0; i < 4; i++) {
@@ -72,6 +88,29 @@ public class MainGameManager : MonoBehaviour {
 	private void Update() {
 		// 現在のPhaseに合わせて処理を分ける
 		switch (m_Phase) {
+
+
+		//================================================================================
+		// FadeStart-Phase
+		//================================================================================
+		case PhaseLevel.Start_Fade:
+			if (timeCount <= 0f) {
+				timeCount += Time.deltaTime;
+				m_AllPlayerMgr.stopPlayerControl();     // プレイヤーのコントロールをOFF
+				m_PauseMgr.PauseRestriction(true);  // PAUSE禁止
+				m_TimeMgr.stopTimer();
+				m_Score.stopControll(true);
+			} else {
+				timeCount += Time.deltaTime;
+				SetFade(1f- (timeCount / 3));
+				if(timeCount >= 3f) {
+					GameObject.Find("Fade").GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0f);
+					setPhaseState(PhaseLevel.Start);
+					timeCount = 0f;
+				}
+			}
+			
+			break;
 		//================================================================================
 		// CountStart-Phase
 		//================================================================================
@@ -79,12 +118,11 @@ public class MainGameManager : MonoBehaviour {
 		case PhaseLevel.Start:
 			setPhaseState(PhaseLevel.CountDown);    // シーン読み込まれたら次のカウントへ
 			m_CountSys.startCountDown();
-			m_AllPlayerMgr.stopPlayerControl();     // プレイヤーのコントロールをOFF
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionCountDown );
-			m_PauseMgr.PauseRestriction(true);  // PAUSE禁止
-            m_TimeMgr.stopTimer();
-			m_Score.stopControll(true);
-            break;
+			// 非表示要素を復活させる
+			m_CountSys.gameObject.SetActive(true);
+			m_TimeMgr.gameObject.SetActive(true);
+			break;
 
 		//================================================================================
 		// CountDown-Phase
@@ -102,6 +140,7 @@ public class MainGameManager : MonoBehaviour {
 		//================================================================================
 		// カウントが終わってゲームがスタートする1フレームだけ　リセット処理とか
 		case PhaseLevel.CountEnd:
+
 			// カウントダウンストップ(たぶん向こう側でされてるけど)
 			m_CountSys.stopCountDown();
 			// タイマースタートする
@@ -145,7 +184,7 @@ public class MainGameManager : MonoBehaviour {
 			wldCamera.GetComponent<XFade>().CrossFade(wldCamera, 1.0f);
 
             //BGMを変える　SE　ｽﾞｺﾞｺﾞｺﾞｺﾞ予定
-            //m_Audio.AllStop();
+            m_Audio.AllStop();
 			m_Audio.Stop((int)gameBGM);
 			m_Audio.PlayOneShot((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Bonus);
@@ -202,23 +241,7 @@ public class MainGameManager : MonoBehaviour {
 			if(BonusAliveCount >= BONUS_ALIVE_TIME　|| m_BonusFlag.is_Get) {
 				setPhaseState(PhaseLevel.Game_Bonus_End);
 			}
-			// Pauseメニュー表示 //
-			//
-			/* Todo:ボーナスステージに遷移したら
-			 ・ボーナスステージが生えてくる
-				・UI非表示
-				・Pause禁止
-				・キャラクターの動きを停止
-				・カメラ切り替え
-			　を行う
 
-			・移動前の座標を保持
-			・各ポイントにプレイヤーを配置
-			・テンションゲージが下降していく？
-			　・もう落ちたら終了で良いんじゃないかな…
-			  ・落ちたらすぐ近くのリスタートポイントに戻す
-			・ボーナスが終わったら
-			 */
 			break;
 		//================================================================================
 		// Game-Bonus-Phase-End
@@ -270,7 +293,25 @@ public class MainGameManager : MonoBehaviour {
 			// 演出エフェクトとかUIとか発生させるのに使う
 			// 指定時間以上経過したらシーンを遷移させる
 			// とりあえず今はさっさと遷移する
-			setPhaseState(m_Phase + 1); // 次のPhase
+			timeCount += Time.deltaTime;
+			if (timeCount <= 1.5f) {
+				m_FinishLogo.enabled = true;
+				iTween.ScaleTo(m_FinishLogo.gameObject, new Vector3(0.65f, 0.65f, 0.65f), 1.5f);
+				iTween.RotateTo(m_FinishLogo.gameObject, new Vector3(0f, 0f, 720f), 1.5f);
+			}
+
+			if(timeCount > 2f && timeCount <= 3f) {
+				iTween.ScaleTo(m_FinishLogo.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 1.0f);
+			}
+
+			if (timeCount > 3f) {
+				SetFade((timeCount-3f) / 3);
+			}
+
+			if(timeCount >= 6f) {
+				timeCount = 0f;
+				setPhaseState(m_Phase + 1); // 次のPhase
+			}
 			break;
 
 		//================================================================================
@@ -404,4 +445,18 @@ public class MainGameManager : MonoBehaviour {
 	public float getAllStageLengthToProcessRate(float range) {
 		return range / AllStageLength;
 	}
+
+	/// <summary>
+	/// フェード処理
+	/// </summary>
+	/// <param name="value"></param>
+	void SetFade(float value) {
+		float v = value;
+		if (v >= 1) {
+			v = 1f;
+		}
+		GameObject.Find("Fade").GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, v);
+	}
+
+
 }
