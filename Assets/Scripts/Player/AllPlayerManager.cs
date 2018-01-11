@@ -24,16 +24,11 @@ public class AllPlayerManager : MonoBehaviour {
 
 	// 現存するPlayerの数
 	private int m_PlayerNum = 0;
-	// プレイヤーがステージを周回する回数
-	private const int NEED_GOAL_NUM = 4;
 
 	// ToDo:増えてきたらローカルクラスで管理しよう
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
-
-	// テンションが何％でボーナスに遷移するか
-	//public const float ENTRY_BONUS_TENSION = 0.65f;
-	//public const int ENTRY_BONUS_PLAYER = 1;
-	public const float ENTRY_BONUS_UNTILLTIME = 5f;
+	
+	public const float ENTRY_BONUS_UNTILLTIME = 5f;	// ボーナスまでの移行時間(アラート)
 	private bool EntryBonusFlag = false;
 	private float timeCountUntillBonus = 0f;
 	private bool StopControll = false;
@@ -116,7 +111,7 @@ public class AllPlayerManager : MonoBehaviour {
 				m_PlayerManager[id - 1].plusGoalFrequency();    // ゴール回数を追加
 
 				// 必要な回数を上回ればゴール判定
-				if (m_PlayerManager[id - 1].getGoalFrequency() >= NEED_GOAL_NUM) {
+				if (m_PlayerManager[id - 1].getGoalFrequency() >= m_GameManager.NEED_GOAL_NUM) {
 					m_GameManager.isPlayerGoal(id, m_PlayerManager[id - 1].getPlayerPos()); // ゴールしたプレイヤーのIDを投げる
 				} else {
 					// 0 ~ 3をぐるぐる

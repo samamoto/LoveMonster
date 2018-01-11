@@ -24,17 +24,17 @@ public class MainGameManager : MonoBehaviour {
 	};
 	[SerializeField, Tooltip("現在フェイズ")]	private PhaseLevel m_Phase = PhaseLevel.None;
 	[SerializeField, Tooltip("ゲーム音楽")]	private AudioList.SoundList_BGM gameBGM = AudioList.SoundList_BGM.BGM_Game_Stage0;
+	[SerializeField, Tooltip("必要ゴール回数")]	public int NEED_GOAL_NUM = 4;
 	[SerializeField, Tooltip("ボーナスステージの最大出現回数")] private int BONUS_ENTRY_NUM = 1;     // ボーナスステージが何回出現するか
 	[SerializeField, Tooltip("移行必要人数"), Range(1,4)]	public int ENTRY_BONUS_PLAYER = 1;
 	[SerializeField, Tooltip("移行必要量"), Range(0.01f,1.0f)]	public float ENTRY_BONUS_TENSION = 0.65f;
-
+	[SerializeField, Tooltip("ボーナスステージの制限時間")]	private const float BONUS_ALIVE_TIME = 45.0f;    // ボーナスステージの生存時間
 
 	private PhaseLevel m_oldPhase = PhaseLevel.None;
 	private PhaseLevel m_PrevPausePhase = PhaseLevel.Game;  // ポーズが掛かる前のフェイズ
 
 	private float AllStageLength = 0f;
 	private float BonusAliveCount = 0f;             // ボーナスステージのカウント
-	private const float BONUS_ALIVE_TIME = 1.0f;    // ボーナスステージの生存時間
 	private float timeCount = 0f;                   // フェード処理などの汎用タイマー
 
 	public int BonusEntryCount { get; private set; }            // ボーナスの出現回数
