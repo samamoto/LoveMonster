@@ -1,35 +1,42 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 //RequireComponentで指定することでそのスクリプトが必須であることを示せる
 [RequireComponent(typeof(PauseManager))]
 [RequireComponent(typeof(TimeManager))]
 public class MainGameManager : MonoBehaviour {
 	private float AllStageLength = 0f;
-	private float BonusAliveCount = 0f;				// ボーナスステージのカウント
-	private const float BONUS_ALIVE_TIME = 45.0f;    // ボーナスステージの生存時間
-	private float timeCount = 0f;					// フェード処理などの汎用タイマー
+	private float BonusAliveCount = 0f;             // ボーナスステージのカウント
+	private const float BONUS_ALIVE_TIME = 1.0f;    // ボーナスステージの生存時間
+	private float timeCount = 0f;                   // フェード処理などの汎用タイマー
 
-	public int BonusEntryCount { get; private set; }			// ボーナスの出現回数
-	public const float BONUS_ENTRY_NUM = 1;		// ボーナスステージが何回出現するか
-
+	public int BonusEntryCount { get; private set; }            // ボーナスの出現回数
+	public const float BONUS_ENTRY_NUM = 1;     // ボーナスステージが何回出現するか
 
 	//スクリプト群
 	private SceneChange m_ScreenChange;
+
 	private AllPlayerManager m_AllPlayerMgr;
 	private AllCameraManager m_AllCameraMgr;
+
 	// 2017年12月07日 oyama add　
 	private TimeManager m_TimeMgr;
+
 	private PauseManager m_PauseMgr;
 	private CountDownSystem m_CountSys;
 	private TextMeshProUGUI[] m_PlayUser = new TextMeshProUGUI[4];
 	private AudioList m_Audio;
 	private PrintScore m_Score;
+
 	// 画像群
 	private Image m_FinishLogo;
+
 	private Image m_AlertBelt;
 	private Image m_AlertCenter;
+
+	private Image m_ScreenAlert;
+	private Image m_ScreenFade;
 
 	private WorldHeritageSpawner m_WorldSpw;
 	private ItemFlag m_BonusFlag;
@@ -52,10 +59,12 @@ public class MainGameManager : MonoBehaviour {
 		None,
 	};
 
-	[SerializeField] private PhaseLevel m_Phase = PhaseLevel.None;
+	[SerializeField]
+	private PhaseLevel m_Phase = PhaseLevel.None;
 	private PhaseLevel m_oldPhase = PhaseLevel.None;
-	private PhaseLevel m_PrevPausePhase = PhaseLevel.Game;	// ポーズが掛かる前のフェイズ
-	// Use this for initialization
+	private PhaseLevel m_PrevPausePhase = PhaseLevel.Game;  // ポーズが掛かる前のフェイズ
+
+															// Use this for initialization
 	private void Start() {
 		// シーンが生成されたらStart
 		m_Phase = PhaseLevel.Start_Fade;
@@ -71,7 +80,8 @@ public class MainGameManager : MonoBehaviour {
 		m_FinishLogo = GameObject.Find("FinishLogo").GetComponent<Image>();
 		m_AlertBelt = GameObject.Find("Alert_Belt").GetComponent<Image>();
 		m_AlertCenter = GameObject.Find("Alert_Center").GetComponent<Image>();
-
+		m_ScreenFade = GameObject.Find("Fade").GetComponent<Image>();
+		m_ScreenAlert = GameObject.Find("Alert").GetComponent<Image>();
 		// 初期は非表示
 		m_CountSys.gameObject.SetActive(false);
 		m_TimeMgr.gameObject.SetActive(false);
@@ -81,7 +91,6 @@ public class MainGameManager : MonoBehaviour {
 
 		// はじめは暗転から
 		GameObject.Find("Fade").GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 1f);
-
 
 		// ステージ全体の長さを記録
 		for (int i = 0; i < 4; i++) {
@@ -98,8 +107,6 @@ public class MainGameManager : MonoBehaviour {
 	private void Update() {
 		// 現在のPhaseに合わせて処理を分ける
 		switch (m_Phase) {
-
-
 		//================================================================================
 		// FadeStart-Phase
 		//================================================================================
@@ -108,18 +115,17 @@ public class MainGameManager : MonoBehaviour {
 				timeCount += Time.deltaTime;
 				m_AllPlayerMgr.stopPlayerControl();     // プレイヤーのコントロールをOFF
 				m_PauseMgr.PauseRestriction(true);  // PAUSE禁止
-				m_TimeMgr.stopTimer();
 				m_Score.stopControll(true);
 			} else {
 				timeCount += Time.deltaTime;
-				SetFade(1f- (timeCount / 3));
-				if(timeCount >= 3f) {
+				SetFade(1f - (timeCount / 3));
+				if (timeCount >= 3f) {
 					GameObject.Find("Fade").GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0f);
 					setPhaseState(PhaseLevel.Start);
 					timeCount = 0f;
 				}
 			}
-			
+
 			break;
 		//================================================================================
 		// CountStart-Phase
@@ -128,7 +134,7 @@ public class MainGameManager : MonoBehaviour {
 		case PhaseLevel.Start:
 			setPhaseState(PhaseLevel.CountDown);    // シーン読み込まれたら次のカウントへ
 			m_CountSys.startCountDown();
-			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionCountDown );
+			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionCountDown);
 			// 非表示要素を復活させる
 			m_CountSys.gameObject.SetActive(true);
 			m_TimeMgr.gameObject.SetActive(true);
@@ -141,7 +147,7 @@ public class MainGameManager : MonoBehaviour {
 		case PhaseLevel.CountDown:
 			// カウントダウンのアップデートが走っている気がする
 			if (!m_CountSys.getCountStatus()) {
-				setPhaseState(PhaseLevel.CountEnd);	// 次へ
+				setPhaseState(PhaseLevel.CountEnd); // 次へ
 			}
 			break;
 
@@ -178,20 +184,37 @@ public class MainGameManager : MonoBehaviour {
 			}
 
 			// ボーナスにいけるようになったら(移行待機)
-			if (m_AllPlayerMgr.getisEntryBonus() && BonusEntryCount < BONUS_ENTRY_NUM) {
-				timeCount = 0f;
+			if (m_AllPlayerMgr.getisEntryBonus() && BonusEntryCount < BONUS_ENTRY_NUM && timeCount <= 0f) {
 				timeCount += Time.deltaTime;
 				m_AlertBelt.enabled = true;
 				m_AlertCenter.enabled = true;
-			}
-
-			if(timeCount > 0) {
+				//
 				iTween.FadeTo(m_AlertBelt.gameObject, 1f, 0.5f);
 				iTween.FadeTo(m_AlertCenter.gameObject, 1f, 0.5f);
+				System.Collections.Hashtable hash = new System.Collections.Hashtable(){
+					{"from", new Color(0,0,0,0)},
+					{"to", new Color(1f,0f,0f,0.8f)},
+					{"time", 1f},
+					{"speed", 1f},
+					{"delay", 0f},
+					{"easeType",iTween.EaseType.linear},
+					{"loopType",iTween.LoopType.loop},
+					{"onupdate", "SetAlertScreen"},
+					{"onupdatetarget", gameObject},
+				};
+				iTween.ValueTo(gameObject, hash);
+			}
+
+			if (timeCount > 0) {
+				timeCount += Time.deltaTime;
 			}
 
 			// ここから実際の移行処理
 			if (m_AllPlayerMgr.getisEntryBonusStage() && BonusEntryCount < BONUS_ENTRY_NUM) {
+				// Alert停止
+				iTween.Stop(gameObject, "value");
+				SetAlertScreen(new Color(0, 0, 0, 0));	// 元に戻す
+
 				timeCount = 0f;
 				BonusEntryCount++;  // カウンタをプラス
 				setPhaseState(PhaseLevel.Game_Bonus_Start);
@@ -209,9 +232,8 @@ public class MainGameManager : MonoBehaviour {
 		//================================================================================
 		case PhaseLevel.Game_Bonus_Start:
 
-
-            //BGMを変える　SE　ｽﾞｺﾞｺﾞｺﾞｺﾞ予定
-            m_Audio.AllStop();
+			//BGMを変える　SE　ｽﾞｺﾞｺﾞｺﾞｺﾞ予定
+			m_Audio.AllStop();
 			m_Audio.Stop((int)gameBGM);
 			m_Audio.Play((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Bonus);
@@ -265,7 +287,7 @@ public class MainGameManager : MonoBehaviour {
 
 			BonusAliveCount += Time.deltaTime;
 			// 時間で終了 または取られたら終了
-			if(BonusAliveCount >= BONUS_ALIVE_TIME　|| m_BonusFlag.is_Get) {
+			if (BonusAliveCount >= BONUS_ALIVE_TIME || m_BonusFlag.is_Get) {
 				setPhaseState(PhaseLevel.Game_Bonus_End);
 			}
 
@@ -327,15 +349,15 @@ public class MainGameManager : MonoBehaviour {
 				iTween.RotateTo(m_FinishLogo.gameObject, new Vector3(0f, 0f, 720f), 1.5f);
 			}
 
-			if(timeCount > 2f && timeCount <= 3f) {
+			if (timeCount > 2f && timeCount <= 3f) {
 				iTween.ScaleTo(m_FinishLogo.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 1.0f);
 			}
 
 			if (timeCount > 3f) {
-				SetFade((timeCount-3f) / 3);
+				SetFade((timeCount - 3f) / 3);
 			}
 
-			if(timeCount >= 6f) {
+			if (timeCount >= 6f) {
 				timeCount = 0f;
 				setPhaseState(m_Phase + 1); // 次のPhase
 			}
@@ -391,7 +413,7 @@ public class MainGameManager : MonoBehaviour {
 		// 誰かがゴールしたら1以上
 		if (id > 0) {
 			// なにかの条件になったらつぎのステートに遷移させる
-			setPhaseState(PhaseLevel.Goal + 1); // ゴールの次
+			setPhaseState(PhaseLevel.Goal); // ゴールの次
 		}
 	}
 
@@ -441,6 +463,7 @@ public class MainGameManager : MonoBehaviour {
 		start = GameObject.Find("StartPoint" + (n + 1).ToString()).GetComponent<Transform>().position;
 		return System.Math.Abs(Vector3.Distance(start, vec));
 	}
+
 	/// <summary>
 	/// PlayerとGoalまでのステージの長さを返す
 	/// </summary>
@@ -477,13 +500,19 @@ public class MainGameManager : MonoBehaviour {
 	/// フェード処理
 	/// </summary>
 	/// <param name="value"></param>
-	void SetFade(float value) {
+	private void SetFade(float value) {
 		float v = value;
 		if (v >= 1) {
 			v = 1f;
 		}
-		GameObject.Find("Fade").GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, v);
+		m_ScreenFade.color = new Color(0, 0, 0, v);
 	}
 
-
+	/// <summary>
+	/// アラート用の赤いフラッシュ
+	/// </summary>
+	/// <param name="value"></param>
+	private void SetAlertScreen(Color value) {
+		m_ScreenAlert.color = value;
+	}
 }

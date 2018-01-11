@@ -25,7 +25,7 @@ public class AllPlayerManager : MonoBehaviour {
 	// 現存するPlayerの数
 	private int m_PlayerNum = 0;
 	// プレイヤーがステージを周回する回数
-	private const int NEED_GOAL_NUM = 4;
+	private const int NEED_GOAL_NUM = 1;
 
 	// ToDo:増えてきたらローカルクラスで管理しよう
 	private string[] m_PlayerActionNames = new string[ConstPlayerParameter.PlayerMax];
@@ -33,7 +33,7 @@ public class AllPlayerManager : MonoBehaviour {
 	// テンションが何％でボーナスに遷移するか
 	public const float ENTRY_BONUS_TENSION = 0.65f;
 	public const int ENTRY_BONUS_PLAYER = 1;
-	public const float ENTRY_BONUS_UNTILLTIME = 3f;
+	public const float ENTRY_BONUS_UNTILLTIME = 5f;
 	private bool EntryBonusFlag = false;
 	private float timeCountUntillBonus = 0f;
 	private bool StopControll = false;
@@ -91,6 +91,11 @@ public class AllPlayerManager : MonoBehaviour {
 		}
 
 
+		// ボーナス待機時間がスタートしていれば加算する
+		if(timeCountUntillBonus > 0f)
+			timeCountUntillBonus += Time.deltaTime;
+
+
 		// オブジェクトに当たった
 
 		// アクション用？
@@ -120,6 +125,7 @@ public class AllPlayerManager : MonoBehaviour {
 						m_GoalList[i].getNextStageRot());
 					// カメラ
 					GameObject.Find("MainCamera" + id.ToString()).GetComponent<ChaseCamera>().resetCamera();
+					iTween.ScaleTo(m_PlayerManager[id-1].gameObject, new Vector3(1.0f, 1.0f, 1.0f), 0.5f);
 				}
 			}
 		}
@@ -182,7 +188,7 @@ public class AllPlayerManager : MonoBehaviour {
 	/// </summary>
 	public void restartPlayer() {
 		for (int i = 0; i < m_PlayerNum; i++) {
-			m_PlayerManager[i].restartPlayer();
+			m_PlayerManager[i].restartPlayer(m_StartList[m_PlayerManager[i].getPlayerStageID() - 1].transform.eulerAngles);
 		}
 	}
 
@@ -307,9 +313,7 @@ public class AllPlayerManager : MonoBehaviour {
 	public bool getisEntryBonusStage() {
 
 		if (timeCountUntillBonus > 0f) {
-			timeCountUntillBonus += Time.deltaTime;
 			if(timeCountUntillBonus >= ENTRY_BONUS_UNTILLTIME) {
-				timeCountUntillBonus = 0f;
 				return true;
 			}
 		}
@@ -337,6 +341,7 @@ public class AllPlayerManager : MonoBehaviour {
 
 		int count = 0;
 		if (timeCountUntillBonus <= 0f) {
+			timeCountUntillBonus = 0f;
 			for (int i = 0; i < m_PlayerNum; i++) {
 				if (ENTRY_BONUS_TENSION <= m_PlayerManager[i].gameObject.GetComponent<Tension>().getTensionRatio()) {
 					count++;

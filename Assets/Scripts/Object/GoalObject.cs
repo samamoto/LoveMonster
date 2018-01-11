@@ -6,10 +6,10 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class GoalObject : MonoBehaviour {
 
-	private const int GetScorePoint = 5000;
+	private const int GetScorePoint = 20000;
 
 	public Transform nextStagePoint;		// 次の移動場所
-	public float transitionTimer = 2.0f;    // 移行時間
+	private float transitionTimer = 1.0f;    // 移行時間
 	float timer;
 	bool isTimerStart;
 	bool isGoal;    // TransitionTimerが終わってから
@@ -41,8 +41,6 @@ public class GoalObject : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
-			EffectControl eff = EffectControl.get();
-			eff.createClearShine(other.transform.position);
 			GoalID = other.GetComponent<PlayerManager>().getPlayerID();	// ゴールしたプレイヤーのIDを格納
 			isTimerStart = true;
 			// ゴールしたらスコア加算
@@ -52,6 +50,20 @@ public class GoalObject : MonoBehaviour {
 				eventData: null,
 				functor: (reciever, y) => reciever.ReceivePlayerScore(other.gameObject.GetComponent<PlayerManager>().getPlayerID(), GetScorePoint)
 			);
+
+			// 縮小してテレポートみたいに
+			iTween.ScaleTo(other.gameObject, new Vector3(0.01f, 1.6f, 0.01f), 0.75f);
+
+
+		}
+	}
+
+	private void OnTriggerStay(Collider other) {
+		if (other.tag == "Player" && timer > 0f) {
+			if(timer >= 0.75f) {
+				EffectControl eff = EffectControl.get();
+				eff.createItemHit(other.transform.position);
+			}
 		}
 	}
 
