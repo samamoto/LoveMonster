@@ -42,6 +42,7 @@ public class ResultManager : MonoBehaviour {
 
 	public int[] Ranking = new int[4];
 	private Vector3[] rankPosition = new Vector3[4];
+	private bool[] rankFlag = new bool[4];
 
 	private int[] m_Score = new int[4];
 	private TextMeshProUGUI[] m_ScoreText = new TextMeshProUGUI[4];
@@ -77,7 +78,7 @@ public class ResultManager : MonoBehaviour {
 		// 空だったら仮の値
 		if (Ranking[0] == 0) {
 			int[] ranks = new int[4] {
-				4,3,2,1,
+				4,2,2,1,
 			};
 			GlobalParam.GetInstance().SetRankings(ranks);
 			Ranking = GlobalParam.GetInstance().GetRankings();
@@ -85,7 +86,14 @@ public class ResultManager : MonoBehaviour {
 
 		// ランキングによって位置を変える
 		for (int i = 0; i < 4; i++) {
-			GameObject.Find("Player" + (i + 1).ToString()).transform.position = rankPosition[Ranking[i]-1];
+			if (!rankFlag[Ranking[i] - 1]) {
+				rankFlag[Ranking[i] - 1] = true;
+				GameObject.Find("Player" + (i + 1).ToString()).transform.position = rankPosition[Ranking[i] - 1];
+			} else {
+				// すでにそこにいる
+				Ranking[i] = i + 1;
+				continue;
+			}
 		}
 
 		// スコア
@@ -94,7 +102,7 @@ public class ResultManager : MonoBehaviour {
 		if ((int)GlobalParam.GetInstance().GetHiScore(Ranking[0]) <= 0) {
 			float[] score = new float[4]
 			{
-				100000, 110000, 120000, 130000
+				100000, 120000, 120000, 130000
 			};
 			GlobalParam.GetInstance().SetHiScore(score);
 		}
@@ -156,7 +164,6 @@ public class ResultManager : MonoBehaviour {
 			if (m_cam.transform.position == CameraLocation[1].position) {
 				for (int i = 0; i < 4; i++) {
 					// ランキングによってアニメーションを変更
-					// 優先順位をつける
 					switch (Ranking[i]) {
 					case 1:
 						m_Animator[i].SetTrigger("CW_Fulltwist");
