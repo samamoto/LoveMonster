@@ -3974,9 +3974,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f19108706fdce9469603d07980eb8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blendMode: 3
+  blendMode: 4
   intensity: 0
-  texture: {fileID: 2800000, guid: 74d8c208a0193e14ca6916bea88a2c52, type: 3}
+  texture: {fileID: 2800000, guid: 40d7f27f614cc1043a1f7e19074f461c, type: 3}
   overlayShader: {fileID: 4800000, guid: 8c81db0e527d24acc9bcec04e87781bd, type: 3}
 --- !u!114 &114398031359752348
 MonoBehaviour:
