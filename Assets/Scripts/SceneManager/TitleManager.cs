@@ -106,10 +106,16 @@ public class TitleManager : MonoBehaviour {
 		case TitlePhase.End:
 			if (m_Controller.GetButtonDown(Controller.Button.B) ||
 				m_Controller.GetButtonDown(Controller.Button.A) || 
-				m_Controller.GetButtonDown(Controller.Button.Menu)) {
+				m_Controller.GetButtonDown(Controller.Button.Menu) ||
+				Input.GetKeyDown(KeyCode.Space)) {
 				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Title_Decision);
 				m_Phase = TitlePhase.NextScene;
 			}
+
+			if (Input.GetKey(KeyCode.Escape)) {
+				Application.Quit();
+			}
+
 			break;
 
 		case TitlePhase.NextScene:

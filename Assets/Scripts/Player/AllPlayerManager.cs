@@ -165,7 +165,8 @@ public class AllPlayerManager : MonoBehaviour {
 	/// </summary>
 	private void PlayerFall() {
 		for (int i = 0; i < m_PlayerNum; i++) {
-			if (m_PlayerManager[i].transform.position.y < -20.0f) {
+			if (m_PlayerManager[i].transform.position.y < -20.0f || m_PlayerManager[i].is_Fall) {
+				m_PlayerManager[i].is_Fall = false;
 				m_GameManager.isPlayerDead(i, transform.position);      // GameManagerに落ちたプレイヤーのIDを投げる
 				// 落下したプレイヤーの下降処理
 				m_PlayerManager[i].gameObject.GetComponent<ComboSystem>()._ClearCombo();

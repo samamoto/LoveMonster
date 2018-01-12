@@ -51,7 +51,9 @@ public class HowToPlay : MonoBehaviour {
         //最後まで画像が進んだとき
         if (count + 1 == Images.Length)
         {
-            if (m_Controller.GetButtonDown(Controller.Button.A) || m_Controller.GetButtonDown(Controller.Button.B))
+            if (m_Controller.GetButtonDown(Controller.Button.A) ||
+				m_Controller.GetButtonDown(Controller.Button.B) ||
+				Input.GetKeyDown(KeyCode.Space))
             {
                 //シーンの移動
                 //SceneChange.Instance._SceneLoadGame();
@@ -61,7 +63,9 @@ public class HowToPlay : MonoBehaviour {
 		}
 
 		//ボタンが押されたら次の画像に
-		if (m_Controller.GetButtonDown(Controller.Button.A) || m_Controller.GetButtonDown(Controller.Button.B)){
+		if (m_Controller.GetButtonDown(Controller.Button.A) || m_Controller.GetButtonDown(Controller.Button.B) ||
+				Input.GetKeyDown(KeyCode.Space))
+			{
 			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Menu_Decision);
 			count++;
             Image1.GetComponent<Image>().sprite = Images[count];  //画像切り替え

@@ -55,7 +55,10 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
     public bool isWallJumping = false;
 
 	private float stopTimer = 0f;   // プレイヤーがコントロールを停止する時間
-	private float stopTimerLimit = 0f; 
+	private float stopTimerLimit = 0f;
+
+	public bool is_Fall = false;
+	 
 	// Use this for initialization
 	void Start() {
 		m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
@@ -649,10 +652,13 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 
 		wallRunTimeUp = true;
 	}
+
+
+	private void OnTriggerEnter(Collider other) {
+		if(other.tag == "DeadLine") {
+			is_Fall = true;
+		}
+	}
+
 }
 
-/*メモ
- *
-    コントローラの取得の仕方　仮
-    if (this.m_Controller.GetButton(Controller.Button.A))
- */
