@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 222890786390321564}
   - component: {fileID: 114001442395167770}
   m_Layer: 9
-  m_Name: TextMeshPro Text
+  m_Name: Rank_p4_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1067,7 +1067,7 @@ GameObject:
   - component: {fileID: 222280094620351992}
   - component: {fileID: 114370526121017036}
   m_Layer: 9
-  m_Name: TextMeshPro Text
+  m_Name: Rank_p2_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1164,7 +1164,7 @@ GameObject:
   - component: {fileID: 222531037288997480}
   - component: {fileID: 114085099670495974}
   m_Layer: 9
-  m_Name: TextMeshPro Text
+  m_Name: Rank_p1_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1249,7 +1249,7 @@ GameObject:
   - component: {fileID: 222667589636370838}
   - component: {fileID: 114360819948000010}
   m_Layer: 9
-  m_Name: TextMeshPro Text
+  m_Name: Rank_p3_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2663,7 +2663,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056846427251252}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f95d327f8d123d42bd03b108acb69dd, type: 3}
   m_Name: 
@@ -4683,7 +4683,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1278572002049868}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f95d327f8d123d42bd03b108acb69dd, type: 3}
   m_Name: 
@@ -4846,7 +4846,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962363953847996}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f95d327f8d123d42bd03b108acb69dd, type: 3}
   m_Name: 
@@ -6210,7 +6210,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520389779348514}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f95d327f8d123d42bd03b108acb69dd, type: 3}
   m_Name: 
@@ -6535,7 +6535,7 @@ SphereCollider:
   m_GameObject: {fileID: 1278572002049868}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
@@ -6547,7 +6547,7 @@ SphereCollider:
   m_GameObject: {fileID: 1520389779348514}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
@@ -6559,7 +6559,7 @@ SphereCollider:
   m_GameObject: {fileID: 1056846427251252}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
@@ -6571,7 +6571,7 @@ SphereCollider:
   m_GameObject: {fileID: 1962363953847996}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}

@@ -100,8 +100,11 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	// Update is called once per frame
 	void Update() {
 
+		ActionSE();
+
+
 		// stopTimerが動いている場合
-		if(stopTimerLimit > 0f) {
+		if (stopTimerLimit > 0f) {
 			stopControlTimer(false, stopTimerLimit);
 		}
 
@@ -157,7 +160,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 			m_animator.SetBool("is_Jump", jump);    // oyama add
 		}
 		// 再生関数
-		ActionSE();
+		//ActionSE();
 	}
 
 	/// <summary>
@@ -178,19 +181,22 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
         }
 
         //スライド 音声が遅いのでStateMacineBehavior側でやってる
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
-        {
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide")){
             if (m_seDelay == 0)
             {
                 //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
                 //m_seDelay = 0.82f;
-                GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
+                GetComponentInChildren<Transform>().Find("Effect_SlideSparks").gameObject.SetActive(true);
             }
         }
 
-        //ロングスライド
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("LongSlider"))
-        {
+		if (!m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide")) {
+			GetComponentInChildren<Transform>().Find("Effect_SlideSparks").gameObject.SetActive(false);
+		}
+
+		//ロングスライド
+		if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("LongSlider"))
+	    {
             if (m_seDelay == 0)
             {
                 //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);

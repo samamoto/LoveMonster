@@ -44,6 +44,8 @@ public class Rank : MonoBehaviour {
 	GameObject Rank_3p;
 	GameObject Rank_4p;
 
+	TMPro.TextMeshProUGUI[] RankText = new TMPro.TextMeshProUGUI[4];
+
 	// Use this for initialization
 	void Start() {
 		apm = GameObject.Find("AllPlayerManager").GetComponent<AllPlayerManager>();
@@ -57,6 +59,9 @@ public class Rank : MonoBehaviour {
 		Rank_4p = GameObject.Find("Rank_p4").gameObject;      //各プレイヤーの順位表示オブジェクト
 
 
+		for (int i = 0; i < 4; i++) {
+			RankText[i] = GameObject.Find("Rank_p" + (i + 1).ToString() + "_").GetComponent<TMPro.TextMeshProUGUI>();
+		}
 
 		//スコアの初期化,人数分繰り返し
 		for (count = 0; count <= 3; count++) {
@@ -149,25 +154,52 @@ public class Rank : MonoBehaviour {
 	//順位表示関数
 	public void PrintRank() {
 		string str;
-		
+
 		//4人分繰り返す
 		for (count = 1; count <= 4; count++) {
+
+			string str2 = stickOnRankString(count);
 			if (PlayerRank[0] == count) {
 				str = count.ToString();
 				Rank_1p.GetComponent<TMPro.TextMeshProUGUI>().text = str;
+				RankText[0].GetComponent<TMPro.TextMeshProUGUI>().text = str2;
 			}
 			if (PlayerRank[1] == count) {
 				str = count.ToString();
 				Rank_2p.GetComponent<TMPro.TextMeshProUGUI>().text = str;
+				RankText[1].GetComponent<TMPro.TextMeshProUGUI>().text = str2;
 			}
 			if (PlayerRank[2] == count) {
 				str = count.ToString();
 				Rank_3p.GetComponent<TMPro.TextMeshProUGUI>().text = str;
+				RankText[2].GetComponent<TMPro.TextMeshProUGUI>().text = str2;
 			}
 			if (PlayerRank[3] == count) {
 				str = count.ToString();
 				Rank_4p.GetComponent<TMPro.TextMeshProUGUI>().text = str;
+				RankText[3].GetComponent<TMPro.TextMeshProUGUI>().text = str2;
 			}
 		}
 	}
+
+	private string stickOnRankString(int n) {
+		string str = "";
+
+		switch (n) {
+		case 1:
+			str = "st";
+			break;
+		case 2:
+			str = "nd";
+			break;
+		case 3:
+			str = "rd";
+			break;
+		case 4:
+			str = "th";
+			break;
+		}
+		return str;
+	}
+
 }
