@@ -40,6 +40,8 @@ public class RollingSystem : MonoBehaviour {
 			m_SearchCollider.GetPlayerJump() == -1 && m_SearchCollider.GetGroundDistance() != Mathf.Infinity) {
 			if (m_Con.GetButtonDown(Button.B)) {
 				rollingFlag = true;
+				EffectControl eff = EffectControl.get();
+				eff.createMuzzleFlash(transform.position, GetComponent<PlayerManager>().getPlayerID());
 			}
 
 			if (rollingFlag) {

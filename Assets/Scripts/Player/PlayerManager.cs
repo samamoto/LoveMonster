@@ -55,7 +55,10 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
     public bool isWallJumping = false;
 
 	private float stopTimer = 0f;   // プレイヤーがコントロールを停止する時間
-	private float stopTimerLimit = 0f; 
+	private float stopTimerLimit = 0f;
+
+	public bool is_Fall = false;
+	 
 	// Use this for initialization
 	void Start() {
 		m_AllPlayerManager = GetComponentInParent<AllPlayerManager>();
@@ -98,7 +101,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	void Update() {
 
 		// stopTimerが動いている場合
-		if(stopTimerLimit > 0f) {
+		if (stopTimerLimit > 0f) {
 			stopControlTimer(false, stopTimerLimit);
 		}
 
@@ -175,15 +178,15 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
         //}
 
         ////スライド 音声が遅いのでStateMacineBehavior側でやってる
-        //if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
         //{
         //    if (m_seDelay == 0)
         //    {
         //        //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
         //        //m_seDelay = 0.82f;
-        //        GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
+                GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
         //    }
-        //}
+        }
 
         //    //ロングスライド
         //    if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("LongSlider"))
@@ -434,6 +437,9 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 			for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
 				if (m_MoveState.StateDictionary[m] == name) {
+					EffectControl eff = EffectControl.get();
+					eff.createMuzzleFlash(gameObject,m_PlayerID);
+
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
 					m_animator.SetBool("is_" + name, true);
 					m_animator.Play(name);
@@ -459,6 +465,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		EffectControl eff = EffectControl.get();
 		transform.position = m_RestartPoint;
 		eff.createItemHit(m_RestartPoint);  // 仮にエフェクト再生
+		eff.createLightJump(gameObject, new Vector3(0f, 0f), GetComponent<PlayerManager>().getPlayerID());
 	}
 	/// <summary>
 	/// プレイヤーがリスタートする時の処理
@@ -649,10 +656,13 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 
 		wallRunTimeUp = true;
 	}
+
+
+	private void OnTriggerEnter(Collider other) {
+		if(other.tag == "DeadLine") {
+			is_Fall = true;
+		}
+	}
+
 }
 
-/*メモ
- *
-    コントローラの取得の仕方　仮
-    if (this.m_Controller.GetButton(Controller.Button.A))
- */

@@ -25,8 +25,9 @@ public class CountDownSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
 		if (CountDown_flag == true) {
-			//{
+
 			Count += Time.deltaTime;
 			if (Count < 4) {
 				if(Count > 3) {
