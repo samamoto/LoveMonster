@@ -179,7 +179,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 
         ////スライド 音声が遅いのでStateMacineBehavior側でやってる
         if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
-        //{
+        {
         //    if (m_seDelay == 0)
         //    {
         //        //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);

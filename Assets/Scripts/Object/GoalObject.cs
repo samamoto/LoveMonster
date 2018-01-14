@@ -13,7 +13,8 @@ public class GoalObject : MonoBehaviour {
 	float timer;
 	bool isTimerStart;
 	bool isGoal;    // TransitionTimerが終わってから
-	int GoalID = 0;	// ゴールプレイヤーのID
+	int GoalID = 0; // ゴールプレイヤーのID
+	private AudioList m_Audio;
 
 	// Use this for initialization
 	private void Start() {
