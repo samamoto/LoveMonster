@@ -40,7 +40,9 @@ public class ResultManager : MonoBehaviour {
 	TextMeshProUGUI m_ResultLogo;
 	private float countTimer = 0f;
 
-	public int[] Ranking = new int[4];
+    public bool[] seLock = new bool[4];
+
+    public int[] Ranking = new int[4];
 	private Vector3[] rankPosition = new Vector3[4];
 	private bool[] rankFlag = new bool[4];
 
@@ -165,17 +167,18 @@ public class ResultManager : MonoBehaviour {
 				for (int i = 0; i < 4; i++) {
 					// ランキングによってアニメーションを変更
 					switch (Ranking[i]) {
-					case 1:
-						m_Animator[i].SetTrigger("CW_Fulltwist");
+					case 1:                               
+                        m_Animator[i].SetTrigger("CW_Fulltwist");
 						break;
-					case 2:
-						m_Animator[i].SetTrigger("CW_FlashKick");
-						break;
-					case 3:
-						m_Animator[i].SetTrigger("BHS_FlashKick");
-						break;
-					case 4:
-						break;
+					case 2:                       
+                        m_Animator[i].SetTrigger("CW_FlashKick");
+					    break;             
+                    case 3:                       
+                        m_Animator[i].SetTrigger("BHS_FlashKick");
+						break;                       
+                    case 4:
+                        
+                        break;
 					}
 				}
 				m_Phase++;
@@ -184,7 +187,7 @@ public class ResultManager : MonoBehaviour {
 
 		case ResultPhase.Stop:
 			countTimer += Time.deltaTime;
-			if(countTimer > 0 && countTimer < 4) {
+            if (countTimer > 0 && countTimer < 4) {
 				m_imageRank[(int)countTimer].enabled = true;
 				iTween.FadeTo(m_imageRank[(int)countTimer].gameObject, 1f, 1.5f);
 				iTween.ScaleTo(m_imageRank[(int)countTimer].gameObject, new Vector3(1f, 1f), 1.5f);
@@ -194,10 +197,45 @@ public class ResultManager : MonoBehaviour {
 				iTween.ScaleTo(m_ScoreText[(int)countTimer].gameObject, new Vector3(1f, 1f), 1.5f);
 
 			}
-			// 秒数待機
-			if (countTimer >= 5f) {
-				m_Phase++;
-				countTimer = 0f;
+
+            //ランキング表示にあわせてSE鳴らす
+            if (countTimer > 0 && countTimer < 0.5f)
+            {
+                if (seLock[0] == false)
+                {
+                    m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Result4);
+                    seLock[0] = true;
+                }               
+            }
+            else if(countTimer > 1 && countTimer < 1.5f)
+            {
+                if (seLock[1] == false)
+                {
+                    m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Result3);
+                    seLock[1] = true;
+                }  
+            }
+            else if (countTimer > 2 && countTimer < 2.5f)
+            { 
+                if (seLock[2] == false)
+                {
+                    m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Result2);
+                    seLock[2] = true;
+                }  
+            }
+            else if(countTimer > 3 && countTimer < 3.5f)
+            {
+                if (seLock[3] == false)
+                {
+                    m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Result1);
+                    seLock[3] = true;
+                }  
+            }
+
+            // 秒数待機
+            if (countTimer >= 5f) {
+			    m_Phase++;
+			    countTimer = 0f;
 			}
 			
 			break;

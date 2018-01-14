@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class KongVault : AnimatorBase
 {
+    AudioList.SoundList_SE PlaySE = AudioList.SoundList_SE.SE_ActionVault;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        PlaySE(PlaySE);
         animator.SetBool("se_KongVault", true);
     }
 

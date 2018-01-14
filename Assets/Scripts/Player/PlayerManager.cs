@@ -162,39 +162,39 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	/// </summary>
 	void ActionSE() {
         // Jump
-        if (m_animator.GetBool("se_Jump")){
-            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionJump);
-        }
+        //if (m_animator.GetBool("se_Jump")){
+        //    m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionJump);
+        //}
         //着地
-        if (m_animator.GetBool("se_Crouching")){
-            //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionLanding);
-        }
-        //ローリング
-        if (m_animator.GetBool("se_Rolling")){
-            //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionRolling);
-        }
+        //if (m_animator.GetBool("se_Crouching")){
+        //    //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionLanding);
+        //}
+        ////ローリング
+        //if (m_animator.GetBool("se_Rolling")){
+        //    //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionRolling);
+        //}
 
-        //スライド 音声が遅いのでStateMacineBehavior側でやってる
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
-        {
-            if (m_seDelay == 0)
-            {
-                //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
-                //m_seDelay = 0.82f;
-                GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
-            }
-        }
+        ////スライド 音声が遅いのでStateMacineBehavior側でやってる
+        //if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
+        //{
+        //    if (m_seDelay == 0)
+        //    {
+        //        //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
+        //        //m_seDelay = 0.82f;
+        //        GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
+        //    }
+        //}
 
-        //ロングスライド
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("LongSlider"))
-        {
-            if (m_seDelay == 0)
-            {
-                //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
-				GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
-				//m_seDelay = 1;
-            }
-        }
+        //    //ロングスライド
+        //    if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("LongSlider"))
+        //    {
+        //        if (m_seDelay == 0)
+        //        {
+        //            //m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionSlide);
+        //GetComponentInChildren<EffectTrailManager>().setActive(true, gameObject);
+        ////m_seDelay = 1;
+        //        }
+        //    }
         //ヴォルト
         if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Vault"))
         {
@@ -204,15 +204,15 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
                 m_seDelay = 0.45f;
             }
         }
-        //キングヴォルト
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("KongVault"))
-        {
-            if (m_seDelay == 0)
-            {
-                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionVault);
-                m_seDelay = 0.6f;
-            }
-        }
+        //    //キングヴォルト
+        //    if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("KongVault"))
+        //    {
+        //        if (m_seDelay == 0)
+        //        {
+        //            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_ActionVault);
+        //            m_seDelay = 0.6f;
+        //        }
+        //    }
         ////クライム
         //if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Climb"))
         //{

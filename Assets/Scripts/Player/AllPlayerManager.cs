@@ -39,9 +39,10 @@ public class AllPlayerManager : MonoBehaviour {
 	private List<StartObject> m_StartList = new List<StartObject>();
 	private List<GoalObject> m_GoalList = new List<GoalObject>();
 	private MainGameManager m_GameManager;
+    private AudioList m_Audio;
 
-	// Use this for initialization
-	private void Awake() {
+    // Use this for initialization
+    private void Awake() {
 		m_GameManager = GameObject.FindWithTag("GameManager").GetComponent<MainGameManager>();
 		// とりあえずFindと名前使う…
 		// 名前のPlayer1~4を探す カウンタでタグの数を数える
@@ -73,10 +74,13 @@ public class AllPlayerManager : MonoBehaviour {
 			int id = m_StartList[i].StartPlayerID-1;
 			m_PlayerManager[id].startPlayerPostion(m_StartList[i].transform.position, m_StartList[i].transform.rotation);
 		}
-	}
 
-	// Update is called once per frame
-	private void Update() {
+        m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+
+    }
+
+    // Update is called once per frame
+    private void Update() {
         if (StopControll) return;
 
 		// 各プレイヤーの状態を確認するよ！ //
@@ -110,9 +114,10 @@ public class AllPlayerManager : MonoBehaviour {
 				int id = m_GoalList[i].getGoalPlayerNo();
 				m_PlayerManager[id - 1].plusGoalFrequency();    // ゴール回数を追加
 
-				// 必要な回数を上回ればゴール判定
-				if (m_PlayerManager[id - 1].getGoalFrequency() >= m_GameManager.NEED_GOAL_NUM) {
-					m_GameManager.isPlayerGoal(id, m_PlayerManager[id - 1].getPlayerPos()); // ゴールしたプレイヤーのIDを投げる
+                // 必要な回数を上回ればゴール判定
+                if (m_PlayerManager[id - 1].getGoalFrequency() >= m_GameManager.NEED_GOAL_NUM) {
+                    m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Finish);
+                    m_GameManager.isPlayerGoal(id, m_PlayerManager[id - 1].getPlayerPos()); // ゴールしたプレイヤーのIDを投げる
 				} else {
 					// 0 ~ 3をぐるぐる
 					m_PlayerManager[(id - 1)].startPlayerPostion(
