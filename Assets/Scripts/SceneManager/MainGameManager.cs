@@ -267,6 +267,9 @@ public class MainGameManager : MonoBehaviour {
 					trs.position = new Vector3(trs.position.x, trs.position.y, trs.position.z - 2.0f);  // 横にずらす
 					m_AllPlayerMgr.startPlayerPosition(i + 1, trs.position, trs.rotation);
 				}
+				// エフェクト
+				EffectControl.get().createNova(trs.position+new Vector3(0,0,3f), 4);
+
 				// 移動完了したらカメラの位置をリセットして背面に回す
 				m_AllCameraMgr.resetCamera();
 				m_PauseMgr.PauseRestriction(false);

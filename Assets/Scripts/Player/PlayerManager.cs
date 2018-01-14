@@ -443,6 +443,9 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 			for (MoveState.MoveStatement m = MoveState.MoveStatement.None; m >= MoveState.MoveStatement.None - MoveState.MoveStatement.None; m--) {
 				// Dictionaryと検索してタグを検索
 				if (m_MoveState.StateDictionary[m] == name) {
+					EffectControl eff = EffectControl.get();
+					eff.createMuzzleFlash(gameObject,m_PlayerID);
+
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
 					m_animator.SetBool("is_" + name, true);
 					m_animator.Play(name);
@@ -468,6 +471,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		EffectControl eff = EffectControl.get();
 		transform.position = m_RestartPoint;
 		eff.createItemHit(m_RestartPoint);  // 仮にエフェクト再生
+		eff.createLightJump(gameObject, new Vector3(0f, 0f), GetComponent<PlayerManager>().getPlayerID());
 	}
 	/// <summary>
 	/// プレイヤーがリスタートする時の処理

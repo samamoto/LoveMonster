@@ -33,6 +33,15 @@ public class EffectControl : MonoBehaviour {
 		go.transform.position = position;
 	}
 
+	public void createMuzzleFlash(GameObject obj, int color) {
+		int c = color;
+		if (c > eff_Buff.Length || c == 0) c = 1;
+
+		GameObject go = Instantiate(eff_MuzzleFlash[c - 1]) as GameObject;
+		go.AddComponent<Effect>();
+		go.transform.parent = obj.transform;
+		go.transform.localPosition=Vector3.zero;
+	}
 
 	public void createNova(Vector3 vec, int color) {
 		int c = color;
@@ -60,6 +69,16 @@ public class EffectControl : MonoBehaviour {
 		go.transform.position = position;
 	}
 
+	public void createPlasmaImpact(GameObject obj, int color) {
+		int c = color;
+		if (c > eff_Buff.Length || c == 0) c = 1;
+
+		GameObject go = Instantiate(eff_PlasmaImpact[c - 1]) as GameObject;
+		go.AddComponent<Effect>();
+		go.transform.parent = obj.transform;
+		go.transform.localPosition = Vector3.zero;
+	}
+
 	public void createCharge(Vector3 vec, int color) {
 		int c = color;
 		if (c > eff_Buff.Length || c == 0) c = 1;
@@ -68,9 +87,20 @@ public class EffectControl : MonoBehaviour {
 		go.AddComponent<Effect>();
 		Vector3 position = vec;
 		// 位置調整
-		position.y += 0.9f;
+		position.y += 0.0f;
 		go.transform.position = position;
 	}
+
+	public void createCharge(GameObject obj, int color) {
+		int c = color;
+		if (c > eff_Buff.Length || c == 0) c = 1;
+
+		GameObject go = Instantiate(eff_MuzzleFlash[c - 1]) as GameObject;
+		go.AddComponent<Effect>();
+		go.transform.parent = obj.transform;
+		go.transform.localPosition = Vector3.zero;
+	}
+
 
 	/// <summary>
 	/// 能力上昇
@@ -87,6 +117,16 @@ public class EffectControl : MonoBehaviour {
 		// 位置調整
 		position.y += 0.0f;
 		go.transform.position = position;
+	}
+
+	public void createBuff(GameObject obj, int color) {
+		int c = color;
+		if (c > eff_Buff.Length || c == 0) c = 1;
+
+		GameObject go = Instantiate(eff_MuzzleFlash[c - 1]) as GameObject;
+		go.AddComponent<Effect>();
+		go.transform.parent = obj.transform;
+		go.transform.localPosition = Vector3.zero;
 	}
 
 	/// <summary>
@@ -110,6 +150,27 @@ public class EffectControl : MonoBehaviour {
 		go.transform.eulerAngles = new Vector3(90f, 0,0)+rot;
 	}
 
+	public void createLightJump(GameObject obj, int color) {
+		int c = color;
+		if (c > eff_Buff.Length || c == 0) c = 1;
+
+		GameObject go = Instantiate(eff_LightJump[c - 1]) as GameObject;
+		go.AddComponent<Effect>();
+		go.transform.parent = obj.transform;
+		go.transform.localPosition = Vector3.zero;
+	}
+
+	public void createLightJump(GameObject obj, Vector3 offset, int color) {
+		int c = color;
+		if (c > eff_Buff.Length || c == 0) c = 1;
+
+		GameObject go = Instantiate(eff_LightJump[c - 1]) as GameObject;
+		go.AddComponent<Effect>();
+		go.transform.parent = obj.transform;
+		go.transform.localPosition = new Vector3(0, 10.2f, 0) + offset;
+		go.transform.eulerAngles = new Vector3(90f, 0, 0);
+	}
+
 	/// <summary>
 	/// 上にビームが上昇する感じのエフェクト
 	/// </summary>
@@ -129,6 +190,26 @@ public class EffectControl : MonoBehaviour {
 
 		go.transform.position = position;
 	}
+	public void createBeamUp(GameObject obj, int color) {
+		int c = color;
+		if (c > eff_Buff.Length || c == 0) c = 1;
+
+		GameObject go = Instantiate(eff_beamUp[c - 1]) as GameObject;
+		go.AddComponent<Effect>();
+		go.transform.parent = obj.transform;
+		go.transform.localPosition = Vector3.zero;
+	}
+
+	public void createBeamUp(GameObject obj, Vector3 offset, int color) {
+		int c = color;
+		if (c > eff_Buff.Length || c == 0) c = 1;
+
+		GameObject go = Instantiate(eff_beamUp[c - 1]) as GameObject;
+		go.AddComponent<Effect>();
+		go.transform.parent = obj.transform;
+		go.transform.localPosition = new Vector3(0,1f,0) + offset;
+	}
+
 
 	//
 	// ビルボードベースのヒットエフェクト

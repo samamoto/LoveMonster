@@ -24,7 +24,7 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 
 	// スコアの段階によって倍率が変わる	ScoreRateと倍率乗算してスコアを決める
 	private float[] ScoreRateList = new float[6] {
-		1.0f,1.1f,1.2f,1.5f,2f,3f
+		0.0f,0.5f,1.0f,2f,3f,4f
 	};
 
 	private float graduallyFlamerate = 0.5f;
@@ -45,6 +45,10 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
     private GameObject Judge_Success_2p;
     private GameObject Judge_Success_3p;
     private GameObject Judge_Success_4p;
+
+	private GameObject[] scoreUp = new GameObject[4];
+	private Vector3[] scoreUpPos = new Vector3[4];
+
     public Sprite Nice;
     public Sprite Great;
     public Sprite Excellent;
@@ -58,6 +62,7 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
     private bool Player_success_ui_2p;
     private bool Player_success_ui_3p;
     private bool Player_success_ui_4p;
+
 
     [SerializeField, MultilineAttribute(4)]
 	public string text_field;
@@ -93,7 +98,14 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         Player_success_ui_3p = false;
         Player_success_ui_4p = false;
 
-        //Delete_count = 0;
+		for (int i = 0; i < 4; i++) {
+			scoreUp[i] = GameObject.Find("ScoreUp_p" + (i + 1).ToString());
+			scoreUp[i].GetComponent<TMPro.TextMeshProUGUI>().font.material.color = new Color(0,0,0,0);
+			scoreUpPos[i] = scoreUp[i].transform.position;
+			scoreUp[i].SetActive(false);
+		}
+
+		//Delete_count = 0;
 
 		// 確保 2017年12月29日 oyama add
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
@@ -104,6 +116,7 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 		// 外部から止められていたらアップデートしない
 		if (is_Stop)
 			return;
+
 		ScoreUpdate();  //スコア更新
 	}
 
@@ -111,7 +124,15 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 	public void ReceivePlayerScore(int id, int score) {
 		//値を受け取る それぞれ(1P～4P)に用意された変数に格納 Rateを乗算する
 		// idそのまま飛んでくるので-1
-		PlayerScore[id - 1] += score * ScoreRate[id - 1];
+		if(ScoreRate[id-1] <= 0) {
+			PlayerScore[id - 1] += score * ScoreRateList[1];
+		} else {
+			PlayerScore[id - 1] += score * ScoreRate[id - 1];
+		}
+		// 0より上なら表示する
+		if (score > 0) {
+			ScoreUp((int)(score * ScoreRate[id - 1]), id-1);
+		}
 	}
 
 	//プレイヤースコア保管(他のスクリプトから値を受けとる時に使う)
@@ -124,6 +145,19 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         }
 	}
 
+	// スコアアップ
+	private void ScoreUp(int score, int n) {
+
+		// 一度非アクティブにしてからアクティブにするとAnimatorが巻き戻る(と思う)
+		scoreUp[n].SetActive(false);
+		scoreUp[n].SetActive(true);
+		scoreUp[n].GetComponent<TMPro.TextMeshProUGUI>().text = "+" + score.ToString();
+		//scoreUp[n].GetComponent<Animator>().StopPlayback();
+		scoreUp[n].GetComponent<Animator>().Play("ScoreCountUp", 0, 0.0f);
+		scoreUp[n].transform.position = scoreUpPos[n];
+		iTween.MoveBy(scoreUp[n], new Vector3(0, 8), 1.0f);
+	}
+
 	//スコアの更新(表示)
 	private void ScoreUpdate() {
 
@@ -134,12 +168,6 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         string str3 = string.Empty;
         string str4 = string.Empty;
 
-
-        //for (int i = 0; i < 4; i++) {
-        //	str += (i + 1).ToString() + ":" + ScoreRate[i].ToString() + " " + PlayerScore[i].ToString() + "\n";
-        //}
-        //GetComponent<Text>().text = str;    // textフィールドに表示 Todo:UI表示必要
-		// ScoreRateの表示はデバッグ用なので消した
         str1 += ((int)PlayerScore[0]).ToString();
         score_p1.GetComponent<TMPro.TextMeshProUGUI>().text = str1;
         str1 =null;
@@ -154,11 +182,16 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         str4 = null;
 
 
-        
-
         // スコアが徐々に増加する方式
         graduallyAddScore();
 
+		// 
+		for (int n = 0; n < 4; n++) {
+			if (scoreUp[n].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f) {
+				scoreUp[n].SetActive(false);
+
+			}
+		}
 		// GlobalParamに投げて値を保持する 2017年12月17日 oyama add
 		GlobalParam.GetInstance().SetHiScore(PlayerScore);
 	}
@@ -185,7 +218,7 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 	/// <param name="n">スコアレート</param>
 	public void setScoreRate(int id, int n) {
 		// 1以上
-		if (n >= 1 && n <= 5) {
+		if (n >= 0 && n <= 5) {
 			ScoreRate[id - 1] = ScoreRateList[n];
             
         }

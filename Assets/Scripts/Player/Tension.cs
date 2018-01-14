@@ -86,6 +86,7 @@ public class Tension : MonoBehaviour {
 					if (getTensionRatio() > m_GameManager.ENTRY_BONUS_TENSION && !is_EntryBonusTension_Sound) {
 						is_EntryBonusTension_Sound = true;
 						m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_TensionCharge);
+						EffectControl.get().createBuff(gameObject, m_id);
 					}
 				}
 			}
