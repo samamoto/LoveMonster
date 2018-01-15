@@ -273,8 +273,8 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		} else {
 			//get input from sticks and buttons
 			if (Controller.Controller.GetConnectControllers() > 0) {
-				h = m_Controller.GetAxisRawThreshold(Axis.L_x, 0.05f);  // 2017/12/11 oyama add 閾値設定して小さな誤入力を消す
-				v = m_Controller.GetAxisRawThreshold(Axis.L_y, 0.05f);
+				h = m_Controller.GetAxisRawThreshold(Axis.L_x, 0.1f);  // 2017/12/11 oyama add 閾値設定して小さな誤入力を消す
+				v = m_Controller.GetAxisRawThreshold(Axis.L_y, 0.1f);
 			} else {
 				// つながってないとき
 				h = Input.GetAxis("Horizontal");

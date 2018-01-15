@@ -283,6 +283,10 @@ public class MainGameManager : MonoBehaviour {
 
                 // XFade
                 GameObject.Find("MainCamera").GetComponent<XFade>().CrossFade(1.0f);
+
+				m_TimeMgr.changeTimer(false);
+				m_TimeMgr.setTimer(3);
+				m_TimeMgr.startTimer();
 			}
 			break;
 
@@ -299,7 +303,8 @@ public class MainGameManager : MonoBehaviour {
 
 			BonusAliveCount += Time.deltaTime;
 			// 時間で終了 または取られたら終了
-			if (BonusAliveCount >= BONUS_ALIVE_TIME || m_BonusFlag.is_Get) {
+			//if (BonusAliveCount >= BONUS_ALIVE_TIME || m_BonusFlag.is_Get) {
+			if(m_TimeMgr.isCountEnd() || m_BonusFlag.is_Get) { 
 				setPhaseState(PhaseLevel.Game_Bonus_End);
 			}
 
@@ -329,6 +334,10 @@ public class MainGameManager : MonoBehaviour {
 
             // ゲームに戻る
             setPhaseState(PhaseLevel.Game);
+
+			// タイマー戻す
+			m_TimeMgr.changeTimer(true);
+
 			break;
 
 		//================================================================================

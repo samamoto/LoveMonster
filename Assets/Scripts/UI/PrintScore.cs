@@ -187,9 +187,11 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 
 		// 
 		for (int n = 0; n < 4; n++) {
-			if (scoreUp[n].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f) {
-				scoreUp[n].SetActive(false);
+			if (scoreUp[n].activeSelf) {
+				if (scoreUp[n].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f) {
+					scoreUp[n].SetActive(false);
 
+				}
 			}
 		}
 		// GlobalParamに投げて値を保持する 2017年12月17日 oyama add

@@ -55,6 +55,7 @@ public class WorldHeritageSpawner : MonoBehaviour
             if ((this.debug_Release || this.stageRelease))
             {
                 this.debug_Release = false;
+				this.stageRelease = false;
                 allPlayerManager.returnPlayerControl();
                 this.Release();
             }
@@ -76,6 +77,7 @@ public class WorldHeritageSpawner : MonoBehaviour
             Destroy(this.instanceWorldHeritage);
             this.worldHeritageCamera.GetComponent<Camera>().enabled = false;
             this.instanceWorldHeritage = null;
+			GameObject.DestroyImmediate(instanceWorldHeritage);
         }
     }
 }
