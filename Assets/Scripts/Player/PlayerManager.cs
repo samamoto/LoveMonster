@@ -464,7 +464,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	public void restartPlayer() {
 		EffectControl eff = EffectControl.get();
 		transform.position = m_RestartPoint;
-		eff.createItemHit(m_RestartPoint);  // 仮にエフェクト再生
+		eff.createRespawn(transform.position);  // 仮にエフェクト再生
 		eff.createLightJump(gameObject, new Vector3(0f, 0f), GetComponent<PlayerManager>().getPlayerID());
 	}
 	/// <summary>

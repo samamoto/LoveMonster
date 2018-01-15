@@ -28,7 +28,7 @@ public class MainGameManager : MonoBehaviour {
 	[SerializeField, Tooltip("ボーナスステージの最大出現回数")] public int BONUS_ENTRY_NUM = 1;     // ボーナスステージが何回出現するか
 	[SerializeField, Tooltip("移行必要人数"), Range(1,4)]	public int ENTRY_BONUS_PLAYER = 1;
 	[SerializeField, Tooltip("移行必要量"), Range(0.01f,1.0f)]	public float ENTRY_BONUS_TENSION = 0.65f;
-	[SerializeField, Tooltip("ボーナスステージの制限時間")]	private const float BONUS_ALIVE_TIME = 45.0f;    // ボーナスステージの生存時間
+	[SerializeField, Tooltip("ボーナスステージの制限時間")]	private float BONUS_ALIVE_TIME = 45.0f;    // ボーナスステージの生存時間
 
 	private PhaseLevel m_oldPhase = PhaseLevel.None;
 	private PhaseLevel m_PrevPausePhase = PhaseLevel.Game;  // ポーズが掛かる前のフェイズ
@@ -284,7 +284,7 @@ public class MainGameManager : MonoBehaviour {
                 GameObject.Find("MainCamera").GetComponent<XFade>().CrossFade(1.0f);
 
 				m_TimeMgr.changeTimer(false);
-				m_TimeMgr.setTimer(3);
+				m_TimeMgr.setTimer((int)BONUS_ALIVE_TIME);
 				m_TimeMgr.startTimer();
 			}
 			break;
@@ -336,7 +336,6 @@ public class MainGameManager : MonoBehaviour {
 
 			// タイマー戻す
 			m_TimeMgr.changeTimer(true);
-
 			break;
 
 		//================================================================================

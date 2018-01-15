@@ -55,7 +55,7 @@ public class Timer : MonoBehaviour {
 										   //second_2 = second_2 - second;
 			}
 		}
-		GetComponent<TextMeshProUGUI>().outlineColor = new Color(1f, 1f, 0f);
+		GetComponent<TextMeshProUGUI>().outlineColor = new Color(1f, 1f, 0f, 1f);
 		GetComponent<TextMeshProUGUI>().text = minute.ToString("00") + "." + second.ToString("F2");
 
 	}
