@@ -20,22 +20,24 @@ public class WorldHeritageCamera : MonoBehaviour
 {
     [SerializeField] public List<HeritageCamTrans> m_CamTrasList;
     [SerializeField] private float endWaitTime = 1.0f;
+
     private float startTime, nowTime;
+    private bool loop = false;
     public int index;
     public bool endFlg { get; private set; }
-
-    private bool loop = false;
 
     public void CameraStart()
     {
         startTime = nowTime = Time.time;
         if (m_CamTrasList.Count > 0)
         {
+            //リスト０番目の位置へカメラを移動
             this.transform.position = m_CamTrasList[0].position;
             this.transform.rotation = m_CamTrasList[0].quaternion;
             index = 0;
             loop = true;
             endFlg = false;
+            //コルーチン開始
             StartCoroutine(LateFixedUpdate());
         }
         else
@@ -51,7 +53,7 @@ public class WorldHeritageCamera : MonoBehaviour
             yield return new WaitForFixedUpdate();
             //時間更新
             nowTime = Time.time;
-
+            //カメラ位置リストが存在する場合&&終わっていない場合
             if (m_CamTrasList.Count > 0 && index + 1 < m_CamTrasList.Count)
             {
                 float duration = nowTime - startTime;
@@ -64,7 +66,7 @@ public class WorldHeritageCamera : MonoBehaviour
                     this.transform.position = m_CamTrasList[index].position;
                     this.transform.rotation = m_CamTrasList[index].quaternion;
                 }
-            }
+            }//リスト終了、待機中
             else
             {
                 loop = false;
@@ -100,14 +102,14 @@ public class HeritageCamEx : Editor
         {
             if (!cam)
                 cam = GameObject.Find("WorldHeritageCamera");
-
+            //リストクリア
             cam.GetComponent<WorldHeritageCamera>().m_CamTrasList.Clear();
         }
         if (GUILayout.Button("MovetoIndex"))
         {
             if (!cam)
                 cam = GameObject.Find("WorldHeritageCamera");
-
+            //インデックスの番号の位置へカメラを移動
             WorldHeritageCamera camera = cam.GetComponent<WorldHeritageCamera>();
             if (camera.index < camera.m_CamTrasList.Count)
             {
