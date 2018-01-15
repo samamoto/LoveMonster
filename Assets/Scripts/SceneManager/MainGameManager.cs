@@ -25,7 +25,7 @@ public class MainGameManager : MonoBehaviour {
 	[SerializeField, Tooltip("現在フェイズ")]	private PhaseLevel m_Phase = PhaseLevel.None;
 	[SerializeField, Tooltip("ゲーム音楽")]	private AudioList.SoundList_BGM gameBGM = AudioList.SoundList_BGM.BGM_Game_Stage0;
 	[SerializeField, Tooltip("必要ゴール回数")]	public int NEED_GOAL_NUM = 4;
-	[SerializeField, Tooltip("ボーナスステージの最大出現回数")] private int BONUS_ENTRY_NUM = 1;     // ボーナスステージが何回出現するか
+	[SerializeField, Tooltip("ボーナスステージの最大出現回数")] public int BONUS_ENTRY_NUM = 1;     // ボーナスステージが何回出現するか
 	[SerializeField, Tooltip("移行必要人数"), Range(1,4)]	public int ENTRY_BONUS_PLAYER = 1;
 	[SerializeField, Tooltip("移行必要量"), Range(0.01f,1.0f)]	public float ENTRY_BONUS_TENSION = 0.65f;
 	[SerializeField, Tooltip("ボーナスステージの制限時間")]	private const float BONUS_ALIVE_TIME = 45.0f;    // ボーナスステージの生存時間
@@ -215,13 +215,12 @@ public class MainGameManager : MonoBehaviour {
 			}
 
 			// ここから実際の移行処理
-			if (m_AllPlayerMgr.getisEntryBonusStage() && BonusEntryCount < BONUS_ENTRY_NUM) {
+			if (timeCount > AllPlayerManager.ENTRY_BONUS_UNTILLTIME && BonusEntryCount < BONUS_ENTRY_NUM) {
 				// Alert停止
 				iTween.Stop(gameObject, "value");
-				SetAlertScreen(new Color(0, 0, 0, 0));	// 元に戻す
-
-				timeCount = 0f;
+				SetAlertScreen(new Color(0, 0, 0, 0));  // 元に戻す
 				BonusEntryCount++;  // カウンタをプラス
+				timeCount = 0f;
 				setPhaseState(PhaseLevel.Game_Bonus_Start);
 				m_AlertBelt.enabled = false;
 				m_AlertCenter.enabled = false;

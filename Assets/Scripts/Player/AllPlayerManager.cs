@@ -22,6 +22,13 @@ public class AllPlayerManager : MonoBehaviour {
 		ConstAnimationStateTags.PlayerStateClimbOver,
 	};
 
+	private enum StageState {
+		Game,
+		Bonus,
+	};
+
+	private StageState m_StageState = StageState.Game;
+
 	// 現存するPlayerの数
 	private int m_PlayerNum = 0;
 
@@ -197,6 +204,8 @@ public class AllPlayerManager : MonoBehaviour {
 	/// ボーナスから戻ったときのパラメータ関係をリセットする
 	/// </summary>
 	public void resetBonusParameter() {
+		m_StageState = StageState.Game;
+
 		for (int i = 0; i < m_PlayerNum; i++) {
 			m_PlayerManager[i].resetBonusParameter();
 		}
@@ -314,7 +323,11 @@ public class AllPlayerManager : MonoBehaviour {
 	public bool getisEntryBonusStage() {
 
 		if (timeCountUntillBonus > 0f) {
-			if(timeCountUntillBonus >= ENTRY_BONUS_UNTILLTIME) {
+			if(timeCountUntillBonus >= ENTRY_BONUS_UNTILLTIME &&
+				m_StageState != StageState.Bonus &&
+				m_GameManager.BONUS_ENTRY_NUM >= m_GameManager.BonusEntryCount) {
+				m_StageState = StageState.Bonus;
+				timeCountUntillBonus = 0f;
 				return true;
 			}
 		}
@@ -341,7 +354,7 @@ public class AllPlayerManager : MonoBehaviour {
 	public bool getisEntryBonus() {
 
 		int count = 0;
-		if (timeCountUntillBonus <= 0f) {
+		if (timeCountUntillBonus <= 0f && m_GameManager.BONUS_ENTRY_NUM > m_GameManager.BonusEntryCount) {
 			timeCountUntillBonus = 0f;
 			for (int i = 0; i < m_PlayerNum; i++) {
 				if (m_GameManager.ENTRY_BONUS_TENSION <= m_PlayerManager[i].gameObject.GetComponent<Tension>().getTensionRatio()) {

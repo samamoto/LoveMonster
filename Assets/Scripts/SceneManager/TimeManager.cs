@@ -21,6 +21,8 @@ public class TimeManager : MonoBehaviour {
 		m_cdTimer.enabled = false;
 		m_Timer = GetComponent<Timer>();
 		m_Timer.startTimer();
+		changeTimer(true);
+		m_Timer.stopTimer();
 	}
 	
 	// Update is called once per frame

@@ -16,7 +16,7 @@ using UnityEngine.EventSystems;
 
 public class ComboSystem : MonoBehaviour
 {
-    public const float MAX_TIME = 5.0f;
+    public const float MAX_TIME = 5f;
     public const int MAX_POWER = 11;
     public const float SPD_UP_RATE = 0.03f;
     private float[] multiList;
@@ -178,7 +178,7 @@ public class ComboSystem : MonoBehaviour
     {
         //１秒づつパワーを下げる
         cntTime += Time.deltaTime;
-        if (cntTime >= 1)
+        if (cntTime >= 0.75f)
         {
             cntTime = 0;
 
