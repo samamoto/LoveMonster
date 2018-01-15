@@ -19,7 +19,6 @@ public struct HeritageCamTrans
 public class WorldHeritageCamera : MonoBehaviour
 {
     [SerializeField] public List<HeritageCamTrans> m_CamTrasList;
-    [SerializeField] private float endWaitTime = 1.0f;
 
     private float startTime, nowTime;
     private bool loop = false;
