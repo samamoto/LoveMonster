@@ -142,14 +142,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470403650716048}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.70710677}
+  m_LocalPosition: {x: -50, y: 65, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224286397366143020}
   m_Father: {fileID: 4445373463894270}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!20 &20620134665053252
 Camera:
   m_ObjectHideFlags: 1
@@ -379,10 +379,10 @@ MonoBehaviour:
   - position: {x: -250, y: 175, z: -250}
     quaternion: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
     switchingTimePont: 0
-  - position: {x: -70, y: 90, z: 0}
-    quaternion: {x: 0.12278779, y: 0.6963643, z: -0.12278779, w: 0.6963643}
+  - position: {x: -50, y: 65, z: 0}
+    quaternion: {x: -0, y: 0.7071068, z: -0, w: 0.70710677}
     switchingTimePont: 5
-  index: 0
+  index: 1
 --- !u!114 &114788599668581516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -398,6 +398,11 @@ MonoBehaviour:
   - worldHeritage: {fileID: 1393796791660546, guid: 0066e56e31423464c893178281fffa93,
       type: 2}
     nameImage: {fileID: 0}
+    instanced: 0
+  - worldHeritage: {fileID: 1855113873127450, guid: abd19262feac1104281b57a7cdd89b54,
+      type: 2}
+    nameImage: {fileID: 0}
+    instanced: 0
   startPoint: {x: 0, y: -100, z: 0}
   endPoint: {x: 0, y: 0, z: 0}
   MoveTime: 10

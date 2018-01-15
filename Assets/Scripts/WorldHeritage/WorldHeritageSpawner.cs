@@ -8,6 +8,7 @@ public struct WorldHeritageInfo
 {
     public GameObject worldHeritage;
     public Sprite nameImage;
+    public bool instanced;
 }
 
 public class WorldHeritageSpawner : MonoBehaviour
@@ -97,6 +98,14 @@ public class WorldHeritageSpawner : MonoBehaviour
     private void Spawn()
     {
         int spawnHeritageNum = Random.Range(0, this.WorldHeritageList.Length);
+        int trial = 0;
+        while (trial < 10 && this.WorldHeritageList[spawnHeritageNum].instanced)
+        {
+            //10回試行(すべてチェックが入っていたらランダムに出る。)
+            spawnHeritageNum = Random.Range(0, this.WorldHeritageList.Length);
+        }
+
+        this.WorldHeritageList[spawnHeritageNum].instanced = true;
         this.worldHeritageCamera.GetComponent<Camera>().enabled = true;
         this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().CameraStart();
         this.WorldHeritageCanvas.GetComponent<WorldHeritageCanvas>().InitBelt(this.beltSpeed);
