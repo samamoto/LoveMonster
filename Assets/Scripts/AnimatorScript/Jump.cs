@@ -7,18 +7,17 @@ using UnityEngine;
 /// </summary>
 
 public class Jump : AnimatorBase {
-
+    AudioList.SoundList_SE PlaySE = AudioList.SoundList_SE.SE_ActionJump;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("se_Jump", true);
+        PlaySE(PlaySE);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-		//ジャンプの値をアニメーターにセット
-		animator.SetBool("se_Jump", false);
+
 	}
 
 	// OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
@@ -29,7 +28,7 @@ public class Jump : AnimatorBase {
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-		animator.SetBool("is_Jump", false);
+
     }
 
     // OnStateIK is called right after Animator.OnAnimatorIK(). Code that sets up animation IK (inverse kinematics) should be implemented here.

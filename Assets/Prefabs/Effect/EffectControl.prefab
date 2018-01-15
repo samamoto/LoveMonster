@@ -66,3 +66,38 @@ MonoBehaviour:
     type: 2}
   eff_slideSpark: {fileID: 1679617242457014, guid: 237a153941eace248b8452466759a9a7,
     type: 2}
+  eff_beamUp:
+  - {fileID: 176808, guid: d38986cdce64ff34e81498514b436877, type: 2}
+  - {fileID: 122316, guid: d75fe6dab5a565e42a16d05d8c657c90, type: 2}
+  - {fileID: 185082, guid: 061fcb2fca2392e40ae941c2f9190d4e, type: 2}
+  - {fileID: 103842, guid: 7a37f94409de3204a9f223f743eb3697, type: 2}
+  eff_LightJump:
+  - {fileID: 138802, guid: a8565406c64107841a9c18dc24ba9dc4, type: 2}
+  - {fileID: 155736, guid: a50d8a97b7be37940867b0085512183d, type: 2}
+  - {fileID: 131796, guid: ea3a0e7139b99764580ebe6d2a93993f, type: 2}
+  - {fileID: 118938, guid: f84c2e689f8eb1a48808cce1ca3b8585, type: 2}
+  eff_Buff:
+  - {fileID: 183910, guid: 03f90171af6e6194a9c5877c8d283b72, type: 2}
+  - {fileID: 179444, guid: f81e49f45af030b4a8b25a9f373f2e38, type: 2}
+  - {fileID: 105272, guid: 4623d2ee417ed514aa979e3fb2023294, type: 2}
+  - {fileID: 140342, guid: 93be7dda8fd3331429026d63b4494a7e, type: 2}
+  eff_chargeAura:
+  - {fileID: 128846, guid: 51e57dcfc98a4a84c9f0e4421b4278f0, type: 2}
+  - {fileID: 187606, guid: 8e197dcc591031548bff44f581ad784e, type: 2}
+  - {fileID: 183600, guid: 6ece6369056fd2d4c85dcda6b15f38f1, type: 2}
+  - {fileID: 106254, guid: 8c001e0c56aa025488161d4d41b29f59, type: 2}
+  eff_PlasmaImpact:
+  - {fileID: 106912, guid: 8827a814494c0bf4f8a182bf2b7f1a43, type: 2}
+  - {fileID: 106912, guid: e30d9a56850358e4eaecf624da0aed52, type: 2}
+  - {fileID: 106912, guid: 36bbe64b8ec4ca9499a68747230cbe17, type: 2}
+  - {fileID: 106912, guid: 179963061aa1f224fbe93828c2c15cff, type: 2}
+  eff_Nova:
+  - {fileID: 100534, guid: 37703eac1d8575143b99ee99cf5ab0fb, type: 2}
+  - {fileID: 197368, guid: 992d56df7c560f84f916b4b55bbbd763, type: 2}
+  - {fileID: 148616, guid: 1ea0b96281a8682469870e7ecc2fe33c, type: 2}
+  - {fileID: 133422, guid: 52009bcbc566cbe4a812c7ceb070b90a, type: 2}
+  eff_MuzzleFlash:
+  - {fileID: 135608, guid: e6cf31fb1db1cda49904f00d3263865a, type: 2}
+  - {fileID: 169642, guid: 63621660d930e204fb40d555f221affa, type: 2}
+  - {fileID: 172760, guid: ebe43f42cf7b4214fb9ae0734bda0579, type: 2}
+  - {fileID: 160584, guid: 6e7013877cd25ea429426b84ad103215, type: 2}

@@ -25,6 +25,7 @@ TagManager:
   - GameManager
   - ObjectManager
   - Explosion
+  - DeadLine
   layers:
   - Default
   - TransparentFX

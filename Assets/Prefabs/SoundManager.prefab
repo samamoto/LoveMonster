@@ -276,3 +276,51 @@ MonoBehaviour:
     m_UnableEffect: 1
     m_Volume: 1
     m_ReverbPreset: 0
+  - m_Clip: {fileID: 8300000, guid: 0ccef66e13df73046bb5b8234c5c2b76, type: 3}
+    m_OutputMixer: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+      type: 2}
+    m_PlayOnAwake: 0
+    m_Loop: 0
+    m_UnableEffect: 1
+    m_Volume: 1
+    m_ReverbPreset: 0
+  - m_Clip: {fileID: 8300000, guid: 2154c01261df4f546a38c3e5d43b140a, type: 3}
+    m_OutputMixer: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+      type: 2}
+    m_PlayOnAwake: 0
+    m_Loop: 0
+    m_UnableEffect: 1
+    m_Volume: 1
+    m_ReverbPreset: 0
+  - m_Clip: {fileID: 8300000, guid: fc3ad738c1455004586dac04a14cce11, type: 3}
+    m_OutputMixer: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+      type: 2}
+    m_PlayOnAwake: 0
+    m_Loop: 0
+    m_UnableEffect: 1
+    m_Volume: 1
+    m_ReverbPreset: 0
+  - m_Clip: {fileID: 8300000, guid: e7c6528f711be73469c23da04e20e7bf, type: 3}
+    m_OutputMixer: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+      type: 2}
+    m_PlayOnAwake: 0
+    m_Loop: 0
+    m_UnableEffect: 1
+    m_Volume: 1
+    m_ReverbPreset: 0
+  - m_Clip: {fileID: 8300000, guid: 258470bd380a31148a62dea18b6ec810, type: 3}
+    m_OutputMixer: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+      type: 2}
+    m_PlayOnAwake: 0
+    m_Loop: 0
+    m_UnableEffect: 1
+    m_Volume: 1
+    m_ReverbPreset: 0
+  - m_Clip: {fileID: 8300000, guid: 1d949a851f94b4d40b175d97402003af, type: 3}
+    m_OutputMixer: {fileID: 243078773641872998, guid: 2a32aa15dfac3ba4594d0e9e54c4d9d5,
+      type: 2}
+    m_PlayOnAwake: 0
+    m_Loop: 0
+    m_UnableEffect: 1
+    m_Volume: 1
+    m_ReverbPreset: 0

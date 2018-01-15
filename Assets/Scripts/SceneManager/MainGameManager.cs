@@ -189,7 +189,8 @@ public class MainGameManager : MonoBehaviour {
 
 			// ボーナスにいけるようになったら(移行待機)
 			if (m_AllPlayerMgr.getisEntryBonus() && BonusEntryCount < BONUS_ENTRY_NUM && timeCount <= 0f) {
-				timeCount += Time.deltaTime;
+                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_Alert);
+                timeCount += Time.deltaTime;
 				m_AlertBelt.enabled = true;
 				m_AlertCenter.enabled = true;
 				//
@@ -267,14 +268,21 @@ public class MainGameManager : MonoBehaviour {
 					trs.position = new Vector3(trs.position.x, trs.position.y, trs.position.z - 2.0f);  // 横にずらす
 					m_AllPlayerMgr.startPlayerPosition(i + 1, trs.position, trs.rotation);
 				}
+				// エフェクト
+				EffectControl.get().createNova(trs.position+new Vector3(0,0,3f), 4);
+
 				// 移動完了したらカメラの位置をリセットして背面に回す
 				m_AllCameraMgr.resetCamera();
 				m_PauseMgr.PauseRestriction(false);
 				m_AllPlayerMgr.stopControll(false);
 				//ｺﾞｺﾞｺﾞｺﾞｺﾞｺﾞSEをSTOP
 				m_Audio.Stop((int)AudioList.SoundList_SE.SE_Bonus);
-				// XFade
-				GameObject.Find("MainCamera").GetComponent<XFade>().CrossFade(1.0f);
+
+                //キャラのワープ音
+                m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_StageWarp);
+
+                // XFade
+                GameObject.Find("MainCamera").GetComponent<XFade>().CrossFade(1.0f);
 			}
 			break;
 
@@ -315,8 +323,12 @@ public class MainGameManager : MonoBehaviour {
 			//BGMを元に戻す
 			m_Audio.Stop((int)AudioList.SoundList_BGM.BGM_Game_Bonus0);
 			m_Audio.Play((int)gameBGM);
-			// ゲームに戻る
-			setPhaseState(PhaseLevel.Game);
+
+            //キャラのワープ音
+            m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_StageWarp);
+
+            // ゲームに戻る
+            setPhaseState(PhaseLevel.Game);
 			break;
 
 		//================================================================================

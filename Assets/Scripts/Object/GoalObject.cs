@@ -6,18 +6,20 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class GoalObject : MonoBehaviour {
 
-	private const int GetScorePoint = 20000;
+	private const int GetScorePoint = 5000;
 
 	public Transform nextStagePoint;		// 次の移動場所
 	private float transitionTimer = 1.0f;    // 移行時間
 	float timer;
 	bool isTimerStart;
 	bool isGoal;    // TransitionTimerが終わってから
-	int GoalID = 0;	// ゴールプレイヤーのID
+	int GoalID = 0; // ゴールプレイヤーのID
+	private AudioList m_Audio;
 
 	// Use this for initialization
 	private void Start() {
-	}
+        m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
+    }
 
 	// Update is called once per frame
 	private void Update() {
@@ -52,18 +54,18 @@ public class GoalObject : MonoBehaviour {
 			);
 
 			// 縮小してテレポートみたいに
-			iTween.ScaleTo(other.gameObject, new Vector3(0.01f, 1.6f, 0.01f), 0.75f);
-
+			iTween.ScaleTo(other.gameObject, new Vector3(0.00f, 1.6f, 0.00f), 0.75f);
+			EffectControl eff = EffectControl.get();
+			eff.createBeamUp(other.gameObject, new Vector3(0f, 0f), other.GetComponent<PlayerManager>().getPlayerID());
+			eff.createLightJump(other.gameObject, new Vector3(0f, 0f), other.GetComponent<PlayerManager>().getPlayerID());
+			//キャラのワープ音
+			m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_StageWarp);
 
 		}
 	}
 
 	private void OnTriggerStay(Collider other) {
 		if (other.tag == "Player" && timer > 0f) {
-			if(timer >= 0.75f) {
-				EffectControl eff = EffectControl.get();
-				eff.createItemHit(other.transform.position);
-			}
 		}
 	}
 

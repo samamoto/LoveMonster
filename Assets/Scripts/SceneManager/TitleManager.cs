@@ -89,7 +89,7 @@ public class TitleManager : MonoBehaviour {
 			m_TitleLogo.enabled = true;
 			if(timeCount >= 0 && timeCount < 1f) {
 				iTween.FadeTo(m_TitleLogo.gameObject, 1f, 1f);
-				iTween.ScaleTo(m_TitleLogo.gameObject, new Vector3(4f, 4f), 1f);
+				iTween.ScaleTo(m_TitleLogo.gameObject, new Vector3(4.1f, 4.1f), 1f);
 			}
 
 			if (timeCount >= 2.5f) {
@@ -98,18 +98,27 @@ public class TitleManager : MonoBehaviour {
 			}
 
 			if (timeCount >= 3f) {
-			timeCount = 0f;
-			m_Phase++;
+				timeCount = 0f;
+				m_Phase++;
+				// ロゴを縮小
+				iTween.ScaleTo(m_TitleLogo.gameObject, new Vector3(4f, 4f), 1f);
 			}
 			break;
 
 		case TitlePhase.End:
 			if (m_Controller.GetButtonDown(Controller.Button.B) ||
 				m_Controller.GetButtonDown(Controller.Button.A) || 
-				m_Controller.GetButtonDown(Controller.Button.Menu)) {
+				m_Controller.GetButtonDown(Controller.Button.Menu) ||
+				Input.GetKeyDown(KeyCode.Space)) {
 				m_Audio.PlayOneShot((int)AudioList.SoundList_SE.SE_UI_Title_Decision);
 				m_Phase = TitlePhase.NextScene;
+				m_Press.gameObject.GetComponent<Animator>().enabled = false;
 			}
+
+			if (Input.GetKey(KeyCode.Escape)) {
+				Application.Quit();
+			}
+
 			break;
 
 		case TitlePhase.NextScene:
@@ -128,16 +137,6 @@ public class TitleManager : MonoBehaviour {
 		//iTween.FadeTo(GameObject.Find("Panel"), 1f, 2f);
 		SetFade(timeCount/3);
 		//iTween.ValueTo(gameObject, iTween.Hash("from", 1f, "to", 0f, "time", 1f, "onupdate", "SetFade"));
-		/*
-		iTween.ValueTo(gameObject, iTween.Hash(
-			"from", 0f,
-			"to", 1f,
-			"time", 2f,
-			"looptype", iTween.LoopType.none,
-			"onupdate", "SetFade",  // 毎フレーム SetAlpha() を呼びます。
-			"onupdatetarget", GameObject.Find("Fade")
-			));
-		*/
 		if (timeCount > 3.0f) {
 			SceneChange.Instance._SceneLoadTutorial();
 			//SceneChange.Instance._SceneLoadGame();
@@ -147,6 +146,7 @@ public class TitleManager : MonoBehaviour {
 	void SetIntensity(float value) {
 		GameObject.Find("Camera").GetComponent<SunShafts>().sunShaftIntensity = value;
 	}
+
 	void SetFade(float value) {
 		float v = value;
 		if(v >= 1) {

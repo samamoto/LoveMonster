@@ -146,11 +146,6 @@ MonoBehaviour:
   - 0
   - 0
   PlayerRank: 00000000000000000000000000000000
---- !u!1 &414989193 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1833559059939046, guid: 0066e56e31423464c893178281fffa93,
-    type: 2}
-  m_PrefabInternal: {fileID: 1015554224}
 --- !u!1 &482860202 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1110038034496248, guid: 0066e56e31423464c893178281fffa93,
@@ -438,6 +433,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0066e56e31423464c893178281fffa93, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1015554225 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1354520374272218, guid: 0066e56e31423464c893178281fffa93,
+    type: 2}
+  m_PrefabInternal: {fileID: 1015554224}
+--- !u!1 &1015554226 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1809639046335124, guid: 0066e56e31423464c893178281fffa93,
+    type: 2}
+  m_PrefabInternal: {fileID: 1015554224}
+--- !u!1 &1015554227 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1411493431687882, guid: 0066e56e31423464c893178281fffa93,
+    type: 2}
+  m_PrefabInternal: {fileID: 1015554224}
+--- !u!1 &1015554228 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1230732555283188, guid: 0066e56e31423464c893178281fffa93,
+    type: 2}
+  m_PrefabInternal: {fileID: 1015554224}
 --- !u!1 &1289869384 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1963364995564462, guid: 4be0571ae305a134ca2db78cf4481d26,
@@ -499,18 +514,6 @@ MonoBehaviour:
     - gameObjects: []
     - gameObjects: []
   m_RecentGameObjects:
-  - gameObject: {fileID: 414989193}
-    timestamp: 636506087193543657
-  - gameObject: {fileID: 482860202}
-    timestamp: 636506087302045150
-  - gameObject: {fileID: 1998556904}
-    timestamp: 636506087309018185
-  - gameObject: {fileID: 482860202}
-    timestamp: 636506087364336881
-  - gameObject: {fileID: 414989193}
-    timestamp: 636506087458359898
-  - gameObject: {fileID: 1818224286}
-    timestamp: 636506087942433744
   - gameObject: {fileID: 482860202}
     timestamp: 636506189346753619
   - gameObject: {fileID: 1818224286}
@@ -519,6 +522,18 @@ MonoBehaviour:
     timestamp: 636506189594717393
   - gameObject: {fileID: 1818224286}
     timestamp: 636506189772636605
+  - gameObject: {fileID: 1015554226}
+    timestamp: 636513545536591948
+  - gameObject: {fileID: 1015554227}
+    timestamp: 636513545635066741
+  - gameObject: {fileID: 1015554225}
+    timestamp: 636513545647744026
+  - gameObject: {fileID: 1818224286}
+    timestamp: 636513545682677532
+  - gameObject: {fileID: 1015554228}
+    timestamp: 636513545691355237
+  - gameObject: {fileID: 1818224286}
+    timestamp: 636513545764354295
 --- !u!4 &1321080659
 Transform:
   m_ObjectHideFlags: 16
@@ -1099,9 +1114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360ce9081a4ee5347bb450dd15b55b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JudgeZone:
-  - 0.2
-  - 0.65
+  m_AllPlayerManager: {fileID: 0}
 --- !u!4 &1677187865
 Transform:
   m_ObjectHideFlags: 0
@@ -1980,11 +1993,6 @@ MonoBehaviour:
   m_TensionPhase: 0
   m_TensionCount: 0
   TensionRatio: 0
---- !u!1 &1998556904 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1460424899335390, guid: 0066e56e31423464c893178281fffa93,
-    type: 2}
-  m_PrefabInternal: {fileID: 1015554224}
 --- !u!1 &2007488866 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1523780808760516, guid: 4be0571ae305a134ca2db78cf4481d26,
