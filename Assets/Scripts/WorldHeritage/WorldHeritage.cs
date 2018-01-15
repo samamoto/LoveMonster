@@ -16,8 +16,12 @@ public class WorldHeritage : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        this.normalizedTime += Time.deltaTime / this.m_MoveTime;
-        this.transform.position = Vector3.Lerp(this.m_Start, this.m_End, this.normalizedTime);
+        //移動
+        if (normalizedTime < 1.0f)
+        {
+            this.normalizedTime += Mathf.Clamp01(Time.deltaTime / this.m_MoveTime);
+            this.transform.position = Vector3.Lerp(this.m_Start, this.m_End, this.normalizedTime);
+        }
     }
 
     public void Init(Vector3 startPoint, Vector3 endPoint, float moveTime)
