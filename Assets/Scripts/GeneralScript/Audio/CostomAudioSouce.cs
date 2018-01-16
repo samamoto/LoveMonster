@@ -26,8 +26,12 @@ public class CostomAudioSouce
     //リバーブプリセット
     public AudioReverbPreset m_ReverbPreset = AudioReverbPreset.Off;
 
+    public bool m_EnableFadeIn = false;
+
     //フェードイン時間
     public float m_FaceInTime = 0.5f;
+
+    public bool m_EnableFadeOut = false;
 
     //フェードアウト時間
     public float m_FadeOutTime = 0.5f;
@@ -102,6 +106,7 @@ public class CostomAudioSouce
                     break;
 
                 case AudioState.STATE_PLAY:
+
                     //ループしていないサウンドが終了した場合停止状態へ遷移
                     if (!m_AudioSource.isPlaying)
                         this.m_State = AudioState.STATE_STOP;
@@ -159,7 +164,12 @@ public class CostomAudioSouce
         {
             this.m_AudioSource.Play();
             this.m_NormalizedTime = 0.0f;
-            this.m_State = AudioState.STATE_FADEIN;
+
+            //フェードイン
+            if (this.m_EnableFadeIn)
+                this.m_State = AudioState.STATE_FADEIN;
+            else
+                this.m_State = AudioState.STATE_PLAY;
             //Debug.Log("Playing " + this.m_Clip.name);
         }
     }
@@ -178,9 +188,18 @@ public class CostomAudioSouce
     {
         if (this.m_Clip && this.m_AudioSource.isPlaying && this.m_Enable)
         {
-            this.m_AudioSource.Stop();
             this.m_NormalizedTime = 0.0f;
-            this.m_State = AudioState.STATE_FADEOUT;
+
+            //フェードアウト
+            if (this.m_EnableFadeOut)
+            {
+                this.m_State = AudioState.STATE_FADEOUT;
+            }
+            else
+            {
+                this.m_State = AudioState.STATE_STOP;
+                this.m_AudioSource.Stop();
+            }
             //Debug.Log("Stop " + this.m_Clip.name);
         }
     }
