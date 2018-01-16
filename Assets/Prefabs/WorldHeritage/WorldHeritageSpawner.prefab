@@ -281,7 +281,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1817304576822940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0d139839d7cdde499d242785ffd90e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 66aaf214e5aed3044b26bad9f62f7250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114365809313719364
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1776981660267994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb8e0c28bddd644ba26e4020ef46520, type: 3}
+  m_Script: {fileID: 11500000, guid: 28b1386d1a9793346b7ab5b12558461c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114586232427252556
@@ -395,12 +395,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorldHeritageList:
-  - worldHeritage: {fileID: 1393796791660546, guid: 0066e56e31423464c893178281fffa93,
+  - worldHeritage: {fileID: 1698643485637854, guid: 6971d4234babb67489ad759c806eecc7,
       type: 2}
-    nameImage: {fileID: 21300000, guid: 4e4d6e6e5d2c28346b70dbe21f09cb6e, type: 3}
+    nameImage: {fileID: 21300000, guid: 0ffbb02359bc1e74382c049970b650d7, type: 3}
   - worldHeritage: {fileID: 1024000862595064, guid: abd19262feac1104281b57a7cdd89b54,
       type: 2}
-    nameImage: {fileID: 21300000, guid: 4e4d6e6e5d2c28346b70dbe21f09cb6e, type: 3}
+    nameImage: {fileID: 21300000, guid: 0fccd85414d649e49aba246513cc75d8, type: 3}
   startPoint: {x: 0, y: -100, z: 0}
   endPoint: {x: 0, y: 0, z: 0}
   MoveTime: 10
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1578666659641616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0d139839d7cdde499d242785ffd90e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 66aaf214e5aed3044b26bad9f62f7250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114974139579683964
@@ -429,7 +429,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1352504741048910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e0f8d77673bc8b4381129e74be82c44, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a930cc0aaa44b64c9a1680ab0758142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114992991403021256
