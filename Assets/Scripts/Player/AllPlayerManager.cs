@@ -196,7 +196,10 @@ public class AllPlayerManager : MonoBehaviour {
 	/// </summary>
 	public void restartPlayer() {
 		for (int i = 0; i < m_PlayerNum; i++) {
-			m_PlayerManager[i].restartPlayer(m_StartList[m_PlayerManager[i].getPlayerStageID() - 1].transform.eulerAngles);
+			m_PlayerManager[i].stopControlTimer(false, 0.5f);
+			m_PlayerManager[i].restartPlayer(m_StartList[m_PlayerManager[i].getPlayerStageID() - 1].transform.rotation.eulerAngles);
+			// カメラを背面にリセット
+			GameObject.Find("MainCamera" + (i + 1).ToString()).GetComponent<ChaseCamera>().resetCamera();
 		}
 	}
 

@@ -30,6 +30,7 @@ public class Tension : MonoBehaviour {
 	private float TensionRatio = 0.0f;
 
 	private Gauge m_Gauge;
+	private ComboGaugeScript m_ComboGauge;
 	private MainGameManager m_GameManager;
 	private AudioList m_Audio;
 	private bool is_EntryBonusTension_Sound;    // ボーナス移行時の時のサウンドフラグ
@@ -48,6 +49,7 @@ public class Tension : MonoBehaviour {
 		}
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 		m_GameManager = GameObject.Find("GameManager").GetComponent<MainGameManager>();
+		m_ComboGauge = GameObject.Find("ComboGauge" + m_id.ToString()).GetComponent<ComboGaugeScript>();
 	}
 
 	// Update is called once per frame
@@ -63,6 +65,10 @@ public class Tension : MonoBehaviour {
 			functor: (reciever, y) => reciever.ReceivePlayerGauge(m_id, (1.0f / (MAX_STEP)) * m_TensionCount)
 		);
 		this.TensionRatio = getTensionRatio();
+
+		// コンボゲージに現在のPhaseを送る
+		//m_ComboGauge.setComboLevel(m_TensionPhase);
+
 	}
 
 	private void countTIme() {

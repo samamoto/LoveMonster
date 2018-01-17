@@ -37,7 +37,9 @@ public class ComboSystem : MonoBehaviour
     // 参照
     private PrintScore m_Score;
     private ThirdPersonCharacter m_TPerson;
-    private Gauge m_Gauge;
+	private Gauge m_Gauge;
+	private ComboGaugeScript m_ComboGauge;
+
 	private Tension m_Tension;
 	private ActionTrailManager m_EffTrail;
 	private EffectSpeedUp m_EffSpeed;
@@ -58,8 +60,9 @@ public class ComboSystem : MonoBehaviour
         m_TPerson = GetComponent<ThirdPersonCharacter>();
         m_MoveSpeed = m_TPerson.getMoveSpeed();
         m_AnimSpeed = m_TPerson.getAnimSpeed();
-        // GanbaruGauge_1P~4P
-        m_Gauge = GameObject.Find("GanbaruGauge_" + m_id.ToString() + "P").GetComponent<Gauge>();
+		// GanbaruGauge_1P~4P
+		m_Gauge = GameObject.Find("GanbaruGauge_" + m_id.ToString() + "P").GetComponent<Gauge>();
+		m_ComboGauge = GameObject.Find("ComboGauge" + m_id.ToString()).GetComponent<ComboGaugeScript>();
 		m_Tension = GetComponent<Tension>();    // 2017年12月20日 oyama add
 		m_EffSpeed = GetComponentInChildren<EffectSpeedUp>();		// スピードアップ系の
 		m_EffTrail = GetComponentInChildren<ActionTrailManager>();  // コンポーネント
@@ -91,6 +94,7 @@ public class ComboSystem : MonoBehaviour
 			m_Tension.updateTensionPhase(power);
 			m_EffTrail.setActive(false, gameObject);
 			m_EffSpeed.setActive(false, gameObject);
+			m_ComboGauge.setComboLevel(power);
 			return;
 		}
 
@@ -99,9 +103,7 @@ public class ComboSystem : MonoBehaviour
         {
             //0以下になったら
             DownPower();
-        }
-        else
-        {
+		} else {
             //タイムを進める
             CountTime();
         }
@@ -178,16 +180,17 @@ public class ComboSystem : MonoBehaviour
     {
         //１秒づつパワーを下げる
         cntTime += Time.deltaTime;
-        if (cntTime >= 0.75f)
+
+		if (cntTime >= 1f)
         {
             cntTime = 0;
+			m_ComboGauge.UpdateComboLevel(power, downTime);
 
-            //上限用
-            if (power <= 0)
+			//上限用
+			if (power <= 0)
             {
                 power = 0;
-            }
-            else
+			} else
             {
                 power--;
 			}
@@ -200,14 +203,15 @@ public class ComboSystem : MonoBehaviour
         //タイムの初期化
         downTime = MAX_TIME;
         cntTime = 0;
-
         cntCombo++;                     //コンボカウントを進める
-        //上限用
-        if (power >= MAX_POWER)
+
+		m_ComboGauge.UpdateComboLevel(power, downTime);
+
+		//上限用
+		if (power >= MAX_POWER)
         {
             power = MAX_POWER;
-        }
-        else
+		} else
         {
             power++;
 		}
