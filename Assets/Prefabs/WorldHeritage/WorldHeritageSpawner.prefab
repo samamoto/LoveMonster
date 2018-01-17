@@ -156,7 +156,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470403650716048}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -204,10 +204,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -395,9 +395,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorldHeritageList:
-  - worldHeritage: {fileID: 1698643485637854, guid: 6971d4234babb67489ad759c806eecc7,
+  - worldHeritage: {fileID: 1024000862595064, guid: abd19262feac1104281b57a7cdd89b54,
       type: 2}
-    nameImage: {fileID: 21300000, guid: 0ffbb02359bc1e74382c049970b650d7, type: 3}
+    nameImage: {fileID: 21300000, guid: 0fccd85414d649e49aba246513cc75d8, type: 3}
   - worldHeritage: {fileID: 1024000862595064, guid: abd19262feac1104281b57a7cdd89b54,
       type: 2}
     nameImage: {fileID: 21300000, guid: 0fccd85414d649e49aba246513cc75d8, type: 3}
