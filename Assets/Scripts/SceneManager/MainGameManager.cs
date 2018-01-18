@@ -264,11 +264,11 @@ public class MainGameManager : MonoBehaviour {
 				setPhaseState(PhaseLevel.Game_Bonus);
 				Transform trs = GameObject.Find("BonusStart1").transform;
 				for (int i = 0; i < 4; i++) {
-					trs.position = new Vector3(trs.position.x, trs.position.y, trs.position.z - 2.0f);  // 横にずらす
-					m_AllPlayerMgr.startPlayerPosition(i + 1, trs.position, trs.rotation);
+					Vector3 position = new Vector3(trs.position.x, trs.position.y, trs.position.z - i*2.0f);  // 横にずらす
+					m_AllPlayerMgr.startPlayerPosition(i + 1, position, trs.rotation);
 				}
 				// エフェクト
-				EffectControl.get().createNova(trs.position+new Vector3(0,0,3f), 4);
+				EffectControl.get().createNova(trs.position+new Vector3(0,0,-4f), 4);
 
 				// 移動完了したらカメラの位置をリセットして背面に回す
 				m_AllCameraMgr.resetCamera();
