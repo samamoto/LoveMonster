@@ -27,7 +27,7 @@ public class TitleManager : MonoBehaviour {
 	private Controller.Controller m_Controller;
 	private NoiseAndScratches m_Noise;
 	private Image m_TitleLogo;
-	private TextMeshProUGUI m_Press;
+	private Image m_Press;
 
 	private float timeCount = 0f;
 	private bool buttonFlag;
@@ -49,7 +49,7 @@ public class TitleManager : MonoBehaviour {
 		m_Controller = GetComponent<Controller.Controller>();
 		m_TitleLogo = GameObject.Find("TitleLogo").GetComponent<Image>();
 		m_TitleLogo.enabled = false;
-		m_Press = GameObject.Find("Press").GetComponent<TextMeshProUGUI>();
+		m_Press = GameObject.Find("Press").GetComponent<Image>();
 		m_Press.enabled = false;
 
 	}
