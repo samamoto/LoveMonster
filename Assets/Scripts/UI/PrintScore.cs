@@ -34,17 +34,21 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
     private bool is_Stop = true;    // 初期はストップ
 	private AudioList m_Audio;      // Sound 2017年12月29日 oyama add
 
-	public int PrintTime;   //成功UIの表示時間
+	public float PrintTime;   //成功UIの表示時間
 
     private GameObject score_p1;
     private GameObject score_p2;
     private GameObject score_p3;
     private GameObject score_p4;
-
+	/*
     private GameObject Judge_Success_1p;
     private GameObject Judge_Success_2p;
     private GameObject Judge_Success_3p;
     private GameObject Judge_Success_4p;
+	*/
+
+	private GameObject[] JudgeSuccess = new GameObject[4];
+	private Vector3[] JudgePos = new Vector3[4];
 
 	private GameObject[] scoreUp = new GameObject[4];
 	private Vector3[] scoreUpPos = new Vector3[4];
@@ -53,8 +57,10 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
     public Sprite Great;
     public Sprite Excellent;
 
+	private Sprite[] JudgeSprite = new Sprite[4];
+
 	// 複数人数に対応してなさそうだから配列にする　2017年12月29日 oyama add
-	private int[] Delete_count = new int[4] {
+	private float[] Delete_count = new float[4] {
 		0,0,0,0
 	};
 
@@ -81,7 +87,19 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         score_p3 = GameObject.Find("Score_p3").gameObject;
         score_p4 = GameObject.Find("Score_p4").gameObject;
 
-        //確保
+		for (int i = 0; i < 4; i++) {
+			JudgeSuccess[i] = GameObject.Find("Judge_Success_" + (i + 1).ToString() + "p");
+			JudgePos[i] = JudgeSuccess[i].transform.position;
+			JudgeSuccess[i].SetActive(false);
+		}
+
+		JudgeSprite[0] = null;
+		JudgeSprite[1] = Nice;
+		JudgeSprite[2] = Great;
+		JudgeSprite[3] = Excellent;
+
+		//確保
+		/*
         Judge_Success_1p = GameObject.Find("Judge_Success_1p").gameObject;
         Judge_Success_2p = GameObject.Find("Judge_Success_2p").gameObject;
         Judge_Success_3p = GameObject.Find("Judge_Success_3p").gameObject;
@@ -92,8 +110,9 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         Judge_Success_2p.SetActive(false);
         Judge_Success_3p.SetActive(false);
         Judge_Success_4p.SetActive(false);
+		*/
 
-        Player_success_ui_1p = false;
+		Player_success_ui_1p = false;
         Player_success_ui_2p = false;
         Player_success_ui_3p = false;
         Player_success_ui_4p = false;
@@ -243,6 +262,74 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
     }
 
 
+	/// <summary>
+	/// プレイヤーの成功表示
+	/// </summary>
+	void Player_Success_UI() {
+
+		// 表示を出す基準
+		int printID = 0;
+		float[] CompareRate = new float[4];
+
+		CompareRate[0] = ScoreRateList[0];  // Default
+		CompareRate[1] = ScoreRateList[2];  // Nice
+		CompareRate[2] = ScoreRateList[4];  // Great
+		CompareRate[3] = ScoreRateList[5];  // Excellent
+
+		// いずれかの表示の時にActiveにしてAnimatorを動かす
+		for (int i = 0; i < 4; i++) {
+
+			// 表示中なら次へ
+			if (Delete_count[i] > 0) {
+				Delete_count[i] += Time.deltaTime;
+				if(Delete_count[i] >= PrintTime - 0.5f) {
+					iTween.ScaleTo(JudgeSuccess[i], new Vector3(0f, 0f), 0.5f);
+					iTween.FadeTo(JudgeSuccess[i], 0f, 0.5f);
+					iTween.MoveBy(JudgeSuccess[i], new Vector3(0, -3), 0.5f);
+					if (Delete_count[i] >= PrintTime) {
+						Delete_count[i] = 0f;
+						//JudgeSuccess[i].GetComponent<Image>().sprite = JudgeSprite[0];
+						//JudgeSuccess[i].SetActive(false);
+					}
+				}
+				continue;
+			} else {
+
+				if(ScoreRate[i] == ScoreRate_old[i] && ScoreRate[i] != ScoreRateList[ScoreRateList.Length-1]) {
+					continue;
+				}
+
+				printID = -1;
+				for (int j = 0; j < CompareRate.Length; j++) {
+					if (ScoreRate[i] == CompareRate[j] && ScoreRate[i] > ScoreRate_old[i]) {
+						printID = j;
+						break;
+					}
+				}
+				// デフォルトと初期は飛ばす
+				if (printID <= 0) {
+					break;
+				}
+
+				// 表示関連
+				//JudgeSuccess[i].SetActive(false);
+				JudgeSuccess[i].SetActive(true);
+				Delete_count[i] = 0;
+				Delete_count[i] += Time.deltaTime;
+				JudgeSuccess[i].GetComponent<Image>().sprite = JudgeSprite[printID];
+				JudgeSuccess[i].transform.position = JudgePos[i];   // 移動前に初期位置に戻す
+				iTween.MoveBy(JudgeSuccess[i], new Vector3(0, 10), 1.0f);
+				iTween.ScaleTo(JudgeSuccess[i], new Vector3(1.8f, 0.6f), 1.0f);
+			}
+		}
+		for (int i = 0; i < 4; i++) {
+			ScoreRate_old[i] = ScoreRate[i];
+		}
+
+	}
+
+
+	/*
     public void Player_Success_UI()
     {
 
@@ -487,6 +574,8 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 
 
 	}
+	*/
+
 
 	/// <summary>
 	/// システムをストップ

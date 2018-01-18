@@ -79,10 +79,11 @@ public class ComboSystem : MonoBehaviour
         cntTime = 0;
         downTime = MAX_TIME;
 		rollNum = 0;
+		m_ComboGauge.UpdateComboLevel(power, MAX_TIME);
 	}
 
-    // Update is called once per frame
-    private void Update()
+	// Update is called once per frame
+	private void Update()
     {
 		if (is_StopControll) return;
 
@@ -182,7 +183,7 @@ public class ComboSystem : MonoBehaviour
         //１秒づつパワーを下げる
         cntTime += Time.deltaTime;
 		rollNum = 0;
-		if (cntTime >= 1f)
+		if (cntTime >= 0.8f)
         {
 			cntTime = 0;
 			//上限用
@@ -193,7 +194,7 @@ public class ComboSystem : MonoBehaviour
             {
 				power--;
 			}
-			m_ComboGauge.UpdateComboLevel(power, 1.0f);
+			m_ComboGauge.UpdateComboLevel(power, 0.8f);
 		}
 	}
 

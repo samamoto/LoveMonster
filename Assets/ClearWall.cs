@@ -24,7 +24,7 @@ public class ClearWall : MonoBehaviour {
 		rend.material.SetTextureOffset("_MainTex", new Vector2(offset_u, offset_v));
 	}
 
-	public void OnTriggerStay(Collider other) {
+	public void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player"){
 			EffectControl.get().createMuzzleLaserBolt(other.transform.position, 2);
 		}

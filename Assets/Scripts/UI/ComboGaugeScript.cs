@@ -9,7 +9,7 @@ public class ComboGaugeScript : MonoBehaviour {
     public int comboLevels = 5; //合計のコンボの段階数
 	public int nowCombo = 0;
     public float comboTime = 5.0f; //コンボが一段階落ちるまでの許す時間
-    private float[] gaugeFillAmounts = { 0.0f, 0.154f, 0.31f, 0.455f, 0.6f, 0.8f, 1.0f}; //コンボ段階に合わせたそれぞれのゲージの貯まる量
+    private float[] gaugeFillAmounts = { 0.0f, 0.154f, 0.31f, 0.455f, 0.6f, 0.8f, 1.0f, 1.0f}; //コンボ段階に合わせたそれぞれのゲージの貯まる量
     public Image fill;
     public Image fillGlow;
 
@@ -56,15 +56,16 @@ public class ComboGaugeScript : MonoBehaviour {
 	//comboLevel に対してゲージの貯まる量を調整する。comboLevel　はコンボの何段階目（0-5まで）。
 	public void UpdateComboLevel(int comboLevel, float time) {
 
-		int level = comboLevel;
-
-		if(level > gaugeFillAmounts.Length-1) {
-			level = gaugeFillAmounts.Length - 1;
-		}
-		nowCombo = level;
-
 		comboTime = time;
 		timeCount = 0;
+
+		int level = comboLevel;
+		if (level > gaugeFillAmounts.Length-1) {
+			level = gaugeFillAmounts.Length - 1;
+			comboTime = (comboLevel - comboLevels) * time;
+			timeCount = 0;
+		}
+		nowCombo = level;
 
 		fillAmout = gaugeFillAmounts[nowCombo];
 		fill.fillAmount = gaugeFillAmounts[nowCombo];

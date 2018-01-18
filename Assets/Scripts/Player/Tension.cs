@@ -66,9 +66,6 @@ public class Tension : MonoBehaviour {
 		);
 		this.TensionRatio = getTensionRatio();
 
-		// コンボゲージに現在のPhaseを送る
-		//m_ComboGauge.setComboLevel(m_TensionPhase);
-
 	}
 
 	private void countTIme() {
