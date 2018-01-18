@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1104194837573826
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1150426806140000
 GameObject:
   m_ObjectHideFlags: 1
@@ -219,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1187577427006634
 GameObject:
   m_ObjectHideFlags: 1
@@ -413,7 +413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1498040753656678
 GameObject:
   m_ObjectHideFlags: 1
@@ -976,7 +976,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508713621299582}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -112.27, y: -4.7, z: -187.4}
+  m_LocalPosition: {x: -263.57, y: 1.03, z: -244.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4883484231062082}
@@ -990,7 +990,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1356405672144578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 94.84, y: 14.33, z: -188.39}
+  m_LocalPosition: {x: 230.86, y: 29.51, z: -245.39}
   m_LocalScale: {x: 10, y: 0.05, z: 10}
   m_Children:
   - {fileID: 4383872889378802}
@@ -3295,7 +3295,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextStagePoint: {fileID: 4767564232743704}
-  transitionTimer: 2
 --- !u!114 &114177833442277182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3410,7 +3409,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextStagePoint: {fileID: 4621314565069166}
-  transitionTimer: 2
 --- !u!114 &114278583373782916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3590,7 +3588,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextStagePoint: {fileID: 4050845599332120}
-  transitionTimer: 2
 --- !u!114 &114641177440220464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3641,7 +3638,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextStagePoint: {fileID: 4650602695556944}
-  transitionTimer: 2
 --- !u!114 &114746848242650846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3779,7 +3775,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1847422218
+  randomSeed: 1693832227
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9815,7 +9811,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1847422218
+  randomSeed: -1303536363
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12833,7 +12829,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1847422218
+  randomSeed: 387287785
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -15851,7 +15847,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 328327690
+  randomSeed: 1638050955
   InitialModule:
     serializedVersion: 3
     enabled: 1

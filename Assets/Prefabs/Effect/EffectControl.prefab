@@ -101,3 +101,10 @@ MonoBehaviour:
   - {fileID: 169642, guid: 63621660d930e204fb40d555f221affa, type: 2}
   - {fileID: 172760, guid: ebe43f42cf7b4214fb9ae0734bda0579, type: 2}
   - {fileID: 160584, guid: 6e7013877cd25ea429426b84ad103215, type: 2}
+  eff_MuzzleLaserBolt:
+  - {fileID: 106912, guid: afbdeac5d6ff25e46ae6bb518f70f0a9, type: 2}
+  - {fileID: 106912, guid: 18c03f316fa6d1040ab46baf6e46a105, type: 2}
+  - {fileID: 106912, guid: 2fb06bf04935a764581c88a65a3850bc, type: 2}
+  - {fileID: 106912, guid: d74ceec59793c624aacd5212f2e41a63, type: 2}
+  eff_respawn: {fileID: 1619554527217862, guid: fe051c4eafe26ee4f83075e741399a1e,
+    type: 2}

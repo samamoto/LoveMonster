@@ -273,8 +273,8 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		} else {
 			//get input from sticks and buttons
 			if (Controller.Controller.GetConnectControllers() > 0) {
-				h = m_Controller.GetAxisRawThreshold(Axis.L_x, 0.05f);  // 2017/12/11 oyama add 閾値設定して小さな誤入力を消す
-				v = m_Controller.GetAxisRawThreshold(Axis.L_y, 0.05f);
+				h = m_Controller.GetAxisRawThreshold(Axis.L_x, 0.1f);  // 2017/12/11 oyama add 閾値設定して小さな誤入力を消す
+				v = m_Controller.GetAxisRawThreshold(Axis.L_y, 0.1f);
 			} else {
 				// つながってないとき
 				h = Input.GetAxis("Horizontal");
@@ -443,6 +443,9 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
 					m_animator.SetBool("is_" + name, true);
 					m_animator.Play(name);
+
+					m_Combo._AddCombo();    // アクションが実行されるたびにコンボを＋１
+					m_MoveState.changeState(m, name);
 					// PrintScoreにスコアの基準値を投げる
 					// スコアマネージャに送信
 					ExecuteEvents.Execute<ScoreReciever>(
@@ -450,8 +453,6 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 						eventData: null,
 						functor: (reciever, y) => reciever.ReceivePlayerScore(this.m_PlayerID, score)
 					);
-					m_Combo._AddCombo();    // アクションが実行されるたびにコンボを＋１
-					m_MoveState.changeState(m, name);
 				}
 			}
 		}
@@ -464,7 +465,7 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 	public void restartPlayer() {
 		EffectControl eff = EffectControl.get();
 		transform.position = m_RestartPoint;
-		eff.createItemHit(m_RestartPoint);  // 仮にエフェクト再生
+		eff.createRespawn(transform.position);  // 仮にエフェクト再生
 		eff.createLightJump(gameObject, new Vector3(0f, 0f), GetComponent<PlayerManager>().getPlayerID());
 	}
 	/// <summary>

@@ -18,8 +18,23 @@ public class EffectControl : MonoBehaviour {
 	public GameObject[] eff_chargeAura = null;      // チャージ
 	public GameObject[] eff_PlasmaImpact = null;    // プラズマ
 	public GameObject[] eff_Nova = null;            // ノヴァ
-	public GameObject[] eff_MuzzleFlash = null;		// マズルフラッシュ
-	// ================================================================ //
+	public GameObject[] eff_MuzzleFlash = null;     // マズルフラッシュ
+	public GameObject[] eff_MuzzleLaserBolt = null;     // マズルフラッシュ
+	public GameObject eff_respawn = null;           // リスポーンエフェクト
+													// ================================================================ //
+
+	public void createMuzzleLaserBolt(Vector3 vec, int color) {
+		int c = color;
+		if (c > eff_Buff.Length || c == 0) c = 1;
+
+		GameObject go = Instantiate(eff_MuzzleLaserBolt[c - 1]) as GameObject;
+		go.AddComponent<Effect>();
+		Vector3 position = vec;
+		// 位置調整
+		position.y += 0.0f;
+		go.transform.position = position;
+	}
+
 
 	public void createMuzzleFlash(Vector3 vec, int color) {
 		int c = color;
@@ -385,6 +400,19 @@ public class EffectControl : MonoBehaviour {
 		position.y -= 0.2f;
 
 		obj.transform.position = position;
+	}
+
+	public void createRespawn(Vector3 vec) {
+		GameObject go = Instantiate(this.eff_respawn) as GameObject;
+
+		go.AddComponent<Effect>();
+
+		Vector3 position = vec;
+
+		// 位置調整
+		position.y -= 0.9f;
+
+		go.transform.position = position;
 	}
 
 	// ================================================================ //

@@ -23,13 +23,14 @@ public class Timer : MonoBehaviour {
 	private int oldSecond;
 	private bool timerFlag = false;
 	private char textField;
-	float countTime = 0;
 
 	// Use this for initialization
 	void Start() {
+
 		minute = 0;
 		second = 0;
 		oldSecond = 0;
+		
 	}
 
 	// Update is called once per frame
@@ -53,15 +54,9 @@ public class Timer : MonoBehaviour {
 				second = second - 60.0f;   //秒を0に戻す
 										   //second_2 = second_2 - second;
 			}
-
-			//   GetComponent<Text>().text = minute.ToString("00") + ":" + Convert.ToInt32(second).ToString("F2") + ":" + second.ToString("00");
-			//}
-			GetComponent<TextMeshProUGUI>().text = minute.ToString("00") + "." + second.ToString("F2");
-
-			//oldSecond = Convert.ToInt32(second);
-
 		}
-
+		GetComponent<TextMeshProUGUI>().outlineColor = new Color(1f, 1f, 0f, 1f);
+		GetComponent<TextMeshProUGUI>().text = minute.ToString("00") + "." + second.ToString("F2");
 
 	}
 
@@ -89,6 +84,19 @@ public class Timer : MonoBehaviour {
 		oldSecond = 0;
 	}
 
+	public void setTimer(int time) {
+		second = (float)time;
+	}
+
+	/// <summary>
+	/// 現在時間を返す
+	/// </summary>
+	/// <returns>表示時間の文字列</returns>
+	public int getTime() {
+		int s = Convert.ToInt32(second) + minute*60;
+		return s;
+	}
+
 	/// <summary>
 	/// 現在時間を文字列で返す
 	/// </summary>
@@ -100,4 +108,5 @@ public class Timer : MonoBehaviour {
 #endif
 		return s;
 	}
+
 }

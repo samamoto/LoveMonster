@@ -29,7 +29,7 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4937386662406196
 Transform:
-  m_ObjectHideFlags: 8
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1963691229557796}
@@ -78,6 +78,12 @@ MonoBehaviour:
       GO: {fileID: 1929360401085884, guid: b6cf86c93b87a3045852d4f1b88f552c, type: 2}
     - IsSelected: 0
       GO: {fileID: 1111297763195186, guid: 9035c97a8c9b40a4aa0abfd3e038e22c, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1899303284893314, guid: 3f1bc52104026834589643c9f9d511df, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1854457940740238, guid: 74d1248a215660945852d9aaedc80e4b, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1921802490531010, guid: ab6754810eaef8144afb12ef131082bf, type: 2}
     GroupParent: {fileID: 0}
     IsOpen: 1
     GroupName: Block
