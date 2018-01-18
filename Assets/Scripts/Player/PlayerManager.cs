@@ -476,6 +476,18 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 		transform.eulerAngles = rot;
 		restartPlayer();
 	}
+	/// <summary>
+	/// プレイヤーがリスタートする時の処理
+	/// </summary>
+	/// <param name="rot">リスタート時の回転角度</param>
+	public void restartPlayer(Vector3 pos, Vector3 rot) {
+		transform.eulerAngles = rot;
+		transform.position = pos;
+
+		EffectControl eff = EffectControl.get();
+		eff.createRespawn(transform.position);  // 仮にエフェクト再生
+		eff.createLightJump(gameObject, new Vector3(0f, 0f), GetComponent<PlayerManager>().getPlayerID());
+	}
 
 	/// <summary>
 	/// ボーナスから戻ったときのパラメータ関係のリセット

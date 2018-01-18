@@ -176,20 +176,43 @@ public class AllPlayerManager : MonoBehaviour {
 	/// 落下処理
 	/// </summary>
 	private void PlayerFall() {
-		for (int i = 0; i < m_PlayerNum; i++) {
-			if (m_PlayerManager[i].transform.position.y < -20.0f || m_PlayerManager[i].is_Fall) {
-				m_PlayerManager[i].is_Fall = false;
-				m_GameManager.isPlayerDead(i, transform.position);      // GameManagerに落ちたプレイヤーのIDを投げる
-				// 落下したプレイヤーの下降処理
-				m_PlayerManager[i].gameObject.GetComponent<ComboSystem>()._ClearCombo();
-				m_PlayerManager[i].gameObject.GetComponent<Tension>().downTension();
-				m_PlayerManager[i].stopControlTimer(false, 0.5f);
-				Vector3 resetRot = m_StartList[m_PlayerManager[i].getPlayerStageID() - 1].transform.rotation.eulerAngles;
-				m_PlayerManager[i].restartPlayer(resetRot); // 2017/12/01 oyama add
-				// カメラを背面にリセット
-				GameObject.Find("MainCamera" + (i+1).ToString()).GetComponent<ChaseCamera>().resetCamera();
+
+		if (m_GameManager.getGamePhase() == MainGameManager.PhaseLevel.Game) {
+			for (int i = 0; i < m_PlayerNum; i++) {
+				if (m_PlayerManager[i].transform.position.y < -20.0f || m_PlayerManager[i].is_Fall) {
+					m_PlayerManager[i].is_Fall = false;
+					m_GameManager.isPlayerDead(i, transform.position);      // GameManagerに落ちたプレイヤーのIDを投げる
+																			// 落下したプレイヤーの下降処理
+					m_PlayerManager[i].gameObject.GetComponent<ComboSystem>()._ClearCombo();
+					m_PlayerManager[i].gameObject.GetComponent<Tension>().downTension();
+					m_PlayerManager[i].stopControlTimer(false, 0.5f);
+					Vector3 resetRot = m_StartList[m_PlayerManager[i].getPlayerStageID() - 1].transform.rotation.eulerAngles;
+					m_PlayerManager[i].restartPlayer(resetRot); // 2017/12/01 oyama add
+																// カメラを背面にリセット
+					GameObject.Find("MainCamera" + (i + 1).ToString()).GetComponent<ChaseCamera>().resetCamera();
+				}
+			}
+
+		} else if(m_GameManager.getGamePhase() == MainGameManager.PhaseLevel.Game_Bonus) {
+			for (int i = 0; i < m_PlayerNum; i++) {
+				if (m_PlayerManager[i].transform.position.y < 0.0f || m_PlayerManager[i].is_Fall) {
+					m_PlayerManager[i].is_Fall = false;
+					m_GameManager.isPlayerDead(i, transform.position);      // GameManagerに落ちたプレイヤーのIDを投げる
+					// 落下したプレイヤーの下降処理
+					m_PlayerManager[i].gameObject.GetComponent<ComboSystem>()._ClearCombo();
+					m_PlayerManager[i].gameObject.GetComponent<Tension>().downTension();
+
+					m_PlayerManager[i].stopControlTimer(false, 0.5f);
+					Vector3 resetRot = m_GameManager.getBonusRestartEulerRot();
+					m_PlayerManager[i].restartPlayer(m_GameManager.getBonusRestartPos(), resetRot); // 2017/12/01 oyama add
+																// カメラを背面にリセット
+					GameObject.Find("MainCamera" + (i + 1).ToString()).GetComponent<ChaseCamera>().resetCamera();
+				}
 			}
 		}
+		
+		
+
 	}
 	/// <summary>
 	/// プレイヤーをリスタートさせる

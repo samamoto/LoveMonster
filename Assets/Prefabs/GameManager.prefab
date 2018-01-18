@@ -45,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1216088241771410
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   BONUS_ENTRY_NUM: 2
   ENTRY_BONUS_PLAYER: 1
   ENTRY_BONUS_TENSION: 0.65
-  BONUS_ALIVE_TIME: 50
+  BONUS_ALIVE_TIME: 60
 --- !u!114 &114286469088137192
 MonoBehaviour:
   m_ObjectHideFlags: 1

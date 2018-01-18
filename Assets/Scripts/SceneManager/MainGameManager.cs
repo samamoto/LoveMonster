@@ -451,6 +451,15 @@ public class MainGameManager : MonoBehaviour {
 	//--------------------------------------------------------------------------------
 	// Function
 	//--------------------------------------------------------------------------------
+	public Vector3 getBonusRestartPos() {
+		return GameObject.Find("BonusStart1").transform.position;
+	}
+	public Vector3 getBonusRestartEulerRot() {
+		return GameObject.Find("BonusStart1").transform.eulerAngles;
+	}
+
+
+
 	/// <summary>
 	/// ステージ全体の距離を取得
 	/// </summary>
