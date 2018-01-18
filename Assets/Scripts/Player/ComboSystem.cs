@@ -94,7 +94,6 @@ public class ComboSystem : MonoBehaviour
 			m_Tension.updateTensionPhase(power);
 			m_EffTrail.setActive(false, gameObject);
 			m_EffSpeed.setActive(false, gameObject);
-			m_ComboGauge.setComboLevel(power);
 			return;
 		}
 
@@ -183,19 +182,18 @@ public class ComboSystem : MonoBehaviour
 
 		if (cntTime >= 1f)
         {
-            cntTime = 0;
-			m_ComboGauge.UpdateComboLevel(power, downTime);
-
+			cntTime = 0;
 			//上限用
 			if (power <= 0)
             {
                 power = 0;
 			} else
             {
-                power--;
+				power--;
 			}
+			m_ComboGauge.UpdateComboLevel(power, 1.0f);
 		}
-    }
+	}
 
     //コンボするごとに１回呼ぶ
     public void _AddCombo()
@@ -205,8 +203,6 @@ public class ComboSystem : MonoBehaviour
         cntTime = 0;
         cntCombo++;                     //コンボカウントを進める
 
-		m_ComboGauge.UpdateComboLevel(power, downTime);
-
 		//上限用
 		if (power >= MAX_POWER)
         {
@@ -215,10 +211,11 @@ public class ComboSystem : MonoBehaviour
         {
             power++;
 		}
+		m_ComboGauge.UpdateComboLevel(power, downTime);
 	}
 
-    //コンボのカウント初期化
-    public void _ClearCombo() {
+	//コンボのカウント初期化
+	public void _ClearCombo() {
 		Init();
 	}
 

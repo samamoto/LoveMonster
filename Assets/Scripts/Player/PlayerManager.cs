@@ -443,6 +443,9 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 					// MoveStatementのenumに変換したiと検出したタグ名を投げる
 					m_animator.SetBool("is_" + name, true);
 					m_animator.Play(name);
+
+					m_Combo._AddCombo();    // アクションが実行されるたびにコンボを＋１
+					m_MoveState.changeState(m, name);
 					// PrintScoreにスコアの基準値を投げる
 					// スコアマネージャに送信
 					ExecuteEvents.Execute<ScoreReciever>(
@@ -450,8 +453,6 @@ public class PlayerManager : MonoBehaviour, PlayerReciever {
 						eventData: null,
 						functor: (reciever, y) => reciever.ReceivePlayerScore(this.m_PlayerID, score)
 					);
-					m_Combo._AddCombo();    // アクションが実行されるたびにコンボを＋１
-					m_MoveState.changeState(m, name);
 				}
 			}
 		}
