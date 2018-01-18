@@ -14,7 +14,7 @@ public class WorldHeritage : MonoBehaviour
     public float normalizedTime { get; private set; }
 
     // Update is called once per frame
-    private void Update()
+    public void Update()
     {
         //移動
         if (normalizedTime < 1.0f)

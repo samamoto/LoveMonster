@@ -35,7 +35,6 @@ public class WorldHeritageSpawner : MonoBehaviour
     [SerializeField, Tooltip("帯の移動速度")] private float beltSpeed = 0.1f;
     [SerializeField, Tooltip("名前出現の遅延時間")] private float nameDelayTime = 1.0f;
     [SerializeField, Tooltip("名前出現の移動時間")] private float nameMoveTime = 1.0f;
-    [SerializeField, Tooltip("演出終了後の待機時間")] private float endWaitTime = 1.0f;
 
     //デバック起動用
     [SerializeField] private bool debug_Spawn = false;
@@ -62,7 +61,6 @@ public class WorldHeritageSpawner : MonoBehaviour
         {
             this.debug_Spawn = false;
             this.isControll = false;
-            this.waitingTime = 0.0f;
             allPlayerManager.stopPlayerControl();
             this.Spawn();
         }
@@ -72,16 +70,9 @@ public class WorldHeritageSpawner : MonoBehaviour
             // カメラを移動終了させ、プレイヤーのコントロールを戻す
             if (this.instanceWorldHeritage.GetComponent<WorldHeritage>().normalizedTime >= 1.0f && this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().endFlg)
             {
-                if (waitingTime >= endWaitTime)
-                {
-                    this.allPlayerManager.returnPlayerControl();
-                    this.worldHeritageCamera.GetComponent<Camera>().enabled = false;
-                    isControll = true;
-                }
-                else
-                {
-                    waitingTime += Time.deltaTime;
-                }
+                this.allPlayerManager.returnPlayerControl();
+                this.worldHeritageCamera.GetComponent<Camera>().enabled = false;
+                isControll = true;
             }
 
             //解放処理
@@ -107,7 +98,7 @@ public class WorldHeritageSpawner : MonoBehaviour
 
         this.WorldHeritageList[spawnHeritageNum].instanced = true;
         this.worldHeritageCamera.GetComponent<Camera>().enabled = true;
-        this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().CameraStart();
+        this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().CameraStart(this.MoveTime);
         this.WorldHeritageCanvas.GetComponent<WorldHeritageCanvas>().InitBelt(this.beltSpeed);
         this.WorldHeritageCanvas.GetComponent<WorldHeritageCanvas>().InitName(this.nameDelayTime, this.nameMoveTime, this.WorldHeritageList[spawnHeritageNum].nameImage);
         this.instanceWorldHeritage = Instantiate(this.WorldHeritageList[spawnHeritageNum].worldHeritage, Vector3.zero, Quaternion.identity, this.transform);
