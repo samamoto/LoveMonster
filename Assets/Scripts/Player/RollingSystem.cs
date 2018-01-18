@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Controller;
 
 public class RollingSystem : MonoBehaviour {
@@ -42,6 +43,17 @@ public class RollingSystem : MonoBehaviour {
 				rollingFlag = true;
 				EffectControl eff = EffectControl.get();
 				eff.createMuzzleFlash(transform.position, GetComponent<PlayerManager>().getPlayerID());
+				// Score
+				PrintScore score;
+				score = GameObject.Find("ScoreManager").GetComponent<PrintScore>();
+				ExecuteEvents.Execute<ScoreReciever>(
+					target: score.gameObject,
+					eventData: null,
+					functor: (reciever, y) => reciever.ReceivePlayerScoreNonRate(gameObject.GetComponent<PlayerManager>().m_PlayerID, 100)
+				);
+
+				// コンボ継続
+				GetComponent<ComboSystem>()._ContinueCombo();
 			}
 
 			if (rollingFlag) {

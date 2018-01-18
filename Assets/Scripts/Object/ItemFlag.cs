@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class ItemFlag : ItemBase {
 
-	private const int GetScore = 10000;
+	private const int GetScore = 30000;
 	public bool is_Get { get; private set; }
 
 	// Use this for initialization
@@ -42,7 +42,7 @@ public class ItemFlag : ItemBase {
 			ExecuteEvents.Execute<ScoreReciever>(
 				target: score.gameObject,
 				eventData: null,
-				functor: (reciever, y) => reciever.ReceivePlayerScore(other.gameObject.GetComponent<PlayerManager>().m_PlayerID, GetScore)
+				functor: (reciever, y) => reciever.ReceivePlayerScoreNonRate(other.gameObject.GetComponent<PlayerManager>().m_PlayerID, GetScore)
 			);
 			// ボーナスステージを終了させるフラグを立てる
 			is_Get = true;

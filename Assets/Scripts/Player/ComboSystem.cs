@@ -16,7 +16,7 @@ using UnityEngine.EventSystems;
 
 public class ComboSystem : MonoBehaviour
 {
-    public const float MAX_TIME = 5f;
+    public const float MAX_TIME = 4f;
     public const int MAX_POWER = 11;
     public const float SPD_UP_RATE = 0.03f;
     private float[] multiList;
@@ -30,6 +30,7 @@ public class ComboSystem : MonoBehaviour
     [SerializeField] private float mulMove; //移動速度に掛ける量を表示するだけ
     [SerializeField] private float mulAnim; //アニメーションに掛ける量を表示するだけ
     private int m_id;
+	private int rollNum = 0;		// 受け身でのコンボ継続数　何度も続けると待ち時間が減る
     private float m_MoveSpeed;
     private float m_AnimSpeed;
 	private bool is_StopControll = false;
@@ -77,7 +78,8 @@ public class ComboSystem : MonoBehaviour
         cntCombo = 0;
         cntTime = 0;
         downTime = MAX_TIME;
-    }
+		rollNum = 0;
+	}
 
     // Update is called once per frame
     private void Update()
@@ -179,7 +181,7 @@ public class ComboSystem : MonoBehaviour
     {
         //１秒づつパワーを下げる
         cntTime += Time.deltaTime;
-
+		rollNum = 0;
 		if (cntTime >= 1f)
         {
 			cntTime = 0;
@@ -202,7 +204,7 @@ public class ComboSystem : MonoBehaviour
         downTime = MAX_TIME;
         cntTime = 0;
         cntCombo++;                     //コンボカウントを進める
-
+		rollNum = 0;
 		//上限用
 		if (power >= MAX_POWER)
         {
@@ -211,6 +213,21 @@ public class ComboSystem : MonoBehaviour
         {
             power++;
 		}
+		m_ComboGauge.UpdateComboLevel(power, downTime);
+	}
+
+	/// <summary>
+	/// コンボ継続
+	/// </summary>
+	public void _ContinueCombo() {
+		//タイムの初期化
+		rollNum++;
+		if(rollNum >= MAX_TIME - 1) {
+			rollNum = (int)MAX_TIME - 1;
+		}
+		downTime = MAX_TIME- rollNum;
+		cntTime = 0;
+
 		m_ComboGauge.UpdateComboLevel(power, downTime);
 	}
 

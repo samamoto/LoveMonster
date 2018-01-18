@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class GoalObject : MonoBehaviour {
 
-	private const int GetScorePoint = 5000;
+	private const int GetScorePoint = 20000;
 
 	public Transform nextStagePoint;		// 次の移動場所
 	private float transitionTimer = 1.0f;    // 移行時間
@@ -50,7 +50,7 @@ public class GoalObject : MonoBehaviour {
 			ExecuteEvents.Execute<ScoreReciever>(
 				target: score.gameObject,
 				eventData: null,
-				functor: (reciever, y) => reciever.ReceivePlayerScore(other.gameObject.GetComponent<PlayerManager>().getPlayerID(), GetScorePoint)
+				functor: (reciever, y) => reciever.ReceivePlayerScoreNonRate(other.gameObject.GetComponent<PlayerManager>().getPlayerID(), GetScorePoint)
 			);
 
 			// 縮小してテレポートみたいに

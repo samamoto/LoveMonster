@@ -120,18 +120,33 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 		ScoreUpdate();  //スコア更新
 	}
 
+	// スコアの受け取り
+	// 倍率をかけずに固定で入れる場合
+	public void ReceivePlayerScoreNonRate(int id, int score) {
+		// idそのまま飛んでくるので-1
+		PlayerScore[id - 1] += score;
+		// 0より上なら表示する
+		if (score > 0) {
+			ScoreUp(score, id - 1);
+		}
+	}
+
 	//プレイヤースコアの受け取り
 	public void ReceivePlayerScore(int id, int score) {
 		//値を受け取る それぞれ(1P～4P)に用意された変数に格納 Rateを乗算する
 		// idそのまま飛んでくるので-1
-		if(ScoreRate[id-1] <= 0) {
-			PlayerScore[id - 1] += score * ScoreRateList[1];
+		if (ScoreRate[id - 1] <= 0) {
+			//PlayerScore[id - 1] += score * ScoreRateList[1];
+			// 0より上なら表示する
+			if (score * ScoreRateList[id - 1] > 0) {
+				ScoreUp((int)(score * ScoreRateList[1]), id - 1);
+			}
 		} else {
 			PlayerScore[id - 1] += score * ScoreRate[id - 1];
-		}
-		// 0より上なら表示する
-		if (score > 0) {
-			ScoreUp((int)(score * ScoreRate[id - 1]), id-1);
+			// 0より上なら表示する
+			if (score > 0) {
+				ScoreUp((int)(score * ScoreRate[id - 1]), id - 1);
+			}
 		}
 	}
 
