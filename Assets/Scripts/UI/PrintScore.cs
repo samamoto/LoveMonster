@@ -64,11 +64,14 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 		0,0,0,0
 	};
 
+	private int[] isJudgeScreen = new int[4];
+
+	/*
     private bool Player_success_ui_1p;
     private bool Player_success_ui_2p;
     private bool Player_success_ui_3p;
     private bool Player_success_ui_4p;
-
+	*/
 
     [SerializeField, MultilineAttribute(4)]
 	public string text_field;
@@ -112,10 +115,9 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         Judge_Success_4p.SetActive(false);
 		*/
 
-		Player_success_ui_1p = false;
-        Player_success_ui_2p = false;
-        Player_success_ui_3p = false;
-        Player_success_ui_4p = false;
+		for (int i = 0; i < 4; i++) {
+			isJudgeScreen[i] = 0;
+		}
 
 		for (int i = 0; i < 4; i++) {
 			scoreUp[i] = GameObject.Find("ScoreUp_p" + (i + 1).ToString());
@@ -253,12 +255,24 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
 	/// <param name="id">PlayerのID</param>
 	/// <param name="n">スコアレート</param>
 	public void setScoreRate(int id, int n) {
-		// 1以上
-		if (n >= 0 && n <= 5) {
+		// 向こう側から送られてくる値が変わり、こちら側の最大値なら格納して表示フラグをOn
+
+		bool flag = false;
+		if (n > isJudgeScreen[id - 1] && n >= ScoreRateList.Length-1) {
+			isJudgeScreen[id - 1] = n;
+			flag = true;
+		} else {
+			isJudgeScreen[id - 1] = 0;
+		}
+
+
+		if (n >= 0 && n <= ScoreRateList.Length - 1) {
 			ScoreRate[id - 1] = ScoreRateList[n];
-            
+			flag = true;
         }
-        Player_Success_UI();    //成功UI表示
+
+		if(flag)
+	        Player_Success_UI();    //成功UI表示
     }
 
 
