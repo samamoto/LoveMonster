@@ -70,6 +70,9 @@ public class MainGameManager : MonoBehaviour {
 
 	// Use this for initialization
 	private void Start() {
+		// カーソルを削除
+		Cursor.visible = false;
+
 		// シーンが生成されたらStart
 		m_Phase = PhaseLevel.Start_Fade;
 		m_ScreenChange = GetComponent<SceneChange>();

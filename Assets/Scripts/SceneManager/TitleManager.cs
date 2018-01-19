@@ -44,6 +44,9 @@ public class TitleManager : MonoBehaviour {
 	// Use this for initialization
 	private void Start()
     {
+		// カーソルを削除
+		Cursor.visible = false;
+
 		GameObject.Find("Camera").GetComponent<NoiseAndScratches>().enabled = true;
 		m_Audio = GameObject.Find("SoundManager").GetComponent<AudioList>();
 		m_Controller = GetComponent<Controller.Controller>();

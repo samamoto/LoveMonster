@@ -51,6 +51,9 @@ public class ResultManager : MonoBehaviour {
 
 	// Use this for initialization
 	private void Start() {
+		// カーソルを削除
+		Cursor.visible = false;
+
 		//m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
 		//フェード       仕様書によって場所変更アリ(現在は一番最初)
 		//読み込みは一度でおｋ？ 現在はタイトルに設置
