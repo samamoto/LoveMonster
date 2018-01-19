@@ -90,6 +90,11 @@ public class WorldHeritageCamera : MonoBehaviour
         }
         endFlg = true;
     }
+
+    public void Reset()
+    {
+        this.GetComponent<Camera>().fieldOfView = this.initFoV;
+    }
 }
 
 #if UNITY_EDITOR
