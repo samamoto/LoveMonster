@@ -12,11 +12,14 @@ public class TutorialManager : MonoBehaviour {
     // Use this for initialization
     private void Start()
     {
-        //m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
-    }
+		// カーソルを削除
+		Cursor.visible = false;
 
-    // Update is called once per frame
-    private void Update()
+		//m_ScreenChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
+	}
+
+	// Update is called once per frame
+	private void Update()
     {
         //m_ScreenChange._DebugInput();
 
