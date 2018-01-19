@@ -90,7 +90,7 @@ public class WorldHeritageSpawner : MonoBehaviour
     {
         int spawnHeritageNum = Random.Range(0, this.WorldHeritageList.Length);
         int trial = 0;
-        while (trial++ < 10 && this.WorldHeritageList[spawnHeritageNum].instanced)
+        while (trial++ < 10 && this.WorldHeritageList[spawnHeritageNum].instanced || this.WorldHeritageList[spawnHeritageNum].worldHeritage == null)
         {
             //10回試行(すべてチェックが入っていたらランダムに出る。)
             spawnHeritageNum = Random.Range(0, this.WorldHeritageList.Length);
