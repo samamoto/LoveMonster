@@ -101,8 +101,9 @@ public class WorldHeritageSpawner : MonoBehaviour
         this.worldHeritageCamera.GetComponent<WorldHeritageCamera>().CameraStart(this.MoveTime);
         this.WorldHeritageCanvas.GetComponent<WorldHeritageCanvas>().InitBelt(this.beltSpeed);
         this.WorldHeritageCanvas.GetComponent<WorldHeritageCanvas>().InitName(this.nameDelayTime, this.nameMoveTime, this.WorldHeritageList[spawnHeritageNum].nameImage);
-        this.instanceWorldHeritage = Instantiate(this.WorldHeritageList[spawnHeritageNum].worldHeritage, Vector3.zero, Quaternion.identity, this.transform);
-        this.instanceWorldHeritage.GetComponent<WorldHeritage>().Init(this.startPoint, this.endPoint, this.MoveTime);
+		//this.instanceWorldHeritage = Instantiate(this.WorldHeritageList[spawnHeritageNum].worldHeritage, Vector3.zero, Quaternion.identity, this.transform);
+		this.instanceWorldHeritage = Instantiate(this.WorldHeritageList[spawnHeritageNum].worldHeritage, Vector3.zero, Quaternion.identity);
+		this.instanceWorldHeritage.GetComponent<WorldHeritage>().Init(this.startPoint, this.endPoint, this.MoveTime);
         this.stageRelease = false;
     }
 
