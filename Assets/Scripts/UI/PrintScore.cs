@@ -272,9 +272,70 @@ public class PrintScore : MonoBehaviour, ScoreReciever {
         }
 
 		if(flag)
-	        Player_Success_UI();    //成功UI表示
+	        Player_Success_UI(id-1);    //成功UI表示
     }
 
+
+	void Player_Success_UI(int id) {
+		// 表示を出す基準
+		int printID = 0;
+		float[] CompareRate = new float[4];
+
+		CompareRate[0] = ScoreRateList[0];  // Default
+		CompareRate[1] = ScoreRateList[2];  // Nice
+		CompareRate[2] = ScoreRateList[4];  // Great
+		CompareRate[3] = ScoreRateList[5];  // Excellent
+
+		// いずれかの表示の時にActiveにしてAnimatorを動かす
+		for (int i = 0; i < 4; i++) {
+
+			// 表示中なら次へ
+			if (Delete_count[id] > 0) {
+				Delete_count[id] += Time.deltaTime;
+				if (Delete_count[id] >= PrintTime - 0.5f) {
+					iTween.ScaleTo(JudgeSuccess[id], new Vector3(0f, 0f), 0.5f);
+					iTween.FadeTo(JudgeSuccess[id], 0f, 0.5f);
+					iTween.MoveBy(JudgeSuccess[id], new Vector3(0, -3), 0.5f);
+					if (Delete_count[id] >= PrintTime) {
+						Delete_count[id] = 0f;
+						//JudgeSuccess[i].GetComponent<Image>().sprite = JudgeSprite[0];
+						//JudgeSuccess[i].SetActive(false);
+					}
+				}
+				continue;
+			} else {
+
+				if (ScoreRate[id] == ScoreRate_old[i] && ScoreRate[id] != ScoreRateList[ScoreRateList.Length - 1]) {
+					continue;
+				}
+
+				printID = -1;
+				for (int j = 0; j < CompareRate.Length; j++) {
+					if (ScoreRate[id] == CompareRate[j] && ScoreRate[id] > ScoreRate_old[id]) {
+						printID = j;
+						break;
+					}
+				}
+				// デフォルトと初期は飛ばす
+				if (printID <= 0) {
+					break;
+				}
+
+				// 表示関連
+				//JudgeSuccess[i].SetActive(false);
+				JudgeSuccess[id].SetActive(true);
+				Delete_count[id] = 0;
+				Delete_count[id] += Time.deltaTime;
+				JudgeSuccess[id].GetComponent<Image>().sprite = JudgeSprite[printID];
+				JudgeSuccess[id].transform.position = JudgePos[id];   // 移動前に初期位置に戻す
+				iTween.MoveBy(JudgeSuccess[id], new Vector3(0, 10), 1.0f);
+				iTween.ScaleTo(JudgeSuccess[id], new Vector3(1.8f, 0.6f), 1.0f);
+			}
+		}
+		for (int i = 0; i < 4; i++) {
+			ScoreRate_old[id] = ScoreRate[id];
+		}
+	}
 
 	/// <summary>
 	/// プレイヤーの成功表示
