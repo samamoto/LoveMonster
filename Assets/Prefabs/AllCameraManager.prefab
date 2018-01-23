@@ -1388,7 +1388,6 @@ GameObject:
   - component: {fileID: 114757736813435754}
   - component: {fileID: 114276836338152034}
   - component: {fileID: 114444223048035764}
-  - component: {fileID: 114253179046256030}
   m_Layer: 5
   m_Name: TimeManager
   m_TagString: Untagged
@@ -4762,18 +4761,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &114253179046256030
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1606287964969020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c61c86756a512540a764a48fc339589, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CountDownLimit: 90
 --- !u!114 &114276836338152034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5757,7 +5744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c61c86756a512540a764a48fc339589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CountDownLimit: 45
+  CountDownLimit: 60
 --- !u!114 &114458273562880994
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -50,7 +50,7 @@ public class GoalObject : MonoBehaviour {
 			ExecuteEvents.Execute<ScoreReciever>(
 				target: score.gameObject,
 				eventData: null,
-				functor: (reciever, y) => reciever.ReceivePlayerScoreNonRate(other.gameObject.GetComponent<PlayerManager>().getPlayerID(), GetScorePoint)
+				functor: (reciever, y) => reciever.ReceivePlayerScoreNonRate(other.gameObject.GetComponent<PlayerManager>().getPlayerID(), (GetScorePoint* other.gameObject.GetComponent<PlayerManager>().getGoalFrequency()+1)/2)
 			);
 
 			// 縮小してテレポートみたいに
