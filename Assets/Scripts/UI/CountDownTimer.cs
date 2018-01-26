@@ -13,13 +13,13 @@ public class CountDownTimer : MonoBehaviour {
 	private bool timerFlag = false;
 	private char textField;
 	private bool countUpDownSwitch = true;
-	public float CountDownLimit = 90;
+	public float CountDownLimit = 60;
 
 	// Use this for initialization
 	void Start() {
 
 		if (CountDownLimit <= 0) {
-			CountDownLimit = 45;
+			CountDownLimit = 60;
 		}
 		minute = 0;
 		second = 0;

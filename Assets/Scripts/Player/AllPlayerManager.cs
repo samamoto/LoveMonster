@@ -263,6 +263,9 @@ public class AllPlayerManager : MonoBehaviour {
 	public void startPlayerPosition(int id, Vector3 pos, Quaternion rot) {
 		m_PlayerManager[id - 1].gameObject.transform.position = pos;
 		m_PlayerManager[id - 1].gameObject.transform.rotation = rot;
+		// ゴールしてた人の対策
+		m_PlayerManager[id - 1].gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
 	}
 
 	/// <summary>

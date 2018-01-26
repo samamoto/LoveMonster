@@ -435,10 +435,6 @@ MonoBehaviour:
       type: 2}
     nameImage: {fileID: 21300000, guid: 6c3ae9fc7d0f8f942b4df3c2ff7cd020, type: 3}
     instanced: 0
-  - worldHeritage: {fileID: 1698643485637854, guid: 6971d4234babb67489ad759c806eecc7,
-      type: 2}
-    nameImage: {fileID: 21300000, guid: 0ffbb02359bc1e74382c049970b650d7, type: 3}
-    instanced: 0
   startPoint: {x: 0, y: -100, z: 0}
   endPoint: {x: 0, y: 0, z: 0}
   MoveTime: 10

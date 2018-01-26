@@ -254,7 +254,8 @@ public class MainGameManager : MonoBehaviour {
 				m_BonusFlag = GameObject.Find("ItemFlag").GetComponent<ItemFlag>();
 			}
 			catch (System.NullReferenceException) {
-				Debug.Log("まだ一回だけしか対応してない");
+				//DebugPrint.print("FlagObject Not Found!");
+				
 			}
 			break;
 
@@ -290,6 +291,11 @@ public class MainGameManager : MonoBehaviour {
 				m_TimeMgr.setTimer((int)BONUS_ALIVE_TIME);
 				m_TimeMgr.startTimer();
 			}
+
+			// 出てきた旗を探す(常に一個しか出ないようにして参照切り替える)
+			if(m_BonusFlag == null)
+				m_BonusFlag = GameObject.Find("ItemFlag").GetComponent<ItemFlag>();
+			
 			break;
 
 		//================================================================================
@@ -297,6 +303,7 @@ public class MainGameManager : MonoBehaviour {
 		//================================================================================
 		// メインのゲームボーナスステージ処理
 		case PhaseLevel.Game_Bonus:
+
 			// ゲーム中にポーズ掛かったらPhase移行
 			if (m_PauseMgr.getPauseState()) {
 				setPhaseState(PhaseLevel.Pause);
